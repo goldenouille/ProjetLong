@@ -1,0 +1,1 @@
+public class Edge implements GraphItem{}
