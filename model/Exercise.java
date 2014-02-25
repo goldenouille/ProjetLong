@@ -61,7 +61,7 @@ public class Exercise {
 	un split sur les espaces, cela permettra à l'étudiant de sélectionner un mot clé précis dans son texte
 	*/
 	public void addText(String string) {
-		String[] text = string.split(" ");
+		String text[] = string.split(" ");
 		int l = text.length;
 		for (int i = 0; i<l; i++) {
 			userText.add(new Word(text[i]));
