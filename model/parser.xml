@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE digester-rules PUBLIC
+  "-//Apache Commons //DTD digester-rules XML V1.0//EN"
+  "http://commons.apache.org/digester/dtds/digester-rules-3.0.dtd">
+<digester-rules>
+<pattern value="root/exercise">
+    <object-create-rule classname="Exercise" />
+	<set-properties-rule/>
+	<pattern value="root/exercise/part">
+		<object-create-rule classname="Part" />
+		<set-properties-rule/>
+		<pattern value="root/exercise/part/text">
+			<object-create-rule classname="Text" />
+			<set-next-rule methodname="addtext"/>
+		</pattern>
+		
+		<pattern value="root/exercise/part/kw">
+			<object-create-rule classname="Part" />
+			<set-next-rule methodname="addkw"/>
+		</pattern>
+		
+		<pattern value="root/exercise/part/mapping">
+			<object-create-rule classname="mapping"/>
+			<pattern value="root/exercise/part/mapping/class">
+				<object-create-rule classname="class"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addclass"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/mapping/attribute">
+				<object-create-rule classname="attribute"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addattribute"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/mapping/method">
+				<object-create-rule classname="method"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addmethod"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/mapping/abstract">
+				<object-create-rule classname="abstract"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addabstract"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/mapping/interface">
+				<object-create-rule classname="interface"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addinterface"/>
+			</pattern>
+			<set-next-rule methodname="addmapping"/>
+		</pattern>
+		
+		<pattern value="root/exercise/part/UML">
+			<object-create-rule classname="Graph"/>
+			<pattern value="root/exercise/part/UML/uml-class">
+				<object-create-rule classname="VertexClass"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addVertex"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-abstract">
+				<object-create-rule classname="VertexAbstract"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addVertex"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-interface">
+				<object-create-rule classname="Vertex"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addVertex"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-attribute">
+				<object-create-rule classname="attribute"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addattribute"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-method">
+				<object-create-rule classname="method"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addmethod"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-realisation">
+				<object-create-rule classname="edgeRealisation"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-realisation">
+				<object-create-rule classname="edgeRealisation"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-dependency">
+				<object-create-rule classname="edgeDependency"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-generalization">
+				<object-create-rule classname="edgeGenerelization"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-associeation">
+				<object-create-rule classname="edgeAssociation"/>
+				<set-properties-rule/>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			
+			<pattern value="root/exercise/part/UML/uml-Naire-association">
+				<object-create-rule classname="edgeNaireAssociation"/>
+				<pattern value="root/exercise/part/UML/uml-Naire-association/target">
+					<object-create-rule classname="NaireTarget"/>
+					<set-properties-rule/>
+					<set-next-rule methoname="addTarget"/>
+				</pattern>
+				<set-next-rule methodname="addEdge"/>
+			</pattern>
+			<set-next-rule methodname="addUML"/>
+		</pattern>
+		<set-next-rule methodname="addPart"/>
+	</pattern>
+</pattern>
+</digester-rules>
