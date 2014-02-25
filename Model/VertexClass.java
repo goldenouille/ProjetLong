@@ -18,6 +18,13 @@ public class VertexClass extends Vertex {
 		}
 	}
 
+	public VertexClass() {
+		super();
+		this.attributes = new ArrayList<Attribute>();
+		this.isAbstract = false;
+		this.frenchName = "classe";
+	}
+	
 	public ArrayList<Attribute> getAttributes() {
 		return this.attributes;
 	}

@@ -9,6 +9,12 @@ public class Vertex implements Type, GraphItem {
 	protected ArrayList<Method> methods;
 	protected ArrayList<Edge> edges;
 	protected String frenchName;
+	
+	public Vertex() {
+		this.methods = new ArrayList<Method>();
+		this.edges = new ArrayList<Edge>();
+		this.frenchName = "interface";
+	}
 
 	public Vertex(String name, int id) {
 		this.name = name;
