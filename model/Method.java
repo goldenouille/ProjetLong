@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,12 @@ public class Method implements GraphItem {
 	private Visibility visibility;
 	private Type returnType;
 	private ArrayList<Type> paramTypes;
+	private int id;
 	private String frenchName;
+
+	public Method() {
+		this.frenchName = "methode";
+	}
 
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
 		this.name = name;
@@ -48,5 +53,21 @@ public class Method implements GraphItem {
 
 	public void setParamType(ArrayList<Type> newTypes) {
 		this.paramTypes = newTypes;
+	}
+
+	public void addParamType(Type type) {
+		this.paramTypes.add(type);
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public String getFrenchName() {
+		return this.frenchName;
 	}
 }

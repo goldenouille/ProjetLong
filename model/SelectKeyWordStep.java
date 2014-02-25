@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class SelectKeyWordStep {
 
@@ -7,7 +7,7 @@ public class SelectKeyWordStep {
 		ArrayList<boolean> correction = new ArrayList<boolean>();
 
 		for (Word word : text) {
-    		instructions
+    		//TODO TODO TODO
 		}
 
 	}

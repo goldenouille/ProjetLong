@@ -1,11 +1,11 @@
-package Controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import Parser.Parser;
+import parser.Parser;
 
 public class Controller implements ActionListener {
 

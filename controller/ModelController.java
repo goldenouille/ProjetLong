@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Parser.Parser;
+import parser.Parser;
 
 public class ModelController {
 	private ClassicGuiController cgc;

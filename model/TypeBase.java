@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public enum TypeBase implements Type {
 	CHAR("char",false),
