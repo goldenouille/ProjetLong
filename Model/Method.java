@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Method implements GraphItem {
@@ -6,12 +8,14 @@ public class Method implements GraphItem {
 	private Visibility visibility;
 	private Type returnType;
 	private ArrayList<Type> paramTypes;
+	private String frenchName;
 
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
 		this.name = name;
 		this.returnType = type;
 		this.visibility = visibility;
 		this.paramTypes = paramTypes;
+		this.frenchName = "methode";
 	}
 
 	public String getName() {

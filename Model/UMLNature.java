@@ -1,16 +1,18 @@
+package Model;
+
 public enum UMLNature {
 	ABSTRACT_CLASS("classe abstraite"),
-	AGGREGATION("aggrégation"),
+	AGGREGATION("aggregation"),
 	ASSOCIATION("assocition"),
 	ATTRIBUTE("attribut"),
 	CLASS("classe"),
 	COMPOSITION("composition"),
-	DEPENDANCY("dépendance"),
-	GENERALIZATION("généralisation"),
+	DEPENDANCY("dependance"),
+	GENERALIZATION("generalisation"),
 	INTERFACE("interface"), 
-	METHOD("méthode"),
+	METHOD("methode"),
 	N_ASSOCIATION("assocition n-aire"),
-	REALIZATION("rélisation");
+	REALIZATION("relisation");
 
 	private String name;
 

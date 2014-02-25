@@ -1,13 +1,17 @@
+package Model;
+
 public class Attribute implements GraphItem{
 
 	private Type type;
 	private String name;
 	private Visibility visibility;
+	private String frenchName;
 
 	public Attribute (String name, Type type, Visibility visibility) {
 		this.name = name;
 		this.type = type;
-		this.visibility = visibility;
+		this.visibility = visibility; 
+		this.frenchName = "attribut";
 	}
 
 	public String getName() {

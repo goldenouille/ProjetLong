@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class VertexClass extends Vertex {
@@ -9,6 +11,11 @@ public class VertexClass extends Vertex {
 		super(name, id);
 		this.attributes = new ArrayList<Attribute>();
 		this.isAbstract = isAbstract;
+		if (this.isAbstract) {
+			this.frenchName = "classe abstraite";
+		} else {
+			this.frenchName = "classe";
+		}
 	}
 
 	public ArrayList<Attribute> getAttributes() {
@@ -25,6 +32,11 @@ public class VertexClass extends Vertex {
 
 	public void setAbstract(boolean isAbstract) {
 		this.isAbstract = isAbstract;
+		if (this.isAbstract) {
+			this.frenchName = "classe abstraite";
+		} else {
+			this.frenchName = "classe";
+		}
 	}
 
 }

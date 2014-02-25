@@ -1,17 +1,21 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Vertex implements Type, GraphItem {
 
-	private String name;
-	private int id;
-	private ArrayList<Method> methods;
-	private ArrayList<Edge> edges;
+	protected String name;
+	protected int id;
+	protected ArrayList<Method> methods;
+	protected ArrayList<Edge> edges;
+	protected String frenchName;
 
 	public Vertex(String name, int id) {
 		this.name = name;
 		this.id = id;
 		this.methods = new ArrayList<Method>();
 		this.edges = new ArrayList<Edge>();
+		this.frenchName = "interface";
 	}
 
 	public String getName() {

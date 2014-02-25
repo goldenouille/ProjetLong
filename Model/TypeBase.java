@@ -1,3 +1,5 @@
+package Model;
+
 public enum TypeBase implements Type {
 	CHAR("char",false),
 	BYTE("byte",false),
