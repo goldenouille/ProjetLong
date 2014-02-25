@@ -34,8 +34,8 @@ public class MainFrame extends JFrame {
 		leftPane.add(new JScrollPane(navigationPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 		leftPane.add(botLeftPane, BorderLayout.SOUTH);
 		
-		textSectionPanel.setPreferredSize(new Dimension(900,200));
-		textSectionPanel.setMinimumSize(new Dimension(600,50));
+		textSectionPanel.setPreferredSize(new Dimension(900,300));
+		textSectionPanel.setMinimumSize(new Dimension(600,25));
 		umlPanel.setMinimumSize(new Dimension(600,200));
 		JSplitPane rightPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, textSectionPanel, umlPanel);
 		

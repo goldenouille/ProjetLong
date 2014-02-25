@@ -47,7 +47,7 @@ public class ActClickText extends BasicAbstractAction implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent event) {
-		controller.setUserTextFocus(((TextPanel) ((JComponent) event.getSource()).getParent()).isUserText());
+		controller.setUserTextFocus(((TextPanel) ((JComponent) event.getSource()).getParent().getParent().getParent()).isUserText());
 	}
 
 	@Override

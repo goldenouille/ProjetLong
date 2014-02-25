@@ -21,26 +21,6 @@ public class NavigationPanel extends AbstractPanel {
 		ImageIcon section = new ImageIcon("images/section.gif");
 		ImageIcon correction = new ImageIcon("images/correction.gif");
 
-		//
-//		ArrayList<String> parts = new ArrayList<String>();
-//		parts.add("1");
-//		parts.add("2");
-//		parts.add("3");
-//		ArrayList<String> steps1 = new ArrayList<String>();
-//		steps1.add("1");
-//		steps1.add("2");
-//		steps1.add("3");
-//		ArrayList<String> steps2 = new ArrayList<String>();
-//		steps2.add("1");
-//		steps2.add("2");
-//		ArrayList<String> steps3 = new ArrayList<String>();
-//		steps3.add("1");
-//
-//		Iterator<String> it = parts.iterator();
-//		int a = 0;
-//		Iterator<String> itS = steps1.iterator();
-		//
-
 		Object currentPart = controller.askNextPart();
 		Object currentStep = controller.askNextStep();
 
@@ -84,15 +64,6 @@ public class NavigationPanel extends AbstractPanel {
 			this.add(partPanel);
 			currentPart = controller.askNextPart();
 			currentStep = controller.askNextStep();
-			
-			//
-//			if (a == 0) {
-//				itS = steps2.iterator();
-//				a = 1;
-//			} else {
-//				itS = steps3.iterator();
-//			}
-			//
 		}
 		this.add(Box.createGlue());
 

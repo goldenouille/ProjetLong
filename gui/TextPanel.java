@@ -2,18 +2,22 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Highlighter.Highlight;
 import javax.swing.text.JTextComponent.AccessibleJTextComponent;
-
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import actions.ActClickText;
 
@@ -28,35 +32,38 @@ public class TextPanel extends AbstractPanel {
 		super(c);
 		this.userText = userText;
 		this.setLayout(new BorderLayout());
+
 		textPane = new JTextPane();
+		textPane.setEditable(false);
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
-		this.add(textPane, BorderLayout.CENTER);
+
+		JScrollPane scrollPane = new JScrollPane(textPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		this.add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public void apendText(String[] strings) {
-		try {
-
-			int[] newTable = new int[lenghtTable.length + strings.length];
-			DefaultStyledDocument document = (DefaultStyledDocument) textPane.getStyledDocument();
-			String str;
-			for (int i = 0; i < lenghtTable.length + strings.length; i++) {
-				if (i < lenghtTable.length) {
-					newTable[i] = lenghtTable[i];
-				} else {
-					str = strings[i-lenghtTable.length];
-					newTable[i] = ((i == 0) ? 0 : newTable[i - 1]) + str.length();
+		
+		int[] newTable = new int[lenghtTable.length + strings.length];
+		DefaultStyledDocument document = (DefaultStyledDocument) textPane.getStyledDocument();
+		
+		String str;
+		for (int i = 0; i < lenghtTable.length + strings.length; i++) {
+			if (i < lenghtTable.length) {
+				newTable[i] = lenghtTable[i];
+			} else {
+				str = strings[i - lenghtTable.length];
+				newTable[i] = ((i == 0) ? 0 : newTable[i - 1]) + str.length();
+				try {
 					document.insertString(document.getLength(), str + " ", null);
+				} catch (BadLocationException e) {
+					e.printStackTrace();
 				}
-				// System.out.println(newTable[i]);
+				
 			}
-			lenghtTable = newTable;
-
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
+		lenghtTable = newTable;
 	}
 
 	/**
@@ -209,6 +216,16 @@ public class TextPanel extends AbstractPanel {
 		}
 	}
 
+	public void setTextFont(Font font) {
+        MutableAttributeSet attrs = textPane.getInputAttributes();
+        StyleConstants.setFontFamily(attrs, font.getFamily());
+        StyleConstants.setFontSize(attrs, font.getSize());
+        StyleConstants.setItalic(attrs, (font.getStyle() & Font.ITALIC) != 0);
+        StyleConstants.setBold(attrs, (font.getStyle() & Font.BOLD) != 0);
+        StyledDocument doc = textPane.getStyledDocument();
+        doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, true);
+    }
+	
 	public JTextPane getTextPane() {
 		return textPane;
 	}
@@ -227,4 +244,5 @@ public class TextPanel extends AbstractPanel {
 			this.color = color;
 		}
 	}
+
 }
