@@ -4,7 +4,11 @@ public class Text {
   
   private String body;
   
-  public SetBody(String s) {
+  public void setBody(String s) {
     this.body = s;
+  }
+  
+  public String getBody() {
+    return this.body;
   }
 }
