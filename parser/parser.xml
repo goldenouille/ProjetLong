@@ -11,11 +11,13 @@
 		<set-properties-rule/>
 		<pattern value="root/exercise/part/text">
 			<object-create-rule classname="Text" />
+			<set-properties-rule/>
 			<set-next-rule methodname="addtext"/>
 		</pattern>
 		
 		<pattern value="root/exercise/part/kw">
 			<object-create-rule classname="Part" />
+			<set-properties-rule/>
 			<set-next-rule methodname="addkw"/>
 		</pattern>
 		
