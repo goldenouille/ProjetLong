@@ -1,6 +1,18 @@
 package model;
 
-public interface Step {
+public abstract class Step {
 
-	public void getCorrection(Exercise exo);
+	protected String name;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	abstract void getCorrection(Exercise exo);
+
+
 }
