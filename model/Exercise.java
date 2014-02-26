@@ -71,5 +71,9 @@ public class Exercise {
 	public void init() {
 		
 	}
+	
+	public void addPart(Part p) {
+		this.parts.add(p);
+	}
 
 }
