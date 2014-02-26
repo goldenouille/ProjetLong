@@ -42,4 +42,12 @@ public class Attribute implements GraphItem{
 	public void setVisibility(Visibility newVisibility) {
 		this.visibility = newVisibility;
 	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(Int n) {
+		this.id = n;
+	}
 }
