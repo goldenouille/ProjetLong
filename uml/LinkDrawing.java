@@ -287,7 +287,6 @@ public class LinkDrawing {
 			if (points.get(i).height > points.get(i-1).height) {
 				points.get(i).width = points.get(i-1).width;
 			}
-			// TODO System.out.println(String.valueOf(i) + " : " + String.valueOf(points.get(i).width) + " - " + String.valueOf(points.get(i).height));
 		}
 		
 		// if last points is not on daughterClass add point
@@ -424,24 +423,27 @@ public class LinkDrawing {
 			//break; // go to GENERALIZATION
 		case GENERALIZATION:
 			// complete empty arrow
-			g.clearRect(x, y, ARROW_SIZE, ARROW_SIZE); // TODO avoid blank
 			
 			if (position == TOP) {
+				g.clearRect(points.firstElement().width, points.firstElement().height - ARROW_SIZE, 1, ARROW_SIZE);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x, y);
 				pol.addPoint(x + ARROW_SIZE, y);
 			}
 			else if (position == RIGHT) {
+				g.clearRect(points.firstElement().width, points.firstElement().height, ARROW_SIZE, 1);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x + ARROW_SIZE, y);
 				pol.addPoint(x + ARROW_SIZE, y + ARROW_SIZE);
 			}
 			else if (position == BOTTOM) {
+				g.clearRect(points.firstElement().width, points.firstElement().height, 1, ARROW_SIZE);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x + ARROW_SIZE, y + ARROW_SIZE);
 				pol.addPoint(x, y + ARROW_SIZE);
 			}
 			else if (position == LEFT) {
+				g.clearRect(points.firstElement().width - ARROW_SIZE, points.firstElement().height, ARROW_SIZE, 1);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x, y + ARROW_SIZE);
 				pol.addPoint(x, y);
@@ -486,28 +488,28 @@ public class LinkDrawing {
 			// empty diamond
 			
 			if (position == TOP) {
-				g.clearRect(x, y - ARROW_SIZE, ARROW_SIZE, ARROW_SIZE*2); // TODO avoid blank
+				g.clearRect(points.firstElement().width, points.firstElement().height - ARROW_SIZE*2, 1, ARROW_SIZE*2);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x, y);
 				pol.addPoint(x + ARROW_SIZE/2, y - ARROW_SIZE);
 				pol.addPoint(x + ARROW_SIZE, y);
 			}
 			else if (position == RIGHT) {
-				g.clearRect(x, y, ARROW_SIZE*2, ARROW_SIZE); // TODO avoid blank
+				g.clearRect(points.firstElement().width, points.firstElement().height, ARROW_SIZE*2, 1);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x + ARROW_SIZE, y);
 				pol.addPoint(x + ARROW_SIZE*2, y + ARROW_SIZE/2);
 				pol.addPoint(x + ARROW_SIZE, y + ARROW_SIZE);
 			}
 			else if (position == BOTTOM) {
-				g.clearRect(x, y, ARROW_SIZE, ARROW_SIZE*2); // TODO avoid blank
+				g.clearRect(points.firstElement().width, points.firstElement().height, 1, ARROW_SIZE*2);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x + ARROW_SIZE, y + ARROW_SIZE);
 				pol.addPoint(x + ARROW_SIZE/2, y + ARROW_SIZE*2);
 				pol.addPoint(x, y + ARROW_SIZE);
 			}
 			else if (position == LEFT) {
-				g.clearRect(x - ARROW_SIZE, y, ARROW_SIZE*2, ARROW_SIZE); // TODO avoid blank
+				g.clearRect(points.firstElement().width - ARROW_SIZE*2, points.firstElement().height, ARROW_SIZE*2, 1);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x, y + ARROW_SIZE);
 				pol.addPoint(x - ARROW_SIZE, y + ARROW_SIZE/2);
@@ -641,8 +643,6 @@ public class LinkDrawing {
 			}
 			i++;
 		}
-		
-		// TODO System.out.println(String.valueOf(find) + " - " + String.valueOf(i));
 		
 		if (find) {
 			i--;
