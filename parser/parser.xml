@@ -12,16 +12,16 @@
 		<pattern value="root/exercise/part/text">
 			<object-create-rule classname="Text" />
 			<set-properties-rule/>
-			<set-next-rule methodname="addtext"/>
+			<set-next-rule methodname="addText"/>
 		</pattern>
 		
 		<pattern value="root/exercise/part/kw">
-			<object-create-rule classname="Part" />
+			<object-create-rule classname="KeyWord" />
 			<set-properties-rule/>
-			<set-next-rule methodname="addkw"/>
+			<set-next-rule methodname="addKeyWord"/>
 		</pattern>
 		
-		<pattern value="root/exercise/part/mapping">
+		<?<pattern value="root/exercise/part/mapping">
 			<object-create-rule classname="mapping"/>
 			<pattern value="root/exercise/part/mapping/class">
 				<object-create-rule classname="class"/>
@@ -53,7 +53,7 @@
 				<set-next-rule methodname="addinterface"/>
 			</pattern>
 			<set-next-rule methodname="addmapping"/>
-		</pattern>
+		</pattern>?>
 		
 		<pattern value="root/exercise/part/UML">
 			<object-create-rule classname="Graph"/>
@@ -76,15 +76,15 @@
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-attribute">
-				<object-create-rule classname="attribute"/>
+				<object-create-rule classname="Attribute"/>
 				<set-properties-rule/>
-				<set-next-rule methodname="addattribute"/>
+				<set-next-rule methodname="addAttribute"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-method">
-				<object-create-rule classname="method"/>
+				<object-create-rule classname="Method"/>
 				<set-properties-rule/>
-				<set-next-rule methodname="addmethod"/>
+				<set-next-rule methodname="addMethod"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-realisation">
@@ -126,7 +126,7 @@
 				</pattern>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
-			<set-next-rule methodname="addUML"/>
+			<set-next-rule methodname="setGraph"/>
 		</pattern>
 		<set-next-rule methodname="addPart"/>
 	</pattern>
