@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.ModelController;
+
 public class Exercise {
 
 	private ModelController modelController;

@@ -25,7 +25,7 @@ public class Graph {
 	}
 	
 	public void addAttribute(Attribute a) {
-		this.attributes.edd(a);
+		this.attributes.add(a);
 	}
 	
 	public void addMethod(Method m) {

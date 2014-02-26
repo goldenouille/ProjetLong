@@ -7,6 +7,7 @@ public class Attribute implements GraphItem{
 	private Visibility visibility;
 	private String frenchName;
 	private int id;
+	private Vertex motherClass;
 
 	public Attribute () {
 		this.frenchName = "attribut";
@@ -47,7 +48,20 @@ public class Attribute implements GraphItem{
 		return this.id;
 	}
 	
-	public void setId(Int n) {
+	public void setId(int n) {
 		this.id = n;
+	}
+
+	/*
+	TODO TODO TODO il faut rajouter le throw d'une exception si c'est pas une classe TODO TODO TODO
+	*/
+	public void setMotherClass(Vertex vertex) {
+		if (vertex instanceof VertexClass) {
+			this.motherClass = vertex;
+		}
+	}
+
+	public Vertex getMotherClass() {
+		return this.motherClass;
 	}
 }

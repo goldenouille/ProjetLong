@@ -10,6 +10,7 @@ public class Method implements GraphItem {
 	private ArrayList<Type> paramTypes;
 	private int id;
 	private String frenchName;
+	private Vertex motherClass;
 
 	public Method() {
 		this.frenchName = "methode";
@@ -69,5 +70,13 @@ public class Method implements GraphItem {
 
 	public String getFrenchName() {
 		return this.frenchName;
+	}
+
+	public void setMotherClass(Vertex vertex) {
+		this.motherClass = vertex;
+	}
+
+	public Vertex getMotherClass() {
+		return this.motherClass;
 	}
 }

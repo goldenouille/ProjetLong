@@ -14,7 +14,7 @@ public abstract class Step {
 	}
 
 	public String getFrenchName() {
-		this.frenchName;
+		return this.frenchName;
 	}
 
 	abstract void getCorrection(Exercise exo);

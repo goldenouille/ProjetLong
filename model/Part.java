@@ -25,7 +25,7 @@ public class Part {
 
 	public void addText(Text tt) {
 		String t = tt.getBody();
-		String words[] = text.split(" ");
+		String[] words = t.split(" ");
 		int l = words.length;
 		for (int i = 0; i<l; i++) {
 			text.add(new Word(words[i]));
@@ -48,7 +48,7 @@ public class Part {
 		return this.graph;
 	}
 
-	public addStep(Step s) {
+	public void addStep(Step s) {
 		this.steps.add(s);
 	}
 

@@ -1,3 +1,5 @@
+package parser;
+
 import static org.apache.commons.digester3.binder.DigesterLoader.newLoader;
 
 import org.apache.commons.digester3.Digester;

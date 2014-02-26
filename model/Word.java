@@ -12,7 +12,7 @@ public class Word {
 	protected UMLNature userUmlNature;
 
 	public Word() {
-		this.isSelected = "false";
+		this.isSelected = false;
 	}
 
 	public Word (String word, boolean isKeyWord, int id) {

@@ -1,6 +1,8 @@
 package model;
 
-public class SelectKeyWordStep {
+import java.util.ArrayList;
+
+public class SelectKeyWordStep extends Step {
 
 	public SelectKeyWordStep() {
 		this.name = "selectKeyWordStep";
@@ -9,7 +11,7 @@ public class SelectKeyWordStep {
 
 	public void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
-		ArrayList<boolean> correction = new ArrayList<boolean>();
+		ArrayList<Boolean> correction = new ArrayList<Boolean>();
 
 		for (Word word : text) {
     		//TODO TODO TODO
