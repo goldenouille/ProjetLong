@@ -1,6 +1,6 @@
 @Alice
 
-
+dans methode et classe besoin d'un pointeur vers l'id de la classe maitresse (attribut nom : class)
 implementer edges en tout genre
 completer part
 hashmap pour lier id avec objet accessible partout
