@@ -13,7 +13,6 @@ import controller.ModelController;
 
 import model.UMLNature;
 
-
 public class ClassicGuiController implements GuiController {
 
 	// link to core
@@ -21,6 +20,7 @@ public class ClassicGuiController implements GuiController {
 
 	// Gui elements
 	private MainFrame mainFrame;
+	private TextSectionPanel textSectionPanel;
 	private TextPanel textPanel;
 	private TextPanel userTextPanel;
 	private ScorePanel scorePanel;
@@ -66,7 +66,7 @@ public class ClassicGuiController implements GuiController {
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
-		TextSectionPanel textSectionPanel = new TextSectionPanel(this, textPanel, userTextPanel);
+		this.textSectionPanel = new TextSectionPanel(this, textPanel, userTextPanel);
 		this.scorePanel = new ScorePanel(this);
 		this.timerPanel = new TimerPanel(this);
 		this.umlPanel = new UmlPanel(this);
@@ -450,6 +450,25 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
+	 * Efface tout surlignage de la portion de texte definie.
+	 * 
+	 * @param firstWord
+	 *            indice du premier mot de l'expression a desurligner
+	 * @param lastWord
+	 *            indice du dernier mot de l'expression a desurligner
+	 * @param userText
+	 *            vrai si l'expression a desurligner fait partie du texte entre
+	 *            par l'utilisateur
+	 * @throws BadLocationException
+	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 */
+	public void doResetTextHighlight(int firstWord, int lastWord, boolean userText) throws BadLocationException {
+		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR, firstWord, lastWord);
+		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR, firstWord, lastWord);
+		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR, firstWord, lastWord);
+	}
+
+	/**
 	 * Affiche un pop up permettant de specifier les proprietes d'une nouvelle
 	 * instance Uml de nature donnee, et, en cas de validation, invoque la
 	 * methode de creation d'instance associee
@@ -558,6 +577,17 @@ public class ClassicGuiController implements GuiController {
 	public void doSetTextFont(Font font) {
 		textPanel.setTextFont(font);
 		userTextPanel.setTextFont(font);
+	}
+
+	/**
+	 * Affiche le nombre donne comme nombre de mot-cles manquants. Si nb<1,
+	 * efface la mention de mot-cles manquants.
+	 * 
+	 * @param nb
+	 *            le nomnbre a afficher
+	 */
+	private void doShowMissingKeywordNumber(int nb) {
+		textSectionPanel.setMissingKeywords(nb);
 	}
 
 	// *********//
