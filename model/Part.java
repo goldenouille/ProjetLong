@@ -76,5 +76,9 @@ public class Part {
 	public HashMap<Integer,GraphItem> getIdTable() {
 		return this.idTable;
 	}
+	
+	public void initGraph(PseudoGraph PG) {
+		this.graph = PG.buildGraph(this.idTable);
+	}
 
 }
