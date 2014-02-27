@@ -25,5 +25,21 @@ public class Parser {
   	Digester digester= loader.newDigester();
   	digester.setValidating( false );
   	return digester.parse(file);
-  }	
+  }
+  
+  public void parse (Exercise exo, OutputStream file) {
+  	
+  	private String res = "<exercise name=\"" + exo.getName() + "\">\n";
+  	private Part p;
+  	
+  	for (int i=0; i<exo.getParts.size();, i++) {
+  		p = exo.getParts.get(i);
+  		res += "\t<part name=\"" + p.getname() + "\">\n";
+  		
+  		res += "\t</part>";
+  	}
+  	
+  	res += "</exercise>";
+  	
+  }
 }
