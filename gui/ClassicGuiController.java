@@ -76,20 +76,13 @@ public class ClassicGuiController implements GuiController {
 
 		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel, timerPanel, textSectionPanel, umlPanel);
 		this.mainFrame.setVisible(true);
-
-		// test
-		doAddText(
-				false,
-				"Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro.Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. Un compte simple est caracterise par un solde exprime en euro. "
-						.split(" "));
-		doAddText(true, "Un texte quelconque rajoute par l'utilisateur.".split(" "));
-		// test
-
 	}
 
 	/**
 	 * Print a message
 	 * 
+	 * @param title
+	 *            message pop-up title
 	 * @param message
 	 *            message to print
 	 */
@@ -568,10 +561,10 @@ public class ClassicGuiController implements GuiController {
 	// *********//
 
 	/**
-	 * Methode interne. Renvoie le dernier panel de texte ayant recu une
-	 * activité utilisateur.
+	 * Internal method. Returns the last text panel to have recorded user
+	 * activity.
 	 * 
-	 * @return dernier panel de texte ayant recu une activité utilisateur
+	 * @return the last text panel to have recorded user activity
 	 */
 	private TextPanel getActiveTextPanel() {
 		if (userTextFocus)
@@ -581,25 +574,25 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Methode interne. Permet de definir le dernier panel de texte ayant recu
-	 * une activité utilisateur.
+	 * Internal method. Records the last text panel to have recorded user
+	 * activity.
 	 * 
 	 * @param userTextFocus
-	 *            vrai si le dernier panel de texte ayant recu une activité
-	 *            utilisateur est celui du texte de l'utilisateur
+	 *            true the last text panel to have recorded user activity is the
+	 *            user's text panel
 	 */
 	public void setUserTextFocus(boolean userTextFocus) {
 		this.userTextFocus = userTextFocus;
 	}
 
 	/**
-	 * Methode interne. Permet de rechercher si une expression validée occupe
-	 * les coordonnees donnees dans le panel de texte actif.
+	 * Internal method. Search for a validated expression at the given
+	 * coordinate of the active text panel
 	 * 
 	 * @param point
-	 *            coordonnees ou chercher une expression validée
-	 * @return indices des premiers et derniers mots de l'expression trouvée,
-	 *         null sinon
+	 *            coordinates to check
+	 * @return indexs of first and last words of the expression if found, else
+	 *         null
 	 */
 	public int[] getKeyword(Point point) {
 		try {
@@ -611,14 +604,13 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Methode interne. Recherche l'expression delimitee dans le panel de texte
-	 * actif
+	 * Internal method. Returns the specified expression.
 	 * 
 	 * @param firstWord
-	 *            index of expression first word a trouver
+	 *            index of expression first word
 	 * @param lastWord
-	 *            index of expression last word a trouver
-	 * @return l'expression delimitee
+	 *            index of expression last word
+	 * @return the specified expression
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
@@ -627,9 +619,9 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Trouve la police d'affichage des panels de texte
+	 * Internal method. Gets the currentlu used text font.
 	 * 
-	 * @return la police utilisee
+	 * @return the texts font
 	 */
 	public Font getTextFont() {
 		return textPanel.getFont();
@@ -644,12 +636,11 @@ public class ClassicGuiController implements GuiController {
 	// ****//
 
 	/**
-	 * Transmet au code metier un objet identifiant la partie que l'utilisateur
-	 * a selectionne
+	 * Sends to the core the user's request to go to the part identified by the
+	 * given object
 	 * 
 	 * @param part
-	 *            objet permettant au code metier d'identifier la partie a
-	 *            laquelle il correspond
+	 *            object that the core can use to identify a part
 	 */
 	public void askSelectPart(Object part) {
 		// TODO Auto-generated method stub
@@ -657,12 +648,11 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier un objet identifiant l'etape dont l'utilisateur a
-	 * demande la correction
+	 * Sends to the core the user's request to get the correction of the step
+	 * identified by the given object
 	 * 
 	 * @param step
-	 *            objet permettant au code metier d'identifier l'etape a
-	 *            laquelle il correspond
+	 *            object that the core can use to identify a step
 	 */
 	public void askCorrectStep(Object step) {
 		// TODO Auto-generated method stub
@@ -670,12 +660,11 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier un objet identifiant la partie suivante de
-	 * l'exercice. Le premier appel doit donc renvoyer la premiere partie et
-	 * ainsi de suite.
+	 * Asks the core for the next part of the exercise. Consecutive calls shall
+	 * then return all parts in the right order.
 	 * 
-	 * @return Un objet permettant au code metier d'identifier la partie a
-	 *         laquelle il correspond
+	 * @return an object that the core can use to identify a part, null if no
+	 *         more parts
 	 */
 	public Object askNextPart() {
 		return null;
@@ -689,14 +678,13 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier un objet identifiant l'etape suivante de la partie
-	 * courante de l'exercice. Le premier appel doit donc renvoyer la premiere
-	 * etape et ainsi de suite.
+	 * Asks the core for the next step of the current part. Consecutive calls
+	 * shall then return all steps in the right order.
 	 * 
-	 * @return Un objet permettant au code metier d'identifier l'etape a
-	 *         laquelle il correspond
+	 * @return an object that the core can use to identify a step, null if no
+	 *         more steps in current part
 	 */
-	public Object askNextStep() {
+	Object askNextStep() {
 		return null;
 		// TODO Auto-generated method stub
 		// try {
@@ -717,9 +705,9 @@ public class ClassicGuiController implements GuiController {
 	// ****//
 
 	/**
-	 * Demande au code metier le chronometre a afficher
+	 * Asks the core for the timer to show
 	 * 
-	 * @return le score souhaite
+	 * @return the timer to show
 	 */
 	public String askTimer() {
 		// TODO Auto-generated method stub
@@ -727,9 +715,9 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier la police a utiliser pour afficher le chronometre
+	 * Asks the core for the timer font to use
 	 * 
-	 * @return la police souhaitee
+	 * @return the timer font to use
 	 */
 	public Font askTimerFont() {
 		// TODO Auto-generated method stub
@@ -737,10 +725,9 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier la couleur a utiliser pour l'arriere plan du
-	 * chronometre
+	 * Asks the core for the timer background color to use
 	 * 
-	 * @return la couleur souhaitee
+	 * @return the timer background color to use
 	 */
 	public Color askTimerBgColor() {
 		// TODO Auto-generated method stub
@@ -752,30 +739,30 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 
 	/**
-	 * Change le chronometre affiche
+	 * Sets the timer to the given value
 	 * 
 	 * @param timer
-	 *            le nouveau chronometre a afficher
+	 *            the timer to show
 	 */
 	public void doSetTimer(String timer) {
 		timerPanel.setTimer(timer);
 	}
 
 	/**
-	 * Change la police du chronometre
+	 * Sets the timer font
 	 * 
 	 * @param font
-	 *            la nouvelle police souhaitee
+	 *            the timer font to use
 	 */
 	public void doSetTimerFont(Font font) {
 		timerPanel.setTimerFont(font);
 	}
 
 	/**
-	 * Change la couleur d'arriere plan du chronometre
+	 * Sets the timer background color
 	 * 
 	 * @param color
-	 *            la nouvelle couleur souhaitee
+	 *            the timer background color to use
 	 */
 	public void doSetTimerBgColor(Color color) {
 		timerPanel.setTimerBgColor(color);
@@ -790,9 +777,9 @@ public class ClassicGuiController implements GuiController {
 	// ****//
 
 	/**
-	 * Demande au code metier le score a afficher
+	 * Asks the core for the score to show
 	 * 
-	 * @return le score souhaite
+	 * @return the score to show
 	 */
 	public String askScore() {
 		// TODO Auto-generated method stub
@@ -800,9 +787,9 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier la police a utiliser pour afficher le score
+	 * Asks the core for the score font to use
 	 * 
-	 * @return la police souhaitee
+	 * @return the score font to use
 	 */
 	public Font askScoreFont() {
 		// TODO Auto-generated method stub
@@ -810,9 +797,9 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier la couleur a utiliser pour l'arriere plan du score
+	 * Asks the core for the score background color to use
 	 * 
-	 * @return la couleur souhaitee
+	 * @return the score background color to use
 	 */
 	public Color askScoreBgColor() {
 		// TODO Auto-generated method stub
@@ -824,30 +811,30 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 
 	/**
-	 * Change le score affiche
+	 * Sets the score to the given value
 	 * 
 	 * @param score
-	 *            le nouveau score a afficher
+	 *            the score to show
 	 */
 	public void doSetScore(String score) {
 		scorePanel.setScore(score);
 	}
 
 	/**
-	 * Change la police du score
+	 * Sets the score font
 	 * 
 	 * @param font
-	 *            la nouvelle police souhaitee
+	 *            the score font to use
 	 */
 	public void doSetScoreFont(Font font) {
 		scorePanel.setScoreFont(font);
 	}
 
 	/**
-	 * Change la couleur d'arriere plan du score
+	 * Sets the score background color
 	 * 
 	 * @param color
-	 *            la nouvelle couleur souhaitee
+	 *            the score background color to use
 	 */
 	public void doSetScoreBgColor(Color color) {
 		scorePanel.setScoreBgColor(color);
