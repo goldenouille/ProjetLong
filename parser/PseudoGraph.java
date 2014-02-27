@@ -1,5 +1,7 @@
 package parser;
 
+import model;
+
 public class PseudoGraph {
         private ArrayList<PseudoClass> classes;
         private ArrayList<PseudoAbstract> abtracts;
@@ -13,6 +15,13 @@ public class PseudoGraph {
                 this.interfaces = new ArrayList<PseudoInterface>();
                 this.attributes = new ArrayList<PseudoAttribute>();
                 this.methods = new ArrayList<PseudoMethod>();
+        }
+        
+        public Graph buildGraph(HashMap<int,GraphItem> map) {
+                Graph g = new Graph();
+                
+                
+                return g;
         }
         
         public void addClass (PseudoClass pc) {
