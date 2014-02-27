@@ -14,7 +14,6 @@ public class SelectKeyWordStep extends Step {
 	public void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
-		ArrayList<Boolean> correction = new ArrayList<Boolean>();
 		ModelController mc = exo.getModelController();
 		int missingKW = 0;
 
