@@ -69,12 +69,16 @@ public class Part {
 		return this.steps.get(i);
 	}
 
-	public void setIdTable(HashMap<Integer,GraphItem> it) {
+	public void setIdTable(HashMap<int,GraphItem> it) {
 		this.idTable = it;
 	}
 
 	public HashMap<Integer,GraphItem> getIdTable() {
 		return this.idTable;
+	}
+	
+	public void initGraph(PseudoGraph PG) {
+		this.graph = PG.buildGraph(this.idTable);
 	}
 
 }

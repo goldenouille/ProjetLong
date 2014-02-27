@@ -19,12 +19,12 @@ import actions.ActValidateKeywords;
 public class TextSectionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
-	
+	private JLabel missingKeywordsLabel;
+
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
 		super(controller);
 		this.setLayout(new BorderLayout());
-		
-		
+
 		JPanel centerPane = new JPanel();
 		centerPane.setLayout(new BoxLayout(centerPane, BoxLayout.PAGE_AXIS));
 		centerPane.add(textPanel);
@@ -33,13 +33,13 @@ public class TextSectionPanel extends AbstractPanel {
 
 		JPanel bottomPane = new JPanel();
 		bottomPane.setLayout(new BoxLayout(bottomPane, BoxLayout.LINE_AXIS));
-		
+
 		this.add(centerPane, BorderLayout.CENTER);
 		this.add(bottomPane, BorderLayout.SOUTH);
 
 		JPanel sliderPane = new JPanel();
 		sliderPane.setLayout(new BoxLayout(sliderPane, BoxLayout.LINE_AXIS));
-		sliderPane.setPreferredSize(new Dimension(20,20));
+		sliderPane.setPreferredSize(new Dimension(20, 20));
 		JLabel fontLabel = new JLabel(" Police :");
 		sliderPane.add(fontLabel);
 		JSlider fontSlider = new JSlider(10, 30, 12);
@@ -52,6 +52,8 @@ public class TextSectionPanel extends AbstractPanel {
 		bottomPane.add(deselectTextButton);
 		JButton validateKeywordsButton = new JButton(new ActValidateKeywords(controller, "Valider mots-cles"));
 		bottomPane.add(validateKeywordsButton);
+		missingKeywordsLabel = new JLabel();
+		bottomPane.add(missingKeywordsLabel);
 		bottomPane.add(Box.createHorizontalGlue());
 		JButton addTextButton = new JButton(new ActStartTextAddition(controller, "Ajouter texte"));
 		bottomPane.add(addTextButton);
@@ -59,6 +61,13 @@ public class TextSectionPanel extends AbstractPanel {
 		JButton validateAssociationButton = new JButton(new ActValidateAssociation(controller, "Valider association"));
 		bottomPane.add(validateAssociationButton);
 	}
-	
+
+	public void setMissingKeywords(int nb) {
+		if (nb < 1) {
+			missingKeywordsLabel.setText("");
+		} else {
+			missingKeywordsLabel.setText(" Mots-cles manquants : " + nb);
+		}
+	}
 
 }

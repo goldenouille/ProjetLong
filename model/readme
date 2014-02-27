@@ -5,3 +5,5 @@ implementer edges en tout genre
 
 Pour la correction, il faut la methode suivante dans modelcontroller : mc.KWmissing(missingKW);
 missingKW est un int indiquant le nombre de KW manquants. a repercuter sur l'IHM..
+et mc.UMLtypeCorrect(i,i,i.umlNature==i.userUmlNature).
+lorsque le troisième paramètre vaut true, c'est qu'il y a le bon type.
