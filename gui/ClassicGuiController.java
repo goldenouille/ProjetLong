@@ -9,12 +9,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
 
-import Model.UMLNature;
+import controller.ModelController;
+
+import model.UMLNature;
+
 
 public class ClassicGuiController implements GuiController {
 
 	// link to core
-	private Object core;
+	private ModelController core;
 
 	// Gui elements
 	private MainFrame mainFrame;
@@ -44,7 +47,7 @@ public class ClassicGuiController implements GuiController {
 	/**
 	 * Constructeur primaire : crée et affiche les elements du gui.
 	 */
-	public ClassicGuiController(Object core) {
+	public ClassicGuiController(ModelController core) {
 
 		// test
 		// ArrayList<String> parts = new ArrayList<String>();
