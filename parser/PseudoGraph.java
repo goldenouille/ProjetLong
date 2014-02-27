@@ -19,6 +19,75 @@ public class PseudoGraph {
         
         public Graph buildGraph(HashMap<int,GraphItem> map) {
                 Graph g = new Graph();
+                PseudoGraphItem pgi;
+                GraphItem gi;
+                int id;
+                for (int i=0; i<this.classes.size(); i++) {
+                        pgi = this.classes.get(i);
+                        id = pgi.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserExecption("id inconnu");
+                        }
+                        else {
+                                
+                                gi = new VertexClass((PseudoClass) pgi.getName(), id, false);
+                                g.addVertex(gi);
+                                map.put(id, gi);
+                        }
+                }
+                
+                for (int i=0; i<this.abstracts.size(); i++) {
+                        pgi = this.abstracts.get(i);
+                        id = pgi.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserExecption("id inconnu");
+                        }
+                        else {
+                                gi = new VertexClass((PseudoAbstract) pgi.getName(), id, true);
+                                g.addVertex(gi);
+                                map.put(id, gi);
+                        }
+                }) 
+                
+                for (int i=0; i<this.interfaces.size(); i++) {
+                        pgi = this.interfaces.get(i);
+                        id = pgi.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserExecption("id inconnu");
+                        }
+                        else {
+                                gi = new Vertex((PseudoInterface) pgi.getName(), id);
+                                g.addVertex(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                for (int i=0; i<this.attributes.size(); i++) {
+                        pgi = this.attributes.get(i);
+                        id = pgi.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserExecption("id inconnu");
+                        }
+                        else {
+                                gi = new attribute((PseudoAttribute) pgi.getName(), (PseudoAttribute) pgi.getType(), (PseudoAttribute) pgi.getVisibility());
+                                g.addAttribute(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                for (int i=0; i<this.methods.size(); i++) {
+                        pgi = this.methods.get(i);
+                        id = pgi.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserExecption("id inconnu");
+                        }
+                        else {
+                                gi = new attribute(pgi.getName(),pgi.getType(), pgi.getVisibility());
+                                g.addAttribute(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
                 
                 
                 return g;
