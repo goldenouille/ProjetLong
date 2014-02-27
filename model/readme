@@ -1,12 +1,7 @@
 @Alice
 
-dans methode et attribut besoin d'un pointeur vers l'id de la classe maitresse (attribut nom : motherClass) 
-    -> j'ai rajoute une pointeur vers la classe (de type vertex), tu veux que ce soit un int? sinon je crains que "class" ne soit un mot-cl� qu'on ne puisse pas donn� comme nom de variable.
-Si c'est pas un int j'ai besoin d'un setMotherClass qui prends un int étant l'id de la classe mere.
-
 implementer edges en tout genre
-completer part -> fait (y a-t-il vraiment besoin de la fco addStep(string) ?) y'a pas cette fco
-hashmap pour lier id avec objet accessible partout
+
 
 Pour la correction, il faut la methode suivante dans modelcontroller : mc.KWmissing(missingKW);
-missingKW est un int indiquant le nombre de KW manquants. à répercuter sur l'IHM..
+missingKW est un int indiquant le nombre de KW manquants. a repercuter sur l'IHM..

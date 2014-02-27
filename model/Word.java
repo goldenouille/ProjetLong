@@ -11,6 +11,9 @@ public class Word {
 	protected UMLNature umlNature;
 	protected UMLNature userUmlNature;
 
+	protected GraphItem graphItem;
+	protected GraphItem userGraphItem;
+
 	public Word() {
 		this.isSelected = false;
 	}
@@ -87,6 +90,22 @@ public class Word {
 	public UMLNature getUserUmlNature() {
 		return this.userUmlNature;
 	}
+
+	public void setGraphItem(GraphItem gi) {
+		this.graphItem = gi;
+	}
+
+	public GraphItem getGraphItem() {
+		return this.graphItem;
+	}
+
+	public void setUserGraphItem(GraphItem gi) {
+		this.userGraphItem = gi;
+	}
+
+	public GraphItem getUserGraphItem() {
+		return this.userGraphItem;
+	}	
 
 	public void select() {
 		this.isSelected = true;

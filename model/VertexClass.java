@@ -6,7 +6,7 @@ public class VertexClass extends Vertex {
 
 	protected ArrayList<Attribute> attributes;
 
-	public VertexClass(String name, int id, boolean isAbstract) {
+	public VertexClass(String name, int id) {
 		super(name, id);
 		this.attributes = new ArrayList<Attribute>();
 		this.frenchName = "classe";

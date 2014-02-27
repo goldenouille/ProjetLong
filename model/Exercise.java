@@ -32,16 +32,14 @@ public class Exercise {
 	TODO: créer une excetion si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public boolean selectText(ArrayList<Integer> selection) {
-		if (selection.size() != text.size()) {
-			return false;
-		}
-		for (int i=0; i<selection.size(); i++) {
-    		if (selection.get(i)>90) {
-    			text.get(i).select();
-    		}
-		}
-		return true;
+	public void selectText(int[] selection) {
+		if (selection.length = text.size()) {
+			for (int i=0; i<selection.size(); i++) {
+    			if (selection.[i]>90) {
+    				text.get(i).select();
+    			}
+			}
+		} // else {LEVER EXCEPTION !! !! !!}
 	}
 
 	/*
@@ -50,16 +48,14 @@ public class Exercise {
 	TODO: créer une exception si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public boolean unselectText(ArrayList<Integer> selection) {
-		if (selection.size() != text.size()) {
-			return false;
-		}
-		for (int i=0; i<selection.size(); i++) {
-    		if (selection.get(i)>90) {
-    			text.get(i).unselect();
-    		}
-		}
-		return true;
+	public void unselectText(int[] selection) {
+		if (selection.length != text.size()) {
+			for (int i=0; i<selection.size(); i++) {
+    			if (selection.get(i)>90) {
+    				text.get(i).unselect();
+    			}
+			}
+		} // else {LEVER EXCEPTION !! !! !!}
 	}
 
 	/*
@@ -86,6 +82,56 @@ public class Exercise {
 		return this.modelController;
 	}
 
+	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	public void addClass(int fisrt, int last, boolean userText, String name) {
+		ArrayList<Word> t;
+		if (userText) {
+			t = exo.getUserText();
+		} else {
+			t = exo.getText();
+		}
+		VertexClass vertexClass = new VertexClass();
+		vertexClass.setName(name);
+			
+		for (int i= first; i<= last; i++) {
+			userText.get(i).setUserUmlNature(UMLNature.CLASS);
+			userText.get(i).setUserGraphItem(vertexClass);
+		}	
+	}
+
+	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	public void addAbstractClass(int fisrt, int last, boolean userText, String name) {
+		ArrayList<Word> t;
+		if (userText) {
+			t = exo.getUserText();
+		} else {
+			t = exo.getText();
+		}
+		VertexAbstract vertexAbstract = new VertexAbstract();
+		vertexAbstract.setName(name);
+			
+		for (int i= first; i<= last; i++) {
+			userText.get(i).setUserUmlNature(UMLNature.ABSTRACT_CLASS);
+			userText.get(i).setUserGraphItem(vertexAbstract);
+		}	
+	}
+
+	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	addInterface(firstWord, lastWord, userText, name) {
+		ArrayList<Word> t;
+		if (userText) {
+			t = exo.getUserText();
+		} else {
+			t = exo.getText();
+		}
+		Vertex vertex = new Vertex();
+		vertex.setName(name);
+			
+		for (int i= first; i<= last; i++) {
+			userText.get(i).setUserUmlNature(UMLNature.INTERFACE);
+			userText.get(i).setUserGraphItem(vertex);
+		}	
+	}
 
 
 }
