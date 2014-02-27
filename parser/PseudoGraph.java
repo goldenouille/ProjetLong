@@ -34,4 +34,24 @@ public class PseudoGraph {
         public void addMethod (PseudoMethod pm) {
                 this.methods.add(pm);
         }
+        
+        public ArrayList<PseudoClass> getClasses() {
+                return this.classes;
+        }
+
+        public ArrayList<PseudoAbstract> getAbstracts() {
+                return this.abtracts;
+        }
+        
+        public ArrayList<PseudoInterface> getInterfaces() {
+                return this.interfaces;
+        }
+        
+        public ArrayList<PseudoAttribute> getAttributes() {
+                return this.attributes;
+        }
+        
+        public ArrayList<PseudoMethods> getMethods() {
+                return this.methods;
+        }
 }
