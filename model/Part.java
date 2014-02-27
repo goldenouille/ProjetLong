@@ -69,7 +69,7 @@ public class Part {
 		return this.steps.get(i);
 	}
 
-	public void setIdTable(HashMap<Integer,GraphItem> it) {
+	public void setIdTable(HashMap<int,GraphItem> it) {
 		this.idTable = it;
 	}
 
