@@ -22,6 +22,10 @@ public class Exercise {
 	}
 
 
+	public ArrayList<Word> getUserText() {
+		return this.userText;
+	}
+
 	/*
 	cette fonction sélectionne tous les mots qui sont sélectionnés à plus de 90 %
 	TODO: implémenter une vérification pour éviter qu'on puisse tricher en sélectionnant l'intégralité du texte
@@ -77,5 +81,11 @@ public class Exercise {
 	public void addPart(Part p) {
 		this.parts.add(p);
 	}
+
+	public ModelController getModelController() {
+		return this.modelController;
+	}
+
+
 
 }

@@ -1,8 +1,8 @@
 @Alice
 
-dans methode et attribut besoin d'un pointeur vers l'id de la classe maitresse (attribut nom : class) 
+dans methode et attribut besoin d'un pointeur vers l'id de la classe maitresse (attribut nom : motherClass) 
     -> j'ai rajoutŽ une pointeur vers la classe (de type vertex), tu veux que ce soit un int? sinon je crains que "class" ne soit un mot-clŽ qu'on ne puisse pas donnŽ comme nom de variable.
 
 implementer edges en tout genre
-completer part -> fait en partie
+completer part -> fait (y a-t-il vraiment besoin de la fco addStep(string) ?)
 hashmap pour lier id avec objet accessible partout
