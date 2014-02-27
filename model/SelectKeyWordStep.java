@@ -16,20 +16,26 @@ public class SelectKeyWordStep extends Step {
 		ArrayList<Word> userText = exo.getUserText();
 		ArrayList<Boolean> correction = new ArrayList<Boolean>();
 		ModelController mc = exo.getModelController();
+		int missingKW = 0;
 
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isSelected()) {
 				if (text.get(i).isKeyWord()) {
-    				mc.doValidateText(i, i, false);
+    					mc.doValidateText(i, i, false);//Selected KW = ok
+    				} else {
+    					mc.doInvalidateText(i, i, false);//selected not KW = false
+    				}	
     			} else {
-    				mc.doInvalidateText(i, i, false);
-    			}	
-    		}
+    				if (text.get(i).isKeyWord()) {
+    					missingKW++; // KW not selected = missing
+    				}
+    			}
 		}
 		for (int i = 0; i< userText.size() ; i++) {
 			if (userText.get(i).isSelected()) {
-				mc.doValidateText(i,i,true);
+				mc.doValidateText(i,i,true); //KW in user text are considered correct for now.
 			}
 		}
+		mc.KWmissing(missingKW);
 	}
 }
