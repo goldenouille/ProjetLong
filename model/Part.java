@@ -1,5 +1,8 @@
 package model;
 
+import java.util.AbstractMap;
+import java.util.HashMap;
+
 import java.util.ArrayList;
 import parser.Text;
 
@@ -9,10 +12,12 @@ public class Part {
 	private ArrayList<Word> text;
 	private Graph graph;
 	private ArrayList<Step> steps;
+	private HashMap<Integer,GraphItem> idTable;
 
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
+		this.idTable = new HashMap<Integer,GraphItem>();
 	}
 
 	public void setName(String name) {
@@ -62,6 +67,14 @@ public class Part {
 
 	public Step getAStep(int i) {
 		return this.steps.get(i);
+	}
+
+	public void setIdTable(HashMap<Integer,GraphItem> it) {
+		this.idTable = it;
+	}
+
+	public HashMap<Integer,GraphItem> getIdTable() {
+		return this.idTable;
 	}
 
 }
