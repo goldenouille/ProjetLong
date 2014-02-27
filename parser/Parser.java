@@ -31,12 +31,38 @@ public class Parser {
   	
   	private String res = "<exercise name=\"" + exo.getName() + "\">\n";
   	private Part p;
+  	private Word w;
+  	private boolean isBody = false;
+  	private int nbKeyWord=0;
   	
-  	for (int i=0; i<exo.getParts.size();, i++) {
+  	for (int i=0; i<exo.getParts.size(); i++) {
   		p = exo.getParts.get(i);
   		res += "\t<part name=\"" + p.getname() + "\">\n";
+  		for(int j; j<p.getText.size(); j++) {
+  			w = p.getText.get(j);
+  			if (w.isKeyWord()) {
+  				if isBody {
+  					res += " \"/>";
+  				}
+  				res += "\t\t<kw id='" + nbKeyWord + "' word=\"" + w.getWord() + " \"/>";
+  				nbKeyWord++;
+  				isBody = false;
+  			}
+  			else {
+  				if !(isBody) {
+  					res += "<text body=\"";
+  				}
+  				isBody = true;
+  				res += w.getWord() + " ";
+  			}
+  		}
+  		if isBody {
+  			res += " \"/>";
+  		}
+  		res ="\n\n";
   		
-  		res += "\t</part>";
+  		//TODO UML
+  	res += "\t</part>";
   	}
   	
   	res += "</exercise>";
