@@ -45,7 +45,9 @@ public class ClassicGuiController implements GuiController {
 	// *** General methods ***//
 
 	/**
-	 * Constructeur primaire : crée et affiche les elements du gui.
+	 * Main constructor, create and show the gui.
+	 * 
+	 * @param core
 	 */
 	public ClassicGuiController(ModelController core) {
 
@@ -86,10 +88,10 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Affiche un message passe en parametre
+	 * Print a message
 	 * 
 	 * @param message
-	 *            le message a afficher
+	 *            message to print
 	 */
 	public void doPrintMessage(String title, String message) {
 		JOptionPane.showMessageDialog(mainFrame, message, title, JOptionPane.WARNING_MESSAGE);
@@ -104,9 +106,8 @@ public class ClassicGuiController implements GuiController {
 	// ****//
 
 	/**
-	 * Transmet au code metier le texte dont l'utilisateur demande la selection
-	 * sous la forme d'un tableau d'entiers tel que tab[i] = %age de selection
-	 * du ieme mot
+	 * Sends to the core the text the user wants to select as an int table where
+	 * tab[i] = selection %age of the word number i
 	 */
 	public void askSelectText() {
 		// TODO Auto-generated method stub
@@ -128,9 +129,8 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier le texte dont l'utilisateur demande la
-	 * deselection sous la forme d'un tableau d'entiers tel que tab[i] = %age de
-	 * selection du ieme mot
+	 * Sends to the core the text the user wants to unselect as an int table
+	 * where tab[i] = selection %age of the word number i
 	 */
 	public void askUnSelectText() {
 		// TODO Auto-generated method stub
@@ -152,11 +152,11 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier un tableau d'objets représentant les différentes
-	 * natures UML instanciables. !! seuls les elements reconnus par
-	 * "doShowUmlInstanceCreationPopup" devront etre transmis !!
+	 * Ask for a table of the instanciable UMLnatures. Warning : if one of thos
+	 * elements is not recognized by "doShowUmlInstanceCreationPopup" exceptions
+	 * may occur
 	 * 
-	 * @return tableau d'UMLnatures
+	 * @return UMLnatures table
 	 */
 	public Object[] askUmlInstancesNatures() {
 		// TODO Auto-generated method stub
@@ -165,8 +165,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de valider sa
-	 * selection de mots-cles
+	 * Sends to the core the user's request to validate his keyword selection.
 	 */
 	public void askValidateKeywords() {
 		// TODO Auto-generated method stub
@@ -188,8 +187,8 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de valider son
-	 * association de mots-cles et natures uml
+	 * Sends to the core the user's request to validate his keyword Uml
+	 * association.
 	 */
 	public void askValidateAssociation() {
 		// TODO Auto-generated method stub
@@ -197,19 +196,18 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Demande au code metier le nom de l'instance Uml de nature donnée
-	 * correspondant au mot cle defini
+	 * Ask the core about the name of the Uml instance corresponding to the
+	 * defined keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param nature
-	 *            decrit la nature Uml de l'instance recherchee
-	 * @return nom de l'instance Uml correspondant au mot cle
+	 *            Uml Nature of the instance
+	 * @return name of the instance
 	 */
 	private String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
 		// TODO Auto-generated method stub
@@ -217,12 +215,12 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur d'ajouter du texte
+	 * Sends to the core the user's request to add text
 	 * 
 	 * @param text
-	 *            le texte a ajouter
+	 *            the text to add
 	 * @param comment
-	 *            le commentaire de l'utilisateur
+	 *            user's comment
 	 */
 	public void askAddText(String text, String comment) {
 		// TODO Auto-generated method stub
@@ -232,18 +230,17 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de creer une nouvelle
-	 * instance de classe liee au mot cle defini
+	 * Sends to the core the user's request to create a new class instance for
+	 * the specified keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param name
-	 *            nom voulu pour la nouvelle instance de classe
+	 *            name wanted for the new instance
 	 */
 	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		// TODO Auto-generated method stub
@@ -251,18 +248,17 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de creer une nouvelle
-	 * instance de classe abstraite liee au mot cle defini
+	 * Sends to the core the user's request to create a new abstract class
+	 * instance for the specified keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param name
-	 *            nom voulu pour la nouvelle instance de classe
+	 *            name wanted for the new instance
 	 */
 	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
 		// TODO Auto-generated method stub
@@ -270,18 +266,17 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de creer une nouvelle
-	 * instance d'interface liee au mot cle defini
+	 * Sends to the core the user's request to create a new interface instance
+	 * for the specified keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param name
-	 *            nom voulu pour la nouvelle instance d'interface
+	 *            name wanted for the new instance
 	 */
 	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
 		// TODO Auto-generated method stub
@@ -289,22 +284,21 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de creer une nouvelle
-	 * instance d'attribut liee au mot cle defini
+	 * Sends to the core the user's request to create a new attribute instance
+	 * for the specified keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param name
-	 *            nom voulu pour la nouvelle instance d'attribut
+	 *            name wanted for the new instance
 	 * @param type
-	 *            type voulu pour la nouvelle instance d'attribut
+	 *            type wanted for the new instance
 	 * @param visibility
-	 *            visibilitee voulue pour la nouvelle instance d'attribut
+	 *            visibility wanted for the new instance
 	 */
 	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
 		// TODO Auto-generated method stub
@@ -312,25 +306,23 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Transmet au code metier la demande de l'utilisateur de creer une nouvelle
-	 * instance de methode liee au mot cle defini
+	 * Sends to the core the user's request to create a new method instance for
+	 * the specified keyword
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression mot-cle
+	 *            index of the expression's first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression mot-cle
+	 *            index of the expression's last word
 	 * @param userText
-	 *            specifie si le mot-cle provient du texte entre par
-	 *            l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param name
-	 *            nom voulu pour la nouvelle instance de methode
+	 *            name wanted for the new instance
 	 * @param paramTypes
-	 *            liste des types des parametres voulus pour la nouvelle
-	 *            instance de methode
+	 *            list of the parameters types wanted for the new instance
 	 * @param returnType
-	 *            type de retour voulu pour la nouvelle instance de methode
+	 *            returnType wanted for the new instance
 	 * @param visibility
-	 *            visibilitee voulue pour la nouvelle instance de methode
+	 *            visibility wanted for the new instance
 	 */
 	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		// TODO Auto-generated method stub
@@ -342,108 +334,96 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 
 	/**
-	 * Surligne la portion de texte definie avec la couleur de selection
-	 * "SELECTION_COLOR"
+	 * Highlight the given expression with "SELECTION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a surligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a surligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a surligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doSelectText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).highlight(SELECTION_COLOR, firstWord, lastWord);
 	}
 
 	/**
-	 * Efface tout surlignage de la couleur de selection "SELECTION_COLOR" de la
-	 * portion de texte definie.
+	 * Unhighlight the given expression of "SELECTION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a desurligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a desurligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a desurligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doUnSelectText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR, firstWord, lastWord);
 	}
 
 	/**
-	 * Surligne la portion de texte definie avec la couleur de validation
-	 * "VALIDATION_COLOR"
+	 * Highlight the given expression with "VALIDATION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a surligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a surligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a surligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).highlight(VALIDATION_COLOR, firstWord, lastWord);
 	}
 
 	/**
-	 * Efface tout surlignage de la couleur de validation "VALIDATION_COLOR" de
-	 * la portion de texte definie.
+	 * Unhighlight the given expression of "VALIDATION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a desurligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a desurligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a desurligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doUnValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR, firstWord, lastWord);
 	}
 
 	/**
-	 * Surligne la portion de texte definie avec la couleur d'invalidation
-	 * "INVALIDATION_COLOR"
+	 * Highlight the given expression with "INVALIDATION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a surligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a surligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a surligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).highlight(INVALIDATION_COLOR, firstWord, lastWord);
 	}
 
 	/**
-	 * Efface tout surlignage de la couleur d'invalidation "INVALIDATION_COLOR"
-	 * de la portion de texte definie.
+	 * Unhighlight the given expression of "INVALIDATION_COLOR"
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a desurligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a desurligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a desurligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doUnInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR, firstWord, lastWord);
@@ -453,14 +433,13 @@ public class ClassicGuiController implements GuiController {
 	 * Efface tout surlignage de la portion de texte definie.
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a desurligner
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a desurligner
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression a desurligner fait partie du texte entre
-	 *            par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doResetTextHighlight(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR, firstWord, lastWord);
@@ -469,20 +448,18 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Affiche un pop up permettant de specifier les proprietes d'une nouvelle
-	 * instance Uml de nature donnee, et, en cas de validation, invoque la
-	 * methode de creation d'instance associee
+	 * Shows a pop-up allowing to specify properties of a new uml instance of
+	 * the given nature, bound to the specified expression. Calls the associated
+	 * instance creation method if user validates.
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression associee a la nouvelle
-	 *            instance
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression associee a la nouvelle
-	 *            instance
+	 *            index of expression last word
 	 * @param nature
-	 *            UMLNature de la nouvelle instance
+	 *            UMLNature of the new instance
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) throws BadLocationException {
 		if (nature.equals(UMLNature.CLASS)) {
@@ -521,31 +498,28 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Affiche un pop up permettant de modifier les proprietes d'une instance
-	 * Uml de nature donnee, et, en cas de validation, invoque la methode de
-	 * modification d'instance associee
+	 * Shows a pop-up allowing to specify properties of an existing uml instance
+	 * of the given nature, bound to the specified expression. Calls the
+	 * associated instance edition method if user validates.
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression associee a l'instance a
-	 *            modifier
+	 *            index of expression first word
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression associee a l'instance a
-	 *            modifier
+	 *            index of expression last word
 	 * @param userText
-	 *            vrai si l'expression associee a l'instance a modifier fait
-	 *            partie du texte entre par l'utilisateur
+	 *            true if expression belongs to the user's text
 	 * @param nature
-	 *            UMLNature de l'instance a modifier
+	 *            UMLNature of the instance
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public void doShowUmlInstanceEditionPopup(int firstWord, int lastWord, boolean userText, Object nature) throws BadLocationException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * Affiche un pop up permettant d'ajouter du texte et un commentaire le
-	 * justifiant. Invoque la methode askAddText en cas de confirmation.
+	 * Shows a pop-up allowing to enter some new text and a comment. Calls
+	 * askAddText method if user validates.
 	 */
 	public void doShowTextAdditionPopup() {
 		TextAdditionPanel textPanel = new TextAdditionPanel(this);
@@ -556,23 +530,22 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Ajoute du texte
+	 * Adds text to the specified panel
 	 * 
 	 * @param userText
-	 *            vrai si le texte doit etre ajoute a celui entre par
-	 *            l'utilisateur
+	 *            true to add to user's text panel
 	 * @param text
-	 *            le texte a ajouter
+	 *            the text to add
 	 */
 	public void doAddText(boolean userText, String[] text) {
 		(userText ? userTextPanel : textPanel).apendText(text);
 	}
 
 	/**
-	 * Applique la police donnee au texte affiche
+	 * Sets the texts font
 	 * 
 	 * @param font
-	 *            la police a appliquer
+	 *            the new font
 	 */
 	public void doSetTextFont(Font font) {
 		textPanel.setTextFont(font);
@@ -580,11 +553,11 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Affiche le nombre donne comme nombre de mot-cles manquants. Si nb<1,
-	 * efface la mention de mot-cles manquants.
+	 * Prints the missing keywords number. if nb<1, hide the missing keywords
+	 * label
 	 * 
 	 * @param nb
-	 *            le nomnbre a afficher
+	 *            number to show
 	 */
 	private void doShowMissingKeywordNumber(int nb) {
 		textSectionPanel.setMissingKeywords(nb);
@@ -642,12 +615,12 @@ public class ClassicGuiController implements GuiController {
 	 * actif
 	 * 
 	 * @param firstWord
-	 *            indice du premier mot de l'expression a trouver
+	 *            index of expression first word a trouver
 	 * @param lastWord
-	 *            indice du dernier mot de l'expression a trouver
+	 *            index of expression last word a trouver
 	 * @return l'expression delimitee
 	 * @throws BadLocationException
-	 *             si la zone definie par firstWord et lastWord n'existe pas
+	 *             if expression does not exist
 	 */
 	public String getText(int firstWord, int lastWord) throws BadLocationException {
 		return getActiveTextPanel().getText(firstWord, lastWord);
