@@ -7,3 +7,6 @@ Si c'est pas un int j'ai besoin d'un setMotherClass qui prends un int étant l'i
 implementer edges en tout genre
 completer part -> fait (y a-t-il vraiment besoin de la fco addStep(string) ?) y'a pas cette fco
 hashmap pour lier id avec objet accessible partout
+
+Pour la correction, il faut la methode suivante dans modelcontroller : mc.KWmissing(missingKW);
+missingKW est un int indiquant le nombre de KW manquants. à répercuter sur l'IHM..
