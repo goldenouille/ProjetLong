@@ -11,14 +11,15 @@ public class LinkToolBar extends JToolBar {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3862266067470549075L;
+	private static final long serialVersionUID = 1L;
 	
 	private JPanel panel;
 	private int state;
 	
 	public static final int NO_LINK = -1;
-	public static final int CHANGE_DIRECTION = -2;
-	public static final int REMOVE_LINK = -3;
+	public static final int LINK_EDITION = -2;
+	public static final int CHANGE_DIRECTION = -3;
+	public static final int REMOVE_LINK = -4;
 	public static final int REALIZATION = 2;
 	public static final int GENERALIZATION = 3;
 	public static final int DEPENDANCY = 4;
@@ -48,6 +49,19 @@ public class LinkToolBar extends JToolBar {
 	    button.setText("M");
 	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
+		
+		// LINK_EDITION BUTTON
+				button = new JButton();
+			    button.setToolTipText("Edit link properties");
+			    button.addActionListener(new ActionListener() {
+			    	@Override
+		        	public void actionPerformed(ActionEvent ae) {
+		        		setState(LINK_EDITION);
+		        	}
+			    });
+			    button.setText("Ed");
+			    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+				this.add(button);
 		
 		// CHANGE_DIRECTION BUTTON
 		button = new JButton();
@@ -160,6 +174,9 @@ public class LinkToolBar extends JToolBar {
 
 	public void setState(int state) {
 		switch (state) {
+		case LINK_EDITION:
+			this.state = LINK_EDITION;
+			break;
 		case CHANGE_DIRECTION:
 			this.state = CHANGE_DIRECTION;
 			break;
@@ -189,5 +206,18 @@ public class LinkToolBar extends JToolBar {
 			break;
 		}
 		
+	}
+	
+	public boolean isInLinkRelationState() {
+		boolean result = true;
+		
+		if (this.state == NO_LINK
+				|| this.state == LINK_EDITION
+				|| this.state == CHANGE_DIRECTION
+				|| this.state == REMOVE_LINK) {
+			result = false;
+		}
+		
+		return result;
 	}
 }

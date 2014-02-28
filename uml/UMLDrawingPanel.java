@@ -8,7 +8,9 @@ import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -29,7 +31,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3838748339967578326L;
+	private static final long serialVersionUID = 1L;
 	
 	private static final int NO_DRAGGED_ELEMENT = -1;
 	private static final int NO_ANY_DRAGGED_ELEMENT = -2;
@@ -113,10 +115,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 			links.get(i).draw(g2d);
 		}
 		
-		if (toolBar.getState() != LinkToolBar.NO_LINK && toolBar.getState() != LinkToolBar.CHANGE_DIRECTION && toolBar.getState() != LinkToolBar.REMOVE_LINK) {
-			if (previousClickedClass != NO_CLICKED_CLASS) {
-				g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
-			}
+		if (toolBar.isInLinkRelationState() && previousClickedClass != NO_CLICKED_CLASS) {
+			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
 		}
 	}
 	
@@ -183,16 +183,31 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		boolean find = false;
 		
 		if (toolBar.getState() != LinkToolBar.NO_LINK) {
-			if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION || toolBar.getState() == LinkToolBar.REMOVE_LINK) {
+			if (!toolBar.isInLinkRelationState()) {
 				while (i < links.size() && !find) {
 					if (links.get(i).isUnder(mousePos)) {
 						find = true;
 					}
 					i++;
 				}
+				System.out.println("!toolBar.isInLinkRelationState()");
 				if (find) {
+					System.out.println("find");
 					i--;
-					if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
+					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
+
+						// Open Link Edition Panel
+						LinkEditionPanel linkEdition = new LinkEditionPanel(links.get(i).getMotherClass(), links.get(i).getMotherMultiplicity(), links.get(i).getDaughterClass(), links.get(i).getDaughterMultiplicity(), links.get(i).getText());
+						
+						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+								"Edition de relation de " + links.get(i).getMotherClass() + " vers " + links.get(i).getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+						if (result == JOptionPane.OK_OPTION) {
+							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
+							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
+							links.lastElement().setText(linkEdition.getText());
+						}
+					}
+					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
 						links.get(i).invertClass();
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
 						links.remove(i);
@@ -213,6 +228,18 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 						previousClickedClass = i;
 					} else {
 						links.add(new LinkDrawing(classes.get(previousClickedClass), classes.get(i), toolBar.getState()));
+						
+						// Link Edition Panel
+						LinkEditionPanel linkEdition = new LinkEditionPanel(links.lastElement().getMotherClass(), links.lastElement().getMotherMultiplicity(), links.lastElement().getDaughterClass(), links.lastElement().getDaughterMultiplicity(), links.lastElement().getText());
+						
+						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+								"Nouvelle relation de " + links.lastElement().getMotherClass() + " vers " + links.lastElement().getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+						if (result == JOptionPane.OK_OPTION) {
+							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
+							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
+							links.lastElement().setText(linkEdition.getText());
+						}
+						
 						previousClickedClass = NO_CLICKED_CLASS;
 					}
 				}
