@@ -1,6 +1,7 @@
+package parser;
+
 import model;
 
-package parser;
 
 public class Text {
   
