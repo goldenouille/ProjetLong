@@ -8,6 +8,7 @@ public class PseudoAttribute {
         private String visibility;
         private int motherId;
         private String type;
+        private ArrayList<String> params;
         
         public void setName(String s) {
                 this.name = s;
@@ -47,5 +48,17 @@ public class PseudoAttribute {
         
         public string getType() {
                 return this.type;
+        }
+        
+        public void setParams(ArrayList<String> ls) {
+                this.params = ls;
+        }
+        
+        public ArrayList<String> getParams() {
+                return this.params;
+        }
+        
+        public void addParam(String param) {
+                this.params.add(param);
         }
 }
