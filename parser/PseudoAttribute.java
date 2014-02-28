@@ -48,4 +48,5 @@ public class PseudoAttribute {
         public string getType() {
                 return this.type;
         }
+        
 }

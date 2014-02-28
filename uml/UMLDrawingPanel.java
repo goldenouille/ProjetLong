@@ -1,3 +1,5 @@
+package uml;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,7 +10,9 @@ import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -29,12 +33,16 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3838748339967578326L;
+	private static final long serialVersionUID = 1L;
 	
 	private static final int NO_DRAGGED_ELEMENT = -1;
 	private static final int NO_ANY_DRAGGED_ELEMENT = -2;
 	private static final int DRAGGED_LINK_OFFSET = 1000;
 	private static final int NO_CLICKED_CLASS = -1;
+	
+	public static final int ELEMENT_CLASS = 1;
+	public static final int ELEMENT_PROPERTY = 2;
+	public static final int ELEMENT_METHOD = 3;
 	
 	private Vector<ClassDrawing> classes;
 	private Vector<LinkDrawing> links;
@@ -43,6 +51,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	private int previousClickedClass = NO_CLICKED_CLASS;
 	
 	private LinkToolBar toolBar;
+	private UMLElementPanel poolPanel;
 
 	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
@@ -64,13 +73,20 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		super(layout, isDoubleBuffered);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		this.repaint();
 		
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
-		toolBar = new LinkToolBar(this);
+		// TODO
+		toolBar = new LinkToolBar();//(this);
+		toolBar.setSize(450, 26);//(this.getSize().width, 20);
 		this.add(toolBar);
+		
+		// TODO
+		poolPanel = new UMLElementPanel();
+		poolPanel.setSize(150, 400);//(120, this.getSize().height);
+		poolPanel.setLocation(450, 0);
+		this.add("East",poolPanel);
 		
 		// TODO TEST to remove
 		classes.add(new ClassDrawing("Class1", 10, 30));
@@ -95,6 +111,47 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
+		
+		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
+		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
+		
+		poolPanel.refresh();
+		
+		// TODO END TEST
+		
+		this.repaint();
+	}
+	
+	public boolean doCheckingElementsInPool() {
+		// TODO
+		return false;
+	}
+	
+	public void doAddingElementToPool(String element, int type) {
+		// TODO ?
+		switch (type) {
+		case ELEMENT_CLASS:
+			poolPanel.addClass(element);
+			break;
+		case ELEMENT_PROPERTY:
+			poolPanel.addProperty(element);
+			break;
+		case ELEMENT_METHOD:
+			poolPanel.addMethod(element);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public boolean doCheckingClasses() {
+		// TODO
+		return false;
+	}
+	
+	public boolean doCheckingLinks() {
+		// TODO
+		return false;
 	}
 	
 	@Override
@@ -113,10 +170,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 			links.get(i).draw(g2d);
 		}
 		
-		if (toolBar.getState() != LinkToolBar.NO_LINK && toolBar.getState() != LinkToolBar.CHANGE_DIRECTION && toolBar.getState() != LinkToolBar.REMOVE_LINK) {
-			if (previousClickedClass != NO_CLICKED_CLASS) {
-				g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
-			}
+		if (toolBar.isInLinkRelationState() && previousClickedClass != NO_CLICKED_CLASS) {
+			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
 		}
 	}
 	
@@ -158,6 +213,11 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 					links.get(currentDraggedElement - DRAGGED_LINK_OFFSET).move(mousePos, delta);
 				}
 			}
+			else {
+				for (int i = 0 ; i < classes.size() ; i++) {
+					classes.get(i).move(delta);
+				}
+			}
 		}
 		
 		// Memorize mouse position for next iteration
@@ -183,7 +243,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		boolean find = false;
 		
 		if (toolBar.getState() != LinkToolBar.NO_LINK) {
-			if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION || toolBar.getState() == LinkToolBar.REMOVE_LINK) {
+			if (!toolBar.isInLinkRelationState()) {
 				while (i < links.size() && !find) {
 					if (links.get(i).isUnder(mousePos)) {
 						find = true;
@@ -192,7 +252,20 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 				}
 				if (find) {
 					i--;
-					if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
+					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
+
+						// Open Link Edition Panel
+						LinkEditionPanel linkEdition = new LinkEditionPanel(links.get(i).getMotherClass(), links.get(i).getMotherMultiplicity(), links.get(i).getDaughterClass(), links.get(i).getDaughterMultiplicity(), links.get(i).getText());
+						
+						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+								"Edition de relation de " + links.get(i).getMotherClass() + " vers " + links.get(i).getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+						if (result == JOptionPane.OK_OPTION) {
+							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
+							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
+							links.lastElement().setText(linkEdition.getText());
+						}
+					}
+					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
 						links.get(i).invertClass();
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
 						links.remove(i);
@@ -213,6 +286,18 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 						previousClickedClass = i;
 					} else {
 						links.add(new LinkDrawing(classes.get(previousClickedClass), classes.get(i), toolBar.getState()));
+						
+						// Link Edition Panel
+						LinkEditionPanel linkEdition = new LinkEditionPanel(links.lastElement().getMotherClass(), links.lastElement().getMotherMultiplicity(), links.lastElement().getDaughterClass(), links.lastElement().getDaughterMultiplicity(), links.lastElement().getText());
+						
+						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+								"Nouvelle relation de " + links.lastElement().getMotherClass() + " vers " + links.lastElement().getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+						if (result == JOptionPane.OK_OPTION) {
+							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
+							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
+							links.lastElement().setText(linkEdition.getText());
+						}
+						
 						previousClickedClass = NO_CLICKED_CLASS;
 					}
 				}

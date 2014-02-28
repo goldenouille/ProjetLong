@@ -2,6 +2,7 @@
 
 implementer edges en tout genre
 
+comment on ajoute des types ?
 
 Pour la correction, il faut la methode suivante dans modelcontroller : mc.KWmissing(missingKW);
 missingKW est un int indiquant le nombre de KW manquants. a repercuter sur l'IHM..

@@ -8,6 +8,7 @@ public class PseudoGraph {
         private ArrayList<PseudoInterface> interfaces;
         private ArrayList<PseudoAttribute> attributes;
         private ArrayList<PseudoMethod> methods;
+        private ArrayList<PseudoBiEdges> biEdges;
         
         public PseudoGraph () {
                 this.classes = new ArrayList<PseudoClass>();
@@ -19,73 +20,90 @@ public class PseudoGraph {
         
         public Graph buildGraph(HashMap<int,GraphItem> map) {
                 Graph g = new Graph();
-                PseudoGraphItem pgi;
+                PseudoClass pc;
                 GraphItem gi;
                 int id;
                 for (int i=0; i<this.classes.size(); i++) {
-                        pgi = this.classes.get(i);
-                        id = pgi.getId();
+                        pc = this.classes.get(i);
+                        id = pc.getId();
                         if (map.get(id) == null) {
                                 throw new ParserExecption("id inconnu");
                         }
                         else {
                                 
-                                gi = new VertexClass((PseudoClass) pgi.getName(), id, false);
+                                gi = new VertexClass(pc.getName(), id, false);
                                 g.addVertex(gi);
                                 map.put(id, gi);
                         }
                 }
                 
+                PseudoAbstract pa;
                 for (int i=0; i<this.abstracts.size(); i++) {
-                        pgi = this.abstracts.get(i);
-                        id = pgi.getId();
+                        pa = this.abstracts.get(i);
+                        id = pa.getId();
                         if (map.get(id) == null) {
                                 throw new ParserExecption("id inconnu");
                         }
                         else {
-                                gi = new VertexClass((PseudoAbstract) pgi.getName(), id, true);
+                                gi = new VertexClass(pa.getName(), id, true);
                                 g.addVertex(gi);
                                 map.put(id, gi);
                         }
-                }) 
+                } 
                 
+                PseudoInterface pi;
                 for (int i=0; i<this.interfaces.size(); i++) {
-                        pgi = this.interfaces.get(i);
-                        id = pgi.getId();
+                        pi = this.interfaces.get(i);
+                        id = pi.getId();
                         if (map.get(id) == null) {
                                 throw new ParserExecption("id inconnu");
                         }
                         else {
-                                gi = new Vertex((PseudoInterface) pgi.getName(), id);
+                                gi = new Vertex(pi.getName(), id);
                                 g.addVertex(gi);
                                 map.put(id, gi);
                        }
                 }
                 
+                PseudoAttribute patt;
                 for (int i=0; i<this.attributes.size(); i++) {
-                        pgi = this.attributes.get(i);
-                        id = pgi.getId();
+                        patt = this.attributes.get(i);
+                        id = patt.getId();
                         if (map.get(id) == null) {
                                 throw new ParserExecption("id inconnu");
                         }
                         else {
-                                gi = new attribute((PseudoAttribute) pgi.getName(), (PseudoAttribute) pgi.getType(), (PseudoAttribute) pgi.getVisibility());
+                                gi = new attribute(patt.getName()patt.getType(),patt.getVisibility());
                                 g.addAttribute(gi);
                                 map.put(id, gi);
                        }
                 }
                 
+                PseudoMethod pm;
                 for (int i=0; i<this.methods.size(); i++) {
-                        pgi = this.methods.get(i);
-                        id = pgi.getId();
+                        pm = this.methods.get(i);
+                        id = pm.getId();
                         if (map.get(id) == null) {
                                 throw new ParserExecption("id inconnu");
                         }
                         else {
-                                gi = new attribute(pgi.getName(),pgi.getType(), pgi.getVisibility());
+                                gi = new method( pm.getName(),pm.getType(), pm.getVisibility(), pm.getParams);
                                 g.addAttribute(gi);
                                 map.put(id, gi);
                        }
+                }
+                
+                PseudoBiEdge pbe;
+                int srcId;
+                int targetId;
+                String frenchName;
+                for (int i=0; i<this.biEdges.size(); i++) {
+                      pe = this.biEdges.get(i);
+                      srcId = pe.getSrc();
+                      targetId = pe.getTarget();
+                      frenchName = pe.getFrenchName();
+                      
+                      
                 }
                 
                 

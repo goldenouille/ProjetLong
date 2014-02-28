@@ -1,3 +1,5 @@
+package uml;
+
 import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -716,12 +718,20 @@ public class LinkDrawing {
 		this.text = text;
 	}
 
+	public String getMotherClass() {
+		return motherClass.getName();
+	}
+	
 	public String getMotherMultiplicity() {
 		return motherMultiplicity;
 	}
 
 	public void setMotherMultiplicity(String motherMultiplicity) {
 		this.motherMultiplicity = motherMultiplicity;
+	}
+	
+	public String getDaughterClass() {
+		return daughterClass.getName();
 	}
 
 	public String getDaughterMultiplicity() {
