@@ -10,7 +10,7 @@ import javax.swing.text.BadLocationException;
 public class VertexEditionPanel extends AbstractPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private JTextField nameField;
+	protected JTextField nameField;
 	
 	public VertexEditionPanel(ClassicGuiController controller, int firstWord, int lastWord, String name) throws BadLocationException {
 		super(controller);
@@ -26,6 +26,7 @@ public class VertexEditionPanel extends AbstractPanel {
 		JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		namePanel.add(new JLabel("Nom : "));
 		this.nameField = new JTextField(name,30);
+		nameField.setToolTipText("Entrez le nom voulu pour l'element UML");
 		namePanel.add(nameField);
 		this.add(namePanel);
 	}

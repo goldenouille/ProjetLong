@@ -37,6 +37,7 @@ public class NavigationPanel extends AbstractPanel {
 
 
 			 JLabel partLabel = new JLabel(currentPart.toString());
+			 partLabel.setToolTipText("Cliquez pour acceder directement a cette partie");
 			 partLabel.addMouseListener(new ActSelectPart(c, currentPart.toString(), currentPart));
 			 partNamePanel.add(partLabel);
 
@@ -49,10 +50,13 @@ public class NavigationPanel extends AbstractPanel {
 				stepPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
 				IconButton correctButton = new IconButton(new ActCorrectStep(c, "", currentStep), correction);
+				correctButton.setToolTipText("<html>Cliquez ici pour obtenir la correction de cette etape." +
+						"<br>Attention ! Aucun point ne sera alors attribue !</html>");
 				correctButton.setPreferredSize(new Dimension(20, 20));
 				stepPanel.add(correctButton);
 
 				JLabel stepLabel = new JLabel(currentStep.toString());
+				//stepLabel.setToolTipText(currentStep.getToolTip());
 				stepPanel.add(stepLabel);
 
 				partPanel.add(stepPanel);

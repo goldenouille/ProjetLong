@@ -24,6 +24,8 @@ public class TimerPanel extends AbstractPanel {
 		this.timerLabel.setForeground(this.controller.askTimerBgColor());
 		this.timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(timerLabel, BorderLayout.CENTER);
+		
+		this.setToolTipText("Le temps restant");
 	}
 
 	public void setTimer(String timer) {

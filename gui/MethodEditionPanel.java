@@ -40,6 +40,7 @@ public class MethodEditionPanel extends AbstractPanel {
 		namePanel.add(new JLabel("Nom :"));
 		namePanel.add(Box.createRigidArea(new Dimension(56, 0)));
 		this.nameField = new JTextField(name, 30);
+		nameField.setToolTipText("Entrez le nom voulu pour la methode");
 		namePanel.add(nameField);
 		this.add(namePanel);
 
@@ -47,6 +48,7 @@ public class MethodEditionPanel extends AbstractPanel {
 		typePanel.add(new JLabel("Type de retour :"));
 		typePanel.add(Box.createRigidArea(new Dimension(0, 0)));
 		this.typeField = new JTextField(returnType, 30);
+		typeField.setToolTipText("Type Java de retour de la methode");
 		typePanel.add(typeField);
 		this.add(typePanel);
 
@@ -54,14 +56,17 @@ public class MethodEditionPanel extends AbstractPanel {
 		visibilityPanel.add(new JLabel("Visibilite :"));
 		visibilityPanel.add(Box.createRigidArea(new Dimension(34, 0)));
 		this.visibilityField = new JTextField(visibility, 30);
+		visibilityField.setToolTipText("Visibilite de la methode");
 		visibilityPanel.add(visibilityField);
 		this.add(visibilityPanel);
 
 		JPanel paramsHeaderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		paramsHeaderPanel.add(new JLabel("Types des parametres : "));
 		JButton addParamButton = new JButton(new ActAddParam(controller, "+", this));
+		addParamButton.setToolTipText("Ajouter un parametre");
 		paramsHeaderPanel.add(addParamButton);
 		JButton removeParamButton = new JButton(new ActRemParam(controller, "-", this));
+		removeParamButton.setToolTipText("Retirer le dernier parametre");
 		paramsHeaderPanel.add(removeParamButton);
 		this.add(paramsHeaderPanel);
 
@@ -100,6 +105,7 @@ public class MethodEditionPanel extends AbstractPanel {
 
 	public void addParam(String param) {
 		JTextField field = new JTextField(param, 30);
+		field.setToolTipText("Type Jave du parametre");
 		JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panel.add(field);
 		paramFields.add(field);

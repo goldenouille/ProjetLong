@@ -24,7 +24,8 @@ public class ScorePanel extends AbstractPanel {
 		this.scoreLabel.setForeground(this.controller.askScoreBgColor());
 		this.scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(scoreLabel, BorderLayout.CENTER);
-
+		
+		this.setToolTipText("Votre score actuel");
 	}
 
 	public void setScore(String score) {

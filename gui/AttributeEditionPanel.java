@@ -28,18 +28,21 @@ public class AttributeEditionPanel extends AbstractPanel {
 		JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		namePanel.add(new JLabel("Nom : "));
 		this.nameField = new JTextField(name, 30);
+		nameField.setToolTipText("Entrez le nom voulu pour l'attribut");
 		namePanel.add(nameField);
 		this.add(namePanel);
 
 		JPanel typePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		typePanel.add(new JLabel("Type : "));
 		this.typeField = new JTextField(type, 30);
+		typeField.setToolTipText("Type Java de l'attribut");
 		typePanel.add(typeField);
 		this.add(typePanel);
 
 		JPanel visibilityPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		visibilityPanel.add(new JLabel("Visibilite : "));
 		this.visibilityField = new JTextField(visibility, 30);
+		visibilityField.setToolTipText("Visibilite de l'attribut");
 		visibilityPanel.add(visibilityField);
 		this.add(visibilityPanel);
 	}
