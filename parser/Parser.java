@@ -49,14 +49,14 @@ public class Parser {
   				isBody = false;
   			}
   			else {
-  				if !(isBody) {
+  				if (!(isBody)) {
   					res += "<text body=\"";
   				}
   				isBody = true;
   				res += w.getWord() + " ";
   			}
   		}
-  		if isBody {
+  		if (isBody) {
   			res += " \"/>";
   		}
   		res ="\n\n";
