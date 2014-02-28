@@ -29,6 +29,7 @@ public class LinkToolBar extends JToolBar {
 	public LinkToolBar(JPanel panel) {
 		JButton button = null;
 		
+		// TODO get right size from panel
 		this.panel = panel;
 		this.setSize(600, 26);
 		this.setFloatable(false);
@@ -45,7 +46,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("M");
-	    //button.setIcon(new ImageIcon(imageURL, altText));
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// CHANGE_DIRECTION BUTTON
@@ -58,6 +59,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("CD");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// REMOVE LINK BUTTON
@@ -70,6 +72,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("RL");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// REALIZATION BUTTON
@@ -82,6 +85,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("R");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// GENERALIZATION BUTTON
@@ -94,6 +98,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("G");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// DEPENDANCY BUTTON
@@ -106,6 +111,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("D");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// BINARY ASSOCIATION BUTTON
@@ -118,6 +124,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("BA");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// AGGREGATION BUTTON
@@ -130,6 +137,7 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("A");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
 		
 		// COMPOSITION BUTTON
@@ -142,9 +150,8 @@ public class LinkToolBar extends JToolBar {
         	}
 	    });
 	    button.setText("C");
+	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
 		this.add(button);
-		
-		// TODO System.out.println("toolbar: " + String.valueOf(this.getX()) + " - " + String.valueOf(this.getX()) + " | " + String.valueOf(this.getSize().width) + " - " + String.valueOf(this.getSize().height));
 	}
 
 	public int getState() {

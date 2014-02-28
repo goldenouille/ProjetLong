@@ -12,17 +12,8 @@ import javax.swing.JPanel;
 
 
 public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
-
-	/*
-	 * instance variable declarations
-	 * helper methods
-	 * public constructors
-	 * public methods for communication
-	 */
 	
-	/*
-	 * toolBar
-	 * linkButtons
+	/* TODO
 	 * elementPool
 	 */
 	
@@ -52,9 +43,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	private int previousClickedClass = NO_CLICKED_CLASS;
 	
 	private LinkToolBar toolBar;
-	
-	//private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
 
+	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
         f.setSize(600,400);
@@ -82,7 +72,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		toolBar = new LinkToolBar(this);
 		this.add(toolBar);
 		
-		// TODO TEST
+		// TODO TEST to remove
 		classes.add(new ClassDrawing("Class1", 10, 30));
 		classes.add(new ClassDrawing("Class2", 200, 50));
 		//classes.add(new ClassDrawing("Class3", 200, 150));
