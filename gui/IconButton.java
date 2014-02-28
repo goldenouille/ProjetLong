@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -15,6 +16,9 @@ public class IconButton extends JButton {
 	public IconButton(Action a,ImageIcon icon) {
 		super(a);
 		img = icon.getImage();
+		this.setContentAreaFilled(false);
+		this.setBorderPainted(false);
+		this.setPreferredSize(new Dimension(img.getWidth(this), img.getHeight(this)));
 	}
 
 	@Override

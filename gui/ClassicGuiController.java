@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -37,9 +39,9 @@ public class ClassicGuiController implements GuiController {
 	public static final Color INVALIDATION_COLOR = new Color(255, 212, 212);
 
 	// test
-	// private Iterator itP;
-	// private Iterator itS1;
-	// private Iterator itS2;
+	 private Iterator itP;
+	 private Iterator itS1;
+	 private Iterator itS2;
 	// test
 
 	// *** General methods ***//
@@ -52,15 +54,15 @@ public class ClassicGuiController implements GuiController {
 	public ClassicGuiController(ModelController core) {
 
 		// test
-		// ArrayList<String> parts = new ArrayList<String>();
-		// parts.add("Partie 1");parts.add("Partie 2");
-		// ArrayList<String> steps1 = new ArrayList<String>();
-		// steps1.add("1.1");steps1.add("1.2");steps1.add("1.3");
-		// ArrayList<String> steps2 = new ArrayList<String>();
-		// steps2.add("2.1");steps2.add("2.2");steps2.add("2.3");
-		// itP = parts.iterator();
-		// itS1 = steps1.iterator();
-		// itS2 = steps2.iterator();
+		 ArrayList<String> parts = new ArrayList<String>();
+		 parts.add("Partie 1");parts.add("Partie 2");
+		 ArrayList<String> steps1 = new ArrayList<String>();
+		 steps1.add("1.1");steps1.add("1.2");steps1.add("1.3");
+		 ArrayList<String> steps2 = new ArrayList<String>();
+		 steps2.add("2.1");steps2.add("2.2");steps2.add("2.3");
+		 itP = parts.iterator();
+		 itS1 = steps1.iterator();
+		 itS2 = steps2.iterator();
 		// test
 
 		this.core = core;
@@ -667,14 +669,14 @@ public class ClassicGuiController implements GuiController {
 	 *         more parts
 	 */
 	public Object askNextPart() {
-		return null;
+//		return null;
 		// TODO Auto-generated method stub
 
-		// try {
-		// return itP.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
+		 try {
+		 return itP.next();
+		 } catch (Exception e) {
+		 return null;
+		 }
 	}
 
 	/**
@@ -685,15 +687,15 @@ public class ClassicGuiController implements GuiController {
 	 *         more steps in current part
 	 */
 	Object askNextStep() {
-		return null;
-		// TODO Auto-generated method stub
-		// try {
-		// if(itP.hasNext())
-		// return itS1.next();
-		// else return itS2.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
+//		return null;
+//		 TODO Auto-generated method stub
+		 try {
+		 if(itP.hasNext())
+		 return itS1.next();
+		 else return itS2.next();
+		 } catch (Exception e) {
+		 return null;
+		 }
 	}
 
 	// ****************************************************************************************************//
