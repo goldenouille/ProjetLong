@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public MainFrame(ClassicGuiController controller, AbstractPanel navigationPanel, AbstractPanel scorePanel, AbstractPanel timerPanel, AbstractPanel textSectionPanel, AbstractPanel umlPanel) throws HeadlessException {
+	public MainFrame(ClassicGuiController controller, AbstractPanel navigationPanel, AbstractPanel scorePanel, AbstractPanel timerPanel, AbstractPanel textSectionPanel, JPanel umlPanel) throws HeadlessException {
 		super("Uml Serious Game");
 		
 		this.setSize(1280, 720);
