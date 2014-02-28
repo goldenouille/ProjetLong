@@ -50,15 +50,4 @@ public class PseudoAttribute {
                 return this.type;
         }
         
-        public void setParams(ArrayList<String> ls) {
-                this.params = ls;
-        }
-        
-        public ArrayList<String> getParams() {
-                return this.params;
-        }
-        
-        public void addParam(String param) {
-                this.params.add(param);
-        }
 }
