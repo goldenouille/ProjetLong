@@ -35,6 +35,6 @@ public class SelectKeyWordStep extends Step {
 				mc.doValidateText(i,i,true); //KW in user text are considered correct for now.
 			}
 		}
-		mc.KWmissing(missingKW);
+		//mc.KWmissing(missingKW);
 	}
 }

@@ -3,17 +3,11 @@ package model;
 public class StepFactory {
 
 	public Step createStep(String name) {
-		switch (variable) {
+		if (name.equals("selectKeyWord")) {
+			return new SelectKeyWordStep();
+		}
 
-		case "selectKeyWord" :
- 			return new SelectKeyWord();
- 			break;
-
-		default: 
-		// TODO rajouter une exception
- 			return new SelectKeyWord();
- 			break;
-
-}
+ 		return new SelectKeyWordStep();
+ 		
 	}
 }

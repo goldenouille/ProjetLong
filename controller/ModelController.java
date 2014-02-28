@@ -12,6 +12,8 @@ import javax.swing.text.BadLocationException;
 import parser.Parser;
 import controller.ModelController;
 import model.UMLNature;
+import model.Step;
+import model.StepFactory;
 
 public class ModelController {
 	private ClassicGuiController cgc;
@@ -41,7 +43,7 @@ public class ModelController {
 		return natures;
 	}
 
-	public void askValidateStep(Object step) {
+	public void askValidateStep(Object s) {
 		System.out.println("Correction de " + ((Step) s).getFrenchName());
 		((Step) s).getCorrection(exo);
 	}
@@ -83,7 +85,7 @@ public class ModelController {
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
 	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		exo.addMethod(firstWord, lastWord, userText, name, type, visibility);
+		exo.addMethod(firstWord, lastWord, userText, name,  paramTypes, returnType, visibility);
 		System.out.println("askCreateMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 

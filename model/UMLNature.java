@@ -19,4 +19,8 @@ public enum UMLNature {
 	UMLNature(String name) {
 		this.name = name;
 	}
+
+	public String toString() {
+		return this.name;
+	}
 }	

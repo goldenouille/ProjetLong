@@ -83,12 +83,12 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addClass(int fisrt, int last, boolean userText, String name) {
+	public void addClass(int fisrt, int last, boolean userT, String name) {
 		ArrayList<Word> t;
-		if (userText) {
-			t = exo.getUserText();
+		if (userT) {
+			t = userText;
 		} else {
-			t = exo.getText();
+			t = text;
 		}
 		VertexClass vertexClass = new VertexClass();
 		vertexClass.setName(name);
@@ -101,12 +101,12 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addAbstractClass(int fisrt, int last, boolean userText, String name) {
+	public void addAbstractClass(int fisrt, int last, boolean userT, String name) {
 		ArrayList<Word> t;
-		if (userText) {
-			t = exo.getUserText();
+		if (userT) {
+			t = userText;
 		} else {
-			t = exo.getText();
+			t = text;
 		}
 		VertexAbstract vertexAbstract = new VertexAbstract();
 		vertexAbstract.setName(name);
@@ -119,17 +119,17 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addInterface(int firstWord, int lastWord, boolean userText, String name) {
+	public void addInterface(int firstWord, int lastWord, boolean userT, String name) {
 		ArrayList<Word> t;
-		if (userText) {
-			t = exo.getUserText();
+		if (userT) {
+			t = userText;
 		} else {
-			t = exo.getText();
+			t = text;
 		}
 		Vertex vertex = new Vertex();
 		vertex.setName(name);
 			
-		for (int i= first; i<= last; i++) {
+		for (int i= firstWord; i<= lastWord; i++) {
 			t.get(i).setUserUmlNature(UMLNature.INTERFACE);
 			t.get(i).setUserGraphItem(vertex);
 		}	
@@ -138,17 +138,17 @@ public class Exercise {
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
 	// ne fonctionne qu'avec des types de bases
-	public void addAttribute(int firstWord, int lastWord, boolean userText, String name, 
+	public void addAttribute(int firstWord, int lastWord, boolean userT, String name, 
 														String type, String visibility) {
 		ArrayList<Word> t;
-		if (userText) {
-			t = exo.getUserText();
+		if (userT) {
+			t = userText;
 		} else {
-			t = exo.getText();
+			t = text;
 		}
 		Attribute att = new Attribute(name,TypeBase.getByName(type),Visibility.getByName(visibility));
 
-		for (int i= first; i<= last; i++) {
+		for (int i= firstWord; i<= lastWord; i++) {
 			t.get(i).setUserUmlNature(UMLNature.ATTRIBUTE);
 			t.get(i).setUserGraphItem(att);
 		}	
@@ -158,14 +158,14 @@ public class Exercise {
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
 	 
-	public void addMethod(int firstWord, int lastWord, boolean userText, String name, 
+	public void addMethod(int firstWord, int lastWord, boolean userT, String name, 
 											ArrayList<String> paramTypes, String returnType, String visibility) {
 		ArrayList<Word> t;
 		ArrayList<Type> params = new ArrayList<Type>();
-		if (userText) {
-			t = exo.getUserText();
+		if (userT) {
+			t = userText;
 		} else {
-			t = exo.getText();
+			t = text;
 		}
 
 		for (int i= 0; i<paramTypes.size(); i++) {
@@ -173,7 +173,7 @@ public class Exercise {
 		}
 
 		Method met = new Method(name, TypeBase.getByName(returnType), Visibility.getByName(visibility), params);
-		for (int i= first; i<= last; i++) {
+		for (int i= firstWord; i<= lastWord; i++) {
 			t.get(i).setUserUmlNature(UMLNature.METHOD);
 			t.get(i).setUserGraphItem(met);
 		}	
@@ -182,12 +182,12 @@ public class Exercise {
 
 	// pas encore implementee
 	public void selectPart(Object p) {
-		System.out.println("askSelectPart from Exercise " + part.toString());
+		System.out.println("askSelectPart from Exercise " + p.toString());
 	}
 
 	// pas encore implementee
 	public void selectStep(Object s) {
-		System.out.println("askSelectStep from Exercise " + part.toString());
+		System.out.println("askSelectStep from Exercise " + s.toString());
 	}
 
 	// pas encore implementee

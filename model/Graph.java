@@ -18,7 +18,7 @@ public class Graph {
 		this.edges = new ArrayList<Edge>();
 		this.attributes = new ArrayList<Attribute>();
 		this.methods = new ArrayList<Method>();
-		this.idTable = new HashMap<int,GraphItem>();
+		this.idTable = new HashMap<Integer,GraphItem>();
 	}
 	
 	public void addVertex(Vertex v) {

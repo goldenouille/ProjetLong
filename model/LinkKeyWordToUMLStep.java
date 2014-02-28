@@ -18,7 +18,12 @@ public class LinkKeyWordToUMLStep extends Step {
 
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isSelected()) {
-				mc.UMLtypeCorrect(i,i,i.umlNature==i.userUmlNature);
+				Word word = text.get(i);
+				if (word.getUmlNature()==word.getUserUmlNature()) {
+					// le type est correct
+				} else {
+					// le type est incorrect
+				}
 			}
 		}
 	}		
