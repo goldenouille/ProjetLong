@@ -12,7 +12,7 @@ public enum UMLNature {
 	INTERFACE("interface"), 
 	METHOD("methode"),
 	N_ASSOCIATION("assocition n-aire"),
-	REALIZATION("relisation");
+	REALIZATION("realisation");
 
 	private String name;
 

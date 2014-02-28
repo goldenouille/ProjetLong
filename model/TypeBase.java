@@ -9,10 +9,10 @@ public enum TypeBase implements Type {
 	FLOAT("float",false),
 	DOUBLE("double",false),
 	BOOLEAN("boolean",false),
-	STRING("string",false),
+	STRING("String",false),
 	VOID("void",false),
-	ARRAYLIST("arrayList",true),
-	LIST("list",true);
+	ARRAYLIST("ArrayList",true),
+	LIST("List",true);
 
 	private String name;
 	private boolean isList;
@@ -23,8 +23,6 @@ public enum TypeBase implements Type {
 		this.isList = b;
 		this.typeList = null;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -60,5 +58,54 @@ public enum TypeBase implements Type {
 		} else {
 			return !(this.isList);
 		}
+	}
+
+	public static TypeBase getByName(String s) {
+		if (s.equalsIgnoreCase("char")) {
+			return TypeBase.CHAR;
+		}
+		if (s.equalsIgnoreCase("byte")) {
+			return TypeBase.BYTE;
+		}
+		if (s.equalsIgnoreCase("short")) {
+			return TypeBase.SHORT;
+		}
+		if (s.equalsIgnoreCase("int")) {
+			return TypeBase.INT;
+		}
+		if (s.equalsIgnoreCase("long")) {
+			return TypeBase.LONG;
+		}
+		if (s.equalsIgnoreCase("float")) {
+			return TypeBase.FLOAT;
+		}
+		if (s.equalsIgnoreCase("double")) {
+			return TypeBase.DOUBLE;
+		}
+		if (s.equalsIgnoreCase("boolean")) {
+			return TypeBase.BOOLEAN;
+		}
+		if (s.equalsIgnoreCase("void")) {
+			return TypeBase.VOID;
+		}
+			// pour l'instant ArrayList et List ne pourront prendre que des types de base
+		if (s.startsWith("ArrayList")) {
+			String[] t = s.split("<");
+			String[] tt = (t[2]).split(">");
+			TypeBase tList = getByName(tt[0]);
+			TypeBase arrayList = TypeBase.ARRAYLIST;
+			arrayList.setTypeList(tList);
+			return arrayList;
+		}
+		if (s.startsWith("List")) {
+			String[] t = s.split("<");
+			String[] tt = (t[2]).split(">");
+			TypeBase tList = getByName(tt[0]);
+			TypeBase list = TypeBase.LIST;
+			list.setTypeList(tList);
+			return list;
+			
+		}
+		return TypeBase.VOID; // valeur par defaut -> modifer plus tard
 	}
 }

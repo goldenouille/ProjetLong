@@ -35,7 +35,7 @@ public class Exercise {
 	public void selectText(int[] selection) {
 		if (selection.length = text.size()) {
 			for (int i=0; i<selection.size(); i++) {
-    			if (selection.[i]>90) {
+    			if (selection[i]>90) {
     				text.get(i).select();
     			}
 			}
@@ -97,6 +97,7 @@ public class Exercise {
 			userText.get(i).setUserUmlNature(UMLNature.CLASS);
 			userText.get(i).setUserGraphItem(vertexClass);
 		}	
+		this.userGraph.addVertex(vertexClass);
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
@@ -114,10 +115,11 @@ public class Exercise {
 			userText.get(i).setUserUmlNature(UMLNature.ABSTRACT_CLASS);
 			userText.get(i).setUserGraphItem(vertexAbstract);
 		}	
+		this.userGraph.addVertex(vertexAbstract);
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	addInterface(firstWord, lastWord, userText, name) {
+	public void addInterface(int firstWord, int lastWord, boolean userText, String name) {
 		ArrayList<Word> t;
 		if (userText) {
 			t = exo.getUserText();
@@ -128,10 +130,79 @@ public class Exercise {
 		vertex.setName(name);
 			
 		for (int i= first; i<= last; i++) {
-			userText.get(i).setUserUmlNature(UMLNature.INTERFACE);
-			userText.get(i).setUserGraphItem(vertex);
+			t.get(i).setUserUmlNature(UMLNature.INTERFACE);
+			t.get(i).setUserGraphItem(vertex);
 		}	
+		this.userGraph.addVertex(vertex);
 	}
 
+	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	// ne fonctionne qu'avec des types de bases
+	public void addAttribute(int firstWord, int lastWord, boolean userText, String name, 
+														String type, String visibility) {
+		ArrayList<Word> t;
+		if (userText) {
+			t = exo.getUserText();
+		} else {
+			t = exo.getText();
+		}
+		Attribute att = new Attribute(name,TypeBase.getByName(type),Visibility.getByName(visibility));
+
+		for (int i= first; i<= last; i++) {
+			t.get(i).setUserUmlNature(UMLNature.ATTRIBUTE);
+			t.get(i).setUserGraphItem(att);
+		}	
+		this.userGraph.addAttribute(att);
+	}
+
+	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
+	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
+	 
+	public void addMethod(int firstWord, int lastWord, boolean userText, String name, 
+											ArrayList<String> paramTypes, String returnType, String visibility) {
+		ArrayList<Word> t;
+		ArrayList<Type> params = new ArrayList<Type>();
+		if (userText) {
+			t = exo.getUserText();
+		} else {
+			t = exo.getText();
+		}
+
+		for (int i= 0; i<paramTypes.size(); i++) {
+			params.add(TypeBase.getByName(paramTypes.get(i)));
+		}
+
+		Method met = new Method(name, TypeBase.getByName(returnType), Visibility.getByName(visibility), params);
+		for (int i= first; i<= last; i++) {
+			t.get(i).setUserUmlNature(UMLNature.METHOD);
+			t.get(i).setUserGraphItem(met);
+		}	
+		this.userGraph.addMethod(met);
+	}
+
+	// pas encore implementee
+	public void selectPart(Object p) {
+		System.out.println("askSelectPart from Exercise " + part.toString());
+	}
+
+	// pas encore implementee
+	public void selectStep(Object s) {
+		System.out.println("askSelectStep from Exercise " + part.toString());
+	}
+
+	// pas encore implementee
+	public Object nextPart() {
+		return null;
+	}
+
+	// pas encore implementee
+	public Object nextStep() {
+		return null;
+	}
+
+	// pas encore geree
+	public String askScore() {
+		return "0 / 100";
+	}
 
 }
