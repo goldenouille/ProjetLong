@@ -111,6 +111,12 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
+		
+		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
+		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
+		
+		poolPanel.refresh();
+		
 		// TODO END TEST
 		
 		this.repaint();
