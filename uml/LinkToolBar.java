@@ -1,8 +1,9 @@
+package uml;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 
@@ -13,7 +14,7 @@ public class LinkToolBar extends JToolBar {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel panel;
+	//private JPanel panel;
 	private int state;
 	
 	public static final int NO_LINK = -1;
@@ -27,12 +28,12 @@ public class LinkToolBar extends JToolBar {
 	public static final int AGGREGATION = 8;
 	public static final int COMPOSITION = 9;
 
-	public LinkToolBar(JPanel panel) {
+	public LinkToolBar(){//JPanel panel) {
 		JButton button = null;
 		
 		// TODO get right size from panel
-		this.panel = panel;
-		this.setSize(600, 26);
+		//this.panel = panel;
+		//this.setSize(600, 26);
 		this.setFloatable(false);
 		this.setRollover(true);
 		state = NO_LINK;

@@ -1,3 +1,5 @@
+package uml;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -38,6 +40,10 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	private static final int DRAGGED_LINK_OFFSET = 1000;
 	private static final int NO_CLICKED_CLASS = -1;
 	
+	public static final int ELEMENT_CLASS = 1;
+	public static final int ELEMENT_PROPERTY = 2;
+	public static final int ELEMENT_METHOD = 3;
+	
 	private Vector<ClassDrawing> classes;
 	private Vector<LinkDrawing> links;
 	private Dimension previousMousePos = new Dimension(0, 0);
@@ -45,6 +51,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	private int previousClickedClass = NO_CLICKED_CLASS;
 	
 	private LinkToolBar toolBar;
+	private UMLElementPanel poolPanel;
 
 	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
@@ -66,13 +73,20 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		super(layout, isDoubleBuffered);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		this.repaint();
 		
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
-		toolBar = new LinkToolBar(this);
+		// TODO
+		toolBar = new LinkToolBar();//(this);
+		toolBar.setSize(450, 26);//(this.getSize().width, 20);
 		this.add(toolBar);
+		
+		// TODO
+		poolPanel = new UMLElementPanel();
+		poolPanel.setSize(150, 400);//(120, this.getSize().height);
+		poolPanel.setLocation(450, 0);
+		this.add("East",poolPanel);
 		
 		// TODO TEST to remove
 		classes.add(new ClassDrawing("Class1", 10, 30));
@@ -97,6 +111,41 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
+		// TODO END TEST
+		
+		this.repaint();
+	}
+	
+	public boolean doCheckingElementsInPool() {
+		// TODO
+		return false;
+	}
+	
+	public void doAddingElementToPool(String element, int type) {
+		// TODO ?
+		switch (type) {
+		case ELEMENT_CLASS:
+			poolPanel.addClass(element);
+			break;
+		case ELEMENT_PROPERTY:
+			poolPanel.addProperty(element);
+			break;
+		case ELEMENT_METHOD:
+			poolPanel.addMethod(element);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public boolean doCheckingClasses() {
+		// TODO
+		return false;
+	}
+	
+	public boolean doCheckingLinks() {
+		// TODO
+		return false;
 	}
 	
 	@Override
@@ -158,6 +207,11 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 					links.get(currentDraggedElement - DRAGGED_LINK_OFFSET).move(mousePos, delta);
 				}
 			}
+			else {
+				for (int i = 0 ; i < classes.size() ; i++) {
+					classes.get(i).move(delta);
+				}
+			}
 		}
 		
 		// Memorize mouse position for next iteration
@@ -190,9 +244,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 					}
 					i++;
 				}
-				System.out.println("!toolBar.isInLinkRelationState()");
 				if (find) {
-					System.out.println("find");
 					i--;
 					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
 

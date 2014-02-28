@@ -1,3 +1,5 @@
+package uml;
+
 import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
@@ -16,7 +18,6 @@ public class LinkEditionPanel extends JPanel {
 	public LinkEditionPanel(String motherClass, String motherMultiplicity, String daughterClass, String daughterMultiplicity, String text){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.setSize(200, 100);;
 
 		JPanel motherPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		motherPanel.add(new JLabel("Multiciplicité de " + motherClass + " : "));

@@ -1,3 +1,5 @@
+package uml;
+
 import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
