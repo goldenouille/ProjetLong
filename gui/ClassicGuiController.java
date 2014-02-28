@@ -9,7 +9,16 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.BadLocationException;
+
+import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
+
+import uml.UMLDrawingPanel;
 
 import controller.ModelController;
 
@@ -27,7 +36,7 @@ public class ClassicGuiController implements GuiController {
 	private TextPanel userTextPanel;
 	private ScorePanel scorePanel;
 	private TimerPanel timerPanel;
-	private UmlPanel umlPanel;
+	private UMLDrawingPanel umlDrawingPanel;
 	private NavigationPanel navigationPanel;
 
 	// Gui Variables
@@ -67,16 +76,24 @@ public class ClassicGuiController implements GuiController {
 
 		this.core = core;
 		this.userTextFocus = false;
+		
+		try {
+		      UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		} catch (Exception e) {}
+//		com.jgoodies.looks.windows.WindowsLookAndFeel
+//		com.jgoodies.looks.plastic.PlasticLookAndFeel
+//		com.jgoodies.looks.plastic.Plastic3DLookAndFeel
+//		com.jgoodies.looks.plastic.PlasticXPLookAndFeel
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
 		this.textSectionPanel = new TextSectionPanel(this, textPanel, userTextPanel);
 		this.scorePanel = new ScorePanel(this);
 		this.timerPanel = new TimerPanel(this);
-		this.umlPanel = new UmlPanel(this);
+		this.umlDrawingPanel = new UMLDrawingPanel(null, false);
 		this.navigationPanel = new NavigationPanel(this);
 
-		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel, timerPanel, textSectionPanel, umlPanel);
+		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel, timerPanel, textSectionPanel, umlDrawingPanel);
 		this.mainFrame.setVisible(true);
 	}
 
