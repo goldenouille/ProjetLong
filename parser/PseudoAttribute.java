@@ -8,7 +8,6 @@ public class PseudoAttribute {
         private String visibility;
         private int motherId;
         private String type;
-        private ArrayList<String> params;
         
         public void setName(String s) {
                 this.name = s;
