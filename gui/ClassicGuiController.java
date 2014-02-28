@@ -4,18 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.BadLocationException;
 
-import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
-import com.jgoodies.looks.plastic.PlasticLookAndFeel;
-import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import uml.UMLDrawingPanel;
@@ -48,9 +41,10 @@ public class ClassicGuiController implements GuiController {
 	public static final Color INVALIDATION_COLOR = new Color(255, 212, 212);
 
 	// test
-	 private Iterator itP;
-	 private Iterator itS1;
-	 private Iterator itS2;
+	// private Iterator itP;
+	// private Iterator itS1;
+	// private Iterator itS2;
+
 	// test
 
 	// *** General methods ***//
@@ -63,27 +57,33 @@ public class ClassicGuiController implements GuiController {
 	public ClassicGuiController(ModelController core) {
 
 		// test
-		 ArrayList<String> parts = new ArrayList<String>();
-		 parts.add("Partie 1");parts.add("Partie 2");
-		 ArrayList<String> steps1 = new ArrayList<String>();
-		 steps1.add("1.1");steps1.add("1.2");steps1.add("1.3");
-		 ArrayList<String> steps2 = new ArrayList<String>();
-		 steps2.add("2.1");steps2.add("2.2");steps2.add("2.3");
-		 itP = parts.iterator();
-		 itS1 = steps1.iterator();
-		 itS2 = steps2.iterator();
+		// ArrayList<String> parts = new ArrayList<String>();
+		// parts.add("Partie 1");
+		// parts.add("Partie 2");
+		// ArrayList<String> steps1 = new ArrayList<String>();
+		// steps1.add("1.1");
+		// steps1.add("1.2");
+		// steps1.add("1.3");
+		// ArrayList<String> steps2 = new ArrayList<String>();
+		// steps2.add("2.1");
+		// steps2.add("2.2");
+		// steps2.add("2.3");
+		// itP = parts.iterator();
+		// itS1 = steps1.iterator();
+		// itS2 = steps2.iterator();
 		// test
 
 		this.core = core;
 		this.userTextFocus = false;
-		
+
 		try {
-		      UIManager.setLookAndFeel(new WindowsLookAndFeel());
-		} catch (Exception e) {}
-//		com.jgoodies.looks.windows.WindowsLookAndFeel
-//		com.jgoodies.looks.plastic.PlasticLookAndFeel
-//		com.jgoodies.looks.plastic.Plastic3DLookAndFeel
-//		com.jgoodies.looks.plastic.PlasticXPLookAndFeel
+			UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		} catch (Exception e) {
+		}
+		// com.jgoodies.looks.windows.WindowsLookAndFeel
+		// com.jgoodies.looks.plastic.PlasticLookAndFeel
+		// com.jgoodies.looks.plastic.Plastic3DLookAndFeel
+		// com.jgoodies.looks.plastic.PlasticXPLookAndFeel
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
@@ -122,22 +122,23 @@ public class ClassicGuiController implements GuiController {
 	 * tab[i] = selection %age of the word number i
 	 */
 	public void askSelectText() {
-		// TODO Auto-generated method stub
 		int[] tab = getActiveTextPanel().getSelection();
-		System.out.println("askSelectText : " + Arrays.toString(tab));
+		core.askSelectText(tab);
 
-		int start = -1, end = -1;
-		for (int i = 0; i < tab.length - 1; i++) {
-			if (start == -1 && tab[i] != 0)
-				start = i;
-			if (end == -1 && start != -1 && tab[i + 1] == 0)
-				end = i;
-		}
-		try {
-			doSelectText(start, end, userTextFocus);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+		// System.out.println("askSelectText : " + Arrays.toString(tab));
+		//
+		// int start = -1, end = -1;
+		// for (int i = 0; i < tab.length - 1; i++) {
+		// if (start == -1 && tab[i] != 0)
+		// start = i;
+		// if (end == -1 && start != -1 && tab[i + 1] == 0)
+		// end = i;
+		// }
+		// try {
+		// doSelectText(start, end, userTextFocus);
+		// } catch (BadLocationException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 	/**
@@ -145,22 +146,23 @@ public class ClassicGuiController implements GuiController {
 	 * where tab[i] = selection %age of the word number i
 	 */
 	public void askUnSelectText() {
-		// TODO Auto-generated method stub
 		int[] tab = getActiveTextPanel().getSelection();
-		System.out.println("askUnSelectText : " + Arrays.toString(tab));
+		core.askUnSelectText(tab);
 
-		int start = -1, end = -1;
-		for (int i = 0; i < tab.length - 1; i++) {
-			if (start == -1 && tab[i] != 0)
-				start = i;
-			if (end == -1 && start != -1 && tab[i + 1] == 0)
-				end = i;
-		}
-		try {
-			doUnSelectText(start, end, userTextFocus);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+		// System.out.println("askUnSelectText : " + Arrays.toString(tab));
+		//
+		// int start = -1, end = -1;
+		// for (int i = 0; i < tab.length - 1; i++) {
+		// if (start == -1 && tab[i] != 0)
+		// start = i;
+		// if (end == -1 && start != -1 && tab[i + 1] == 0)
+		// end = i;
+		// }
+		// try {
+		// doUnSelectText(start, end, userTextFocus);
+		// } catch (BadLocationException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 	/**
@@ -171,9 +173,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return UMLnatures table
 	 */
 	public Object[] askUmlInstancesNatures() {
-		// TODO Auto-generated method stub
-		Object[] natures = { UMLNature.CLASS, UMLNature.ABSTRACT_CLASS, UMLNature.INTERFACE, UMLNature.ATTRIBUTE, UMLNature.METHOD };
-		return natures;
+		return core.askUmlInstancesNatures();
 	}
 
 	/**
@@ -181,21 +181,22 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askValidateKeywords() {
 		// TODO Auto-generated method stub
-		System.out.println("askValidateKeywords");
 
-		int[] tab = getActiveTextPanel().getSelection();
-		int start = -1, end = -1;
-		for (int i = 0; i < tab.length - 1; i++) {
-			if (start == -1 && tab[i] != 0)
-				start = i;
-			if (end == -1 && start != -1 && tab[i + 1] == 0)
-				end = i;
-		}
-		try {
-			doValidateText(start, end, userTextFocus);
-		} catch (BadLocationException e) {
-			e.printStackTrace();
-		}
+		// System.out.println("askValidateKeywords");
+		//
+		// int[] tab = getActiveTextPanel().getSelection();
+		// int start = -1, end = -1;
+		// for (int i = 0; i < tab.length - 1; i++) {
+		// if (start == -1 && tab[i] != 0)
+		// start = i;
+		// if (end == -1 && start != -1 && tab[i + 1] == 0)
+		// end = i;
+		// }
+		// try {
+		// doValidateText(start, end, userTextFocus);
+		// } catch (BadLocationException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 	/**
@@ -204,7 +205,7 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askValidateAssociation() {
 		// TODO Auto-generated method stub
-		System.out.println("askValidateAssociation");
+		// System.out.println("askValidateAssociation");
 	}
 
 	/**
@@ -222,8 +223,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return name of the instance
 	 */
 	private String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
-		// TODO Auto-generated method stub
-		return null;
+		return core.askUmlInstanceName(firstWord, lastWord, userText, nature);
 	}
 
 	/**
@@ -235,10 +235,11 @@ public class ClassicGuiController implements GuiController {
 	 *            user's comment
 	 */
 	public void askAddText(String text, String comment) {
-		// TODO Auto-generated method stub
-		System.out.println("askAddText " + text + "\n" + comment);
+		core.askAddText(text, comment);
 
-		doAddText(true, text.split(" "));
+		// System.out.println("askAddText " + text + "\n" + comment);
+		//
+		// doAddText(true, text.split(" "));
 	}
 
 	/**
@@ -255,8 +256,9 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
-		// TODO Auto-generated method stub
-		System.out.println("askCreateClass " + name);
+		core.askCreateClass(firstWord, lastWord, userText, name);
+
+		// System.out.println("askCreateClass " + name);
 	}
 
 	/**
@@ -273,8 +275,9 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
-		// TODO Auto-generated method stub
-		System.out.println("askCreateAbstractClass " + name);
+		core.askCreateAbstractClass(firstWord, lastWord, userText, name);
+
+		// System.out.println("askCreateAbstractClass " + name);
 	}
 
 	/**
@@ -291,8 +294,9 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
-		// TODO Auto-generated method stub
-		System.out.println("askCreateInterface " + name);
+		core.askCreateInterface(firstWord, lastWord, userText, name);
+
+		// System.out.println("askCreateInterface " + name);
 	}
 
 	/**
@@ -313,8 +317,10 @@ public class ClassicGuiController implements GuiController {
 	 *            visibility wanted for the new instance
 	 */
 	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
-		// TODO Auto-generated method stub
-		System.out.println("askCreateAttribute " + name + " " + type + " " + visibility);
+		core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
+
+		// System.out.println("askCreateAttribute " + name + " " + type + " " +
+		// visibility);
 	}
 
 	/**
@@ -337,8 +343,10 @@ public class ClassicGuiController implements GuiController {
 	 *            visibility wanted for the new instance
 	 */
 	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		// TODO Auto-generated method stub
-		System.out.println("askCreateMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
+		core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
+
+		// System.out.println("askCreateMethod " + name + " " +
+		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
 	// ***//
@@ -500,11 +508,11 @@ public class ClassicGuiController implements GuiController {
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
 			MethodEditionPanel panel = new MethodEditionPanel(this, firstWord, lastWord, null, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-					"Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(),
-						panel.getMethodVisibility());
+				askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel
+						.getMethodVisibility());
 			}
 		}
 	}
@@ -662,8 +670,9 @@ public class ClassicGuiController implements GuiController {
 	 *            object that the core can use to identify a part
 	 */
 	public void askSelectPart(Object part) {
-		// TODO Auto-generated method stub
-		System.out.println("askSelectPart " + part.toString());
+		core.askSelectPart(part);
+
+		// System.out.println("askSelectPart " + part.toString());
 	}
 
 	/**
@@ -674,8 +683,9 @@ public class ClassicGuiController implements GuiController {
 	 *            object that the core can use to identify a step
 	 */
 	public void askCorrectStep(Object step) {
-		// TODO Auto-generated method stub
-		System.out.println("askCorrectStep " + step.toString());
+		core.askCorrectStep(step);
+
+		// System.out.println("askCorrectStep " + step.toString());
 	}
 
 	/**
@@ -686,14 +696,13 @@ public class ClassicGuiController implements GuiController {
 	 *         more parts
 	 */
 	public Object askNextPart() {
-//		return null;
-		// TODO Auto-generated method stub
+		return core.askNextPart();
 
-		 try {
-		 return itP.next();
-		 } catch (Exception e) {
-		 return null;
-		 }
+		// try {
+		// return itP.next();
+		// } catch (Exception e) {
+		// return null;
+		// }
 	}
 
 	/**
@@ -704,15 +713,16 @@ public class ClassicGuiController implements GuiController {
 	 *         more steps in current part
 	 */
 	Object askNextStep() {
-//		return null;
-//		 TODO Auto-generated method stub
-		 try {
-		 if(itP.hasNext())
-		 return itS1.next();
-		 else return itS2.next();
-		 } catch (Exception e) {
-		 return null;
-		 }
+		return core.askNextStep();
+
+		// try {
+		// if (itP.hasNext())
+		// return itS1.next();
+		// else
+		// return itS2.next();
+		// } catch (Exception e) {
+		// return null;
+		// }
 	}
 
 	// ****************************************************************************************************//
@@ -729,8 +739,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the timer to show
 	 */
 	public String askTimer() {
-		// TODO Auto-generated method stub
-		return "0";
+		return core.askTimer();
 	}
 
 	/**
@@ -739,8 +748,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the timer font to use
 	 */
 	public Font askTimerFont() {
-		// TODO Auto-generated method stub
-		return new Font("Arial", Font.BOLD, 40);
+		return core.askTimerFont();
 	}
 
 	/**
@@ -749,8 +757,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the timer background color to use
 	 */
 	public Color askTimerBgColor() {
-		// TODO Auto-generated method stub
-		return Color.GRAY;
+		return core.askTimerBgColor();
 	}
 
 	// ***//
@@ -801,8 +808,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the score to show
 	 */
 	public String askScore() {
-		// TODO Auto-generated method stub
-		return "0 / 100";
+		return core.askScore();
 	}
 
 	/**
@@ -811,8 +817,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the score font to use
 	 */
 	public Font askScoreFont() {
-		// TODO Auto-generated method stub
-		return new Font("Arial", Font.BOLD, 40);
+		return core.askScoreFont();
 	}
 
 	/**
@@ -821,8 +826,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return the score background color to use
 	 */
 	public Color askScoreBgColor() {
-		// TODO Auto-generated method stub
-		return Color.GRAY;
+		return core.askScoreBgColor();
 	}
 
 	// ***//
