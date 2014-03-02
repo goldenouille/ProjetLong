@@ -11,6 +11,7 @@ public class ClassDrawing {
 	private int y;
 	private int width;
 	private int height;
+	private boolean reduced;
 	
 	private String classtype = "";
 	private String name = "";
@@ -24,6 +25,7 @@ public class ClassDrawing {
 		
 		setX(x);
 		setY(y);
+		setReduced(false);
 		setName(name);
 	}
 	
@@ -35,6 +37,7 @@ public class ClassDrawing {
 		setY(y);
 		setWidth(width);
 		setHeight(height);
+		setReduced(false);
 		setName(name);
 	}
 
@@ -68,6 +71,18 @@ public class ClassDrawing {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public boolean isReduced() {
+		return reduced;
+	}
+
+	public void setReduced(boolean reduced) {
+		if (properties.size() != 0 || methods.size() != 0) {
+			this.reduced = reduced;
+		} else {
+			this.reduced = false;
+		}
 	}
 	
 	public String getName() {
@@ -132,17 +147,21 @@ public class ClassDrawing {
 		if (properties.size() != 0) {
 			actualHeight += 4;
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
-			for (int i = 0; i < properties.size() ; i++) {
-				actualHeight += g.getFont().getSize();
-				g.drawString(properties.get(i), x + 4, y + actualHeight);
+			if (!this.isReduced()) {
+				for (int i = 0; i < properties.size() ; i++) {
+					actualHeight += g.getFont().getSize();
+					g.drawString(properties.get(i), x + 4, y + actualHeight);
+				}
 			}
 		}
 		if (methods.size() != 0) {
 			actualHeight += 4;
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
-			for (int i = 0; i < methods.size() ; i++) {
-				actualHeight += g.getFont().getSize();
-				g.drawString(methods.get(i), x + 4, y + actualHeight);
+			if (!this.isReduced()) {
+				for (int i = 0; i < methods.size() ; i++) {
+					actualHeight += g.getFont().getSize();
+					g.drawString(methods.get(i), x + 4, y + actualHeight);
+				}
 			}
 		}
 

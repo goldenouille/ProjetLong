@@ -103,6 +103,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		classes.get(0).addProperty(" - property3");
 		classes.get(0).addMethod(" - method1");
 		classes.get(0).addMethod(" - method2");
+		//classes.get(0).setReduced(true);
 		
 		/*classes.get(1).addProperty(" - myproperty");
 		classes.get(1).addMethod("+ mymethod");
@@ -305,6 +306,20 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		} else {
 			// linking variables reset
 			previousClickedClass = NO_CLICKED_CLASS;
+			
+			// check for class reducing
+			if (e.getButton() == MouseEvent.BUTTON3) {// on right click
+				while (i < classes.size() && !find) {
+					if (classes.get(i).isUnder(mousePos)) {
+						find = true;
+					}
+					i++;
+				}
+				if (find) {
+					i--;
+					classes.get(i).setReduced( !classes.get(i).isReduced() );
+				}
+			}
 		}
 		
 		this.repaint();
