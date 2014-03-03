@@ -40,6 +40,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	private static final int DRAGGED_LINK_OFFSET = 1000;
 	private static final int NO_CLICKED_CLASS = -1;
 	
+	public static final int ELEMENT_NOTYPE = 0;
 	public static final int ELEMENT_CLASS = 1;
 	public static final int ELEMENT_PROPERTY = 2;
 	public static final int ELEMENT_METHOD = 3;
@@ -78,12 +79,12 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		links = new Vector<LinkDrawing>();
 		
 		// TODO
-		toolBar = new LinkToolBar();//(this);
+		toolBar = new LinkToolBar(this);//(this);
 		toolBar.setSize(450, 26);//(this.getSize().width, 20);
 		this.add(toolBar);
 		
 		// TODO
-		poolPanel = new UMLElementPanel();
+		poolPanel = new UMLElementPanel(this);
 		poolPanel.setSize(150, 400);//(120, this.getSize().height);
 		poolPanel.setLocation(450, 0);
 		this.add("East",poolPanel);
@@ -143,11 +144,33 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		default:
 			break;
 		}
+		poolPanel.refresh();
 	}
 	
 	public boolean doCheckingClasses() {
 		// TODO
 		return false;
+	}
+	
+	public void doRemovingElementFromDrawingArea(String element, int type) {
+		switch (type) {
+		case ELEMENT_CLASS:
+			for(int i = 0 ; i < classes.size() ; i++) {
+				if(element == classes.get(i).getName()) {
+					classes.remove(i);
+					i--;
+				}
+			}
+			break;
+		case ELEMENT_PROPERTY:
+			// TODO remove from class and unlink
+			break;
+		case ELEMENT_METHOD:
+			// TODO remove from class and unlink
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public boolean doCheckingLinks() {
@@ -174,6 +197,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		if (toolBar.isInLinkRelationState() && previousClickedClass != NO_CLICKED_CLASS) {
 			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
 		}
+		
+		//poolPanel.refresh();
 	}
 	
 	@Override
@@ -306,6 +331,55 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		} else {
 			// linking variables reset
 			previousClickedClass = NO_CLICKED_CLASS;
+			
+			if (e.getButton() == MouseEvent.BUTTON1) {// on left click
+				if(poolPanel.getSelectedElementAction() == UMLElementPanel.ACTION_ADD) {
+					switch (poolPanel.getSelectedElementType()) {
+					case ELEMENT_CLASS:
+						boolean classDoNotExist = true;
+						for (int j = 0 ; j < classes.size() ; j++) {
+							if (classes.get(j).getName() == poolPanel.getSelectedElementName()) {
+								classDoNotExist = false;
+							}
+						}
+						if (classDoNotExist) {
+							classes.add(new ClassDrawing(poolPanel.getSelectedElementName(), e.getX(), e.getY()));
+						}
+						break;
+					case ELEMENT_PROPERTY:
+						// TODO check no duplicate, and with core
+						while (i < classes.size() && !find) {
+							if (classes.get(i).isUnder(mousePos)) {
+								find = true;
+							}
+							i++;
+						}
+						if (find) {
+							i--;
+							classes.get(i).addProperty(poolPanel.getSelectedElementName());
+						}
+						break;
+					case ELEMENT_METHOD:
+						// TODO check no duplicate, and with core
+						while (i < classes.size() && !find) {
+							if (classes.get(i).isUnder(mousePos)) {
+								find = true;
+							}
+							i++;
+						}
+						if (find) {
+							i--;
+							classes.get(i).addMethod(poolPanel.getSelectedElementName());
+						}
+						break;
+					default:
+						break;
+					}
+					
+					poolPanel.resetSelectedElement();
+					poolPanel.refresh();
+				}
+			}
 			
 			// check for class reducing
 			if (e.getButton() == MouseEvent.BUTTON3) {// on right click

@@ -1,5 +1,7 @@
 package uml;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.Vector;
 
 import javax.swing.Box;
@@ -14,77 +16,55 @@ public class UMLElementPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private UMLDrawingPanel mainpanel;
+	
+	public static final int ACTION_NONE = 0;
+	public static final int ACTION_ADD = 1;
+	public static final int ACTION_REMOVE = 2;
+	public static final int ACTION_EDIT = 3;
+	public static final int ACTION_DELETE = 4;
+
+	private int selectedElementAction;
+	private int selectedElementType; //use UMLDrawingPanel element type
+	private int selectedElementID;
 	
 	private Vector<String> classes;
 	private Vector<String> properties;
 	private Vector<String> methods;
 	
-	public UMLElementPanel() {
+	public UMLElementPanel(UMLDrawingPanel mainpanel) {
 		super();
+		this.mainpanel = mainpanel;
+		this.setSelectedElementID(0);
+		this.setSelectedElementType(UMLDrawingPanel.ELEMENT_NOTYPE);
 		
 		classes = new Vector<String>();
 		properties = new Vector<String>();
 		methods = new Vector<String>();
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
 		this.refresh();
-		
-		/*
-		while (currentPart!=null) {	
-			
-
-			JPanel partNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			partNamePanel.setPreferredSize(new Dimension(100, 30));
-
-			 JLabel iconLabel = new JLabel(section);
-			 iconLabel.addMouseListener(new ActSelectPart(c, currentPart.toString(), currentPart));
-			 partNamePanel.add(iconLabel);
-
-
-			 JLabel partLabel = new JLabel(currentPart.toString());
-			 partLabel.setToolTipText("Cliquez pour acceder directement a cette partie");
-			 partLabel.addMouseListener(new ActSelectPart(c, currentPart.toString(), currentPart));
-			 partNamePanel.add(partLabel);
-
-			partPanel.add(partNamePanel);
-
-			int nbStep = 0;
-			while (currentStep!=null) {
-				JPanel stepPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-				stepPanel.setPreferredSize(new Dimension(100, 30));
-				stepPanel.add(Box.createRigidArea(new Dimension(5, 0)));
-
-				IconButton correctButton = new IconButton(new ActCorrectStep(c, "", currentStep), correction);
-				correctButton.setToolTipText("<html>Cliquez ici pour obtenir la correction de cette etape." +
-						"<br>Attention ! Aucun point ne sera alors attribue !</html>");
-				correctButton.setPreferredSize(new Dimension(20, 20));
-				stepPanel.add(correctButton);
-
-				JLabel stepLabel = new JLabel(currentStep.toString());
-				//stepLabel.setToolTipText(currentStep.getToolTip());
-				stepPanel.add(stepLabel);
-
-				partPanel.add(stepPanel);
-				currentStep = controller.askNextStep();
-				nbStep++;
-			}
-
-			partPanel.setMaximumSize(new Dimension(200, 20*(1+nbStep)));
-			this.add(partPanel);
-		}
-		*/
-		this.add(Box.createGlue());
 	}
 	
 	public void refresh() {
 		this.removeAll();
 		
+		System.out.println(this.getComponentCount());
+		
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
 		JPanel classesPanel = new JPanel();
 		classesPanel.setLayout(new BoxLayout(classesPanel, BoxLayout.PAGE_AXIS));
 		classesPanel.add(new JLabel("Classes :"));
 		for (int i = 0 ; i < classes.size() ; i++) {
-			classesPanel.add(new JLabel(classes.get(i)));
+			JPanel classesOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			classesOnePanel.setPreferredSize(new Dimension(this.getSize().width, 30));
+			//classesOnePanel.setLayout(new BoxLayout(classesOnePanel, BoxLayout.PAGE_AXIS));
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_CLASS, i, "+", "Add to drawing panel on click"));
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_CLASS, i, "-", "Remove to drawing panel"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_CLASS, i, "E", "Edit element properties"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_CLASS, i, "D", "Delete element"));	
+			classesOnePanel.add(new JLabel(classes.get(i)));
+			classesPanel.add(classesOnePanel);
 		}
 		this.add(classesPanel);
 		
@@ -103,6 +83,10 @@ public class UMLElementPanel extends JPanel {
 			methodPanel.add(new JLabel(methods.get(i)));
 		}
 		this.add(methodPanel);
+		
+		this.add(Box.createGlue());
+		
+		System.out.println(this.getComponentCount());
 	}
 
 	public void addClass(String c) {
@@ -127,6 +111,89 @@ public class UMLElementPanel extends JPanel {
 
 	public boolean removeMethod(String method) {
 		return methods.remove(method);
+	}
+	
+	public int getSelectedElementAction() {
+		return selectedElementAction;
+	}
+
+	public void setSelectedElementAction(int selectedElementAction) {
+		this.selectedElementAction = selectedElementAction;
+	}
+
+	public int getSelectedElementType() {
+		return selectedElementType;
+	}
+
+	public void setSelectedElementType(int selectedElementType) {
+		this.selectedElementType = selectedElementType;
+	}
+	
+	public int getSelectedElementID() {
+		return selectedElementID;
+	}
+	
+	public String getSelectedElementName() {
+		String elementName = "";
+		if (selectedElementType == UMLDrawingPanel.ELEMENT_CLASS) {
+			elementName = classes.get(selectedElementID);
+		}
+		else if (selectedElementType == UMLDrawingPanel.ELEMENT_PROPERTY) {
+			elementName = properties.get(selectedElementID);
+		}
+		else if (selectedElementType == UMLDrawingPanel.ELEMENT_METHOD) {
+			elementName = methods.get(selectedElementID);
+		}
+		return elementName;
+	}
+
+	public void setSelectedElementID(int selectedElementID) {
+		this.selectedElementID = selectedElementID;
+	}
+	
+	public void resetSelectedElement() {
+		this.selectedElementAction = ACTION_NONE;
+		this.selectedElementType = UMLDrawingPanel.ELEMENT_NOTYPE;
+		this.selectedElementID = 0;
+	}
+	
+	public void doAction() {
+		
+		// TODO
+		switch (selectedElementAction) {
+		case ACTION_ADD:
+			// let UMLDrawingPanel in charge of this action
+			// TODO
+			break;
+		case ACTION_REMOVE:
+			// TODO
+			mainpanel.doRemovingElementFromDrawingArea(getSelectedElementName(), selectedElementType);
+			this.resetSelectedElement();
+			break;
+		case ACTION_EDIT:
+			// TODO open editing panel
+			break;
+		case ACTION_DELETE:
+			// TODO
+			mainpanel.doRemovingElementFromDrawingArea(getSelectedElementName(), selectedElementType);
+			if (selectedElementType == UMLDrawingPanel.ELEMENT_CLASS) {
+				classes.remove(selectedElementID);
+			}
+			else if (selectedElementType == UMLDrawingPanel.ELEMENT_PROPERTY) {
+				properties.remove(selectedElementID);
+			}
+			else if (selectedElementType == UMLDrawingPanel.ELEMENT_METHOD) {
+				methods.remove(selectedElementID);
+			}
+			this.resetSelectedElement();
+			break;
+		default:
+			this.resetSelectedElement();
+			break;
+		}
+		
+		mainpanel.repaint();
+		this.refresh();
 	}
 
 }
