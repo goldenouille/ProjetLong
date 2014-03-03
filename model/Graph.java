@@ -37,7 +37,7 @@ public class Graph {
 		this.methods.add(m);
 	}
 
-	public void setIdTable(HashMap<int, GraphItem> iT) {
+	public void setIdTable(HashMap<Integer, GraphItem> iT) {
 		this.idTable = iT;
 	}
 }

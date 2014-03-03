@@ -1,5 +1,7 @@
 package parser;
 
+import model.*;
+
 import static org.apache.commons.digester3.binder.DigesterLoader.newLoader;
 
 import org.apache.commons.digester3.Digester;
@@ -13,7 +15,7 @@ public class Parser {
 		extends FromXmlRulesModule
 	{
 
-		@Override
+//		@Override
 		protected void loadRules()
 		{
 			loadXMLRules( new File( "/parser.xml" ) );
@@ -35,11 +37,11 @@ public class Parser {
   	private boolean isBody = false;
   	private int nbKeyWord=0;
   	
-  	for (int i=0; i<exo.getParts.size(); i++) {
-  		p = exo.getParts.get(i);
-  		res += "\t<part name=\"" + p.getname() + "\">\n";
-  		for(int j; j<p.getText.size(); j++) {
-  			w = p.getText.get(j);
+  	for (int i=0; i<exo.getParts().size(); i++) {
+  		p = exo.getParts().get(i);
+  		res += "\t<part name=\"" + p.getName() + "\">\n";
+  		for(int j; j<p.getText().size(); j++) {
+  			w = p.getText().get(j);
   			if (w.isKeyWord()) {
   				if isBody {
   					res += " \"/>";

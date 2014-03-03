@@ -1,10 +1,13 @@
 package model;
 
+import parser.Text;
+import parser.PseudoGraph;
+
 import java.util.AbstractMap;
 import java.util.HashMap;
 
 import java.util.ArrayList;
-import parser.Text;
+
 
 public class Part {
 
@@ -69,7 +72,7 @@ public class Part {
 		return this.steps.get(i);
 	}
 
-	public void setIdTable(HashMap<int,GraphItem> it) {
+	public void setIdTable(HashMap<Integer,GraphItem> it) {
 		this.idTable = it;
 	}
 
@@ -77,6 +80,7 @@ public class Part {
 		return this.idTable;
 	}
 	
+	// c'est quoi ce truc?!?!?
 	public void initGraph(PseudoGraph PG) {
 		this.graph = PG.buildGraph(this.idTable);
 	}

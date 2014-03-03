@@ -15,6 +15,8 @@ import model.UMLNature;
 import model.Step;
 import model.StepFactory;
 
+import gui.ClassicGuiController;
+
 public class ModelController {
 	private ClassicGuiController cgc;
 	private Parser p;

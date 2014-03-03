@@ -1,6 +1,6 @@
 package parser;
 
-import model;
+// import model.*;
 
 
 public class Text {

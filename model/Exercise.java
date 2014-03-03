@@ -21,9 +21,17 @@ public class Exercise {
 			return this.text;
 	}
 
+	// nom de l'exercice non set
+	public String getName() {
+		return "Nom de l'exercice";
+	}
 
 	public ArrayList<Word> getUserText() {
 		return this.userText;
+	}
+
+	public ArrayList<Part> getParts() {
+		return this.parts;
 	}
 
 	/*
@@ -33,8 +41,8 @@ public class Exercise {
 	TODO: gérer le userText
 	*/
 	public void selectText(int[] selection) {
-		if (selection.length = text.size()) {
-			for (int i=0; i<selection.size(); i++) {
+		if (selection.length == text.size()) {
+			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>90) {
     				text.get(i).select();
     			}
@@ -49,9 +57,9 @@ public class Exercise {
 	TODO: gérer le userText
 	*/
 	public void unselectText(int[] selection) {
-		if (selection.length != text.size()) {
-			for (int i=0; i<selection.size(); i++) {
-    			if (selection.get(i)>90) {
+		if (selection.length == text.size()) {
+			for (int i=0; i<selection.length; i++) {
+    			if (selection[i]>90) {
     				text.get(i).unselect();
     			}
 			}
@@ -83,7 +91,7 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addClass(int fisrt, int last, boolean userT, String name) {
+	public void addClass(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -101,7 +109,7 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addAbstractClass(int fisrt, int last, boolean userT, String name) {
+	public void addAbstractClass(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
