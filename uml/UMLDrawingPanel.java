@@ -116,6 +116,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		
 		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
 		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
+		this.doAddingElementToPool("myproperty", ELEMENT_PROPERTY);
+		this.doAddingElementToPool("mymethod", ELEMENT_METHOD);
 		
 		poolPanel.refresh();
 		
