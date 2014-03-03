@@ -49,7 +49,6 @@ public class UMLElementPanel extends JPanel {
 	}
 	
 	public void refresh() {
-		// TODO why does it is not visible on refresh done by user action !
 		subPanel.removeAll();
 		subPanel.revalidate();
 		
@@ -59,7 +58,7 @@ public class UMLElementPanel extends JPanel {
 		classesPanel.setLayout(new BoxLayout(classesPanel, BoxLayout.PAGE_AXIS));
 		
 		JPanel classeNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		classeNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_CLASS, -1, "+", "Add new class"));
+		classeNamePanel.add(new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_CLASS, -1, "+", "Add new class"));
 		classeNamePanel.add(new JLabel("Classes :"));
 		classesPanel.add(classeNamePanel);
 		
@@ -197,26 +196,24 @@ public class UMLElementPanel extends JPanel {
 	}
 	
 	public void doAction() {
-		
-		// TODO
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
-			// TODO  open editing panel
+			//  open editing panel
+			mainpanel.doAddingNewElementFromPool(getSelectedElementName(), selectedElementType);
+			this.resetSelectedElement();
 			break;
 		case ACTION_ADD:
 			// let UMLDrawingPanel in charge of this action
-			// TODO
 			break;
 		case ACTION_REMOVE:
-			// TODO
 			mainpanel.doRemovingElementFromDrawingArea(getSelectedElementName(), selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_EDIT:
-			// TODO open editing panel
+			mainpanel.doEditingElementFromPool(getSelectedElementName(), selectedElementType);
+			this.resetSelectedElement();
 			break;
 		case ACTION_DELETE:
-			// TODO
 			mainpanel.doRemovingElementFromDrawingArea(getSelectedElementName(), selectedElementType);
 			if (selectedElementType == UMLDrawingPanel.ELEMENT_CLASS) {
 				classes.remove(selectedElementID);

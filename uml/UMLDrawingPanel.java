@@ -144,6 +144,41 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
+	public void doAddingNewElementFromPool(String element, int type) {
+		// TODO
+		switch (type) {
+		case ELEMENT_CLASS:
+			//poolPanel.addClass(element);
+			break;
+		case ELEMENT_PROPERTY:
+			//poolPanel.addProperty(element);
+			break;
+		case ELEMENT_METHOD:
+			//poolPanel.addMethod(element);
+			break;
+		default:
+			break;
+		}
+		poolPanel.refresh();
+	}
+	
+	public void doEditingElementFromPool(String element, int type) {
+		// TODO
+		switch (type) {
+		case ELEMENT_CLASS:
+			//poolPanel.addClass(element);
+			break;
+		case ELEMENT_PROPERTY:
+			//poolPanel.addProperty(element);
+			break;
+		case ELEMENT_METHOD:
+			//poolPanel.addMethod(element);
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public boolean doCheckingClasses() {
 		// TODO
 		return false;
