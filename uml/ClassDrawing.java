@@ -107,6 +107,9 @@ public class ClassDrawing {
 	
 	public void removeProperty(String property) {
 		properties.remove(property);
+		if (properties.size() == 0 && methods.size() == 0){
+			reduced = false;
+		}
 	}
 	
 	public void addMethod(String method) {
@@ -115,6 +118,9 @@ public class ClassDrawing {
 	
 	public void removeMethod(String method) {
 		methods.remove(method);
+		if (properties.size() == 0 && methods.size() == 0){
+			reduced = false;
+		}
 	}
 	
 	public void draw(Graphics g) {

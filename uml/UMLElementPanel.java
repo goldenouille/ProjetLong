@@ -47,10 +47,10 @@ public class UMLElementPanel extends JPanel {
 	}
 	
 	public void refresh() {
-		// TODO why does it is not visible on second refresh !
+		// TODO why does it is not visible on refresh done by user action !
 		this.removeAll();
 		
-		System.out.println(this.getComponentCount());
+		System.out.println("got it");
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -110,8 +110,6 @@ public class UMLElementPanel extends JPanel {
 		this.add(methodPanel);
 		
 		this.add(Box.createGlue());
-		
-		System.out.println(this.getComponentCount());
 	}
 
 	public void addClass(String c) {
@@ -214,6 +212,7 @@ public class UMLElementPanel extends JPanel {
 				methods.remove(selectedElementID);
 			}
 			this.resetSelectedElement();
+			this.refresh();
 			break;
 		default:
 			this.resetSelectedElement();
@@ -221,7 +220,6 @@ public class UMLElementPanel extends JPanel {
 		}
 		
 		mainpanel.repaint();
-		this.refresh();
 	}
 
 }

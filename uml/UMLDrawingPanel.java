@@ -104,7 +104,6 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		classes.get(0).addProperty(" - property3");
 		classes.get(0).addMethod(" - method1");
 		classes.get(0).addMethod(" - method2");
-		//classes.get(0).setReduced(true);
 		
 		/*classes.get(1).addProperty(" - myproperty");
 		classes.get(1).addMethod("+ mymethod");
@@ -119,8 +118,6 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		this.doAddingElementToPool("myproperty", ELEMENT_PROPERTY);
 		this.doAddingElementToPool("mymethod", ELEMENT_METHOD);
 		
-		poolPanel.refresh();
-		
 		// TODO END TEST
 		
 		this.repaint();
@@ -132,7 +129,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	}
 	
 	public void doAddingElementToPool(String element, int type) {
-		// TODO ?
+		// TODO
 		switch (type) {
 		case ELEMENT_CLASS:
 			poolPanel.addClass(element);
@@ -166,9 +163,15 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 			break;
 		case ELEMENT_PROPERTY:
 			// TODO remove from class and unlink
+			for(int i = 0 ; i < classes.size() ; i++) {
+				classes.get(i).removeProperty(element);
+			}
 			break;
 		case ELEMENT_METHOD:
 			// TODO remove from class and unlink
+			for(int i = 0 ; i < classes.size() ; i++) {
+				classes.get(i).removeMethod(element);
+			}
 			break;
 		default:
 			break;
@@ -334,7 +337,9 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 			// linking variables reset
 			previousClickedClass = NO_CLICKED_CLASS;
 			
-			if (e.getButton() == MouseEvent.BUTTON1) {// on left click
+			// on left click
+			if (e.getButton() == MouseEvent.BUTTON1) {
+				// check for element to add
 				if(poolPanel.getSelectedElementAction() == UMLElementPanel.ACTION_ADD) {
 					switch (poolPanel.getSelectedElementType()) {
 					case ELEMENT_CLASS:
@@ -379,12 +384,12 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 					}
 					
 					poolPanel.resetSelectedElement();
-					poolPanel.refresh();
 				}
 			}
 			
-			// check for class reducing
-			if (e.getButton() == MouseEvent.BUTTON3) {// on right click
+			// on right click
+			if (e.getButton() == MouseEvent.BUTTON3) {
+				// check for class reducing 
 				while (i < classes.size() && !find) {
 					if (classes.get(i).isUnder(mousePos)) {
 						find = true;
