@@ -14,7 +14,7 @@ public class LinkToolBar extends JToolBar {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//private JPanel panel;
+	private UMLDrawingPanel mainpanel;
 	private int state;
 	
 	public static final int NO_LINK = -1;
@@ -28,11 +28,11 @@ public class LinkToolBar extends JToolBar {
 	public static final int AGGREGATION = 8;
 	public static final int COMPOSITION = 9;
 
-	public LinkToolBar(){//JPanel panel) {
+	public LinkToolBar(UMLDrawingPanel mainpanel) {
 		JButton button = null;
 		
 		// TODO get right size from panel
-		//this.panel = panel;
+		this.mainpanel = mainpanel;
 		//this.setSize(600, 26);
 		this.setFloatable(false);
 		this.setRollover(true);

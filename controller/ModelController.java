@@ -14,6 +14,7 @@ import controller.ModelController;
 import model.UMLNature;
 import model.Step;
 import model.StepFactory;
+import model.Exercise;
 
 import gui.ClassicGuiController;
 
@@ -68,7 +69,7 @@ public class ModelController {
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
-		exo.addAbstractClass(firstWord, lastWord, userText, name)
+		exo.addAbstractClass(firstWord, lastWord, userText, name);
 		System.out.println("askCreateAbstractClass " + name);
 	}
 
@@ -139,6 +140,10 @@ public class ModelController {
 
 	public void doSetTextFont(Font font) {
 		cgc.doSetTextFont(font);
+	}
+
+	public void doShowMissingKeywordNumber(int nb) {
+		cgc.doShowMissingKeywordNumber(nb);
 	}
 
 
