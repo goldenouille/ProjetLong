@@ -1,5 +1,6 @@
 package uml;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -57,7 +58,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
-        f.setSize(600,400);
+        f.setSize(1280,780);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
         UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null, false);
@@ -74,20 +75,21 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		super(layout, isDoubleBuffered);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		this.setLayout(new BorderLayout());
 		
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
 		// TODO
 		toolBar = new LinkToolBar(this);//(this);
-		toolBar.setSize(450, 26);//(this.getSize().width, 20);
-		this.add(toolBar);
+		//toolBar.setSize(450, 26);//(this.getSize().width, 20);
+		this.add(toolBar,BorderLayout.NORTH);
 		
 		// TODO
 		poolPanel = new UMLElementPanel(this);
-		poolPanel.setSize(150, 400);//(120, this.getSize().height);
-		poolPanel.setLocation(450, 0);
-		this.add("East",poolPanel);
+		//poolPanel.setSize(150, 400);//(120, this.getSize().height);
+		//poolPanel.setLocation(450, 0);
+		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TODO TEST to remove
 		classes.add(new ClassDrawing("Class1", 10, 30));

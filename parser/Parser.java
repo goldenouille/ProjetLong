@@ -27,7 +27,7 @@ public class Parser {
 //		@Override
 		protected void loadRules()
 		{
-			loadXMLRules( new File( "/parser.xml" ) );
+			loadXMLRules( new File( "ProjetLong\\parser\\parser.xml" ) );
 			System.out.println("rule loaded");
 		}
 	}
@@ -36,6 +36,7 @@ public class Parser {
   	DigesterLoader loader = newLoader( new MyRulesModule() );
   	Digester digester= loader.newDigester();
   	digester.setValidating( false );
+  	System.out.println("parsing ...");
   	return digester.parse(file);
   }
   
