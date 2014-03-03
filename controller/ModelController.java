@@ -56,13 +56,13 @@ public class ModelController {
 		exo.addText(text);
 	}
 
-	prublic String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
+	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	prublic void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
+	p void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		exo.addClass(firstWord,lastWord,userText,name);
 		System.out.println("askCreateClass " + name);
 	}
