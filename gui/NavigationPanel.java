@@ -27,6 +27,9 @@ public class NavigationPanel extends AbstractPanel {
 
 		Object currentPart = controller.askNextPart();
 		Object currentStep = controller.askNextStep();
+		
+		String partTitle;
+		String stepTitle;
 
 		while (currentPart != null) {
 			JPanel partPanel = new JPanel();
@@ -42,7 +45,8 @@ public class NavigationPanel extends AbstractPanel {
 			sectionButton.setPreferredSize(new Dimension(15, 15));
 			partNamePanel.add(sectionButton);
 
-			JLabel partLabel = new JLabel(currentPart.toString());
+			partTitle = currentPart.toString();
+			JLabel partLabel = new JLabel(partTitle.substring(0, Math.min(partTitle.length(),25)));
 			partLabel.setToolTipText("Cliquez pour acceder directement a cette partie");
 			partLabel.addMouseListener(new ActSelectPart(controller, currentPart.toString(), currentPart));
 			partNamePanel.add(partLabel);
@@ -61,7 +65,8 @@ public class NavigationPanel extends AbstractPanel {
 				correctButton.setPreferredSize(new Dimension(20, 20));
 				stepPanel.add(correctButton);
 
-				JLabel stepLabel = new JLabel(currentStep.toString());
+				stepTitle = currentStep.toString();
+				JLabel stepLabel = new JLabel(stepTitle.substring(0, Math.min(stepTitle.length(),23)));
 				// stepLabel.setToolTipText(currentStep.getToolTip());
 				stepPanel.add(stepLabel);
 

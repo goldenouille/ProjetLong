@@ -23,7 +23,9 @@ public class Exercise {
 	private int auxNextPart;
 	private int nbParts;
 
-	public Exercise() {
+	public Exercise(ModelController modelController) {
+		this.modelController=modelController;
+		
 		this.text = new ArrayList<Word>();
 		this.userText = new ArrayList<Word>();
 
@@ -97,12 +99,17 @@ public class Exercise {
 		String text[] = string.split(" ");
 		int l = text.length;
 		for (int i = 0; i<l; i++) {
-			userText.add(new Word(text[i]));
+			this.text.add(new Word(text[i]));
 		}
 	}
 
 	public void init() {
 		this.text = this.parts.get(0).getText();
+		String[] tab = new String[text.size()];
+		for(int i=0;i<tab.length;i++) {
+			tab[i]=text.get(i).getWord();
+		}
+		this.modelController.doAddText(false, tab);
 	}
 	
 	public void addPart(Part p) {

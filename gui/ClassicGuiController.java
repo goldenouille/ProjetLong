@@ -330,7 +330,7 @@ public class ClassicGuiController implements GuiController {
 		// System.out.println("askCreateMethod " + name + " " +
 		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to create a new class instance for
 	 * the specified keyword
@@ -345,7 +345,7 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askEditClass(int firstWord, int lastWord, boolean userText, String name) {
-		//core.askCreateClass(firstWord, lastWord, userText, name);
+		// core.askCreateClass(firstWord, lastWord, userText, name);
 
 		System.out.println("askEditClass " + name);
 	}
@@ -364,7 +364,7 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askEditAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
-		//core.askCreateAbstractClass(firstWord, lastWord, userText, name);
+		// core.askCreateAbstractClass(firstWord, lastWord, userText, name);
 
 		System.out.println("askEditAbstractClass " + name);
 	}
@@ -383,7 +383,7 @@ public class ClassicGuiController implements GuiController {
 	 *            name wanted for the new instance
 	 */
 	private void askEditInterface(int firstWord, int lastWord, boolean userText, String name) {
-		//core.askCreateInterface(firstWord, lastWord, userText, name);
+		// core.askCreateInterface(firstWord, lastWord, userText, name);
 
 		System.out.println("askEditInterface " + name);
 	}
@@ -406,9 +406,10 @@ public class ClassicGuiController implements GuiController {
 	 *            visibility wanted for the new instance
 	 */
 	private void askEditAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
-		//core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
+		// core.askCreateAttribute(firstWord, lastWord, userText, name, type,
+		// visibility);
 
-		System.out.println("askEditAttribute " + name + " " + type + " " +visibility);
+		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
 	}
 
 	/**
@@ -431,9 +432,10 @@ public class ClassicGuiController implements GuiController {
 	 *            visibility wanted for the new instance
 	 */
 	private void askEditMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		//core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
+		// core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes,
+		// returnType, visibility);
 
-System.out.println("askEditMethod " + name + " " +paramTypes.toString() + " " + returnType + " " + visibility);
+		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
 	/**
@@ -710,8 +712,8 @@ System.out.println("askEditMethod " + name + " " +paramTypes.toString() + " " + 
 	}
 
 	/**
-	 * Prints the missing keywords number. if nb is less than 1, hide the missing keywords
-	 * label
+	 * Prints the missing keywords number. if nb is less than 1, hide the
+	 * missing keywords label
 	 * 
 	 * @param nb
 	 *            number to show

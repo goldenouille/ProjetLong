@@ -6,17 +6,18 @@ import parser.PseudoGraph;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import java.util.ArrayList;
 
-
 public class Part {
 
-	private String name; 
+	private String name;
 	private ArrayList<Word> text;
 	private Graph graph;
 	private ArrayList<Step> steps;
-	private HashMap<Integer,GraphItem> idTable;
+	private Iterator<Step> stepsIterator;
+	private HashMap<Integer, GraphItem> idTable;
 
 	private int auxNbStep;
 	private int nbStep;
@@ -24,9 +25,9 @@ public class Part {
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
-		this.idTable = new HashMap<Integer,GraphItem>();
+		this.idTable = new HashMap<Integer, GraphItem>();
 		this.nbStep = 0;
-		this.auxNbStep = 0;
+		this.auxNbStep = -1;
 	}
 
 	public int getNbStep() {
@@ -34,12 +35,20 @@ public class Part {
 	}
 
 	public Object nextStep() {
-		if (auxNbStep +1 < nbStep) {
-			auxNbStep = auxNbStep + 1;
-			return this.getAStep(auxNbStep);
+		//voila un iterateur
+		if (stepsIterator == null)
+			stepsIterator = steps.iterator();
+		if (stepsIterator.hasNext()) {
+			return stepsIterator.next();
 		} else {
 			return null;
 		}
+		// if (auxNbStep +1 < nbStep) {
+		// auxNbStep = auxNbStep + 1;
+		// return this.steps.get(auxNbStep);
+		// } else {
+		// return null;
+		// }
 	}
 
 	public void setName(String name) {
@@ -50,11 +59,11 @@ public class Part {
 		return this.name;
 	}
 
-// pour test
+	// pour test
 	public void addText(String t) {
 		String[] words = t.split(" ");
 		int l = words.length;
-		for (int i = 0; i<l; i++) {
+		for (int i = 0; i < l; i++) {
 			text.add(new Word(words[i]));
 		}
 	}
@@ -63,7 +72,7 @@ public class Part {
 		String t = tt.getBody();
 		String[] words = t.split(" ");
 		int l = words.length;
-		for (int i = 0; i<l; i++) {
+		for (int i = 0; i < l; i++) {
 			text.add(new Word(words[i]));
 		}
 	}
@@ -86,12 +95,12 @@ public class Part {
 
 	public void addStep(Step s) {
 		this.steps.add(s);
-		this.nbStep = nbStep +1;
+		this.nbStep = nbStep + 1;
 	}
 
 	public void addStep(String stepName) {
 		// avec stepFactory?
-		this.nbStep = nbStep; //+1
+		this.nbStep = nbStep; // +1
 	}
 
 	public ArrayList<Step> getSteps() {
@@ -102,19 +111,19 @@ public class Part {
 		return this.steps.get(i);
 	}
 
-	public void setIdTable(HashMap<Integer,GraphItem> it) {
+	public void setIdTable(HashMap<Integer, GraphItem> it) {
 		this.idTable = it;
 	}
 
-	public HashMap<Integer,GraphItem> getIdTable() {
+	public HashMap<Integer, GraphItem> getIdTable() {
 		return this.idTable;
 	}
-	
+
 	// c'est quoi ce truc?!?!?
 	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
 	}
-	
+
 	public String toString() {
 		return "test part";
 	}

@@ -19,5 +19,4 @@ public abstract class Step {
 
 	public abstract void getCorrection(Exercise exo);
 
-
 }
