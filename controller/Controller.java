@@ -6,18 +6,19 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import parser.Parser;
+import gui.*;
 
-public class Controller implements ActionListener {
+public class Controller {
 
-	private ModelControler modelControler;
-	private ClassicGuiController guiControler;
+	private ModelController modelController;
+	private ClassicGuiController guiController;
 	private Parser parser;
 
-	public Controler() {
-		this.modelControler = new ModelControler();
-		this.guiControler = new ClassicGuiController(this.modelControler);
-		this.modelControler.setCGC(this.guiControler);
+	public Controller() {
+		this.modelController = new ModelController();
+		this.guiController = new ClassicGuiController(this.modelController);
+		this.modelController.setCGC(this.guiController);
 		this.parser = new Parser();
-		this.modelControler.setParser(this.parser);
+		this.modelController.setParser(this.parser);
 	}
 }
