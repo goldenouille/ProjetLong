@@ -207,6 +207,22 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 	}
 	
+	public void doLinkingPropertyToClass(String property, String c) {
+		// TODO
+	}
+	
+	public void doLinkingMethodToClass(String method, String c) {
+		// TODO
+	}
+	
+	public void doLinkingClass(int linkID) {
+		// TODO
+	}
+	
+	public void doEditingLink(int linkID) {
+		// TODO
+	}
+	
 	public boolean doCheckingLinks() {
 		// TODO
 		return false;
@@ -320,9 +336,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
 								"Edition de relation de " + links.get(i).getMotherClass() + " vers " + links.get(i).getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
-							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
-							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
-							links.lastElement().setText(linkEdition.getText());
+							links.get(i).setMotherMultiplicity(linkEdition.getMotherMultiplicity());
+							links.get(i).setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
+							links.get(i).setText(linkEdition.getText());
+							this.doEditingLink(i);
 						}
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
@@ -356,6 +373,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
 							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
 							links.lastElement().setText(linkEdition.getText());
+							this.doLinkingClass(links.size() - 1);
 						}
 						
 						previousClickedClass = NO_CLICKED_CLASS;
@@ -383,7 +401,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						}
 						break;
 					case ELEMENT_PROPERTY:
-						// TODO check no duplicate, and with core
 						while (i < classes.size() && !find) {
 							if (classes.get(i).isUnder(mousePos)) {
 								find = true;
@@ -393,10 +410,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						if (find) {
 							i--;
 							classes.get(i).addProperty(poolPanel.getSelectedElementName());
+							this.doLinkingPropertyToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
 						}
 						break;
 					case ELEMENT_METHOD:
-						// TODO check no duplicate, and with core
 						while (i < classes.size() && !find) {
 							if (classes.get(i).isUnder(mousePos)) {
 								find = true;
@@ -406,6 +423,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						if (find) {
 							i--;
 							classes.get(i).addMethod(poolPanel.getSelectedElementName());
+							this.doLinkingMethodToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
 						}
 						break;
 					default:
