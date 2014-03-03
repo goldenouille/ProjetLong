@@ -24,13 +24,12 @@ public class MethodEditionPanel extends AbstractPanel {
 	private ArrayList<JTextField> paramFields;
 	private JPanel paramsPanel;
 
-	public MethodEditionPanel(ClassicGuiController controller, int firstWord, int lastWord, String name, ArrayList<String> paramTypes, String returnType,
+	public MethodEditionPanel(ClassicGuiController controller, String keyword, String name, ArrayList<String> paramTypes, String returnType,
 			String visibility) throws BadLocationException {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		JPanel keywordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		String keyword = controller.getText(firstWord, lastWord);
 		keywordPanel.add(new JLabel("Mot-cle : \" " + keyword + " \""));
 		this.add(keywordPanel);
 

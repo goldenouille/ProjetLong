@@ -557,7 +557,7 @@ public class LinkDrawing {
 	
 	public void draw(Graphics2D g) {
 
-		if (!moved) {
+//		if (!moved) {
 			// points vector reset
 			points.removeAllElements();
 			
@@ -565,14 +565,14 @@ public class LinkDrawing {
 			
 			motherClassPosition.setSize(motherClass.getX(), motherClass.getY());
 			daughterClassPosition.setSize(daughterClass.getX(), daughterClass.getY());
-		} else {
-			checkClassPosition();	// OK
-			checkAndRemovePoints();	// OK
-			if (moved) {
-				//checkAndAddPoints();	// TODO checkAndAddPoints
-				//moved = false;
-			}
-		}
+//		} else {
+//			checkClassPosition();	// OK
+//			checkAndRemovePoints();	// OK
+//			if (moved) {
+//				//checkAndAddPoints();	// TODO checkAndAddPoints
+//				//moved = false;
+//			}
+//		}
 	
 		for (int i = 1; i < points.size() ; i++) {
 			if (type != REALIZATION && type != DEPENDANCY) {

@@ -344,7 +344,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askEditClass(int firstWord, int lastWord, boolean userText, String name) {
+	private void askEditClass(Object id, String name) {
 		// core.askCreateClass(firstWord, lastWord, userText, name);
 
 		System.out.println("askEditClass " + name);
@@ -589,32 +589,33 @@ public class ClassicGuiController implements GuiController {
 	 *             if expression does not exist
 	 */
 	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) throws BadLocationException {
+		String keyword = getText(firstWord, lastWord);
 		if (nature.equals(UMLNature.CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateAbstractClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateInterface(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, firstWord, lastWord, null, null, null);
+			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, null, null, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvel attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateAttribute(firstWord, lastWord, userTextFocus, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, firstWord, lastWord, null, null, null, null);
+			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, null, null, null, null);
 			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
@@ -640,38 +641,39 @@ public class ClassicGuiController implements GuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doShowUmlInstanceEditionPopup(int firstWord, int lastWord, boolean userText, Object nature) throws BadLocationException {
+	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
+		String keyword=id.toString();
 		if (nature.equals(UMLNature.CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, askUmlInstanceName(firstWord, lastWord, userText, nature));
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askEditClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				//askEditClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAbstractClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				//askCreateAbstractClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateInterface(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				//askCreateInterface(firstWord, lastWord, userTextFocus, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, firstWord, lastWord, null, null, null);
+			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, null, null, null);
 			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAttribute(firstWord, lastWord, userTextFocus, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+				//askCreateAttribute(firstWord, lastWord, userTextFocus, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, firstWord, lastWord, null, null, null, null);
+			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, null, null, null, null);
 			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Editon de methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel
-						.getMethodVisibility());
+				//askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel
+				//		.getMethodVisibility());
 			}
 		}
 	}

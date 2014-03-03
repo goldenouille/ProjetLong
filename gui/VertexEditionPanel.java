@@ -12,12 +12,12 @@ public class VertexEditionPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
 	protected JTextField nameField;
 	
-	public VertexEditionPanel(ClassicGuiController controller, int firstWord, int lastWord, String name) throws BadLocationException {
+	public VertexEditionPanel(ClassicGuiController controller, String keyword, String name) throws BadLocationException {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		JPanel keywordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		String keyword = controller.getText(firstWord, lastWord);
+		
 		keywordPanel.add(new JLabel("Mot-cle : \" " + keyword + " \""));
 		this.add(keywordPanel);
 		
