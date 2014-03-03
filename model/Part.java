@@ -114,5 +114,9 @@ public class Part {
 	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
 	}
+	
+	public String toString() {
+		return "test part";
+	}
 
 }

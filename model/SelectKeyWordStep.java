@@ -41,4 +41,8 @@ public class SelectKeyWordStep extends Step {
 			System.out.println("erreur dans la correction de SelectKeyWordStep");
 		}
 	}
+	
+	public String toString() {
+		return this.frenchName;
+	}
 }
