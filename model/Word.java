@@ -114,5 +114,9 @@ public class Word {
 	public void unselect() {
 		this.isSelected = false;
 	}
+	
+	public String toString() {
+		return this.word;
+	}
 
 }

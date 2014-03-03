@@ -42,7 +42,7 @@ public class Parser {
       digester.addObjectCreate( "exercise/part/text", "parser.Text" );
       digester.addSetProperties( "exercise/part/text" );
 	  digester.addSetNext( "exercise/part/text", "addText");
-	  digester.addObjectCreate( "exercise/part/kw", "parser.KeyWord" );
+	  digester.addObjectCreate( "exercise/part/kw", "model.KeyWord" );
       digester.addSetProperties( "exercise/part/kw" );
 	  digester.addSetNext( "exercise/part/kw", "addKeyWord");
 	  digester.addObjectCreate( "exercise/part/UML", "parser.PseudoGraph" );
