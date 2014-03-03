@@ -62,7 +62,7 @@ public class ModelController {
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	p void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
+	public void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		exo.addClass(firstWord,lastWord,userText,name);
 		System.out.println("askCreateClass " + name);
 	}
