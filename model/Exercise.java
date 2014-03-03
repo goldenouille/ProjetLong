@@ -7,6 +7,8 @@ import controller.ModelController;
 public class Exercise {
 
 	private ModelController modelController;
+	
+	private String name;
 
 	private ArrayList<Word> text;
 	private ArrayList<Word> userText;
@@ -21,9 +23,11 @@ public class Exercise {
 			return this.text;
 	}
 
-	// nom de l'exercice non set
+	public void setName(String s) {
+		this.name = s;
+	}
 	public String getName() {
-		return "Nom de l'exercice";
+		return this.name;
 	}
 
 	public ArrayList<Word> getUserText() {

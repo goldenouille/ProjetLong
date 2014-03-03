@@ -13,6 +13,6 @@ public class test {
 	public static void main (String[] args) throws FileNotFoundException, IOException, SAXException {
 		Parser p = new Parser();
 		Exercise e = p.parse(new FileInputStream(args[0]));
-		System.out.println(e);
+		System.out.println(e.getParts().get(0).getName());
 	}
 }
