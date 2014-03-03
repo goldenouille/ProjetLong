@@ -19,10 +19,6 @@ import javax.swing.JScrollPane;
 
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
-	/* TODO
-	 * elementPool
-	 */
-	
 	/* Visibility
 	 * "+"       Public 
 	 * "-"       Private 
@@ -56,7 +52,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	private LinkToolBar toolBar;
 	private UMLElementPanel poolPanel;
 
-	// TODO main, for testing, to remove
+	// TODO main for testing
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
         f.setSize(1280,780);
@@ -88,13 +84,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TODO TEST to remove
-		classes.add(new ClassDrawing("Class1", 10, 30));
-		classes.add(new ClassDrawing("Class2", 200, 50));
+		//classes.add(new ClassDrawing("Class1", 10, 30));
+		//classes.add(new ClassDrawing("Class2", 200, 50));
 		//classes.add(new ClassDrawing("Class3", 200, 150));
 		//links.add(new LinkDrawing(classes.get(0), classes.get(1), LinkDrawing.DEPENDANCY));
 		//links.add(new LinkDrawing(classes.get(1), classes.get(2)));
 		
-		classes.get(0).setClasstype("<<Interface>>");
+		/*classes.get(0).setClasstype("<<Interface>>");
 		classes.get(0).setName("Interface1");
 		classes.get(0).addProperty("+ property1");
 		classes.get(0).addProperty("+ property2");
@@ -102,7 +98,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		classes.get(0).addProperty(" - property3");
 		classes.get(0).addMethod(" - method1");
 		classes.get(0).addMethod(" - method2");
-		
+		*/
 		/*classes.get(1).addProperty(" - myproperty");
 		classes.get(1).addMethod("+ mymethod");
 		*/
@@ -110,12 +106,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
-		
+		/*
 		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
 		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
 		this.doAddingElementToPool("myproperty", ELEMENT_PROPERTY);
 		this.doAddingElementToPool("mymethod", ELEMENT_METHOD);
-		
+		*/
 		// TODO END TEST
 		
 		this.repaint();
@@ -144,7 +140,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
-	public void doAddingNewElementFromPool(String element, int type) {
+	public void doAddingNewElementFromPool(int type) {
 		// TODO
 		switch (type) {
 		case ELEMENT_CLASS:

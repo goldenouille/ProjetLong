@@ -199,7 +199,7 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			//  open editing panel
-			mainpanel.doAddingNewElementFromPool(getSelectedElementName(), selectedElementType);
+			mainpanel.doAddingNewElementFromPool(selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_ADD:
