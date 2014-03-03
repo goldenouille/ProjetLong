@@ -21,7 +21,7 @@ public class PseudoGraph {
                 this.methods = new ArrayList<PseudoMethod>();
         }
         
-        public Graph buildGraph(HashMap<Integer,model.GraphItem> map) {
+        public Graph buildGraph(HashMap<Integer,model.GraphItem> map) throws ParserException {
                 Graph g = new Graph();
                 PseudoClass pc;
                 int id;
@@ -95,18 +95,18 @@ public class PseudoGraph {
                        }
                 }
                 
-                PseudoBiEdge pbe;
+                /*PseudoBiEdge pbe;
                 int srcId;
                 int targetId;
                 String frenchName;
                 for (int i=0; i<this.biEdges.size(); i++) {
-                      pe = this.biEdges.get(i);
-                      srcId = pe.getSrc();
-                      targetId = pe.getTarget();
-                      frenchName = pe.getFrenchName();
+                      pbe = this.biEdges.get(i);
+                      srcId = pbe.getSrc();
+                      targetId = pbe.getTarget();
+                      frenchName = pbe.getFrenchName();
                       
                       
-                }
+                }*/
                 
                 
                 

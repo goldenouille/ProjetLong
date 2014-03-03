@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.FileInputStream;
 
 import model.*;
 
@@ -15,8 +16,10 @@ import org.apache.commons.digester3.xmlrules.FromXmlRulesModule;
 import org.xml.sax.SAXException;
 
 
-public class Parser {
 
+
+public class Parser {
+	
 	public class MyRulesModule
 		extends FromXmlRulesModule
 	{
@@ -25,6 +28,7 @@ public class Parser {
 		protected void loadRules()
 		{
 			loadXMLRules( new File( "/parser.xml" ) );
+			System.out.println("rule loaded");
 		}
 	}
 

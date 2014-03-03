@@ -1,5 +1,6 @@
 package model;
 
+import parser.ParserException;
 import parser.Text;
 import parser.PseudoGraph;
 
@@ -81,7 +82,7 @@ public class Part {
 	}
 	
 	// c'est quoi ce truc?!?!?
-	public void initGraph(PseudoGraph PG) {
+	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
 	}
 
