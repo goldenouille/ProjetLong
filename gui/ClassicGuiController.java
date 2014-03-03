@@ -573,13 +573,13 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Prints the missing keywords number. if nb<1, hide the missing keywords
+	 * Prints the missing keywords number. if nb is less than 1, hide the missing keywords
 	 * label
 	 * 
 	 * @param nb
 	 *            number to show
 	 */
-	private void doShowMissingKeywordNumber(int nb) {
+	public void doShowMissingKeywordNumber(int nb) {
 		textSectionPanel.setMissingKeywords(nb);
 	}
 

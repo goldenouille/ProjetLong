@@ -9,4 +9,9 @@ public class VertexAbstract extends VertexClass {
 		this.attributes = new ArrayList<Attribute>();
 		this.frenchName = "classe abstraite";
 	}
+
+	public VertexAbstract() {
+		super();
+		this.frenchName = "classe abstraite";
+	}
 }

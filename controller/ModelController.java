@@ -142,6 +142,10 @@ public class ModelController {
 		cgc.doSetTextFont(font);
 	}
 
+	public void doShowMissingKeywordNumber(int nb) {
+		cgc.doShowMissingKeywordNumber(nb);
+	}
+
 
 	// ******************************************************************************************************//
 	// *****************************************Navigation_methods*******************************************//
