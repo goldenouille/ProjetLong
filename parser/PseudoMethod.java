@@ -7,10 +7,10 @@ import model.*;
 public class PseudoMethod {
         private String name;
         private int id;
-        private String visibility;
+        private Visibility visibility;
         private int motherId;
-        private String type;
-        private ArrayList<String> params;
+        private Type type;
+        private ArrayList<Type> params;
         
         public void setName(String s) {
                 this.name = s;
@@ -29,10 +29,10 @@ public class PseudoMethod {
         }
         
         public void setVisibility(String s) {
-                this.visibility = s;
+                this.visibility = Visibility.getByName(s);
         }
         
-        public String getVisibility() {
+        public Visibility getVisibility() {
                 return this.visibility;
         }
         
@@ -45,22 +45,22 @@ public class PseudoMethod {
         }
         
         public void setType(String s) {
-                this.type = s;
+                this.type = TypeBase.getByName(s);
         }
         
-        public String getType() {
+        public Type getType() {
                 return this.type;
         }
         
-        public void setParams(ArrayList<String> ls) {
-                this.params = ls;
+        public void setParams(ArrayList<Type> lt) {
+                this.params = lt;
         }
         
-        public ArrayList<String> getParams() {
+        public ArrayList<Type> getParams() {
                 return this.params;
         }
         
         public void addParam(String param) {
-                this.params.add(param);
+                this.params.add((Type) TypeBase.getByName(param));
         }
 }
