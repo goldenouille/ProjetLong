@@ -90,7 +90,7 @@ public class ClassicGuiController implements GuiController {
 		this.textSectionPanel = new TextSectionPanel(this, textPanel, userTextPanel);
 		this.scorePanel = new ScorePanel(this);
 		this.timerPanel = new TimerPanel(this);
-		this.umlDrawingPanel = new UMLDrawingPanel(null, false);
+		this.umlDrawingPanel = new UMLDrawingPanel(this);
 		this.navigationPanel = new NavigationPanel(this);
 
 		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel, timerPanel, textSectionPanel, umlDrawingPanel);

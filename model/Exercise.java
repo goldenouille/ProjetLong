@@ -19,6 +19,25 @@ public class Exercise {
 	private ArrayList<Part> parts;
 	private int currentPart;
 
+
+	private int auxNextPart;
+	private int nbParts;
+
+	public Exercise() {
+		this.text = new ArrayList<Word>();
+		this.userText = new ArrayList<Word>();
+
+		this.graph = new Graph();
+		this.userGraph = new Graph();
+
+		this.parts = new ArrayList<Part>();
+		this.currentPart = 0;
+
+		this.auxNextPart = -1;
+
+		this.nbParts = 0;
+	}
+
 	public ArrayList<Word> getText() {
 			return this.text;
 	}
@@ -83,11 +102,12 @@ public class Exercise {
 	}
 
 	public void init() {
-		
+		this.text = this.parts.get(0).getText();
 	}
 	
 	public void addPart(Part p) {
 		this.parts.add(p);
+		this.nbParts = this.nbParts + 1;
 	}
 
 	public ModelController getModelController() {
@@ -204,12 +224,17 @@ public class Exercise {
 
 	// pas encore implementee
 	public Object nextPart() {
-		return null;
+		if (auxNextPart + 1 < this.parts.size()) {
+			this.auxNextPart = this.auxNextPart + 1;
+			return this.auxNextPart;
+		} else {
+			return null;
+		}
 	}
 
 	// pas encore implementee
 	public Object nextStep() {
-		return null;
+		return this.parts.get(auxNextPart).nextStep();
 	}
 
 	// pas encore geree

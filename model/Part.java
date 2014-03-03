@@ -18,10 +18,28 @@ public class Part {
 	private ArrayList<Step> steps;
 	private HashMap<Integer,GraphItem> idTable;
 
+	private int auxNbStep;
+	private int nbStep;
+
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
 		this.idTable = new HashMap<Integer,GraphItem>();
+		this.nbStep = 0;
+		this.auxNbStep = 0;
+	}
+
+	public int getNbStep() {
+		return this.nbStep;
+	}
+
+	public Object nextStep() {
+		if (auxNbStep +1 < nbStep) {
+			auxNbStep = auxNbStep + 1;
+			return auxNbStep ;
+		} else {
+			return null;
+		}
 	}
 
 	public void setName(String name) {
@@ -30,6 +48,15 @@ public class Part {
 
 	public String getName() {
 		return this.name;
+	}
+
+// pour test
+	public void addText(String t) {
+		String[] words = t.split(" ");
+		int l = words.length;
+		for (int i = 0; i<l; i++) {
+			text.add(new Word(words[i]));
+		}
 	}
 
 	public void addText(Text tt) {
@@ -59,10 +86,12 @@ public class Part {
 
 	public void addStep(Step s) {
 		this.steps.add(s);
+		this.nbStep = nbStep +1;
 	}
 
 	public void addStep(String stepName) {
 		// avec stepFactory?
+		this.nbStep = nbStep; //+1
 	}
 
 	public ArrayList<Step> getSteps() {
@@ -84,6 +113,10 @@ public class Part {
 	// c'est quoi ce truc?!?!?
 	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
+	}
+	
+	public String toString() {
+		return "test part";
 	}
 
 }

@@ -1,10 +1,12 @@
 package uml;
 
+import gui.AbstractPanel;
+import gui.ClassicGuiController;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,11 +14,10 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 
-public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
 	/* TODO
 	 * elementPool
@@ -58,10 +59,10 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
-        f.setSize(600,400);
+        f.setSize(1280,780);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-        UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null, false);
+        UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null);
         drawingPanel.setSize(f.getSize());
         
         f.add(drawingPanel);
@@ -71,8 +72,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		f.setVisible(true);
 	}
 	
-	public UMLDrawingPanel(LayoutManager layout, boolean isDoubleBuffered) {
-		super(layout, isDoubleBuffered);
+	public UMLDrawingPanel(ClassicGuiController controller) {
+		super(controller);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setLayout(new BorderLayout());
@@ -80,15 +81,10 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
-		// TODO
-		toolBar = new LinkToolBar(this);//(this);
-		//toolBar.setSize(450, 26);//(this.getSize().width, 20);
+		toolBar = new LinkToolBar();
 		this.add(toolBar,BorderLayout.NORTH);
 		
-		// TODO
 		poolPanel = new UMLElementPanel(this);
-		//poolPanel.setSize(150, 400);//(120, this.getSize().height);
-		//poolPanel.setLocation(450, 0);
 		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TODO TEST to remove
