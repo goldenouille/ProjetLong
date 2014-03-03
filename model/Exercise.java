@@ -17,9 +17,8 @@ public class Exercise {
 	private ArrayList<Part> parts;
 	private int currentPart;
 
-	private int auxNextStep;
-	private int auxNextPart;
 
+	private int auxNextPart;
 	private int nbParts;
 
 	public Exercise() {
@@ -32,8 +31,7 @@ public class Exercise {
 		this.parts = new ArrayList<Part>();
 		this.currentPart = 0;
 
-		this.auxNextPart = 0;
-		this.auxNextStep = 0;
+		this.auxNextPart = -1;
 
 		this.nbParts = 0;
 	}
@@ -222,12 +220,17 @@ public class Exercise {
 
 	// pas encore implementee
 	public Object nextPart() {
-		return null;
+		if (auxNextPart + 1 < this.parts.size()) {
+			this.auxNextPart = this.auxNextPart + 1;
+			return this.auxNextPart;
+		} else {
+			return null;
+		}
 	}
 
 	// pas encore implementee
 	public Object nextStep() {
-		return null;
+		return this.parts.get(auxNextPart).nextStep();
 	}
 
 	// pas encore geree

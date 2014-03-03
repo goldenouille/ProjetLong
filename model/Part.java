@@ -18,10 +18,28 @@ public class Part {
 	private ArrayList<Step> steps;
 	private HashMap<Integer,GraphItem> idTable;
 
+	private int auxNbStep;
+	private int nbStep;
+
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
 		this.idTable = new HashMap<Integer,GraphItem>();
+		this.nbStep = 0;
+		this.auxNbStep = 0;
+	}
+
+	public int getNbStep() {
+		return this.nbStep;
+	}
+
+	public Object nextStep() {
+		if (auxNbStep +1 < nbStep) {
+			auxNbStep = auxNbStep + 1;
+			return auxNbStep ;
+		} else {
+			return null;
+		}
 	}
 
 	public void setName(String name) {
@@ -59,10 +77,12 @@ public class Part {
 
 	public void addStep(Step s) {
 		this.steps.add(s);
+		this.nbStep = nbStep +1;
 	}
 
 	public void addStep(String stepName) {
 		// avec stepFactory?
+		this.nbStep = nbStep; //+1
 	}
 
 	public ArrayList<Step> getSteps() {
