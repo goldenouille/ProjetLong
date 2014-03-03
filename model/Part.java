@@ -50,6 +50,15 @@ public class Part {
 		return this.name;
 	}
 
+// pour test
+	public void addText(String t) {
+		String[] words = t.split(" ");
+		int l = words.length;
+		for (int i = 0; i<l; i++) {
+			text.add(new Word(words[i]));
+		}
+	}
+
 	public void addText(Text tt) {
 		String t = tt.getBody();
 		String[] words = t.split(" ");

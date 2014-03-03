@@ -33,6 +33,10 @@ public class ModelController {
 		this.p = p;
 	}
 
+	public void setExercise(Exercise exo) {
+		this.exo = exo;
+	}
+
 	public void askSelectText(int[] pourcentages) {
 		exo.selectText(pourcentages);
 	}

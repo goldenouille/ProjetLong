@@ -98,7 +98,7 @@ public class Exercise {
 	}
 
 	public void init() {
-		
+		this.text = this.parts.get(0).getText();
 	}
 	
 	public void addPart(Part p) {
