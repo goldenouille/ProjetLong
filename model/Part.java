@@ -36,7 +36,7 @@ public class Part {
 	public Object nextStep() {
 		if (auxNbStep +1 < nbStep) {
 			auxNbStep = auxNbStep + 1;
-			return auxNbStep ;
+			return this.getAStep(auxNbStep);
 		} else {
 			return null;
 		}

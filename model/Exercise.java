@@ -222,7 +222,7 @@ public class Exercise {
 	public Object nextPart() {
 		if (auxNextPart + 1 < this.parts.size()) {
 			this.auxNextPart = this.auxNextPart + 1;
-			return this.auxNextPart;
+			return this.parts.get(this.auxNextPart);
 		} else {
 			return null;
 		}
