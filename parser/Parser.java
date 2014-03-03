@@ -33,9 +33,37 @@ public class Parser {
 	}
 
   public Exercise parse (InputStream file) throws IOException, SAXException {
-  	DigesterLoader loader = newLoader( new MyRulesModule() );
-  	Digester digester= loader.newDigester();
-  	digester.setValidating( false );
+	  Digester digester = new Digester();
+	  digester.setValidating( false );
+	  digester.addObjectCreate( "exercise", "model.Exercise" );
+	  digester.addSetProperties( "exercise" );
+	  digester.addObjectCreate( "exercise/part", "model.Part" );
+      digester.addSetProperties( "exercise/part" );
+      digester.addObjectCreate( "exercise/part/text", "parser.Text" );
+      digester.addSetProperties( "exercise/part/text" );
+	  digester.addSetNext( "exercise/part/text", "addText");
+	  digester.addObjectCreate( "exercise/part/kw", "parser.KeyWord" );
+      digester.addSetProperties( "exercise/part/kw" );
+	  digester.addSetNext( "exercise/part/kw", "addKeyWord");
+	  digester.addObjectCreate( "exercise/part/UML", "parser.PseudoGraph" );
+	  digester.addObjectCreate( "exercise/part/UML/uml-class", "parser.PseudoClass" );
+      digester.addSetProperties( "exercise/part/UML/uml-class" );
+	  digester.addSetNext( "exercise/part/UML/uml-class", "addClass");
+	  digester.addObjectCreate( "exercise/part/UML/uml-abstract", "parser.PseudoAbstract" );
+      digester.addSetProperties( "exercise/part/UML/uml-abstract" );
+	  digester.addSetNext( "exercise/part/UML/uml-abstract", "addAbstract");
+	  digester.addObjectCreate( "exercise/part/UML/uml-interface", "parser.PseudoInterface" );
+      digester.addSetProperties( "exercise/part/UML/uml-interface" );
+	  digester.addSetNext( "exercise/part/UML/uml-interface", "PseudoInterface");
+	  digester.addObjectCreate( "exercise/part/UML/uml-attribute", "parser.PseudoAttribute" );
+      digester.addSetProperties( "exercise/part/UML/uml-attribute" );
+	  digester.addSetNext( "exercise/part/UML/uml-attribute", "PseudoAttribute");
+	  digester.addObjectCreate( "exercise/part/UML/uml-method", "parser.PseudoMethod" );
+      digester.addSetProperties( "exercise/part/UML/uml-method" );
+	  digester.addSetNext( "exercise/part/UML/uml-method", "PseudoMethod");
+	  digester.addSetNext( "exercise/part/UML", "initGraph");
+	  digester.addSetNext( "exercise/part", "addPart");
+	  
   	System.out.println("parsing ...");
   	return digester.parse(file);
   }

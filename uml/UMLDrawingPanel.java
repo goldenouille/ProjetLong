@@ -7,7 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,7 +14,6 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 
@@ -83,15 +81,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
-		// TODO
-		toolBar = new LinkToolBar(this);//(this);
-		//toolBar.setSize(450, 26);//(this.getSize().width, 20);
+		toolBar = new LinkToolBar();
 		this.add(toolBar,BorderLayout.NORTH);
 		
-		// TODO
 		poolPanel = new UMLElementPanel(this);
-		//poolPanel.setSize(150, 400);//(120, this.getSize().height);
-		//poolPanel.setLocation(450, 0);
 		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TODO TEST to remove

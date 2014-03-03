@@ -23,12 +23,16 @@ public class Controller {
 		Part p = new Part();
 		p.addText("ceci est un test");
 		p.addStep(s);
+		exo.addPart(p);
 		exo.init();
 
+		
 
 // fin des instanciation pour test
 
 		this.modelController = new ModelController();
+		this.modelController.setExercise(exo);
+		
 		this.guiController = new ClassicGuiController(this.modelController);
 		this.modelController.setCGC(this.guiController);
 		this.parser = new Parser();
