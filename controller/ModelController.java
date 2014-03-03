@@ -167,7 +167,6 @@ public class ModelController {
 
 	// fonction appelee pas encore implementee
 	public void askCorrectStep(Object step) {
-		exo.selectStep(step);
 		System.out.println("askCorrectStep " + step.toString());
 	}
 

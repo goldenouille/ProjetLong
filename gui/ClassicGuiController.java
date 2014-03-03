@@ -209,24 +209,6 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Ask the core about the name of the Uml instance corresponding to the
-	 * defined keyword
-	 * 
-	 * @param firstWord
-	 *            index of the expression's first word
-	 * @param lastWord
-	 *            index of the expression's last word
-	 * @param userText
-	 *            true if expression belongs to the user's text
-	 * @param nature
-	 *            Uml Nature of the instance
-	 * @return name of the instance
-	 */
-	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
-		return core.askUmlInstanceName(firstWord, lastWord, userText, nature);
-	}
-
-	/**
 	 * Sends to the core the user's request to add text
 	 * 
 	 * @param text
@@ -347,6 +329,129 @@ public class ClassicGuiController implements GuiController {
 
 		// System.out.println("askCreateMethod " + name + " " +
 		// paramTypes.toString() + " " + returnType + " " + visibility);
+	}
+	
+	/**
+	 * Sends to the core the user's request to create a new class instance for
+	 * the specified keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditClass(int firstWord, int lastWord, boolean userText, String name) {
+		//core.askCreateClass(firstWord, lastWord, userText, name);
+
+		System.out.println("askEditClass " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to create a new abstract class
+	 * instance for the specified keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
+		//core.askCreateAbstractClass(firstWord, lastWord, userText, name);
+
+		System.out.println("askEditAbstractClass " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to create a new interface instance
+	 * for the specified keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditInterface(int firstWord, int lastWord, boolean userText, String name) {
+		//core.askCreateInterface(firstWord, lastWord, userText, name);
+
+		System.out.println("askEditInterface " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to create a new attribute instance
+	 * for the specified keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param type
+	 *            type wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
+		//core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
+
+		System.out.println("askEditAttribute " + name + " " + type + " " +visibility);
+	}
+
+	/**
+	 * Sends to the core the user's request to create a new method instance for
+	 * the specified keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param paramTypes
+	 *            list of the parameters types wanted for the new instance
+	 * @param returnType
+	 *            returnType wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		//core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
+
+System.out.println("askEditMethod " + name + " " +paramTypes.toString() + " " + returnType + " " + visibility);
+	}
+
+	/**
+	 * Ask the core about the name of the Uml instance corresponding to the
+	 * defined keyword
+	 * 
+	 * @param firstWord
+	 *            index of the expression's first word
+	 * @param lastWord
+	 *            index of the expression's last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param nature
+	 *            Uml Nature of the instance
+	 * @return name of the instance
+	 */
+	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
+		return core.askUmlInstanceName(firstWord, lastWord, userText, nature);
 	}
 
 	// ***//
@@ -534,7 +639,39 @@ public class ClassicGuiController implements GuiController {
 	 *             if expression does not exist
 	 */
 	public void doShowUmlInstanceEditionPopup(int firstWord, int lastWord, boolean userText, Object nature) throws BadLocationException {
-		// TODO Auto-generated method stub
+		if (nature.equals(UMLNature.CLASS)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, askUmlInstanceName(firstWord, lastWord, userText, nature));
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askCreateAbstractClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, firstWord, lastWord, null);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'interface", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askCreateInterface(firstWord, lastWord, userTextFocus, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			AttributeEditionPanel panel = new AttributeEditionPanel(this, firstWord, lastWord, null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'attribut", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askCreateAttribute(firstWord, lastWord, userTextFocus, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+			}
+		} else if (nature.equals(UMLNature.METHOD)) {
+			MethodEditionPanel panel = new MethodEditionPanel(this, firstWord, lastWord, null, null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Editon de methode", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel
+						.getMethodVisibility());
+			}
+		}
 	}
 
 	/**
