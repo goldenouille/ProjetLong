@@ -4,114 +4,117 @@
   "http://commons.apache.org/digester/dtds/digester-rules-3.0.dtd">
 <digester-rules>
 <pattern value="root/exercise">
-    <object-create-rule classname="Exercise" />
+    <object-create-rule classname="model.Exercise" />
 	<set-properties-rule/>
-	<pattern value="root/exercise/part">
-		<object-create-rule classname="Part" />
+	<pattern value="part">
+		<object-create-rule classname="model.Part" />
 		<set-properties-rule/>
-		<pattern value="root/exercise/part/text">
-			<object-create-rule classname="Text" />
+		<pattern value="text">
+			<object-create-rule classname="parser.Text" />
 			<set-properties-rule/>
 			<set-next-rule methodname="addText"/>
 		</pattern>
 		
-		<pattern value="root/exercise/part/kw">
-			<object-create-rule classname="KeyWord" />
+		<pattern value="kw">
+			<object-create-rule classname="model.KeyWord" />
 			<set-properties-rule/>
 			<set-next-rule methodname="addKeyWord"/>
 		</pattern>
 		
-		<?<pattern value="root/exercise/part/mapping">
+		<!--
+		<pattern value="mapping">
 			<object-create-rule classname="mapping"/>
-			<pattern value="root/exercise/part/mapping/class">
+			<pattern value="class">
 				<object-create-rule classname="class"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addclass"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/mapping/attribute">
+			<pattern value="attribute">
 				<object-create-rule classname="attribute"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addattribute"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/mapping/method">
+			<pattern value="method">
 				<object-create-rule classname="method"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addmethod"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/mapping/abstract">
+			<pattern value="abstract">
 				<object-create-rule classname="abstract"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addabstract"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/mapping/interface">
+			<pattern value="interface">
 				<object-create-rule classname="interface"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addinterface"/>
 			</pattern>
 			<set-next-rule methodname="addmapping"/>
-		</pattern>?>
+		</pattern>
+		-->
 		
-		<pattern value="root/exercise/part/UML">
-			<object-create-rule classname="PseudoGraph"/>
+		<pattern value="UML">
+			<object-create-rule classname="parser.PseudoGraph"/>
 			<pattern value="root/exercise/part/UML/uml-class">
-				<object-create-rule classname="PseudoClass"/>
+				<object-create-rule classname="parser.PseudoClass"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addClass"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-abstract">
-				<object-create-rule classname="PseudoAbstract"/>
+			<pattern value="uml-abstract">
+				<object-create-rule classname="parser.PseudoAbstract"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addAbstract"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-interface">
-				<object-create-rule classname="PseudoInterface"/>
+			<pattern value="uml-interface">
+				<object-create-rule classname="parser.PseudoInterface"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addInterface"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-attribute">
-				<object-create-rule classname="PseudoAttribute"/>
+			<pattern value="uml-attribute">
+				<object-create-rule classname="parser.PseudoAttribute"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addAttribute"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-method">
-				<object-create-rule classname="PseudoMethod"/>
+			<pattern value="uml-method">
+				<object-create-rule classname="parser.PseudoMethod"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addMethod"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-realisation">
-				<object-create-rule classname="PseudoRealisation"/>
+			<!--
+			<pattern value="uml-realisation">
+				<object-create-rule classname="parser.PseudoRealisation"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-dependency">
+			<pattern value="uml-dependency">
 				<object-create-rule classname="edgeDependency"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-generalization">
+			<pattern value="uml-generalization">
 				<object-create-rule classname="edgeGenerelization"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-associeation">
+			<pattern value="uml-associeation">
 				<object-create-rule classname="edgeAssociation"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
 			
-			<pattern value="root/exercise/part/UML/uml-Naire-association">
+			<pattern value="uml-Naire-association">
 				<object-create-rule classname="edgeNaireAssociation"/>
 				<pattern value="root/exercise/part/UML/uml-Naire-association/target">
 					<object-create-rule classname="NaireTarget"/>
@@ -120,6 +123,8 @@
 				</pattern>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
+			-->
+			
 			<set-next-rule methodname="initGraph"/>
 		</pattern>
 		<set-next-rule methodname="addPart"/>
