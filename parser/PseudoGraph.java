@@ -21,7 +21,7 @@ public class PseudoGraph {
                 this.methods = new ArrayList<PseudoMethod>();
         }
         
-        public Graph buildGraph(HashMap<Integer,GraphItem> map) {
+        public Graph buildGraph(HashMap<Integer,model.GraphItem> map) {
                 Graph g = new Graph();
                 PseudoClass pc;
                 int id;
@@ -33,9 +33,9 @@ public class PseudoGraph {
                         }
                         else {
                                 
-                        		VertexClass gi = new VertexClass(pc.getName(), id, false);
+                        		VertexClass gi = new VertexClass(pc.getName(), id);
                                 g.addVertex(gi);
-                                map.put(id,(GraphItem) gi);
+                                map.put(id,gi);
                         }
                 }
                 
@@ -47,7 +47,7 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                gi = new VertexClass(pa.getName(), id, true);
+                                VertexAbstract gi = new VertexAbstract(pa.getName(), id);
                                 g.addVertex(gi);
                                 map.put(id, gi);
                         }
@@ -61,7 +61,7 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                gi = new Vertex(pi.getName(), id);
+                                Vertex gi = new Vertex(pi.getName(), id);
                                 g.addVertex(gi);
                                 map.put(id, gi);
                        }
@@ -75,7 +75,7 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                gi = new attribute(patt.getName(),patt.getType(),patt.getVisibility());
+                                Attribute gi = new Attribute(patt.getName(),patt.getType(),patt.getVisibility());
                                 g.addAttribute(gi);
                                 map.put(id, gi);
                        }
@@ -89,8 +89,8 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                gi = new method( pm.getName(),pm.getType(), pm.getVisibility(), pm.getParams);
-                                g.addAttribute(gi);
+                                Method gi = new Method( pm.getName(),pm.getType(), pm.getVisibility(), pm.getParams());
+                                g.addMethod(gi);
                                 map.put(id, gi);
                        }
                 }

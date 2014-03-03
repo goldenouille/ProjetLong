@@ -56,45 +56,39 @@
 		</pattern>?>
 		
 		<pattern value="root/exercise/part/UML">
-			<object-create-rule classname="Graph"/>
+			<object-create-rule classname="PseudoGraph"/>
 			<pattern value="root/exercise/part/UML/uml-class">
-				<object-create-rule classname="VertexClass"/>
+				<object-create-rule classname="PseudoClass"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addVertex"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-abstract">
-				<object-create-rule classname="VertexAbstract"/>
+				<object-create-rule classname="PseudoAbstract"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addVertex"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-interface">
-				<object-create-rule classname="Vertex"/>
+				<object-create-rule classname="PseudoInterface"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addVertex"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-attribute">
-				<object-create-rule classname="Attribute"/>
+				<object-create-rule classname="PseudoAttribute"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addAttribute"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-method">
-				<object-create-rule classname="Method"/>
+				<object-create-rule classname="PseudoMethod"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addMethod"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-realisation">
-				<object-create-rule classname="edgeRealisation"/>
-				<set-properties-rule/>
-				<set-next-rule methodname="addEdge"/>
-			</pattern>
-			
-			<pattern value="root/exercise/part/UML/uml-realisation">
-				<object-create-rule classname="edgeRealisation"/>
+				<object-create-rule classname="PseudoRealisation"/>
 				<set-properties-rule/>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
