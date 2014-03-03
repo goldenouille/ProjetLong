@@ -222,7 +222,7 @@ public class ClassicGuiController implements GuiController {
 	 *            Uml Nature of the instance
 	 * @return name of the instance
 	 */
-	private String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
+	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
 		return core.askUmlInstanceName(firstWord, lastWord, userText, nature);
 	}
 
