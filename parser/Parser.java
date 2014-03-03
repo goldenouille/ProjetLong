@@ -54,13 +54,13 @@ public class Parser {
 	  digester.addSetNext( "exercise/part/UML/uml-abstract", "addAbstract");
 	  digester.addObjectCreate( "exercise/part/UML/uml-interface", "parser.PseudoInterface" );
       digester.addSetProperties( "exercise/part/UML/uml-interface" );
-	  digester.addSetNext( "exercise/part/UML/uml-interface", "PseudoInterface");
+	  digester.addSetNext( "exercise/part/UML/uml-interface", "addInterface");
 	  digester.addObjectCreate( "exercise/part/UML/uml-attribute", "parser.PseudoAttribute" );
       digester.addSetProperties( "exercise/part/UML/uml-attribute" );
-	  digester.addSetNext( "exercise/part/UML/uml-attribute", "PseudoAttribute");
+	  digester.addSetNext( "exercise/part/UML/uml-attribute", "addAttribute");
 	  digester.addObjectCreate( "exercise/part/UML/uml-method", "parser.PseudoMethod" );
       digester.addSetProperties( "exercise/part/UML/uml-method" );
-	  digester.addSetNext( "exercise/part/UML/uml-method", "PseudoMethod");
+	  digester.addSetNext( "exercise/part/UML/uml-method", "addMethod");
 	  digester.addSetNext( "exercise/part/UML", "initGraph");
 	  digester.addSetNext( "exercise/part", "addPart");
 	  

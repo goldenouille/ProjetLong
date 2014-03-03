@@ -23,6 +23,22 @@ public class Exercise {
 	private int auxNextPart;
 	private int nbParts;
 
+	public Exercise() {
+		
+		this.text = new ArrayList<Word>();
+		this.userText = new ArrayList<Word>();
+
+		this.graph = new Graph();
+		this.userGraph = new Graph();
+
+		this.parts = new ArrayList<Part>();
+		this.currentPart = 0;
+
+		this.auxNextPart = -1;
+
+		this.nbParts = 0;
+	}
+	
 	public Exercise(ModelController modelController) {
 		this.modelController=modelController;
 		

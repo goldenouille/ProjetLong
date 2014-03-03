@@ -79,6 +79,7 @@ public class Part {
 
 	public void addKeyWord(KeyWord keyWord) {
 		text.add(keyWord);
+		idTable.put(keyWord.getId(),new Vertex());
 	}
 
 	public ArrayList<Word> getText() {

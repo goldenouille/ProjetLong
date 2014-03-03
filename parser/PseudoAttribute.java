@@ -5,7 +5,10 @@ import model.*;
 public class PseudoAttribute {
         private String name;
         private int id;
-        private Visibility visibility;
+        public PseudoAttribute() {
+		}
+
+		private Visibility visibility;
         private int motherId;
         private Type type;
         
