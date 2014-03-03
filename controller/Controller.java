@@ -21,4 +21,8 @@ public class Controller {
 		this.parser = new Parser();
 		this.modelController.setParser(this.parser);
 	}
+
+	public static void main(String[] args) {
+		Controller cont = new Controller();
+	}
 }

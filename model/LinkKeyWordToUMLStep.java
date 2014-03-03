@@ -20,9 +20,9 @@ public class LinkKeyWordToUMLStep extends Step {
 			if (text.get(i).isSelected()) {
 				Word word = text.get(i);
 				if (word.getUmlNature()==word.getUserUmlNature()) {
-					// le type est correct
+					System.out.println("Le type de " + word.getWord() + " est correct !");
 				} else {
-					// le type est incorrect
+					System.out.println("Le type de " + word.getWord() + " est incorrect !");
 				}
 			}
 		}

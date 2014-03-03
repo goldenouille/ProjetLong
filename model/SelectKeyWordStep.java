@@ -17,6 +17,7 @@ public class SelectKeyWordStep extends Step {
 		ModelController mc = exo.getModelController();
 		int missingKW = 0;
 
+		try {
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isSelected()) {
 				if (text.get(i).isKeyWord()) {
@@ -36,5 +37,8 @@ public class SelectKeyWordStep extends Step {
 			}
 		}
 		mc.doShowMissingKeywordNumber(missingKW);
+		} catch (Exception e) {
+			System.out.println("erreur dans la correction de SelectKeyWordStep");
+		}
 	}
 }
