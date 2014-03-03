@@ -1,5 +1,8 @@
 package uml;
 
+import gui.AbstractPanel;
+import gui.ClassicGuiController;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 
-public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
 	/* TODO
 	 * elementPool
@@ -61,7 +64,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
         f.setSize(1280,780);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-        UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null, false);
+        UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null);
         drawingPanel.setSize(f.getSize());
         
         f.add(drawingPanel);
@@ -71,8 +74,8 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 		f.setVisible(true);
 	}
 	
-	public UMLDrawingPanel(LayoutManager layout, boolean isDoubleBuffered) {
-		super(layout, isDoubleBuffered);
+	public UMLDrawingPanel(ClassicGuiController controller) {
+		super(controller);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setLayout(new BorderLayout());
