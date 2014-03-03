@@ -58,7 +58,7 @@ public class UMLDrawingPanel extends JPanel implements MouseListener, MouseMotio
 	// TODO main, for testing, to remove
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
-        f.setSize(600,400);
+        f.setSize(1280,780);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
         UMLDrawingPanel drawingPanel = new UMLDrawingPanel(null, false);
