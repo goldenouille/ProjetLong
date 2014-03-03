@@ -60,19 +60,19 @@
 			<pattern value="root/exercise/part/UML/uml-class">
 				<object-create-rule classname="PseudoClass"/>
 				<set-properties-rule/>
-				<set-next-rule methodname="addVertex"/>
+				<set-next-rule methodname="addClass"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-abstract">
 				<object-create-rule classname="PseudoAbstract"/>
 				<set-properties-rule/>
-				<set-next-rule methodname="addVertex"/>
+				<set-next-rule methodname="addAbstract"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-interface">
 				<object-create-rule classname="PseudoInterface"/>
 				<set-properties-rule/>
-				<set-next-rule methodname="addVertex"/>
+				<set-next-rule methodname="addInterface"/>
 			</pattern>
 			
 			<pattern value="root/exercise/part/UML/uml-attribute">
@@ -120,7 +120,7 @@
 				</pattern>
 				<set-next-rule methodname="addEdge"/>
 			</pattern>
-			<set-next-rule methodname="setGraph"/>
+			<set-next-rule methodname="initGraph"/>
 		</pattern>
 		<set-next-rule methodname="addPart"/>
 	</pattern>
