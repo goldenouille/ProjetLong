@@ -3,7 +3,7 @@ package parser;
 public class PseudoBiEdge {
         private int src;
         private int target;
-        private string frenchName;
+        protected String frenchName;
         
         public void setSrc(int n) {
                 this.src = n;

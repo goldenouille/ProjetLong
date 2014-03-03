@@ -1,6 +1,6 @@
 package parser;
 
-public class PseudoClass {
+public class PseudoInterface {
         private String name;
         private int id;
         

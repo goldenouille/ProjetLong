@@ -1,39 +1,41 @@
 package parser;
 
-import model;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import model.*;
 
 public class PseudoGraph {
         private ArrayList<PseudoClass> classes;
-        private ArrayList<PseudoAbstract> abtracts;
+        private ArrayList<PseudoAbstract> abstracts;
         private ArrayList<PseudoInterface> interfaces;
         private ArrayList<PseudoAttribute> attributes;
         private ArrayList<PseudoMethod> methods;
-        private ArrayList<PseudoBiEdges> biEdges;
+        private ArrayList<PseudoBiEdge> biEdges;
         
         public PseudoGraph () {
                 this.classes = new ArrayList<PseudoClass>();
-                this.abtracts = new ArrayList<PseudoAbstract>();
+                this.abstracts = new ArrayList<PseudoAbstract>();
                 this.interfaces = new ArrayList<PseudoInterface>();
                 this.attributes = new ArrayList<PseudoAttribute>();
                 this.methods = new ArrayList<PseudoMethod>();
         }
         
-        public Graph buildGraph(HashMap<int,GraphItem> map) {
+        public Graph buildGraph(HashMap<Integer,GraphItem> map) {
                 Graph g = new Graph();
                 PseudoClass pc;
-                GraphItem gi;
                 int id;
                 for (int i=0; i<this.classes.size(); i++) {
                         pc = this.classes.get(i);
                         id = pc.getId();
                         if (map.get(id) == null) {
-                                throw new ParserExecption("id inconnu");
+                                throw new ParserException("id inconnu");
                         }
                         else {
                                 
-                                gi = new VertexClass(pc.getName(), id, false);
+                        		VertexClass gi = new VertexClass(pc.getName(), id, false);
                                 g.addVertex(gi);
-                                map.put(id, gi);
+                                map.put(id,(GraphItem) gi);
                         }
                 }
                 
@@ -42,7 +44,7 @@ public class PseudoGraph {
                         pa = this.abstracts.get(i);
                         id = pa.getId();
                         if (map.get(id) == null) {
-                                throw new ParserExecption("id inconnu");
+                                throw new ParserException("id inconnu");
                         }
                         else {
                                 gi = new VertexClass(pa.getName(), id, true);
@@ -56,7 +58,7 @@ public class PseudoGraph {
                         pi = this.interfaces.get(i);
                         id = pi.getId();
                         if (map.get(id) == null) {
-                                throw new ParserExecption("id inconnu");
+                                throw new ParserException("id inconnu");
                         }
                         else {
                                 gi = new Vertex(pi.getName(), id);
@@ -70,10 +72,10 @@ public class PseudoGraph {
                         patt = this.attributes.get(i);
                         id = patt.getId();
                         if (map.get(id) == null) {
-                                throw new ParserExecption("id inconnu");
+                                throw new ParserException("id inconnu");
                         }
                         else {
-                                gi = new attribute(patt.getName()patt.getType(),patt.getVisibility());
+                                gi = new attribute(patt.getName(),patt.getType(),patt.getVisibility());
                                 g.addAttribute(gi);
                                 map.put(id, gi);
                        }
@@ -84,7 +86,7 @@ public class PseudoGraph {
                         pm = this.methods.get(i);
                         id = pm.getId();
                         if (map.get(id) == null) {
-                                throw new ParserExecption("id inconnu");
+                                throw new ParserException("id inconnu");
                         }
                         else {
                                 gi = new method( pm.getName(),pm.getType(), pm.getVisibility(), pm.getParams);
@@ -116,7 +118,7 @@ public class PseudoGraph {
         }
 
         public void addAbstract (PseudoAbstract pa) {
-                this.abstrats.add(pa);
+                this.abstracts.add(pa);
         }
 
         public void addInterface (PseudoInterface pi) {
@@ -136,7 +138,7 @@ public class PseudoGraph {
         }
 
         public ArrayList<PseudoAbstract> getAbstracts() {
-                return this.abtracts;
+                return this.abstracts;
         }
         
         public ArrayList<PseudoInterface> getInterfaces() {
@@ -147,7 +149,7 @@ public class PseudoGraph {
                 return this.attributes;
         }
         
-        public ArrayList<PseudoMethods> getMethods() {
+        public ArrayList<PseudoMethod> getMethods() {
                 return this.methods;
         }
 }

@@ -1,13 +1,16 @@
 package parser;
 
+import java.util.ArrayList;
+
 import model.*;
 
-public class PseudoAttribute {
+public class PseudoMethod {
         private String name;
         private int id;
         private String visibility;
         private int motherId;
         private String type;
+        private ArrayList<String> params;
         
         public void setName(String s) {
                 this.name = s;
@@ -49,4 +52,15 @@ public class PseudoAttribute {
                 return this.type;
         }
         
+        public void setParams(ArrayList<String> ls) {
+                this.params = ls;
+        }
+        
+        public ArrayList<String> getParams() {
+                return this.params;
+        }
+        
+        public void addParam(String param) {
+                this.params.add(param);
+        }
 }

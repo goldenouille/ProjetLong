@@ -8,7 +8,7 @@ public class PseudoAbstract {
                 this.name = s;
         }
         
-        public string getName() {
+        public String getName() {
                 return this.name;
         }
         
