@@ -56,38 +56,38 @@ public class ModelController {
 		exo.addText(text);
 	}
 
-	private String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
+	prublic String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
+	prublic void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		exo.addClass(firstWord,lastWord,userText,name);
 		System.out.println("askCreateClass " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
+	public void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
 		exo.addAbstractClass(firstWord, lastWord, userText, name);
 		System.out.println("askCreateAbstractClass " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
+	public void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
 		exo.addInterface(firstWord, lastWord, userText, name);
 		System.out.println("askCreateInterface " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
+	public void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
 		exo.addAttribute(firstWord, lastWord, userText, name, type, visibility);
 		System.out.println("askCreateAttribute " + name + " " + type + " " + visibility);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
-	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+	public void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		exo.addMethod(firstWord, lastWord, userText, name,  paramTypes, returnType, visibility);
 		System.out.println("askCreateMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
