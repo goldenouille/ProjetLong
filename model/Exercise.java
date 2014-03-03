@@ -27,7 +27,7 @@ public class Exercise {
 		this.userText = new ArrayList<Word>();
 
 		this.graph = new Graph();
-		this.userGraph = new userGraph();
+		this.userGraph = new Graph();
 
 		this.parts = new ArrayList<Part>();
 		this.currentPart = 0;
