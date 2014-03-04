@@ -264,6 +264,150 @@ public class ModelController {
 		cgc.doSetScoreBgColor(color);
 	}
 
+
+	// ******************************************************************************************************//
+	// ******************************************Uml_section_methods*****************************************//
+	// ******************************************************************************************************//
+
+	// ****//
+	// Ask //
+	// ****//
+
+	/**
+	 * Sends to the core the user's request to edit the given class instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditClass(Object id, String name) {
+		//core.askEditClass(id, name);
+
+		System.out.println("askEditClass " + name);
+	}
+
+		/**
+	 * Sends to the core the user's request to edit the given abstract class
+	 * instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditAbstractClass(Object id, String name) {
+		//core.askEditAbstractClass(id, name);
+
+		System.out.println("askEditAbstractClass " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to edit the given interface instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditInterface(Object id, String name) {
+		//core.askEditInterface(id, name);
+
+		System.out.println("askEditInterface " + name);
+	}
+
+		/**
+	 * Sends to the core the user's request to edit the given attribute instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param type
+	 *            type wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditAttribute(Object id, String name, String type, String visibility) {
+		//core.askEditAttribute(id, name, type,visibility);
+
+		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
+	}
+
+		/**
+	 * Sends to the core the user's request to edit the given method instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param paramTypes
+	 *            list of the parameters types wanted for the new instance
+	 * @param returnType
+	 *            returnType wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		//core.askEditMethod(id, name, paramTypes, returnType, visibility);
+
+		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
+	}
+
+
+		/**
+	 * Ask the core about the name of the Uml instance corresponding to the
+	 * defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return name of the instance
+	 */
+	public String askUmlInstanceName(Object id) {
+		//return core.askUmlInstanceName(id);
+		return "askUmlInstanceName " + id.toString();
+	}
+
+	/**
+	 * Ask the core about the type or return type of the Uml instance
+	 * corresponding to the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return type or return type of the instance
+	 */
+	public String askUmlInstanceType(Object id) {
+		//return core.askUmlInstanceType(id);
+		return "askUmlInstanceType " + id.toString();
+	}
+
+
+		/**
+	 * Ask the core about the visibility of the Uml instance corresponding to
+	 * the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return visibility of the instance
+	 */
+	public String askUmlInstanceVisibility(Object id) {
+		//return core.askUmlInstanceVisibility(id);
+		return "askUmlInstanceVisibility " + id.toString();
+	}
+
+	/**
+	 * Ask the core about the param types of the Uml instance corresponding to
+	 * the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return param types of the instance
+	 */
+	public ArrayList<String> askUmlInstanceParamTypes(Object id) {
+		//return core.askUmlInstanceParamTypes(id);
+		return "askUmlInstanceParamTypes " + id.toString();
+	}
+
 }
 
 
