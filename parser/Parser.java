@@ -25,8 +25,8 @@ public class Parser {
 	
 	public Parser() {
 		this.digester = new Digester();
-		  digester.setValidating( false );
-		  digester.addObjectCreate( "exercise", "model.Exercise" );
+		digester.setValidating( false );
+		digester.addObjectCreate( "exercise", "model.Exercise" );
 		digester.addSetProperties( "exercise" );
 			digester.addObjectCreate( "exercise/part", "model.Part" );
 		    digester.addSetProperties( "exercise/part" );
@@ -64,7 +64,11 @@ public class Parser {
   
   public String parse (Exercise exo) {
   	
-  	String res = "<exercise name=\"" + exo.getName() + "\">\n";
+  	String res = "<exercise name=\"" + exo.getName();
+  	if (exo.getPreview()!=null) {
+  		res += "\" preview=\""+ exo.getPreview();
+  	}
+  		res += "\">\n";
   	Part p;
   	Word w;
   	boolean isBody = false;
