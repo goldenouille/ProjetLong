@@ -1,11 +1,10 @@
-package splash;
+package launcher;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
@@ -16,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
@@ -28,19 +26,20 @@ import parser.Parser;
 
 import model.Exercise;
 
-import actions.ActBrowseFiles;
+import actions.ActChooseExo;
 import actions.ActStartExercise;
 import actions.ActViewHistory;
 
-public class SplashController extends JFrame {
+public class LaunchController extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextArea previewPane;
+	private ExerciseBrowser browser;
 	private Exercise choosenExercise;
 
-	public SplashController() {
+	public LaunchController(ExerciseBrowser browser) {
 		super("Uml Serious Game");
 
+		this.browser = browser;
 		this.setSize(1280, 720);
 		this.setMinimumSize(new Dimension(800, 600));
 		this.setLocationRelativeTo(null);
@@ -48,10 +47,10 @@ public class SplashController extends JFrame {
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 
-		 try {
-		 UIManager.setLookAndFeel(new WindowsLookAndFeel());
-		 } catch (Exception e) {
-		 }
+		try {
+			UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		} catch (Exception e) {
+		}
 		// com.jgoodies.looks.windows.WindowsLookAndFeel
 		// com.jgoodies.looks.plastic.PlasticLookAndFeel
 		// com.jgoodies.looks.plastic.Plastic3DLookAndFeel
@@ -61,37 +60,24 @@ public class SplashController extends JFrame {
 		leftPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 		leftPane.setPreferredSize(new Dimension(180, 720));
 		leftPane.setLayout(new BoxLayout(leftPane, BoxLayout.PAGE_AXIS));
-
 		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JButton historyButton = new JButton(new ActViewHistory(this, "Historique"));
-		historyButton.setPreferredSize(new Dimension(200, 60));
 		historyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(historyButton);
-
 		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JButton browseButton = new JButton(new ActBrowseFiles(this, "Fournir un fichier exercice"));
-		browseButton.setPreferredSize(new Dimension(100, 50));
+		JButton browseButton = new JButton(new ActChooseExo(this, "Fournir un fichier exercice"));
 		browseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(browseButton);
-
 		leftPane.add(Box.createVerticalGlue());
 
-		previewPane = new JTextArea();
-		previewPane.setEditable(false);
-		JScrollPane scrollPreviewPane = new JScrollPane(previewPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-		leftPane.add(scrollPreviewPane);
-
-		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
-
 		JButton startButton = new JButton(new ActStartExercise(this, "Commencer"));
-		startButton.setPreferredSize(new Dimension(50, 20));
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(startButton);
+		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JPanel rightPane = new JPanel();
+		JPanel rightPane = browser.getBrowsingPanel();
 
 		this.add(leftPane, BorderLayout.WEST);
 		this.add(rightPane, BorderLayout.CENTER);
@@ -109,21 +95,13 @@ public class SplashController extends JFrame {
 
 	}
 
-	public void setExercise(File selectedFile) {
+	public void chooseExercise() {
+		File selectedFile = browser.getExerciseFile();
 		try {
 			Parser parser = new Parser();
 			this.choosenExercise = parser.parse(new FileInputStream(selectedFile));
-			previewPane.setText(choosenExercise.getPreview());
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		SplashController controller = new SplashController();
 	}
 }
