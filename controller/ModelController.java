@@ -37,12 +37,12 @@ public class ModelController {
 		this.exo = exo;
 	}
 
-	public void askSelectText(int[] pourcentages) {
-		exo.selectText(pourcentages);
+	public void askSelectText(int[] pourcentages, boolean userText) {
+		exo.selectText(pourcentages, userText);
 	}
 
-	public void askUnSelectText(int[] pourcentages) {
-		exo.unselectText(pourcentages);
+	public void askUnSelectText(int[] pourcentages, boolean userText) {
+		exo.unselectText(pourcentages, userText);
 	}
 
 	public Object[] askUmlInstancesNatures() {

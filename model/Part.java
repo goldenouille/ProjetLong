@@ -22,12 +22,15 @@ public class Part {
 	private int auxNbStep;
 	private int nbStep;
 
+	private int auxNbWord;
+
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
 		this.idTable = new HashMap<Integer, GraphItem>();
 		this.nbStep = 0;
 		this.auxNbStep = -1;
+		this.auxNbWord = 0;
 	}
 
 	public int getNbStep() {
@@ -73,11 +76,22 @@ public class Part {
 		String[] words = t.split(" ");
 		int l = words.length;
 		for (int i = 0; i < l; i++) {
-			text.add(new Word(words[i]));
+			Word w = new Word(words[i]);
+			w.setLength(1);
+			w.setFirstWord(this.auxNbWord);
+			this.auxNbWord = this.auxNbWord + 1;
+			w.setLastWord(this.auxNbWord - 1);
+			text.add(w);
 		}
 	}
 
 	public void addKeyWord(KeyWord keyWord) {
+		String w = keyWord.getWord;
+		int l = (w.split(" ")).length;
+		keyWord.setLength(l);
+		keyWord.setFirstWord(this.auxNbWord);
+		this.auxNbWord = this.auxNbWord + l;
+		keyWord.setLastWord(this.auxNbWord - 1);
 		text.add(keyWord);
 		idTable.put(keyWord.getId(),new Vertex());
 	}

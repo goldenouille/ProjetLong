@@ -56,6 +56,16 @@ public class Exercise {
 		this.nbParts = 0;
 	}
 
+	public Word getByPosition(int firstWord ,int lastWord,ArrayList<Word> t ) {
+		for (int i = 0; i<t.size(); i++) {
+			if (this.t.get(i).getFirstWord() <= firstWord) {
+				return this.t.get(i);
+			}
+		}
+		return null;
+	}
+
+
 	public ArrayList<Word> getText() {
 			return this.text;
 	}
@@ -81,11 +91,19 @@ public class Exercise {
 	TODO: créer une excetion si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public void selectText(int[] selection) {
-		if (selection.length == text.size()) {
+	public void selectText(int[] selection, boolean userText) {
+		ArrayList<Word> t;
+		if (userT) {
+			t = userText;
+		} else {
+			t = text;
+		}
+
+		if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>90) {
-    				text.get(i).select();
+    				Word w = getByPosition(i,i,t);
+    				w.select();
     			}
 			}
 		} // else {LEVER EXCEPTION !! !! !!}
@@ -97,11 +115,19 @@ public class Exercise {
 	TODO: créer une exception si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public void unselectText(int[] selection) {
-		if (selection.length == text.size()) {
+	public void unselectText(int[] selection, boolean userText) {
+		ArrayList<Word> t;
+		if (userT) {
+			t = userText;
+		} else {
+			t = text;
+		}
+
+		if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>90) {
-    				text.get(i).unselect();
+    				Word w = getByPosition(i,i,t);
+    				w.unselect();
     			}
 			}
 		} // else {LEVER EXCEPTION !! !! !!}
@@ -148,10 +174,12 @@ public class Exercise {
 		VertexClass vertexClass = new VertexClass();
 		vertexClass.setName(name);
 			
-		for (int i= first; i<= last; i++) {
-			userText.get(i).setUserUmlNature(UMLNature.CLASS);
-			userText.get(i).setUserGraphItem(vertexClass);
-		}	
+
+			Word w = getByPosition(first,last, t);
+			// TODO = verifier que la fin du mot correspond
+			w.setUserUmlNature(UMLNature.CLASS);
+			w.setUserGraphItem(vertexClass);	
+
 		this.userGraph.addVertex(vertexClass);
 	}
 
@@ -166,15 +194,17 @@ public class Exercise {
 		VertexAbstract vertexAbstract = new VertexAbstract();
 		vertexAbstract.setName(name);
 			
-		for (int i= first; i<= last; i++) {
-			userText.get(i).setUserUmlNature(UMLNature.ABSTRACT_CLASS);
-			userText.get(i).setUserGraphItem(vertexAbstract);
-		}	
+
+			Word w = getByPosition(first,last, t);
+			// TODO = verifier que la fin du mot correspond
+			w.setUserUmlNature(UMLNature.ABSTRACT_CLASS);
+			w.setUserGraphItem(vertexAbstract);	
+	
 		this.userGraph.addVertex(vertexAbstract);
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addInterface(int firstWord, int lastWord, boolean userT, String name) {
+	public void addInterface(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -183,17 +213,18 @@ public class Exercise {
 		}
 		Vertex vertex = new Vertex();
 		vertex.setName(name);
+
+			Word w = getByPosition(first,last, t);
+			// TODO = verifier que la fin du mot correspond
+			w.setUserUmlNature(UMLNature.INTERFACE);
+			w.setUserGraphItem(vertex);
 			
-		for (int i= firstWord; i<= lastWord; i++) {
-			t.get(i).setUserUmlNature(UMLNature.INTERFACE);
-			t.get(i).setUserGraphItem(vertex);
-		}	
 		this.userGraph.addVertex(vertex);
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
 	// ne fonctionne qu'avec des types de bases
-	public void addAttribute(int firstWord, int lastWord, boolean userT, String name, 
+	public void addAttribute(int first, int last, boolean userT, String name, 
 														String type, String visibility) {
 		ArrayList<Word> t;
 		if (userT) {
@@ -203,10 +234,11 @@ public class Exercise {
 		}
 		Attribute att = new Attribute(name,TypeBase.getByName(type),Visibility.getByName(visibility));
 
-		for (int i= firstWord; i<= lastWord; i++) {
-			t.get(i).setUserUmlNature(UMLNature.ATTRIBUTE);
-			t.get(i).setUserGraphItem(att);
-		}	
+			Word w = getByPosition(first,last, t);
+			// TODO = verifier que la fin du mot correspond
+			w.setUserUmlNature(UMLNature.ATTRIBUTE);
+			w.setUserGraphItem(att);
+
 		this.userGraph.addAttribute(att);
 	}
 
@@ -228,10 +260,12 @@ public class Exercise {
 		}
 
 		Method met = new Method(name, TypeBase.getByName(returnType), Visibility.getByName(visibility), params);
-		for (int i= firstWord; i<= lastWord; i++) {
-			t.get(i).setUserUmlNature(UMLNature.METHOD);
-			t.get(i).setUserGraphItem(met);
-		}	
+		
+			Word w = getByPosition(first,last, t);
+			// TODO = verifier que la fin du mot correspond
+			w.setUserUmlNature(UMLNature.METHOD);
+			w.setUserGraphItem(met);		
+
 		this.userGraph.addMethod(met);
 	}
 

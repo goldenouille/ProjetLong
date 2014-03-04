@@ -21,9 +21,9 @@ public class SelectKeyWordStep extends Step {
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isSelected()) {
 				if (text.get(i).isKeyWord()) {
-    					mc.doValidateText(i, i, false);//Selected KW = ok
+    					mc.doValidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//Selected KW = ok
     				} else {
-    					mc.doInvalidateText(i, i, false);//selected not KW = false
+    					mc.doInvalidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//selected not KW = false
     				}	
     			} else {
     				if (text.get(i).isKeyWord()) {
@@ -33,7 +33,7 @@ public class SelectKeyWordStep extends Step {
 		}
 		for (int i = 0; i< userText.size() ; i++) {
 			if (userText.get(i).isSelected()) {
-				mc.doValidateText(i,i,true); //KW in user text are considered correct for now.
+				mc.doValidateText(userText.get(i).getFirstWord(), userText.get(i).getLastWord(),true); //KW in user text are considered correct for now.
 			}
 		}
 		mc.doShowMissingKeywordNumber(missingKW);

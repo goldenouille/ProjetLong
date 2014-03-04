@@ -14,6 +14,10 @@ public class Word {
 	protected GraphItem graphItem;
 	protected GraphItem userGraphItem;
 
+	protected int firstWord;
+	protected int lastWord;
+	protected int length;
+
 	public Word() {
 		this.isSelected = false;
 	}
@@ -31,6 +35,30 @@ public class Word {
 		this.word = word;
 		this.isKeyWord = false;
 		this.isSelected = false;
+	}
+
+	public void setFirstWord(int i) {
+		this.firstWord = i;
+	}
+
+	public int getFirstWord() {
+		return this.firstWord;
+	}
+
+	public void setLastWord(int j) {
+		this.lastWord = j;
+	}
+
+	public int getLastWord() {
+		return this.lastWord;
+	}
+
+	public void setLength(int l) {
+		this.length = l;
+	}
+
+	public int getLength() {
+		return this.length;
 	}
 
 
