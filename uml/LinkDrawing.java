@@ -10,11 +10,13 @@ import java.util.Vector;
 
 public class LinkDrawing {
 	
-	private static final int ISUNDER_DELTA = 6;
-	private static final int DASH_DELTA = 10;
-	private static final int DRAWSTRING_DELTA = 6;
-	private static final int ARROW_SIZE = 10;
+	// Size variables
+	private static final int ISUNDER_DELTA = 6;		// pixel delta around line position checking
+	private static final int DASH_DELTA = 10;		// pixel size between dash
+	private static final int DRAWSTRING_DELTA = 6;	// pixel space between line and Strings
+	private static final int ARROW_SIZE = 10;		// pixel size for arrow drawing
 	
+	// Link type use by LinkDrawing class representation
 	//public static final int DIRECTIONNAL = 0;
 	//public static final int HERITAGE = 1;
 	public static final int REALIZATION = 2;
@@ -26,6 +28,7 @@ public class LinkDrawing {
 	public static final int AGGREGATION = 8;
 	public static final int COMPOSITION = 9;
 	
+	// Position variables for arrow drawing
 	private static final int POSITION_ERROR = -1;
 	private static final int TOP = 0;
 	private static final int RIGHT = 1;
@@ -43,13 +46,22 @@ public class LinkDrawing {
 	private String text;
 	private String motherMultiplicity;
 	private String daughterMultiplicity;
-	
-	private boolean moved;
+	private boolean moved; // not use to its max potential
 
-	public LinkDrawing(ClassDrawing motherClass, ClassDrawing daughterclass, int type) {
+	/**
+	 * Main constructor, create a LinkDrawing representation of a link
+	 * 
+	 * @param motherClass
+	 *            main class, where the arrow points
+	 * @param daughterClass
+	 *            second class
+	 * @param type
+	 *            LinkDrawing link type
+	 */
+	public LinkDrawing(ClassDrawing motherClass, ClassDrawing daughterClass, int type) {
 		this.motherClass = motherClass;
 		motherClassPosition = new Dimension(motherClass.getX(), motherClass.getY());
-		this.daughterClass = daughterclass;
+		this.daughterClass = daughterClass;
 		
 		daughterClassPosition = new Dimension(daughterClass.getX(), daughterClass.getY());
 		points = new Vector<Dimension>();
@@ -63,11 +75,19 @@ public class LinkDrawing {
 		moved = false;
 	}
 	
+	/**
+	 * Return if a point is into a specified class
+	 * 
+	 * @return true if point is into class
+	 */
 	private boolean isIntoClass(Dimension point, ClassDrawing aClass) {
 		return (aClass.getX() <= point.width && point.width <= (aClass.getX() + aClass.getWidth())
 				&& aClass.getY() <= point.height && point.height <= (aClass.getY() + aClass.getHeight()));
 	}
 	
+	/**
+	 * Set an automated pool of points to draw
+	 */
 	private void definePoints() {
 		// daugtherClass is at LEFT of motherClass
 		if (motherClass.getX() + motherClass.getWidth() <= daughterClass.getX()) {
@@ -163,6 +183,11 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Check if class linked have moved and move points
+	 * 
+	 * @return true if class moved
+	 */
 	private boolean checkClassPosition() {
 		boolean moved = false;
 		// check Mother Class position
@@ -200,6 +225,10 @@ public class LinkDrawing {
 		return moved;
 	}
 	
+	
+	/**
+	 * Check if points collapsed between them or with class and remove it
+	 */
 	private void checkAndRemovePoints() {
 		boolean toRemove = false;
 		
@@ -223,6 +252,9 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Check if points are well placed, and add eventual new points to finish link drawing
+	 */
 	private void checkAndAddPoints() { // TODO checkAndAddPoints
 		
 		// check first points is on motherClass
@@ -366,6 +398,11 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Return arrow position (as defined in LinkDrawing constants) from  main class
+	 * 
+	 * @return arrow position
+	 */
 	private int getArrowPosition() {
 		int position = POSITION_ERROR;
 		
@@ -388,6 +425,12 @@ public class LinkDrawing {
 		return position;
 	}
 	
+	/**
+	 * Draw arrow
+	 * 
+	 * @param g
+	 *            Graphics2D where to draw
+	 */
 	private void drawArrow(Graphics2D g) {
 		int x = 0;
 		int y = 0;
@@ -555,6 +598,12 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Draw link in specified Graphics2D
+	 * 
+	 * @param g
+	 *            Graphics2D where to draw
+	 */
 	public void draw(Graphics2D g) {
 
 //		if (!moved) {
@@ -620,6 +669,16 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Move link line under position of X and Y
+	 * 
+	 * @param pos
+	 *            movement position (mouse)
+	 * @param x
+	 *            move on X-axis
+	 * @param y
+	 *            move on Y-axis
+	 */
 	public void move(Dimension pos, int x, int y) {
 		boolean find = false;
 		int i = 1;
@@ -658,14 +717,30 @@ public class LinkDrawing {
 		}
 	}
 	
+	/**
+	 * Move link line under position of Dimension width (X) and height (Y)
+	 * 
+	 * @param pos
+	 *            movement position (mouse)
+	 * @param delta
+	 *            movement delta
+	 */
 	public void move(Dimension pos, Dimension delta) {
 		this.move (pos, delta.width, delta.height);
 	}
 	
+	/**
+	 * Reset moved memorization and re-allow automated point setting
+	 */
 	public void resetMoved() {
 		moved = false;
 	}
 	
+	/**
+	 * Return if link is under a position
+	 * 
+	 * @param true if under position
+	 */
 	public boolean isUnder(Dimension pos) {
 		boolean under = false;
 		int i = 1;
@@ -692,6 +767,9 @@ public class LinkDrawing {
 		return under;
 	}
 
+	/**
+	 * Invert main class and so arrow drawing position
+	 */
 	public void invertClass() {
 		ClassDrawing aux = this.motherClass;
 		this.motherClass = this.daughterClass;
@@ -702,42 +780,96 @@ public class LinkDrawing {
 		this.daughterMultiplicity = temp;
 	}
 	
+	/**
+	 * Get type of link drawing
+	 * 
+	 * @return type as defined in LinkDrawing
+	 */
 	public int getType() {
 		return type;
 	}
 
+	/**
+	 * Set type of link drawing
+	 * 
+	 * @param type
+	 *            as defined in LinkDrawing
+	 */
 	public void setType(int type) {
 		this.type = type;
 	}
 
+	/**
+	 * Get text of link drawing
+	 * 
+	 * @return text
+	 */
 	public String getText() {
 		return text;
 	}
 
+	/**
+	 * Set text of link drawing
+	 * 
+	 * @param text
+	 *            text to draw
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
+	/**
+	 * Get main class name of link drawing
+	 * 
+	 * @return main class name
+	 */
 	public String getMotherClass() {
 		return motherClass.getName();
 	}
 	
+	/**
+	 * Get multiplicity text of main class of link drawing
+	 * 
+	 * @return multiplicity
+	 */
 	public String getMotherMultiplicity() {
 		return motherMultiplicity;
 	}
 
+	/**
+	 * Set multiplicity text of main class of link drawing
+	 * 
+	 * @param multiplicity
+	 *            multiplicity to draw
+	 */
 	public void setMotherMultiplicity(String motherMultiplicity) {
 		this.motherMultiplicity = motherMultiplicity;
 	}
 	
+	/**
+	 * Get second class name of link drawing
+	 * 
+	 * @return second class name
+	 */
 	public String getDaughterClass() {
 		return daughterClass.getName();
 	}
 
+	/**
+	 * Get multiplicity text of second class of link drawing
+	 * 
+	 * @return multiplicity
+	 */
 	public String getDaughterMultiplicity() {
 		return daughterMultiplicity;
 	}
 
+	/**
+	 * Set multiplicity text of second class of link drawing
+	 * 
+	 * @param multiplicity
+	 *            multiplicity to draw
+	 */
 	public void setDaughterMultiplicity(String daughterMultiplicity) {
 		this.daughterMultiplicity = daughterMultiplicity;
 	}

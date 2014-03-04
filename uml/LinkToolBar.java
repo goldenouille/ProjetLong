@@ -9,13 +9,11 @@ import javax.swing.JToolBar;
 
 public class LinkToolBar extends JToolBar {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private int state;
 	
+	// State constants
 	public static final int NO_LINK = -1;
 	public static final int LINK_EDITION = -2;
 	public static final int CHANGE_DIRECTION = -3;
@@ -27,6 +25,9 @@ public class LinkToolBar extends JToolBar {
 	public static final int AGGREGATION = 8;
 	public static final int COMPOSITION = 9;
 
+	/**
+	 * Main constructor, create a LinkToolBar
+	 */
 	public LinkToolBar() {
 		JButton button = null;
 		
@@ -165,10 +166,21 @@ public class LinkToolBar extends JToolBar {
 		this.add(button);
 	}
 
+	/**
+	 * Get tool bar state
+	 * 
+	 * @return state as defined in LinkToolBar
+	 */
 	public int getState() {
 		return state;
 	}
 
+	/**
+	 * Set tool bar state, with checking
+	 * 
+	 * @param state
+	 *            state to set
+	 */
 	public void setState(int state) {
 		switch (state) {
 		case LINK_EDITION:
@@ -205,6 +217,11 @@ public class LinkToolBar extends JToolBar {
 		
 	}
 	
+	/**
+	 * Get if tool bar state is a link setting state
+	 * 
+	 * @return state as defined in LinkToolBar
+	 */
 	public boolean isInLinkRelationState() {
 		boolean result = true;
 		

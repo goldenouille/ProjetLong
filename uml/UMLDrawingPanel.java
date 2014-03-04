@@ -28,9 +28,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * "~"       Package
 	 */
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private static final int NO_DRAGGED_ELEMENT = -1;

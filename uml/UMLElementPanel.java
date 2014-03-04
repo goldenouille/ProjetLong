@@ -11,13 +11,11 @@ import javax.swing.JPanel;
 
 public class UMLElementPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private UMLDrawingPanel mainpanel;
 	private JPanel subPanel;
 	
+	// Action constants
 	public static final int ACTION_NONE = 0;
 	public static final int ACTION_ADD = 1;
 	public static final int ACTION_REMOVE = 2;
@@ -33,6 +31,12 @@ public class UMLElementPanel extends JPanel {
 	private Vector<String> properties;
 	private Vector<String> methods;
 	
+	/**
+	 * Main constructor, create an UMLElementPanel dedicated button.
+	 * 
+	 * @param mainpanel
+	 *            UMLDrawingPanel
+	 */
 	public UMLElementPanel(UMLDrawingPanel mainpanel) {
 		super();
 		this.mainpanel = mainpanel;
@@ -48,6 +52,9 @@ public class UMLElementPanel extends JPanel {
 		this.refresh();
 	}
 	
+	/**
+	 * Refresh panel components
+	 */
 	public void refresh() {
 		subPanel.removeAll();
 		subPanel.revalidate();
@@ -127,50 +134,118 @@ public class UMLElementPanel extends JPanel {
 		subPanel.revalidate();
 	}
 
+	/**
+	 * Add a class to element pool
+	 * 
+	 * @param class
+	 *            class name
+	 */
 	public void addClass(String c) {
 		classes.add(c);
 	}
 
+	/**
+	 * Remove specified class from element pool
+	 * 
+	 * @param class
+	 *            class name to remove
+	 */
 	public boolean removeClass(String c) {
 		return classes.remove(c);
 	}
 
+	/**
+	 * Add a property to element pool
+	 * 
+	 * @param property
+	 *            property name
+	 */
 	public void addProperty(String property) {
 		properties.add(property);
 	}
 
+	/**
+	 * Remove specified property from element pool
+	 * 
+	 * @param property
+	 *            property name to remove
+	 */
 	public boolean removeProperty(String property) {
 		return properties.remove(property);
 	}
 	
+	/**
+	 * Add a method to element pool
+	 * 
+	 * @param method
+	 *            method name
+	 */
 	public void addMethod(String method) {
 		methods.add(method);
 	}
 
+	/**
+	 * Remove specified method from element pool
+	 * 
+	 * @param method
+	 *            method name to remove
+	 */
 	public boolean removeMethod(String method) {
 		return methods.remove(method);
 	}
 	
+	/**
+	 * Get current selected element action
+	 * 
+	 * @return element action as defined in UMLElementPanel
+	 */
 	public int getSelectedElementAction() {
 		return selectedElementAction;
 	}
 
+	/**
+	 * Set current selected element action
+	 * 
+	 * @param action
+	 *            action as defined in UMLElementPanel
+	 */
 	public void setSelectedElementAction(int selectedElementAction) {
 		this.selectedElementAction = selectedElementAction;
 	}
 
+	/**
+	 * Get current selected element type
+	 * 
+	 * @return element type as defined in UMLDrawingPanel
+	 */
 	public int getSelectedElementType() {
 		return selectedElementType;
 	}
 
+	/**
+	 * Set current selected element type
+	 * 
+	 * @param type
+	 *            type as defined in UMLDrawingPanel
+	 */
 	public void setSelectedElementType(int selectedElementType) {
 		this.selectedElementType = selectedElementType;
 	}
 	
+	/**
+	 * Get current selected element id
+	 * 
+	 * @return element id
+	 */
 	public int getSelectedElementID() {
 		return selectedElementID;
 	}
 	
+	/**
+	 * Get current selected element name, from id
+	 * 
+	 * @return element name
+	 */
 	public String getSelectedElementName() {
 		String elementName = "";
 		if (selectedElementType == UMLDrawingPanel.ELEMENT_CLASS) {
@@ -185,16 +260,27 @@ public class UMLElementPanel extends JPanel {
 		return elementName;
 	}
 
+	/**
+	 * Set current selected element id
+	 * 
+	 * @param element id
+	 */
 	public void setSelectedElementID(int selectedElementID) {
 		this.selectedElementID = selectedElementID;
 	}
 	
+	/**
+	 * Reset current selected element to ACTION_NONE, ELEMENT_NOTYPE and ID 0
+	 */
 	public void resetSelectedElement() {
 		this.selectedElementAction = ACTION_NONE;
 		this.selectedElementType = UMLDrawingPanel.ELEMENT_NOTYPE;
 		this.selectedElementID = 0;
 	}
 	
+	/**
+	 * Perform action in consideration of current selected element action, type and id
+	 */
 	public void doAction() {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:

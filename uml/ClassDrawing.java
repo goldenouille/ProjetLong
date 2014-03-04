@@ -18,7 +18,16 @@ public class ClassDrawing {
 	private Vector<String> properties;
 	private Vector<String> methods;
 
-	
+	/**
+	 * Main constructor, create a ClassDrawing representation of a class
+	 * 
+	 * @param name
+	 *            class name
+	 * @param x
+	 *            class x-axis drawing position
+	 * @param y
+	 *            class y-axis drawing position
+	 */
 	public ClassDrawing(String name, int x, int y) {
 		properties = new Vector<String>();
 		methods = new Vector<String>();
@@ -28,55 +37,78 @@ public class ClassDrawing {
 		setReduced(false);
 		setName(name);
 	}
-	
-	public ClassDrawing(int x, int y, int width, int height, String name) {
-		properties = new Vector<String>();
-		methods = new Vector<String>();
-		
-		setX(x);
-		setY(y);
-		setWidth(width);
-		setHeight(height);
-		setReduced(false);
-		setName(name);
-	}
 
+	/**
+	 * Get x-axis position of class drawing
+	 * 
+	 * @return position in x-axis
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * Set x-axis position of class drawing
+	 * 
+	 * @param x
+	 *            position in x-axis
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
+	/**
+	 * Get y-axis position of class drawing
+	 * 
+	 * @return position in y-axis
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Set y-axis position of class drawing
+	 * 
+	 * @param y
+	 *            position in y-axis
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
+	/**
+	 * Get width of class drawing
+	 * 
+	 * @return width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
+	/**
+	 * Get height of class drawing
+	 * 
+	 * @return height
+	 */
 	public int getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
+	/**
+	 * Get if class drawing is reduced (properties and methods are not drawn)
+	 * 
+	 * @return reduced
+	 */
 	public boolean isReduced() {
 		return reduced;
 	}
 
+	/**
+	 * Set if class drawing is reduced (properties and methods are not drawn)
+	 * 
+	 * @param reduced
+	 *            if true, class drawing is reduced
+	 */
 	public void setReduced(boolean reduced) {
 		if (properties.size() != 0 || methods.size() != 0) {
 			this.reduced = reduced;
@@ -85,26 +117,60 @@ public class ClassDrawing {
 		}
 	}
 	
+	/**
+	 * Get name of class drawing
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Set name of class drawing
+	 * 
+	 * @param name
+	 *            class name to draw
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Get type text of class drawing
+	 * 
+	 * @return class type
+	 */
 	public String getClasstype() {
 		return classtype;
 	}
 
+	/**
+	 * Set type text of class drawing
+	 * 
+	 * @param type
+	 *            <<type>> of class
+	 */
 	public void setClasstype(String classtype) {
 		this.classtype = classtype;
 	}
 	
+	/**
+	 * Add a property to draw
+	 * 
+	 * @param property
+	 *            "+ myproperty" text property
+	 */
 	public void addProperty(String property) {
 		properties.add(property);
 	}
 	
+	/**
+	 * Remove specified property to draw
+	 * 
+	 * @param property
+	 *            property text to remove
+	 */
 	public void removeProperty(String property) {
 		properties.remove(property);
 		if (properties.size() == 0 && methods.size() == 0){
@@ -112,10 +178,22 @@ public class ClassDrawing {
 		}
 	}
 	
+	/**
+	 * Add a method to draw
+	 * 
+	 * @param method
+	 *            "+ mymethod" text method
+	 */
 	public void addMethod(String method) {
 		methods.add(method);
 	}
 	
+	/**
+	 * Remove specified method to draw
+	 * 
+	 * @param method
+	 *            method text to remove
+	 */
 	public void removeMethod(String method) {
 		methods.remove(method);
 		if (properties.size() == 0 && methods.size() == 0){
@@ -123,6 +201,12 @@ public class ClassDrawing {
 		}
 	}
 	
+	/**
+	 * Draw class in specified Graphics
+	 * 
+	 * @param g
+	 *            Graphics where to draw
+	 */
 	public void draw(Graphics g) {
 		int actualHeight = 0; // for drawing String
 		int stringWidth = g.getFontMetrics().stringWidth(name);
@@ -175,15 +259,34 @@ public class ClassDrawing {
 		g.drawRect(x, y, width, height);
 	}
 	
+	/**
+	 * Move class position of X and Y
+	 * 
+	 * @param x
+	 *            move on X-axis
+	 * @param y
+	 *            move on Y-axis
+	 */
 	public void move(int x, int y) {
 		this.x += x;
 		this.y += y;
 	}
 	
+	/**
+	 * Move class position of Dimension width (X) and height (Y)
+	 * 
+	 * @param delta
+	 *            movement delta
+	 */
 	public void move(Dimension delta) {
 		this.move (delta.width, delta.height);
 	}
 	
+	/**
+	 * Return if the class is under a position
+	 * 
+	 * @param true if under position
+	 */
 	public boolean isUnder(Dimension pos) {
 		boolean under = false;
 		
