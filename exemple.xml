@@ -1,0 +1,11 @@
+<exercise name="banque" preview="exercise de la banque simplifie">
+	<part name="compte">
+		<text body = "Un "/> <kw id='1' word="compte"/><text body = " simple est caractérisé par un "/> <kw id='2' word = "solde"/><text body = " en euros1"/><kw id ='3' word= "creditable."/>
+		
+		<UML>
+			<uml-class id='1' name = "account"/>
+			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name = "solde"/>
+			<uml-method id='3' visibility ="public" motherId='1' type ="void" name="credit"/>
+		</UML>
+	</part>
+</exercise>
