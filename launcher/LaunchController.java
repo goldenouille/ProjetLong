@@ -5,28 +5,24 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import org.xml.sax.SAXException;
-
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
+
+import controller.Controller;
 
 import parser.Parser;
 
 import model.Exercise;
 
-import actions.ActChooseExo;
+import actions.ActChooseExercise;
 import actions.ActStartExercise;
 import actions.ActViewHistory;
 
@@ -67,7 +63,7 @@ public class LaunchController extends JFrame {
 		leftPane.add(historyButton);
 		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JButton browseButton = new JButton(new ActChooseExo(this, "Fournir un fichier exercice"));
+		JButton browseButton = new JButton(new ActChooseExercise(this, "Fournir un fichier exercice"));
 		browseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(browseButton);
 		leftPane.add(Box.createVerticalGlue());
@@ -87,12 +83,12 @@ public class LaunchController extends JFrame {
 
 	public void doShowHistory() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void doStartExercise() {
-		// TODO Auto-generated method stub
-
+		@SuppressWarnings("unused")
+		Controller controller = new Controller(choosenExercise);
+		this.dispose();
 	}
 
 	public void chooseExercise() {

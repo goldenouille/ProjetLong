@@ -6,12 +6,12 @@ import javax.swing.AbstractAction;
 import launcher.LaunchController;
 
 
-public class ActChooseExo extends AbstractAction {
+public class ActChooseExercise extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 	private LaunchController splash;
 
-	public ActChooseExo(LaunchController splash, String string) {
+	public ActChooseExercise(LaunchController splash, String string) {
 		super(string);
 		this.splash = splash;
 	}
