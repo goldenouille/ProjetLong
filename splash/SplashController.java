@@ -15,10 +15,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import org.xml.sax.SAXException;
+
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import parser.Parser;
 
@@ -31,7 +35,7 @@ import actions.ActViewHistory;
 public class SplashController extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextPane previewPane;
+	private JTextArea previewPane;
 	private Exercise choosenExercise;
 
 	public SplashController() {
@@ -44,36 +48,46 @@ public class SplashController extends JFrame {
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 
+		 try {
+		 UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		 } catch (Exception e) {
+		 }
+		// com.jgoodies.looks.windows.WindowsLookAndFeel
+		// com.jgoodies.looks.plastic.PlasticLookAndFeel
+		// com.jgoodies.looks.plastic.Plastic3DLookAndFeel
+		// com.jgoodies.looks.plastic.PlasticXPLookAndFeel
+
 		JPanel leftPane = new JPanel();
-		leftPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),BorderFactory.createLoweredBevelBorder()));
+		leftPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 		leftPane.setPreferredSize(new Dimension(180, 720));
 		leftPane.setLayout(new BoxLayout(leftPane, BoxLayout.PAGE_AXIS));
-		
-		leftPane.add(Box.createRigidArea(new Dimension(0,20)));
 
-		JButton historyButton = new JButton(new ActViewHistory(this,"Historique"));
-		historyButton.setPreferredSize(new Dimension(50,20));
+		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JButton historyButton = new JButton(new ActViewHistory(this, "Historique"));
+		historyButton.setPreferredSize(new Dimension(200, 60));
 		historyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(historyButton);
-		
-		leftPane.add(Box.createRigidArea(new Dimension(0,20)));
-		
-		JButton browseButton = new JButton(new ActBrowseFiles(this,"Fournir un fichier exercice"));
-		browseButton.setPreferredSize(new Dimension(100,50));
+
+		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JButton browseButton = new JButton(new ActBrowseFiles(this, "Fournir un fichier exercice"));
+		browseButton.setPreferredSize(new Dimension(100, 50));
 		browseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(browseButton);
-		
+
 		leftPane.add(Box.createVerticalGlue());
-		
-		previewPane = new JTextPane();
+
+		previewPane = new JTextArea();
+		previewPane.setEditable(false);
 		JScrollPane scrollPreviewPane = new JScrollPane(previewPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+
 		leftPane.add(scrollPreviewPane);
-		
-		leftPane.add(Box.createRigidArea(new Dimension(0,20)));
-		
-		JButton startButton = new JButton(new ActStartExercise(this,"Commencer"));
-		startButton.setPreferredSize(new Dimension(50,20));
+
+		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JButton startButton = new JButton(new ActStartExercise(this, "Commencer"));
+		startButton.setPreferredSize(new Dimension(50, 20));
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(startButton);
 
@@ -87,18 +101,19 @@ public class SplashController extends JFrame {
 
 	public void doShowHistory() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void doStartExercise() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setExercise(File selectedFile) {
 		try {
 			Parser parser = new Parser();
 			this.choosenExercise = parser.parse(new FileInputStream(selectedFile));
+			previewPane.setText(choosenExercise.getPreview());
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,7 +122,7 @@ public class SplashController extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		SplashController controller = new SplashController();
 	}
