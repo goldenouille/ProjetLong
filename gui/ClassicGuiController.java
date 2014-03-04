@@ -207,6 +207,14 @@ public class ClassicGuiController implements GuiController {
 		// TODO Auto-generated method stub
 		// System.out.println("askValidateAssociation");
 	}
+	
+	/**
+	 * Sends to the core the user's request to validate his Uml diagram
+	 */
+	public void askValidateDiagram() {
+		// TODO Auto-generated method stub
+		// System.out.println("askValidateAssociation");
+	}
 
 	/**
 	 * Sends to the core the user's request to add text
