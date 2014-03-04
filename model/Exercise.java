@@ -59,8 +59,8 @@ public class Exercise {
 
 	public Word getByPosition(int firstWord ,int lastWord,ArrayList<Word> t ) {
 		for (int i = 0; i<t.size(); i++) {
-			if (this.t.get(i).getFirstWord() <= firstWord) {
-				return this.t.get(i);
+			if (t.get(i).getFirstWord() <= firstWord) {
+				return t.get(i);
 			}
 		}
 		return null;
@@ -100,7 +100,7 @@ public class Exercise {
 	TODO: créer une excetion si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public void selectText(int[] selection, boolean userText) {
+	public void selectText(int[] selection, boolean userT) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -124,7 +124,7 @@ public class Exercise {
 	TODO: créer une exception si la sélection n'est pas de la bonne dimension
 	TODO: gérer le userText
 	*/
-	public void unselectText(int[] selection, boolean userText) {
+	public void unselectText(int[] selection, boolean userT) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -254,7 +254,7 @@ public class Exercise {
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
 	 
-	public void addMethod(int firstWord, int lastWord, boolean userT, String name, 
+	public void addMethod(int first, int last, boolean userT, String name, 
 											ArrayList<String> paramTypes, String returnType, String visibility) {
 		ArrayList<Word> t;
 		ArrayList<Type> params = new ArrayList<Type>();

@@ -86,7 +86,7 @@ public class Part {
 	}
 
 	public void addKeyWord(KeyWord keyWord) {
-		String w = keyWord.getWord;
+		String w = keyWord.getWord();
 		int l = (w.split(" ")).length;
 		keyWord.setLength(l);
 		keyWord.setFirstWord(this.auxNbWord);
