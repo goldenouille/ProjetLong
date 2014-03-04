@@ -65,7 +65,7 @@ public class UMLElementPanel extends JPanel {
 		classesPanel.setLayout(new BoxLayout(classesPanel, BoxLayout.PAGE_AXIS));
 		
 		JPanel classeNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		classeNamePanel.add(new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_CLASS, -1, "+", "Add new class"));
+		classeNamePanel.add(new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_CLASS, -1, "+", "Ajouter une nouvelle classe"));
 		classeNamePanel.add(new JLabel("Classes :"));
 		classesPanel.add(classeNamePanel);
 		
@@ -74,10 +74,10 @@ public class UMLElementPanel extends JPanel {
 			
 			//classesOnePanel.setPreferredSize(new Dimension(this.getSize().width, 30));
 			//classesOnePanel.setLayout(new BoxLayout(classesOnePanel, BoxLayout.PAGE_AXIS));
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_CLASS, i, "+", "Add to drawing panel on click"));
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_CLASS, i, "-", "Remove to drawing panel"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_CLASS, i, "E", "Edit element properties"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_CLASS, i, "D", "Delete element"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_CLASS, i, "+", "Ajouter à la zone de dessin, au clique"));
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_CLASS, i, "-", "Retirer de la zone de dessin"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_CLASS, i, "E", "Editer les propriétés"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_CLASS, i, "D", "Supprimer l'élément"));	
 			classesOnePanel.add(new JLabel(classes.get(i)));
 			
 			classesPanel.add(classesOnePanel);
@@ -90,17 +90,17 @@ public class UMLElementPanel extends JPanel {
 		propertiesPanel.setLayout(new BoxLayout(propertiesPanel, BoxLayout.PAGE_AXIS));
 		
 		JPanel propertiesNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		propertiesNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_PROPERTY, -1, "+", "Add new property"));
+		propertiesNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_PROPERTY, -1, "+", "Ajouter un nouvel attribut"));
 		propertiesNamePanel.add(new JLabel("Attributs :"));
 		propertiesPanel.add(propertiesNamePanel);
 		for (int i = 0 ; i < properties.size() ; i++) {
 			JPanel propertiesOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
 			//propertiesOnePanel.setPreferredSize(new Dimension(this.getSize().width, 30));
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_PROPERTY, i, "+", "Add to drawing panel on click"));
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_PROPERTY, i, "-", "Remove to drawing panel"));	
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_PROPERTY, i, "E", "Edit element properties"));	
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_PROPERTY, i, "D", "Delete element"));	
+			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_PROPERTY, i, "+", "Ajouter à la zone de dessin, au clique"));
+			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_PROPERTY, i, "-", "Retirer de la zone de dessin"));	
+			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_PROPERTY, i, "E", "Editer les propriétés"));	
+			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_PROPERTY, i, "D", "Supprimer l'élément"));	
 			propertiesOnePanel.add(new JLabel(properties.get(i)));
 			
 			propertiesPanel.add(propertiesOnePanel);
@@ -112,17 +112,17 @@ public class UMLElementPanel extends JPanel {
 		JPanel methodPanel = new JPanel();
 		methodPanel.setLayout(new BoxLayout(methodPanel, BoxLayout.PAGE_AXIS));
 		JPanel methodNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		methodNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_METHOD, -1, "+", "Add new method"));
+		methodNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLDrawingPanel.ELEMENT_METHOD, -1, "+", "Ajouter une nouvelle méthode"));
 		methodNamePanel.add(new JLabel("Méthodes :"));
 		methodPanel.add(methodNamePanel);
 		for (int i = 0 ; i < methods.size() ; i++) {
 			JPanel methodsOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
 			//methodsOnePanel.setPreferredSize(new Dimension(this.getSize().width, 30));
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_METHOD, i, "+", "Add to drawing panel on click"));
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_METHOD, i, "-", "Remove to drawing panel"));	
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_METHOD, i, "E", "Edit element properties"));	
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_METHOD, i, "D", "Delete element"));	
+			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLDrawingPanel.ELEMENT_METHOD, i, "+", "Ajouter à la zone de dessin, au clique"));
+			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLDrawingPanel.ELEMENT_METHOD, i, "-", "Retirer de la zone de dessin"));	
+			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLDrawingPanel.ELEMENT_METHOD, i, "E", "Editer les propriétés"));	
+			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLDrawingPanel.ELEMENT_METHOD, i, "D", "Supprimer l'élément"));	
 			methodsOnePanel.add(new JLabel(methods.get(i)));
 			
 			methodPanel.add(methodsOnePanel);
