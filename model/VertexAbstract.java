@@ -14,4 +14,8 @@ public class VertexAbstract extends VertexClass {
 		super();
 		this.frenchName = "classe abstraite";
 	}
+	
+	public String getUml() {
+		return "abstract";
+	}
 }

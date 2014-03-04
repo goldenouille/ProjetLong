@@ -5,13 +5,13 @@ import model.*;
 public class PseudoAttribute {
         private String name;
         private int id;
+		private String visibility;
+        private int motherId;
+        private String type;
+        
         public PseudoAttribute() {
 		}
 
-		private Visibility visibility;
-        private int motherId;
-        private Type type;
-        
         public void setName(String s) {
                 this.name = s;
         }
@@ -29,10 +29,11 @@ public class PseudoAttribute {
         }
         
         public void setVisibility(String s) {
-                this.visibility = Visibility.getByName(s);
+        		System.out.println("att n°"+ id + "  setVisibility : " + s);
+                this.visibility = s;
         }
         
-        public Visibility getVisibility() {
+        public String getVisibility() {
                 return this.visibility;
         }
         
@@ -45,10 +46,10 @@ public class PseudoAttribute {
         }
         
         public void setType(String s) {
-                this.type = TypeBase.getByName(s);
+                this.type = s;
         }
         
-        public Type getType() {
+        public String getType() {
                 return this.type;
         }
         

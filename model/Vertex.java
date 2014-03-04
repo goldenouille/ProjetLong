@@ -23,6 +23,10 @@ public class Vertex implements Type, GraphItem {
 		this.edges = new ArrayList<Edge>();
 		this.frenchName = "interface";
 	}
+	
+	public String getUml() {
+		return "interface";
+	}
 
 	public String getName() {
 		return this.name;

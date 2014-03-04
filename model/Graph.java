@@ -40,4 +40,25 @@ public class Graph {
 	public void setIdTable(HashMap<Integer, GraphItem> iT) {
 		this.idTable = iT;
 	}
+
+	public ArrayList<Vertex> getVertex() {
+		return vertex;
+	}
+
+	public ArrayList<Edge> getEdges() {
+		return edges;
+	}
+
+	public ArrayList<Attribute> getAttributes() {
+		return attributes;
+	}
+
+	public ArrayList<Method> getMethods() {
+		return methods;
+	}
+
+	public HashMap<Integer, GraphItem> getIdTable() {
+		return idTable;
+	}
+	
 }

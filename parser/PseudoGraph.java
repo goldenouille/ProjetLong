@@ -75,7 +75,7 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                Attribute gi = new Attribute(patt.getName(),patt.getType(),patt.getVisibility());
+                                Attribute gi = new Attribute(patt.getName(),TypeBase.getByName(patt.getType()),Visibility.getByName(patt.getVisibility()),(Vertex) map.get(patt.getMotherId()),patt.getId());
                                 g.addAttribute(gi);
                                 map.put(id, gi);
                        }

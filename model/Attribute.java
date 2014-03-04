@@ -13,6 +13,15 @@ public class Attribute implements GraphItem{
 		this.frenchName = "attribut";
 	}
 
+	public Attribute (String name, Type type, Visibility visibility, Vertex mother, int id) {
+		this.name = name;
+		this.type = type;
+		this.visibility = visibility; 
+		this.frenchName = "attribut";
+		this.motherClass = mother;
+		this.id = id;
+	}
+	
 	public Attribute (String name, Type type, Visibility visibility) {
 		this.name = name;
 		this.type = type;

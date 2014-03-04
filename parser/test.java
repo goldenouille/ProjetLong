@@ -18,12 +18,16 @@ public class test {
 	public static void main (String[] args) throws FileNotFoundException, IOException, SAXException {
 		Parser p = new Parser();
 		Exercise e = p.parse(new FileInputStream(args[0]));
-		ModelController mc = new ModelController();
+		
+		/*ModelController mc = new ModelController();
 	   mc.setExercise(e);
 		
 		ClassicGuiController gc = new ClassicGuiController(mc);
 		mc.setCGC(gc);
 		
 		e.init();
+		*/
+		System.out.println(e.getParts().get(0).getGraph().getAttributes().get(0).getId());
+		System.out.println(p.parse(e));
 	}
 }

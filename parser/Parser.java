@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -61,7 +62,7 @@ public class Parser {
   	return digester.parse(file);
   }
   
-  public void parse (Exercise exo, OutputStream file) {
+  public String parse (Exercise exo) {
   	
   	String res = "<exercise name=\"" + exo.getName() + "\">\n";
   	Part p;
@@ -71,14 +72,14 @@ public class Parser {
   	
   	for (int i=0; i<exo.getParts().size(); i++) {
   		p = exo.getParts().get(i);
-  		res += "\t<part name=\"" + p.getName() + "\">\n";
+  		res += "\t<part name=\"" + p.getName() + "\">\n\t\t";
   		for(int j=0; j<p.getText().size(); j++) {
   			w = p.getText().get(j);
   			if (w.isKeyWord()) {
   				if (isBody) {
   					res += " \"/>";
   				}
-  				res += "\t\t<kw id='" + nbKeyWord + "' word=\"" + w.getWord() + " \"/>";
+  				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + " \"/>";
   				nbKeyWord++;
   				isBody = false;
   			}
@@ -93,13 +94,44 @@ public class Parser {
   		if (isBody) {
   			res += " \"/>";
   		}
-  		res ="\n\n";
+  		res +="\n\n\t\t<UML>\n";
   		
-  		//TODO UML
-  	res += "\t</part>";
+  		Graph g = p.getGraph();
+  		ArrayList<Attribute> al = g.getAttributes();
+  		for (int j=0; j<al.size(); j++) {
+  			res += "\t\t\t <uml-attribute name= \"" + al.get(j).getName();
+  			res += "\" id= '" + al.get(j).getId();
+  			res += "' Type= \"" + al.get(j).getType();
+  			res += "\" visibility= \"" +al.get(j).getVisibility();
+  			res += "\" motherId= '" + al.get(j).getMotherClass().getId() + "' />\n"; 
+  		}
+  		
+  		ArrayList<Method> ml = g.getMethods();
+  		for (int j=0; j<ml.size(); j++) {
+  			res += "\t\t\t <uml-method name= \"" + al.get(j).getName();
+  			res += "\" id= '" + al.get(j).getId();
+  			res += "' Type= \"" + al.get(j).getType();
+  			res += "\" visibility= \"" +al.get(j).getVisibility();
+  			res += "\" motherId= '" + al.get(j).getMotherClass().getId() + "' />\n"; 
+  			for (int k=0; k<ml.get(j).getParamType().size(); k++) {
+  				res += "\t\t\t\t<param Type = \"" + ml.get(j).getParamType().get(k)  + "\"/>\n";
+  			}
+  		}
+  		
+  		ArrayList<Vertex> vl = g.getVertex();
+  		for (int j=0; j<vl.size(); j++) {
+  			res += "\t\t\t <uml-" + vl.get(j).getUml() + " name= \"" + vl.get(j).getName() + "\" id= '" + vl.get(j).getId() + "' />\n";
+  		}
+  		
+  		res += "\t\t</UML>\n";
+  		
+  		
+  	res += "\t</part>\n";
   	}
   	
-  	res += "</exercise>";
-  	
+  	res += "</exercise>\n";
+  
+  	return res;
   }
+  
 }
