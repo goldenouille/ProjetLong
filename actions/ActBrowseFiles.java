@@ -5,14 +5,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 
-import splash.SplashFrame;
+import splash.SplashController;
 
 public class ActBrowseFiles extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-	private SplashFrame splash;
+	private SplashController splash;
 
-	public ActBrowseFiles(SplashFrame splash, String string) {
+	public ActBrowseFiles(SplashController splash, String string) {
 		super(string);
 		this.splash = splash;
 	}

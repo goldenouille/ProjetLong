@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import splash.SplashFrame;
+import splash.SplashController;
 
 public class ActStartExercise extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-	private SplashFrame splash;
+	private SplashController splash;
 
-	public ActStartExercise(SplashFrame splash, String string) {
+	public ActStartExercise(SplashController splash, String string) {
 		super(string);
 		this.splash = splash;
 	}
