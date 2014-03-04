@@ -15,6 +15,20 @@ public class LinkEditionPanel extends JPanel {
 	private JTextField daughterMultiplicityField;
 	private JTextField textField;
 
+	/**
+	 * Main constructor, create a LinkEditionPanel
+	 * 
+	 * @param motherClass
+	 *            main class name
+	 * @param motherMultiplicity
+	 *            main class multiplicity
+	 * @param daughterClass
+	 *            second class name
+	 * @param daughterMultiplicity
+	 *            second class multiplicity
+	 * @param text
+	 *            previous link text
+	 */
 	public LinkEditionPanel(String motherClass, String motherMultiplicity, String daughterClass, String daughterMultiplicity, String text){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -38,14 +52,29 @@ public class LinkEditionPanel extends JPanel {
 		this.add(textPanel);
 	}
 
+	/**
+	 * Get main class multipiclicity
+	 * 
+	 * @return multiplicity text
+	 */
 	public String getMotherMultiplicity() {
 		return motherMultiplicityField.getText();
 	}
 
+	/**
+	 * Get second class multipiclicity
+	 * 
+	 * @return multiplicity text
+	 */
 	public String getDaughterMultiplicity() {
 		return daughterMultiplicityField.getText();
 	}
 
+	/**
+	 * Get link text
+	 * 
+	 * @return text
+	 */
 	public String getText() {
 		return textField.getText();
 	}

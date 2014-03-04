@@ -9,6 +9,7 @@ public class Exercise {
 	private ModelController modelController;
 	
 	private String name;
+	private String preview;
 
 	private ArrayList<Word> text;
 	private ArrayList<Word> userText;
@@ -75,6 +76,14 @@ public class Exercise {
 	}
 	public String getName() {
 		return this.name;
+	}
+
+	public String getPreview() {
+		return preview;
+	}
+
+	public void setPreview(String preview) {
+		this.preview = preview;
 	}
 
 	public ArrayList<Word> getUserText() {

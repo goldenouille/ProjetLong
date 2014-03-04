@@ -29,7 +29,6 @@ public class PseudoAttribute {
         }
         
         public void setVisibility(String s) {
-        		System.out.println("att n°"+ id + "  setVisibility : " + s);
                 this.visibility = s;
         }
         

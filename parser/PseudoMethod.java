@@ -7,10 +7,14 @@ import model.*;
 public class PseudoMethod {
         private String name;
         private int id;
-        private Visibility visibility;
+        private String visibility;
         private int motherId;
-        private Type type;
-        private ArrayList<Type> params;
+        private String type;
+        private ArrayList<String> params;
+        
+        public PseudoMethod() {
+        	this.params = new ArrayList<String>();
+        }
         
         public void setName(String s) {
                 this.name = s;
@@ -29,10 +33,10 @@ public class PseudoMethod {
         }
         
         public void setVisibility(String s) {
-                this.visibility = Visibility.getByName(s);
+                this.visibility = s;
         }
         
-        public Visibility getVisibility() {
+        public String getVisibility() {
                 return this.visibility;
         }
         
@@ -45,22 +49,31 @@ public class PseudoMethod {
         }
         
         public void setType(String s) {
-                this.type = TypeBase.getByName(s);
+                this.type = s;
         }
         
-        public Type getType() {
+        public String getType() {
                 return this.type;
         }
         
-        public void setParams(ArrayList<Type> lt) {
-                this.params = lt;
+        public void setParams(ArrayList<String> ls) {
+                this.params = ls;
         }
         
-        public ArrayList<Type> getParams() {
+        public ArrayList<String> getParams() {
                 return this.params;
         }
         
-        public void addParam(String param) {
-                this.params.add((Type) TypeBase.getByName(param));
+        public void addParam(PseudoParam param) {
+                this.params.add(param.getType());
+        }
+        
+        public ArrayList<Type> getParamsType() {
+        	ArrayList<Type> lt = new ArrayList<Type>();
+        	System.out.println("size : " + params.size());
+        	for (int i=0; i<params.size(); i++) {
+        		lt.add(TypeBase.getByName(params.get(i)));
+        	}
+        	return lt;
         }
 }
