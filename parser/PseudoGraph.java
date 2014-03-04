@@ -89,7 +89,7 @@ public class PseudoGraph {
                                 throw new ParserException("id inconnu");
                         }
                         else {
-                                Method gi = new Method( pm.getName(),pm.getType(), pm.getVisibility(), pm.getParams());
+                                Method gi = new Method( pm.getName(),TypeBase.getByName(pm.getType()), Visibility.getByName(pm.getVisibility()), pm.getParamsType());
                                 g.addMethod(gi);
                                 map.put(id, gi);
                        }
