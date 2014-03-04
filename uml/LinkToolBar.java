@@ -37,7 +37,7 @@ public class LinkToolBar extends JToolBar {
 
 		// NO LINK BUTTON
 		button = new JButton();
-	    button.setToolTipText("Déplacer des éléments");//"Go back to mouse movement"
+	    button.setToolTipText("Deplacer des elements");//"Go back to mouse movement"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -50,7 +50,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// LINK_EDITION BUTTON
 				button = new JButton();
-			    button.setToolTipText("Editer les propriétés d'une relation");//"Edit link properties"
+			    button.setToolTipText("Editer les proprietes d'une relation");//"Edit link properties"
 			    button.addActionListener(new ActionListener() {
 			    	@Override
 		        	public void actionPerformed(ActionEvent ae) {
@@ -89,7 +89,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// REALIZATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une ralation de réalisation");//"Create realization link"
+	    button.setToolTipText("Creer une ralation de realisation");//"Create realization link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -102,7 +102,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// GENERALIZATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une relation de généralisation");//"Create generalization link"
+	    button.setToolTipText("Creer une relation de generalisation");//"Create generalization link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -115,7 +115,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// DEPENDANCY BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une relation de dépendance");//"Create dependancy link"
+	    button.setToolTipText("Creer une relation de dependance");//"Create dependancy link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -128,7 +128,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// BINARY ASSOCIATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une relation d'association binaire");//"Create binary association link"
+	    button.setToolTipText("Creer une relation d'association binaire");//"Create binary association link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -141,7 +141,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// AGGREGATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une relation d'agrégation");//"Create aggregation link"
+	    button.setToolTipText("Creer une relation d'agregation");//"Create aggregation link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
@@ -154,7 +154,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// COMPOSITION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Créer une relation de composition");//"Create composition link");
+	    button.setToolTipText("Creer une relation de composition");//"Create composition link");
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {
