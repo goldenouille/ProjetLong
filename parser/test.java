@@ -27,7 +27,6 @@ public class test {
 		
 		e.init();
 		*/
-		System.out.println(e.getParts().get(0).getGraph().getAttributes().get(0).getId());
 		System.out.println(p.parse(e));
 	}
 }

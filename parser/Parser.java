@@ -23,6 +23,9 @@ public class Parser {
 	
 	private Digester digester;
 	
+	
+	/*  This constructor initialize the xml parser with all the rules nedded to create an exercise. 
+	 */
 	public Parser() {
 		this.digester = new Digester();
 		digester.setValidating( false );
@@ -60,11 +63,17 @@ public class Parser {
 		  
 	}
 
+	/* 
+	 * This fonction create an exercise from a xml file given
+	 */
   public Exercise parse (InputStream file) throws IOException, SAXException {
   	System.out.println("parsing ...");
   	return digester.parse(file);
   }
   
+  /*
+   * This fonction create an xml String describing the given exercise
+   */
   public String parse (Exercise exo) {
   	
   	String res = "<exercise name=\"" + exo.getName();
@@ -75,7 +84,6 @@ public class Parser {
   	Part p;
   	Word w;
   	boolean isBody = false;
-  	int nbKeyWord=0;
   	
   	for (int i=0; i<exo.getParts().size(); i++) {
   		p = exo.getParts().get(i);
@@ -87,7 +95,6 @@ public class Parser {
   					res += " \"/>";
   				}
   				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + " \"/>";
-  				nbKeyWord++;
   				isBody = false;
   			}
   			else {
