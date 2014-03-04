@@ -106,12 +106,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
-		/*
+		
 		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
 		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
 		this.doAddingElementToPool("myproperty", ELEMENT_PROPERTY);
 		this.doAddingElementToPool("mymethod", ELEMENT_METHOD);
-		*/
+		
 		// TODO END TEST
 		
 		this.repaint();
