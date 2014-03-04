@@ -109,6 +109,46 @@ public class ClassicGuiController implements GuiController {
 		JOptionPane.showMessageDialog(mainFrame, message, title, JOptionPane.WARNING_MESSAGE);
 	}
 
+	/**
+	 * Sends to the core the user's request to validate his keyword selection.
+	 */
+	public void askValidateKeywords() {
+		// TODO Auto-generated method stub
+
+		// System.out.println("askValidateKeywords");
+		//
+		// int[] tab = getActiveTextPanel().getSelection();
+		// int start = -1, end = -1;
+		// for (int i = 0; i < tab.length - 1; i++) {
+		// if (start == -1 && tab[i] != 0)
+		// start = i;
+		// if (end == -1 && start != -1 && tab[i + 1] == 0)
+		// end = i;
+		// }
+		// try {
+		// doValidateText(start, end, userTextFocus);
+		// } catch (BadLocationException e) {
+		// e.printStackTrace();
+		// }
+	}
+
+	/**
+	 * Sends to the core the user's request to validate his keyword Uml
+	 * association.
+	 */
+	public void askValidateAssociation() {
+		// TODO Auto-generated method stub
+		// System.out.println("askValidateAssociation");
+	}
+
+	/**
+	 * Sends to the core the user's request to validate his Uml diagram
+	 */
+	public void askValidateDiagram() {
+		// TODO Auto-generated method stub
+		// System.out.println("askValidateAssociation");
+	}
+
 	// ******************************************************************************************************//
 	// **********************************************Text_methods********************************************//
 	// ******************************************************************************************************//
@@ -174,46 +214,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public Object[] askUmlInstancesNatures() {
 		return core.askUmlInstancesNatures();
-	}
-
-	/**
-	 * Sends to the core the user's request to validate his keyword selection.
-	 */
-	public void askValidateKeywords() {
-		// TODO Auto-generated method stub
-
-		// System.out.println("askValidateKeywords");
-		//
-		// int[] tab = getActiveTextPanel().getSelection();
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doValidateText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
-	}
-
-	/**
-	 * Sends to the core the user's request to validate his keyword Uml
-	 * association.
-	 */
-	public void askValidateAssociation() {
-		// TODO Auto-generated method stub
-		// System.out.println("askValidateAssociation");
-	}
-	
-	/**
-	 * Sends to the core the user's request to validate his Uml diagram
-	 */
-	public void askValidateDiagram() {
-		// TODO Auto-generated method stub
-		// System.out.println("askValidateAssociation");
 	}
 
 	/**
@@ -337,137 +337,6 @@ public class ClassicGuiController implements GuiController {
 
 		// System.out.println("askCreateMethod " + name + " " +
 		// paramTypes.toString() + " " + returnType + " " + visibility);
-	}
-
-	/**
-	 * Sends to the core the user's request to edit the given class instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditClass(Object id, String name) {
-		// core.askCreateClass(firstWord, lastWord, userText, name);
-
-		System.out.println("askEditClass " + name);
-	}
-
-	/**
-	 * Sends to the core the user's request to edit the given abstract class
-	 * instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditAbstractClass(Object id, String name) {
-		// core.askCreateAbstractClass(firstWord, lastWord, userText, name);
-
-		System.out.println("askEditAbstractClass " + name);
-	}
-
-	/**
-	 * Sends to the core the user's request to edit the given interface instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditInterface(Object id, String name) {
-		// core.askCreateInterface(firstWord, lastWord, userText, name);
-
-		System.out.println("askEditInterface " + name);
-	}
-
-	/**
-	 * Sends to the core the user's request to edit the given attribute instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 * @param type
-	 *            type wanted for the new instance
-	 * @param visibility
-	 *            visibility wanted for the new instance
-	 */
-	private void askEditAttribute(Object id, String name, String type, String visibility) {
-		// core.askCreateAttribute(firstWord, lastWord, userText, name, type,
-		// visibility);
-
-		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
-	}
-
-	/**
-	 * Sends to the core the user's request to edit the given method instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 * @param paramTypes
-	 *            list of the parameters types wanted for the new instance
-	 * @param returnType
-	 *            returnType wanted for the new instance
-	 * @param visibility
-	 *            visibility wanted for the new instance
-	 */
-	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		// core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes,
-		// returnType, visibility);
-
-		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
-	}
-
-	/**
-	 * Ask the core about the name of the Uml instance corresponding to the
-	 * defined keyword
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @return name of the instance
-	 */
-	public String askUmlInstanceName(Object id) {
-		return core.askUmlInstanceName(id);
-	}
-
-	/**
-	 * Ask the core about the type or return type of the Uml instance
-	 * corresponding to the defined keyword
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @return type or return type of the instance
-	 */
-	public String askUmlInstanceType(Object id) {
-		return core.askUmlInstanceType(id);
-	}
-
-	/**
-	 * Ask the core about the visibility of the Uml instance corresponding to
-	 * the defined keyword
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @return visibility of the instance
-	 */
-	public String askUmlInstanceVisibility(Object id) {
-		return core.askUmlInstanceVisibility(id);
-	}
-
-	/**
-	 * Ask the core about the param types of the Uml instance corresponding to
-	 * the defined keyword
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @return param types of the instance
-	 */
-	public ArrayList<String> askUmlInstanceParamTypes(Object id) {
-		return core.askUmlInstanceParamTypes(id);
 	}
 
 	// ***//
@@ -640,59 +509,6 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Shows a pop-up allowing to specify properties of an existing uml instance
-	 * of the given nature, bound to the specified expression. Calls the
-	 * associated instance edition method if user validates.
-	 * 
-	 * @param firstWord
-	 *            index of expression first word
-	 * @param lastWord
-	 *            index of expression last word
-	 * @param userText
-	 *            true if expression belongs to the user's text
-	 * @param nature
-	 *            UMLNature of the instance
-	 * @throws BadLocationException
-	 *             if expression does not exist
-	 */
-	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
-		String keyword = id.toString();
-		if (nature.equals(UMLNature.CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe", JOptionPane.OK_CANCEL_OPTION);
-			if (result == JOptionPane.OK_OPTION) {
-				askEditClass(id, panel.getVertexName());
-			}
-		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
-			if (result == JOptionPane.OK_OPTION) {
-				askEditAbstractClass(id, panel.getVertexName());
-			}
-		} else if (nature.equals(UMLNature.INTERFACE)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'interface", JOptionPane.OK_CANCEL_OPTION);
-			if (result == JOptionPane.OK_OPTION) {
-				askEditInterface(id, panel.getVertexName());
-			}
-		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceType(id), askUmlInstanceVisibility(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'attribut", JOptionPane.OK_CANCEL_OPTION);
-			if (result == JOptionPane.OK_OPTION) {
-				askEditAttribute(id, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
-			}
-		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceParamTypes(id), askUmlInstanceType(id),
-					askUmlInstanceVisibility(id));
-			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Editon de methode", JOptionPane.OK_CANCEL_OPTION);
-			if (result == JOptionPane.OK_OPTION) {
-				askEditMethod(id, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
-			}
-		}
-	}
-
-	/**
 	 * Shows a pop-up allowing to enter some new text and a comment. Calls
 	 * askAddText method if user validates.
 	 */
@@ -807,6 +623,200 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public Font getTextFont() {
 		return textPanel.getFont();
+	}
+
+	// ******************************************************************************************************//
+	// ******************************************Uml_section_methods*****************************************//
+	// ******************************************************************************************************//
+
+	// ****//
+	// Ask //
+	// ****//
+
+	/**
+	 * Sends to the core the user's request to edit the given class instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditClass(Object id, String name) {
+		core.askEditClass(id, name);
+
+		//System.out.println("askEditClass " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to edit the given abstract class
+	 * instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditAbstractClass(Object id, String name) {
+		core.askEditAbstractClass(id, name);
+
+		//System.out.println("askEditAbstractClass " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to edit the given interface instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 */
+	private void askEditInterface(Object id, String name) {
+		core.askEditInterface(id, name);
+
+		//System.out.println("askEditInterface " + name);
+	}
+
+	/**
+	 * Sends to the core the user's request to edit the given attribute instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param type
+	 *            type wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditAttribute(Object id, String name, String type, String visibility) {
+		core.askEditAttribute(id, name, type,visibility);
+
+		//System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
+	}
+
+	/**
+	 * Sends to the core the user's request to edit the given method instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param name
+	 *            name wanted for the new instance
+	 * @param paramTypes
+	 *            list of the parameters types wanted for the new instance
+	 * @param returnType
+	 *            returnType wanted for the new instance
+	 * @param visibility
+	 *            visibility wanted for the new instance
+	 */
+	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		core.askEditMethod(id, name, paramTypes, returnType, visibility);
+
+		//System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
+	}
+
+	/**
+	 * Ask the core about the name of the Uml instance corresponding to the
+	 * defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return name of the instance
+	 */
+	public String askUmlInstanceName(Object id) {
+		return core.askUmlInstanceName(id);
+	}
+
+	/**
+	 * Ask the core about the type or return type of the Uml instance
+	 * corresponding to the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return type or return type of the instance
+	 */
+	public String askUmlInstanceType(Object id) {
+		return core.askUmlInstanceType(id);
+	}
+
+	/**
+	 * Ask the core about the visibility of the Uml instance corresponding to
+	 * the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return visibility of the instance
+	 */
+	public String askUmlInstanceVisibility(Object id) {
+		return core.askUmlInstanceVisibility(id);
+	}
+
+	/**
+	 * Ask the core about the param types of the Uml instance corresponding to
+	 * the defined keyword
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return param types of the instance
+	 */
+	public ArrayList<String> askUmlInstanceParamTypes(Object id) {
+		return core.askUmlInstanceParamTypes(id);
+	}
+	
+	// ***//
+	// Do //
+	// ***//
+	
+	/**
+	 * Shows a pop-up allowing to specify properties of an existing uml instance
+	 * of the given nature, bound to the specified expression. Calls the
+	 * associated instance edition method if user validates.
+	 * 
+	 * @param firstWord
+	 *            index of expression first word
+	 * @param lastWord
+	 *            index of expression last word
+	 * @param userText
+	 *            true if expression belongs to the user's text
+	 * @param nature
+	 *            UMLNature of the instance
+	 * @throws BadLocationException
+	 *             if expression does not exist
+	 */
+	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
+		String keyword = id.toString();
+		if (nature.equals(UMLNature.CLASS)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditClass(id, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditAbstractClass(id, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'interface", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditInterface(id, panel.getVertexName());
+			}
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceType(id), askUmlInstanceVisibility(id));
+			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'attribut", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditAttribute(id, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+			}
+		} else if (nature.equals(UMLNature.METHOD)) {
+			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceParamTypes(id), askUmlInstanceType(id),
+					askUmlInstanceVisibility(id));
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Editon de methode", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				askEditMethod(id, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
+			}
+		}
 	}
 
 	// ******************************************************************************************************//
