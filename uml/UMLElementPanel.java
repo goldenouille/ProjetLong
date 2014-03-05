@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -65,6 +66,8 @@ public class UMLElementPanel extends JPanel {
 	public UMLElementPanel(UMLDrawingPanel mainPanel) {
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
+		
 		this.mainPanel = mainPanel;
 		this.resetSelectedElement();
 		this.subPanel = new JPanel();
@@ -82,7 +85,7 @@ public class UMLElementPanel extends JPanel {
 		missingUMLDrawing = 0;
 
 		this.refresh();
-		this.add(Box.createRigidArea(new Dimension(0, 20)));
+		this.add(Box.createRigidArea(new Dimension(140, 20)));
 
 		validationButton = new JButton("Valider diagramme");
 		validationButton.setToolTipText("Valider le diagramme UML");

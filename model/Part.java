@@ -141,7 +141,7 @@ public class Part {
 	}
 
 	public String toString() {
-		return "test part";
+		return name;
 	}
 
 }

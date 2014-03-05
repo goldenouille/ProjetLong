@@ -1,18 +1,21 @@
 package uml;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
-
 
 public class LinkToolBar extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int state;
-	
+
 	// State constants
 	public static final int NO_LINK = -1;
 	public static final int LINK_EDITION = -2;
@@ -30,140 +33,142 @@ public class LinkToolBar extends JToolBar {
 	 */
 	public LinkToolBar() {
 		JButton button = null;
-		
+
+		this.setLayout(new FlowLayout(FlowLayout.CENTER));
+		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createEmptyBorder()));
 		this.setFloatable(false);
 		this.setRollover(true);
 		state = NO_LINK;
 
 		// NO LINK BUTTON
 		button = new JButton();
-	    button.setToolTipText("Deplacer des elements");//"Go back to mouse movement"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(NO_LINK);
-        	}
-	    });
-	    button.setText("M");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Deplacer des elements");// "Go back to mouse movement"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(NO_LINK);
+			}
+		});
+		button.setText("M");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// LINK_EDITION BUTTON
-				button = new JButton();
-			    button.setToolTipText("Editer les proprietes d'une relation");//"Edit link properties"
-			    button.addActionListener(new ActionListener() {
-			    	@Override
-		        	public void actionPerformed(ActionEvent ae) {
-		        		setState(LINK_EDITION);
-		        	}
-			    });
-			    button.setText("Ed");
-			    // TODO button.setIcon(new ImageIcon(imageURL, altText));
-				this.add(button);
-		
+		button = new JButton();
+		button.setToolTipText("Editer les proprietes d'une relation");// "Edit link properties"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(LINK_EDITION);
+			}
+		});
+		button.setText("Ed");
+		this.add(button);
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// CHANGE_DIRECTION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Changer la direction d'une relation");//"Change link direction"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(CHANGE_DIRECTION);
-        	}
-	    });
-	    button.setText("CD");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Changer la direction d'une relation");// "Change link direction"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(CHANGE_DIRECTION);
+			}
+		});
+		button.setText("CD");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// REMOVE LINK BUTTON
 		button = new JButton();
-	    button.setToolTipText("Supprimer une relation");//"Remove link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(REMOVE_LINK);
-        	}
-	    });
-	    button.setText("RL");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Supprimer une relation");// "Remove link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(REMOVE_LINK);
+			}
+		});
+		button.setText("RL");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// REALIZATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation de realisation");//"Create realization link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(REALIZATION);
-        	}
-	    });
-	    button.setText("R");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation de realisation");// "Create realization link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(REALIZATION);
+			}
+		});
+		button.setText("R");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// GENERALIZATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation de generalisation");//"Create generalization link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(GENERALIZATION);
-        	}
-	    });
-	    button.setText("G");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation de generalisation");// "Create generalization link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(GENERALIZATION);
+			}
+		});
+		button.setText("G");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// DEPENDANCY BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation de dependance");//"Create dependancy link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(DEPENDANCY);
-        	}
-	    });
-	    button.setText("D");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation de dependance");// "Create dependancy link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(DEPENDANCY);
+			}
+		});
+		button.setText("D");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// BINARY ASSOCIATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation d'association binaire");//"Create binary association link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(BINARY_ASSOCIATION);
-        	}
-	    });
-	    button.setText("BA");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation d'association binaire");// "Create binary association link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(BINARY_ASSOCIATION);
+			}
+		});
+		button.setText("BA");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// AGGREGATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation d'agregation");//"Create aggregation link"
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(AGGREGATION);
-        	}
-	    });
-	    button.setText("A");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation d'agregation");// "Create aggregation link"
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(AGGREGATION);
+			}
+		});
+		button.setText("A");
 		this.add(button);
-		
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
 		// COMPOSITION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une relation de composition");//"Create composition link");
-	    button.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		setState(COMPOSITION);
-        	}
-	    });
-	    button.setText("C");
-	    // TODO button.setIcon(new ImageIcon(imageURL, altText));
+		button.setToolTipText("Creer une relation de composition");// "Create composition link");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setState(COMPOSITION);
+			}
+		});
+		button.setText("C");
 		this.add(button);
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
 	}
 
 	/**
@@ -214,9 +219,9 @@ public class LinkToolBar extends JToolBar {
 			this.state = NO_LINK;
 			break;
 		}
-		
+
 	}
-	
+
 	/**
 	 * Get if tool bar state is a link setting state
 	 * 
@@ -224,14 +229,11 @@ public class LinkToolBar extends JToolBar {
 	 */
 	public boolean isInLinkRelationState() {
 		boolean result = true;
-		
-		if (this.state == NO_LINK
-				|| this.state == LINK_EDITION
-				|| this.state == CHANGE_DIRECTION
-				|| this.state == REMOVE_LINK) {
+
+		if (this.state == NO_LINK || this.state == LINK_EDITION || this.state == CHANGE_DIRECTION || this.state == REMOVE_LINK) {
 			result = false;
 		}
-		
+
 		return result;
 	}
 }
