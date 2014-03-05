@@ -31,6 +31,7 @@ public class UMLElementPanel extends JPanel {
 	private Object selectedElementID;
 	
 	private Vector<Object> classesID;
+	private Vector<UMLNature> classesNature;
 	private Vector<String> classes;
 	private Vector<Object> propertiesID;
 	private Vector<String> properties;
@@ -51,6 +52,7 @@ public class UMLElementPanel extends JPanel {
 		this.add(subPanel);
 		
 		classesID = new Vector<Object>();
+		classesNature = new Vector<UMLNature>();
 		classes = new Vector<String>();
 		propertiesID = new Vector<Object>();
 		properties = new Vector<String>();
@@ -343,13 +345,13 @@ public class UMLElementPanel extends JPanel {
 	public String getSelectedElementName() {
 		String elementName = "";
 		if (selectedElementType.equals(UMLNature.CLASS)) {
-			elementName = classes.get(selectedElementID);
+			elementName = classes.get(classesID.indexOf(selectedElementID));
 		}
 		else if (selectedElementType.equals(UMLNature.ATTRIBUTE)) {
-			elementName = properties.get(selectedElementID);
+			elementName = properties.get(propertiesID.indexOf(selectedElementID));
 		}
 		else if (selectedElementType.equals(UMLNature.METHOD)) {
-			elementName = methods.get(selectedElementID);
+			elementName = methods.get(methodsID.indexOf(selectedElementID));
 		}
 		return elementName;
 	}
