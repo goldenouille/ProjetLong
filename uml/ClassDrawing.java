@@ -6,6 +6,8 @@ import java.util.Vector;
 
 
 public class ClassDrawing {
+	
+	private UMLDrawingPanel drawingPanel;
 
 	private int x;
 	private int y;
@@ -15,8 +17,8 @@ public class ClassDrawing {
 	
 	private String classtype = "";
 	private String name = "";
-	private Vector<String> properties;
-	private Vector<String> methods;
+	private Vector<Object> propertiesID;
+	private Vector<Object> methodsID;
 
 	/**
 	 * Main constructor, create a ClassDrawing representation of a class
@@ -28,9 +30,11 @@ public class ClassDrawing {
 	 * @param y
 	 *            class y-axis drawing position
 	 */
-	public ClassDrawing(String name, int x, int y) {
-		properties = new Vector<String>();
-		methods = new Vector<String>();
+	public ClassDrawing(UMLDrawingPanel drawingPanel, String name, int x, int y) {
+		this.drawingPanel = drawingPanel;
+		
+		propertiesID = new Vector<Object>();
+		methodsID = new Vector<Object>();
 		
 		setX(x);
 		setY(y);
@@ -110,7 +114,7 @@ public class ClassDrawing {
 	 *            if true, class drawing is reduced
 	 */
 	public void setReduced(boolean reduced) {
-		if (properties.size() != 0 || methods.size() != 0) {
+		if (propertiesID.size() != 0 || methodsID.size() != 0) {
 			this.reduced = reduced;
 		} else {
 			this.reduced = false;
@@ -159,46 +163,66 @@ public class ClassDrawing {
 	 * Add a property to draw
 	 * 
 	 * @param property
-	 *            "+ myproperty" text property
+	 *            property id to add
 	 */
-	public void addProperty(String property) {
-		properties.add(property);
+	public void addProperty(Object id) {
+		propertiesID.add(id);
 	}
 	
 	/**
 	 * Remove specified property to draw
 	 * 
 	 * @param property
-	 *            property text to remove
+	 *            property id to remove
 	 */
-	public void removeProperty(String property) {
-		properties.remove(property);
-		if (properties.size() == 0 && methods.size() == 0){
+	public void removeProperty(Object id) {
+		propertiesID.remove(id);
+		if (propertiesID.size() == 0 && methodsID.size() == 0){
 			reduced = false;
 		}
+	}
+	
+	/**
+	 * Return true if contains id property
+	 * 
+	 * @param id
+	 *            property id
+	 */
+	public boolean containProperty(Object id) {
+		return propertiesID.contains(id);
 	}
 	
 	/**
 	 * Add a method to draw
 	 * 
 	 * @param method
-	 *            "+ mymethod" text method
+	 *            method id to add
 	 */
-	public void addMethod(String method) {
-		methods.add(method);
+	public void addMethod(Object id) {
+		methodsID.add(id);
 	}
 	
 	/**
 	 * Remove specified method to draw
 	 * 
 	 * @param method
-	 *            method text to remove
+	 *            method id to remove
 	 */
-	public void removeMethod(String method) {
-		methods.remove(method);
-		if (properties.size() == 0 && methods.size() == 0){
+	public void removeMethod(Object id) {
+		methodsID.remove(id);
+		if (propertiesID.size() == 0 && methodsID.size() == 0){
 			reduced = false;
 		}
+	}
+	
+	/**
+	 * Return true if contains id method
+	 * 
+	 * @param id
+	 *            method id
+	 */
+	public boolean containMethod(Object id) {
+		return methodsID.contains(id);
 	}
 	
 	/**
@@ -214,14 +238,14 @@ public class ClassDrawing {
 		if (g.getFontMetrics().stringWidth(classtype) > stringWidth) {
 			stringWidth = g.getFontMetrics().stringWidth(classtype);
 		}
-		for (int i = 0; i < properties.size() ; i++) {
-			if (g.getFontMetrics().stringWidth(properties.get(i)) > stringWidth) {
-				stringWidth = g.getFontMetrics().stringWidth(properties.get(i));
+		for (int i = 0; i < propertiesID.size() ; i++) {
+			if (g.getFontMetrics().stringWidth(drawingPanel.getAttributeName(propertiesID.get(i))) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getAttributeName(propertiesID.get(i)));
 			}
 		}
-		for (int i = 0; i < methods.size() ; i++) {
-			if (g.getFontMetrics().stringWidth(methods.get(i)) > stringWidth) {
-				stringWidth = g.getFontMetrics().stringWidth(methods.get(i));
+		for (int i = 0; i < methodsID.size() ; i++) {
+			if (g.getFontMetrics().stringWidth(drawingPanel.getMethodName(methodsID.get(i))) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getMethodName(methodsID.get(i)));
 			}
 		}
 		width = stringWidth + 8;
@@ -234,23 +258,23 @@ public class ClassDrawing {
 		actualHeight += g.getFont().getSize();
 		g.drawString(name, x + width/2 - g.getFontMetrics().stringWidth(name)/2, y + actualHeight);
 		
-		if (properties.size() != 0) {
+		if (propertiesID.size() != 0) {
 			actualHeight += 4;
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
 			if (!this.isReduced()) {
-				for (int i = 0; i < properties.size() ; i++) {
+				for (int i = 0; i < propertiesID.size() ; i++) {
 					actualHeight += g.getFont().getSize();
-					g.drawString(properties.get(i), x + 4, y + actualHeight);
+					g.drawString(drawingPanel.getAttributeName(propertiesID.get(i)), x + 4, y + actualHeight);
 				}
 			}
 		}
-		if (methods.size() != 0) {
+		if (methodsID.size() != 0) {
 			actualHeight += 4;
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
 			if (!this.isReduced()) {
-				for (int i = 0; i < methods.size() ; i++) {
+				for (int i = 0; i < methodsID.size() ; i++) {
 					actualHeight += g.getFont().getSize();
-					g.drawString(methods.get(i), x + 4, y + actualHeight);
+					g.drawString(drawingPanel.getMethodName(methodsID.get(i)), x + 4, y + actualHeight);
 				}
 			}
 		}
