@@ -84,10 +84,10 @@ public class UMLElementPanel extends JPanel {
 			
 			//classesOnePanel.setPreferredSize(new Dimension(this.getSize().width, 30));
 			//classesOnePanel.setLayout(new BoxLayout(classesOnePanel, BoxLayout.PAGE_AXIS));
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLNature.CLASS, classesID.get(i), "+", "Ajouter à la zone de dessin, au clique"));
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLNature.CLASS, classesID.get(i), "-", "Retirer de la zone de dessin"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLNature.CLASS, classesID.get(i), "E", "Editer les proprietes"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLNature.CLASS, classesID.get(i), "D", "Supprimer l'element"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, classesNature.get(i), classesID.get(i), "+", "Ajouter à la zone de dessin, au clique"));
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, classesNature.get(i), classesID.get(i), "-", "Retirer de la zone de dessin"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, classesNature.get(i), classesID.get(i), "E", "Editer les proprietes"));	
+		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, classesNature.get(i), classesID.get(i), "D", "Supprimer l'element"));	
 			classesOnePanel.add(new JLabel(classes.get(i)));
 			
 			classesPanel.add(classesOnePanel);
@@ -152,8 +152,9 @@ public class UMLElementPanel extends JPanel {
 	 * @param name
 	 *            class name
 	 */
-	public void addClass(Object id, String name) {
+	public void addClass(Object id, UMLNature nature, String name) {
 		classesID.add(id);
+		classesNature.add(nature);
 		classes.add(name);
 	}
 	
@@ -177,7 +178,19 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public boolean removeClass(Object id) {
 		classes.remove(classesID.indexOf(id));
+		classesNature.remove(classesID.indexOf(id));
 		return classesID.remove((Integer)id);
+	}
+	
+	/**
+	 * Return uml class nature
+	 * 
+	 * @param id
+	 *            class id to remove
+	 * @return UMLNature
+	 */
+	public UMLNature getClassNature(Object id) {
+		return classesNature.get(classesID.indexOf(id));
 	}
 
 	/**
@@ -344,7 +357,7 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public String getSelectedElementName() {
 		String elementName = "";
-		if (selectedElementType.equals(UMLNature.CLASS)) {
+		if (selectedElementType.equals(UMLNature.CLASS) || selectedElementType.equals(UMLNature.ABSTRACT_CLASS) || selectedElementType.equals(UMLNature.INTERFACE)) {
 			elementName = classes.get(classesID.indexOf(selectedElementID));
 		}
 		else if (selectedElementType.equals(UMLNature.ATTRIBUTE)) {

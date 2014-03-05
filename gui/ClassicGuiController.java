@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -12,9 +13,7 @@ import javax.swing.text.BadLocationException;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import uml.UMLDrawingPanel;
-
 import controller.ModelController;
-
 import model.UMLNature;
 
 public class ClassicGuiController implements GuiController {
@@ -777,6 +776,14 @@ public class ClassicGuiController implements GuiController {
 		core.askDeleteMethod(id);
 
 		// System.out.println("askDeleteMethod");
+	}
+	
+	public void askLinkAttributeToClass(Object attributeID, Object classID) {
+		core.askLinkAttributeToClass(attributeID, classID);
+	}
+	
+	public void askLinkMethodToClass(Object methodID, Object classID) {
+		core.askLinkMethodToClass(methodID, classID);
 	}
 
 	/**
