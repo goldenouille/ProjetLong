@@ -304,6 +304,29 @@ public class UMLElementPanel extends JPanel {
 	}
 	
 	/**
+	 * Get element name
+	 * 
+	 * @param id
+	 *            element id
+	 * @param nature
+	 *            element nature
+	 * @return element name
+	 */
+	public String getElementName(Object id, Object nature) {
+		String elementName = "";
+		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
+			elementName = classes.get(classesID.indexOf(id));
+		}
+		else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			elementName = properties.get(propertiesID.indexOf(id));
+		}
+		else if (nature.equals(UMLNature.METHOD)) {
+			elementName = methods.get(methodsID.indexOf(id));
+		}
+		return elementName;
+	}
+	
+	/**
 	 * Get current selected element action
 	 * 
 	 * @return element action as defined in UMLElementPanel
@@ -349,25 +372,6 @@ public class UMLElementPanel extends JPanel {
 	public Object getSelectedElementID() {
 		return selectedElementID;
 	}
-	
-	/**
-	 * Get current selected element name, from id
-	 * 
-	 * @return element name
-	 */
-	public String getSelectedElementName() {
-		String elementName = "";
-		if (selectedElementType.equals(UMLNature.CLASS) || selectedElementType.equals(UMLNature.ABSTRACT_CLASS) || selectedElementType.equals(UMLNature.INTERFACE)) {
-			elementName = classes.get(classesID.indexOf(selectedElementID));
-		}
-		else if (selectedElementType.equals(UMLNature.ATTRIBUTE)) {
-			elementName = properties.get(propertiesID.indexOf(selectedElementID));
-		}
-		else if (selectedElementType.equals(UMLNature.METHOD)) {
-			elementName = methods.get(methodsID.indexOf(selectedElementID));
-		}
-		return elementName;
-	}
 
 	/**
 	 * Set current selected element id
@@ -376,6 +380,15 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public void setSelectedElementID(Object selectedElementID) {
 		this.selectedElementID = selectedElementID;
+	}
+	
+	/**
+	 * Get current selected element name, from id
+	 * 
+	 * @return element name
+	 */
+	public String getSelectedElementName() {
+		return getElementName(selectedElementID, selectedElementType);
 	}
 	
 	/**
