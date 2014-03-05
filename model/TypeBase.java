@@ -73,6 +73,9 @@ public enum TypeBase implements Type {
 		if (s.equalsIgnoreCase("int")) {
 			return TypeBase.INT;
 		}
+		if (s.equalsIgnoreCase("String")) {
+			return TypeBase.STRING;
+		}
 		if (s.equalsIgnoreCase("long")) {
 			return TypeBase.LONG;
 		}

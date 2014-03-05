@@ -1,9 +1,10 @@
 package parser;
 
-public class PseudoDependancy extends PseudoBiEdge{
+import model.UMLNature;
+
+public class PseudoDependancy extends PseudoDirectionalRelation{
 
         public PseudoDependancy() {
                 super();
-                this.frenchName = "Dependance";
         }
 }

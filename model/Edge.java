@@ -8,6 +8,10 @@ public class Edge implements GraphItem{
 	protected int id;
 	protected String frenchName;
 	protected UMLNature nature;
+	
+	public Edge() {
+		this.id = -1;
+	}
 
 	public UMLNature getNature() {
 		return nature;

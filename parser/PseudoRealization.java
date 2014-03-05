@@ -1,9 +1,10 @@
 package parser;
 
-public class PseudoRealization extends PseudoBiEdge{
+import model.UMLNature;
+
+public class PseudoRealization extends PseudoHeritage{
 
         public PseudoRealization() {
                 super();
-                this.frenchName = "Realisation";
         }
 }

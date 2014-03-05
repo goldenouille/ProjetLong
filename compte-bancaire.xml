@@ -1,0 +1,25 @@
+<exercise name="banque" preview="exercise de la banque simplifie">
+	<part name="partie 1">
+		<text body = "Un "/> <kw id='1' word="compte"/>
+		<text body = " simple est caractérisé par un "/><kw id='2' word = "solde"/>
+		<text body = " en euros, positif ou négatif, et son "/><kw id ='3' word= "titulaire."/>
+		
+		
+		<UML>
+			<uml-class id='1' name = "account"/>
+			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name = "solde"/>
+			<uml-attribute id='3' visibility="protected" motherId='1' type="STRING" name = "owner"/>
+		</UML>
+	</part>
+	<part name="partie 2">
+		<text body = "Un "/> <kw id='1' word="compte"/>
+		<text body = " simple est caractérisé par un "/><kw id='2' word = "solde"/>
+		<text body = " en euros, positif ou négatif, et son "/><kw id ='3' word= "titulaire.\n"/>
+		<text body = "Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une "/><kw id='4' word="personne physique."/>
+		<text body = "Il est possible de "/><kw id ='5' word= "créditer"/>
+		<text body = "ce compte ou de le "/><kw id ='6' word= "débiter"/>
+		<text body = " d'un certain montant."/>
+		
+		
+	</part>
+</exercise>
