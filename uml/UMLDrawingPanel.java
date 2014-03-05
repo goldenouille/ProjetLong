@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -111,7 +112,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.poolPanel.addClass(0, "Interface1");
 		this.poolPanel.addClass(1, "Class2");
 		this.poolPanel.addProperty(2, "myproperty", "int", "+");
-		this.poolPanel.addMethod(3, "mymethod", null, "", "+");
+		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
 		
 		// TODO END TEST
 		
