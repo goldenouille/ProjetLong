@@ -767,6 +767,66 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 	
 	/**
+	 * Add an UML instance to element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doAddElementToPool(Object id, Object nature) {
+		umlDrawingPanel.doAddingElementToPool(Object id, Object nature);
+	}
+	
+	/**
+	 * Change color of UML instance to red in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doShowUMLInstanceInRed(Object id, Object nature) {
+		umlDrawingPanel.doShowUMLInstanceInRed(Object id, Object nature);
+	}
+	
+	/**
+	 * Reset color of UML instances to black in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLInstanceColor(Object id, Object nature) {
+		umlDrawingPanel.doResetUMLInstanceColor(Object id, Object nature);
+	}
+	
+	/**
+	 * Change color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doShowUMLDrawingInRed(Object id, Object nature) {
+		umlDrawingPanel.doShowUMLDrawingInRed(Object id, Object nature);
+	}
+	
+	/**
+	 * Reset color of UML drawings to black in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		umlDrawingPanel.doResetUMLDrawingColor(Object id, Object nature);
+	}
+	
+	/**
 	 * Shows a pop-up allowing to specify properties of an existing uml instance
 	 * of the given nature, bound to the specified expression. Calls the
 	 * associated instance edition method if user validates.
@@ -786,25 +846,25 @@ public class ClassicGuiController implements GuiController {
 		String keyword = id.toString();
 		if (nature.equals(UMLNature.CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditClass(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditAbstractClass(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'interface", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditInterface(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceType(id), askUmlInstanceVisibility(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Editon d'attribut", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditAttribute(id, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
 			}
@@ -812,7 +872,7 @@ public class ClassicGuiController implements GuiController {
 			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceParamTypes(id), askUmlInstanceType(id),
 					askUmlInstanceVisibility(id));
 			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Editon de methode", JOptionPane.OK_CANCEL_OPTION);
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Edition de methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditMethod(id, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
 			}
