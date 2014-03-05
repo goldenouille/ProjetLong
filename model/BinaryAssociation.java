@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class BinaryAssociation extends Association {
 	protected Vertex target;
 	protected Vertex source;
@@ -51,5 +53,12 @@ public class BinaryAssociation extends Association {
 
 	public void setSourceMult(String sourceMult) {
 		this.sourceMult = sourceMult;
+	}
+	
+	public ArrayList<Vertex> getVertex() {
+		ArrayList<Vertex> vl = new ArrayList<Vertex>();
+		vl.add(this.source);
+		vl.add(this.target);
+		return vl;
 	}
 }
