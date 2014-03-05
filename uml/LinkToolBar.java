@@ -89,7 +89,7 @@ public class LinkToolBar extends JToolBar {
 		
 		// REALIZATION BUTTON
 		button = new JButton();
-	    button.setToolTipText("Creer une ralation de realisation");//"Create realization link"
+	    button.setToolTipText("Creer une relation de realisation");//"Create realization link"
 	    button.addActionListener(new ActionListener() {
 	    	@Override
         	public void actionPerformed(ActionEvent ae) {

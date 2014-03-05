@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
+import model.UMLNature;
+
 
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
@@ -104,10 +106,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.get(0).setText("testing");
 		*/
 		
-		this.doAddingElementToPool("Interface1", ELEMENT_CLASS);
-		this.doAddingElementToPool("Class2", ELEMENT_CLASS);
-		this.doAddingElementToPool("myproperty", ELEMENT_PROPERTY);
-		this.doAddingElementToPool("mymethod", ELEMENT_METHOD);
+		this.poolPanel.addClass("Interface1");
+		this.poolPanel.addClass("Class2");
+		this.poolPanel.addProperty("myproperty");
+		this.poolPanel.addMethod("mymethod");
 		
 		// TODO END TEST
 		
@@ -119,22 +121,77 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		return false;
 	}
 	
-	public void doAddingElementToPool(String element, int type) {
+	/**
+	 * Add an UML instance to element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doAddElementToPool(Object id, Object nature) {
 		// TODO
-		switch (type) {
-		case ELEMENT_CLASS:
-			poolPanel.addClass(element);
-			break;
-		case ELEMENT_PROPERTY:
-			poolPanel.addProperty(element);
-			break;
-		case ELEMENT_METHOD:
-			poolPanel.addMethod(element);
-			break;
-		default:
-			break;
+		if (nature.equals(UMLNature.CLASS)) {
+			poolPanel.addClass((int)id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			poolPanel.addClass((int)id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			poolPanel.addClass((int)id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			poolPanel.addProperty((int)id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
+		} else if (nature.equals(UMLNature.METHOD)) {
+			poolPanel.addMethod((int)id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		}
+		
 		poolPanel.refresh();
+	}
+	
+	/**
+	 * Change color of UML instance to red in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doShowUMLInstanceInRed(Object id, Object nature) {
+		//TODO
+	}
+	
+	/**
+	 * Reset color of UML instances to black in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLInstanceColor(Object id, Object nature) {
+		//TODO
+	}
+	
+	/**
+	 * Change color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doShowUMLDrawingInRed(Object id, Object nature) {
+		//TODO
+	}
+	
+	/**
+	 * Reset color of UML drawings to black in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		//TODO
 	}
 	
 	public void doAddingNewElementFromPool(int type) {

@@ -1,6 +1,7 @@
 package uml;
 
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.Box;
@@ -27,8 +28,11 @@ public class UMLElementPanel extends JPanel {
 	private int selectedElementType; //use UMLDrawingPanel element type
 	private int selectedElementID;
 	
+	private Vector<Integer> classesID;
 	private Vector<String> classes;
+	private Vector<Integer> propertiesID;
 	private Vector<String> properties;
+	private Vector<Integer> methodsID;
 	private Vector<String> methods;
 	
 	/**
@@ -45,8 +49,11 @@ public class UMLElementPanel extends JPanel {
 		this.subPanel=new JPanel();
 		this.add(subPanel);
 		
+		classesID = new Vector<Integer>();
 		classes = new Vector<String>();
+		propertiesID = new Vector<Integer>();
 		properties = new Vector<String>();
+		methodsID = new Vector<Integer>();
 		methods = new Vector<String>();
 		
 		this.refresh();
@@ -137,50 +144,80 @@ public class UMLElementPanel extends JPanel {
 	/**
 	 * Add a class to element pool
 	 * 
-	 * @param class
+	 * @param id
+	 *            class id
+	 * @param name
 	 *            class name
 	 */
-	public void addClass(String c) {
-		classes.add(c);
+	public void addClass(int id, String name) {
+		classesID.add(id);
+		classes.add(name);
 	}
 
 	/**
 	 * Remove specified class from element pool
 	 * 
-	 * @param class
-	 *            class name to remove
+	 * @param id
+	 *            class id to remove
 	 */
-	public boolean removeClass(String c) {
-		return classes.remove(c);
+	public boolean removeClass(int id) {
+		classes.remove(classesID.indexOf(id));
+		return classesID.remove((Integer)id);
 	}
 
 	/**
 	 * Add a property to element pool
 	 * 
-	 * @param property
+	 * @param id
+	 *            property id
+	 * @param name
 	 *            property name
+	 * @param type
+	 *            property type
+	 * @param visibility
+	 *            property visibility
 	 */
-	public void addProperty(String property) {
-		properties.add(property);
+	public void addProperty(int id, String name, String type, String visibility) {
+		propertiesID.add(id);
+		properties.add(visibility + " " + type + " " + name);
 	}
 
 	/**
 	 * Remove specified property from element pool
 	 * 
-	 * @param property
-	 *            property name to remove
+	 * @param id
+	 *            property id to remove
 	 */
-	public boolean removeProperty(String property) {
-		return properties.remove(property);
+	public boolean removeProperty(int id) {
+		properties.remove(propertiesID.indexOf(id));
+		return propertiesID.remove((Integer)id);
 	}
 	
 	/**
 	 * Add a method to element pool
 	 * 
-	 * @param method
+	 * @param id
+	 *            method id
+	 * @param name
 	 *            method name
+	 * @param paramTypes
+	 *            method parameter types
+	 * @param type
+	 *            method return type
+	 * @param visibility
+	 *            method visibility
 	 */
-	public void addMethod(String method) {
+	public void addMethod(int id, String name, ArrayList<String> paramTypes, String type, String visibility) {
+		String method = visibility + " " + type + " " + name + "(";
+		for (int i = 0 ; i < paramTypes.size() ; i++) {
+			method += paramTypes.get(i);
+			if (i < paramTypes.size() - 1) {
+				method += ", ";
+			}
+		}
+		method += ")";
+		
+		methodsID.add(id);
 		methods.add(method);
 	}
 
@@ -188,10 +225,11 @@ public class UMLElementPanel extends JPanel {
 	 * Remove specified method from element pool
 	 * 
 	 * @param method
-	 *            method name to remove
+	 *            method id to remove
 	 */
-	public boolean removeMethod(String method) {
-		return methods.remove(method);
+	public boolean removeMethod(int id) {
+		methods.remove(methodsID.indexOf(id));
+		return methodsID.remove((Integer)id);
 	}
 	
 	/**
