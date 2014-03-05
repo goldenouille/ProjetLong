@@ -11,7 +11,12 @@ public class PseudoGraph {
         private ArrayList<PseudoInterface> interfaces;
         private ArrayList<PseudoAttribute> attributes;
         private ArrayList<PseudoMethod> methods;
-        private ArrayList<PseudoBiEdge> biEdges;
+        private ArrayList<PseudoRealization> realizations;
+        private ArrayList<PseudoGeneralization> generalizations;
+        private ArrayList<PseudoDependancy> dependancies;
+        private ArrayList<PseudoAggregation> aggregations;
+        private ArrayList<PseudoComposition> compositions;
+
         
         public PseudoGraph () {
                 this.classes = new ArrayList<PseudoClass>();
@@ -19,6 +24,12 @@ public class PseudoGraph {
                 this.interfaces = new ArrayList<PseudoInterface>();
                 this.attributes = new ArrayList<PseudoAttribute>();
                 this.methods = new ArrayList<PseudoMethod>();
+                this.realizations = new ArrayList<PseudoRealization>() ;
+                this.generalizations = new ArrayList<PseudoGeneralization>() ;
+                this.dependancies = new ArrayList<PseudoDependancy>() ;
+                this.aggregations = new ArrayList<PseudoAggregation>() ;
+                this.compositions = new ArrayList<PseudoComposition>() ;
+
         }
         
         public Graph buildGraph(HashMap<Integer,model.GraphItem> map) throws ParserException {
@@ -95,18 +106,7 @@ public class PseudoGraph {
                        }
                 }
                 
-                /*PseudoBiEdge pbe;
-                int srcId;
-                int targetId;
-                String frenchName;
-                for (int i=0; i<this.biEdges.size(); i++) {
-                      pbe = this.biEdges.get(i);
-                      srcId = pbe.getSrc();
-                      targetId = pbe.getTarget();
-                      frenchName = pbe.getFrenchName();
-                      
-                      
-                }*/
+                
                 
                 
                 
@@ -129,8 +129,28 @@ public class PseudoGraph {
                 this.attributes.add(pa);
         }
 
+        public void addRealization (PseudoRealization pr) {
+                this.realizations.add(pr);
+        }
+        
+        public void addGeneralization (PseudoGeneralization pg) {
+            this.generalizations.add(pg);
+        }
+        
+        public void addDependancy (PseudoDependancy pd) {
+            this.dependancies.add(pd);
+        }
+        
+        public void addAggregation (PseudoAggregation pa) {
+            this.aggregations.add(pa);
+        }
+        
+        public void addComposition (PseudoComposition pc) {
+            this.compositions.add(pc);
+        }
+        
         public void addMethod (PseudoMethod pm) {
-                this.methods.add(pm);
+            this.methods.add(pm);
         }
         
         public ArrayList<PseudoClass> getClasses() {

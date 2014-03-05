@@ -1,9 +1,8 @@
 package parser;
 
-public class PseudoGeneralization extends PseudoBiEdge{
+public class PseudoGeneralization extends PseudoHeritage{
 
         public PseudoGeneralization() {
                 super();
-                this.frenchName = "Generalisation";
         }
 }

@@ -31,6 +31,7 @@ public class Part {
 		this.nbStep = 0;
 		this.auxNbStep = -1;
 		this.auxNbWord = 0;
+		this.graph = new Graph();
 	}
 
 	public int getNbStep() {

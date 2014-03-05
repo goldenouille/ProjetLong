@@ -8,6 +8,7 @@
 			<uml-method id='3' visibility ="public" motherId='1' type ="void" name="credit">
 				<param type="int"/>
 			</uml-method>
+			
 		</UML>
 	</part>
 </exercise>

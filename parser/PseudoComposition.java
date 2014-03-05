@@ -1,9 +1,12 @@
 package parser;
 
-public class PseudoComposition extends PseudoBiEdge{
+import model.UMLNature;
+
+public class PseudoComposition extends PseudoBinaryAssociation{
 
         public PseudoComposition() {
                 super();
-                this.frenchName = "Composition";
+                this.nature = UMLNature.COMPOSITION;
+        		this.frenchName = "Composition";
         }
 }

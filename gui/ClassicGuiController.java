@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -12,9 +13,7 @@ import javax.swing.text.BadLocationException;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import uml.UMLDrawingPanel;
-
 import controller.ModelController;
-
 import model.UMLNature;
 
 public class ClassicGuiController implements GuiController {
@@ -749,7 +748,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	private void askDeleteInterface(Object id, String name) {
+	private void askDeleteInterface(Object id) {
 		core.askDeleteInterface(id);
 
 		// System.out.println("askDeleteInterface");
@@ -777,6 +776,30 @@ public class ClassicGuiController implements GuiController {
 		core.askDeleteMethod(id);
 
 		// System.out.println("askDeleteMethod");
+	}
+	
+	/**
+	 * Sends to the core the user's request to link the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askLinkAttributeToClass(Object attributeID, Object classID) {
+		core.askLinkAttributeToClass(attributeID, classID);
+	}
+	
+	/**
+	 * Sends to the core the user's request to link the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askLinkMethodToClass(Object methodID, Object classID) {
+		core.askLinkMethodToClass(methodID, classID);
 	}
 
 	/**

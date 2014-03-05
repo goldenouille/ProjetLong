@@ -1,9 +1,8 @@
 package parser;
 
-public class PseudoAssociation extends PseudoBiEdge{
+public class PseudoAssociation extends PseudoEdge{
 
         public PseudoAssociation() {
                 super();
-                this.frenchName = "Association";
         }
 }
