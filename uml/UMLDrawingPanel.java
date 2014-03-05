@@ -116,7 +116,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
 		poolPanel.refresh();
 		
-		// TODO END TEST
+		// END TEST
 		
 		this.repaint();
 	}
@@ -190,6 +190,24 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void setMissingUmlInstance(int number) {
 		poolPanel.setMissingUMLDrawing(number);
+	}
+	
+	/**
+	 * Get attribute name from id
+	 * 
+	 * @return attribute name
+	 */
+	public String getAttributeName(Object id) {
+		return poolPanel.getElementName(id, UMLNature.ATTRIBUTE);
+	}
+	
+	/**
+	 * Get method name from id
+	 * 
+	 * @return method name
+	 */
+	public String getMethodName(Object id) {
+		return poolPanel.getElementName(id, UMLNature.METHOD);
 	}
 	
 	/**
@@ -275,14 +293,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		boolean find = false;
 		
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
-			boolean classDoesNotExist = true;
+			boolean classIsNotDrawn = true;
 			for (int j = 0 ; j < classes.size() ; j++) {
 				if (classes.get(j).getName() == poolPanel.getElementName(id, nature)) {
-					classDoesNotExist = false;
+					classIsNotDrawn = false;
 				}
 			}
-			if (classDoesNotExist) {
-				classes.add(new ClassDrawing(poolPanel.getElementName(id, nature), posistion.width, posistion.height));
+			if (classIsNotDrawn) {
+				classes.add(new ClassDrawing(this, poolPanel.getElementName(id, nature), posistion.width, posistion.height));
 				if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
 					classes.lastElement().setClasstype("<<classe abstraite>>");
 				} else if (nature.equals(UMLNature.INTERFACE)) {
@@ -290,30 +308,48 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			// TODO limit to one drawing
-			while (i < classes.size() && !find) {
-				if (classes.get(i).isUnder(posistion)) {
-					find = true;
+			boolean attributeIsNotDrawn = true;
+			// check if not already draw
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containProperty(id)) {
+					attributeIsNotDrawn = false;
 				}
-				i++;
 			}
-			if (find) {
-				i--;
-				controller.askLinkAttributeToClass(id, classes.get(i).getName());
-				classes.get(i).addProperty(poolPanel.getElementName(id, nature));
+			if (attributeIsNotDrawn) {
+				// find which class is under position
+				while (i < classes.size() && !find) {
+					if (classes.get(i).isUnder(posistion)) {
+						find = true;
+					}
+					i++;
+				}
+				if (find) {
+					i--;
+					// TODO controller.askLinkAttributeToClass(id, classes.get(i).getName());
+					classes.get(i).addProperty(id);
+				}
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			// TODO limit to one drawing
-			while (i < classes.size() && !find) {
-				if (classes.get(i).isUnder(posistion)) {
-					find = true;
+			boolean methodIsNotDrawn = true;
+			// check if not already draw
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containMethod(id)) {
+					methodIsNotDrawn = false;
 				}
-				i++;
 			}
-			if (find) {
-				i--;
-				controller.askLinkMethodToClass(id, classes.get(i).getName());
-				classes.get(i).addMethod(poolPanel.getElementName(id, nature));
+			if (methodIsNotDrawn) {
+				// find which class is under position
+				while (i < classes.size() && !find) {
+					if (classes.get(i).isUnder(posistion)) {
+						find = true;
+					}
+					i++;
+				}
+				if (find) {
+					i--;
+					// TODO controller.askLinkMethodToClass(id, classes.get(i).getName());
+					classes.get(i).addMethod(id);
+				}
 			}
 		}
 	}
