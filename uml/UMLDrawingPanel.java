@@ -4,6 +4,7 @@ import gui.AbstractPanel;
 import gui.ClassicGuiController;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,6 +33,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * "~"       Package
 	 */
 	
+	// Color constant
+	public static Color COLOR_DEFAULT = Color.BLACK;
+	public static Color COLOR_ALT = Color.RED;
+	
 	private static final long serialVersionUID = 1L;
 	
 	private static final int NO_DRAGGED_ELEMENT = -1;
@@ -55,7 +60,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	private LinkToolBar toolBar;
 	private UMLElementPanel poolPanel;
 
-	// TODO main for testing
+	// main for testing
 	public static void main(final String[] args) {
 		JFrame f = new JFrame("Test");
         f.setSize(1280,780);
@@ -86,7 +91,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel = new UMLElementPanel(this);
 		this.add(poolPanel,BorderLayout.EAST);
 		
-		// TODO TEST to remove
+		// TEST
 		//classes.add(new ClassDrawing("Class1", 10, 30));
 		//classes.add(new ClassDrawing("Class2", 200, 50));
 		//classes.add(new ClassDrawing("Class3", 200, 150));
@@ -114,6 +119,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.poolPanel.addClass(1, UMLNature.CLASS, "Class");
 		this.poolPanel.addProperty(2, "myproperty", "int", "+");
 		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
+		//this.doShowUMLInstanceInRed(1);
 		poolPanel.refresh();
 		
 		// END TEST
@@ -171,14 +177,37 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doShowUMLDrawingInRed(Object id, Object nature) {
-		//TODO
+		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).getName() == poolPanel.getElementName(id, nature)) {
+					classes.get(j).setColored(true);
+				}
+			}
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containProperty(id)) {
+					classes.get(j).addColoredElement(id);
+				}
+			}
+		} else if (nature.equals(UMLNature.METHOD)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containMethod(id)) {
+					classes.get(j).addColoredElement(id);
+				}
+			}
+		}
+		// TODO relation
 	}
 	
 	/**
 	 * Reset color of UML drawings to black in drawing area
 	 */
 	public void doResetUMLDrawingColor() {
-		//TODO
+		for (int j = 0 ; j < classes.size() ; j++) {
+			classes.get(j).removeAllColoredElement();
+		}
+		
+		// TODO relation
 	}
 	
 	/**
