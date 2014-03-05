@@ -528,22 +528,49 @@ public class UMLElementPanel extends JPanel {
 		mainPanel.repaint();
 	}
 
+	/**
+	 * Add an element to coloring
+	 * 
+	 * @param id
+	 *            element id
+	 */
 	public void addColoredElement(Object id) {
 		coloredID.add(id);
 	}
 
+	/**
+	 * Remove an element from coloring
+	 * 
+	 * @param id
+	 *            element id
+	 * @return true if remove
+	 */
 	public boolean removeColoredElement(Object id) {
 		return coloredID.remove(id);
 	}
 
+	/**
+	 * Remove all element from coloring
+	 */
 	public void removeAllColoredElement() {
 		coloredID.removeAllElements();
 	}
 
+	/**
+	 * Get displayed number for missing UML drawing
+	 * 
+	 * @return number
+	 */
 	public int getMissingUMLDrawing() {
 		return missingUMLDrawing;
 	}
 
+	/**
+	 * Set number to display for missing UML drawing
+	 * 
+	 * @param number
+	 *            number to display
+	 */
 	public void setMissingUMLDrawing(int number) {
 		this.missingUMLDrawing = number;
 
@@ -554,6 +581,12 @@ public class UMLElementPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Enable validate diagram button
+	 * 
+	 * @param enabled
+	 *            enable button
+	 */
 	public void setValidateDiagramButtonEnabled(boolean enabled) {
 		validationButton.setEnabled(enabled);
 	}

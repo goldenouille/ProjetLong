@@ -33,7 +33,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * "~"       Package
 	 */
 	
-	// Color constant // TODO remove from UMLElementPanel
+	// Color constant
 	public static Color COLOR_DEFAULT = Color.BLACK;
 	public static Color COLOR_ALT = Color.RED;
 	
@@ -339,7 +339,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					// TODO controller.askLinkAttributeToClass(id, classes.get(i).getName());
+					controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
 					classes.get(i).addProperty(id);
 				}
 			}
@@ -361,7 +361,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					// TODO controller.askLinkMethodToClass(id, classes.get(i).getName());
+					controller.askLinkMethodToClass(id, classes.get(i).getInstanceID());
 					classes.get(i).addMethod(id);
 				}
 			}
@@ -372,14 +372,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			// TODO remove links
 			for(int i = 0 ; i < links.size() ; i++) {
-				if(links.get(i).getMotherClass() == getElementName(classes.get(i).getInstanceID(), classes.get(i).getClasstype()) // TODO
-						|| links.get(i).getDaughterClass() == getElementName(classes.get(i).getInstanceID(), classes.get(i).getClasstype())) { // TODO
+				if(links.get(i).getMotherClassID().equals(classes.get(i).getInstanceID())
+						|| links.get(i).getDaughterClassID().equals(classes.get(i).getInstanceID())) {
 					links.remove(i);
 					i--;
 				}
 			}
 			for(int i = 0 ; i < classes.size() ; i++) {
-				if(poolPanel.getElementName(id, nature) == getElementName(classes.get(i).getInstanceID(), classes.get(i).getClasstype())) { // TODO
+				if(id.equals(classes.get(i).getInstanceID())) {
 					classes.remove(i);
 					i--;
 				}
@@ -401,9 +401,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
-		
-		//g2d.fillRect(0, 0, 2, 2);
-		//g2d.fillRect(this.getWidth()-2, this.getHeight()-2, 2, 2);
 		
 		for (int i = 0; i < classes.size() ; i++) {
 			classes.get(i).draw(g2d);
@@ -500,10 +497,15 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
 
 						// Open Link Edition Panel
-						LinkEditionPanel linkEdition = new LinkEditionPanel(links.get(i).getMotherClass(), links.get(i).getMotherMultiplicity(), links.get(i).getDaughterClass(), links.get(i).getDaughterMultiplicity(), links.get(i).getText());
+						LinkEditionPanel linkEdition = new LinkEditionPanel(
+								getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS),
+								links.get(i).getMotherMultiplicity(),
+								getElementName(links.get(i).getDaughterClassID(), UMLNature.CLASS),
+								links.get(i).getDaughterMultiplicity(),
+								links.get(i).getText());
 						
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-								"Edition de relation de " + links.get(i).getMotherClass() + " vers " + links.get(i).getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+								"Edition de relation de " + getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS) + " vers " + getElementName(links.get(i).getDaughterClassID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
 							links.get(i).setMotherMultiplicity(linkEdition.getMotherMultiplicity());
 							links.get(i).setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
@@ -534,10 +536,15 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						links.add(new LinkDrawing(classes.get(previousClickedClass), classes.get(i), toolBar.getState()));
 						
 						// Link Edition Panel
-						LinkEditionPanel linkEdition = new LinkEditionPanel(links.lastElement().getMotherClass(), links.lastElement().getMotherMultiplicity(), links.lastElement().getDaughterClass(), links.lastElement().getDaughterMultiplicity(), links.lastElement().getText());
+						LinkEditionPanel linkEdition = new LinkEditionPanel(
+								getElementName(links.lastElement().getMotherClassID(), UMLNature.CLASS),
+								links.lastElement().getMotherMultiplicity(),
+								getElementName(links.lastElement().getDaughterClassID(), UMLNature.CLASS),
+								links.lastElement().getDaughterMultiplicity(),
+								links.lastElement().getText());
 						
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-								"Nouvelle relation de " + links.lastElement().getMotherClass() + " vers " + links.lastElement().getDaughterClass(), JOptionPane.OK_CANCEL_OPTION);
+								"Nouvelle relation de " + getElementName(links.lastElement().getMotherClassID(), UMLNature.CLASS) + " vers " + getElementName(links.lastElement().getDaughterClassID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
 							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
 							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());

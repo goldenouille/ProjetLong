@@ -394,7 +394,7 @@ public class ClassDrawing {
 	}
 	
 	/**
-	 * Add an element (attribute or method) to color
+	 * Add an element (attribute or method) to coloring
 	 * 
 	 * @param id
 	 *            element id
