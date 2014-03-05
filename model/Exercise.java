@@ -70,6 +70,15 @@ public class Exercise {
 		return null;
 	}
 
+	public Word getById(int id, ArrayList<Word> t) {
+		for (int i = 0; i<t.size(); i++) {
+			if (t.get(i).getId() ==id) {
+				return t.get(i);
+			}
+		}
+		return null;
+	}
+
 
 	public ArrayList<Word> getText() {
 			return this.text;
@@ -321,6 +330,82 @@ public class Exercise {
 	// pas encore geree
 	public String askScore() {
 		return "0 / 100";
+	}
+
+
+	public void askDeleteClass(VertexClass vertexClass) {
+		int id = vertexClass.getId();
+		this.userGraph.removeClass(vertexClass);
+		if (id < 0) {
+			getById(id, this.userText).setUserGraphItem(null);
+		} else {
+			getById(id, this.userText).setUserGraphItem(null);
+		}
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given abstract class
+	 * instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteAbstractClass(VertexAbstract vertexAbstract) {
+		int id = vertexAbstract.getId();
+		this.userGraph.removeAbstractClass(vertexAbstract);
+		if (id < 0) {
+			getById(id, this.userText).setUserGraphItem(null);
+		} else {
+			getById(id, this.userText).setUserGraphItem(null);
+		}
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given interface instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteInterface(Vertex vertex) {
+		int id = vertex.getId();
+		this.userGraph.removeInterface(vertex);
+		if (id < 0) {
+			getById(id, this.userText).setUserGraphItem(null);
+		} else {
+			getById(id, this.userText).setUserGraphItem(null);
+		}
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given attribute instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteAttribute(Attribute att) {
+		int id = att.getId();
+		this.userGraph.removeAttribute(att);
+		if (id < 0) {
+			getById(id, this.userText).setUserGraphItem(null);
+		} else {
+			getById(id, this.userText).setUserGraphItem(null);
+		}
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given method instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteMethod(Method met) {
+		int id = met.getId();
+		this.userGraph.removeMethod(met);
+		if (id < 0) {
+			getById(id, this.userText).setUserGraphItem(null);
+		} else {
+			getById(id, this.userText).setUserGraphItem(null);
+		}
 	}
 
 }

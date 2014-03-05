@@ -350,7 +350,7 @@ public class ModelController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	public void askDeleteInterface(Object id, String name) {
+	public void askDeleteInterface(Object id) {
 		//core.askDeleteInterface(id);
 		if (id instanceof Vertex) {
 			exo.askDeleteInterface((Vertex) id);
@@ -367,7 +367,7 @@ public class ModelController {
 	public void askDeleteAttribute(Object id) {
 		//core.askDeleteAttribute(id);
 		if (id instanceof Attribute) {
-			exo.askEditAttribute((Attribute) id);
+			exo.askDeleteAttribute((Attribute) id);
 		}
 		// System.out.println("askDeleteAttribute");
 	}
