@@ -70,7 +70,6 @@ public class PseudoMethod {
         
         public ArrayList<Type> getParamsType() {
         	ArrayList<Type> lt = new ArrayList<Type>();
-        	System.out.println("size : " + params.size());
         	for (int i=0; i<params.size(); i++) {
         		lt.add(TypeBase.getByName(params.get(i)));
         	}

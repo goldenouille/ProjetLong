@@ -168,10 +168,8 @@ public class Parser {
   		}
   		
   		ArrayList<Edge> el = g.getEdges();
-		System.out.println("nbEdges : " + el.size());
   		for (int j=0; j<el.size(); j++) {
   			Edge e = el.get(j);
-  			System.out.println("nature : " + e.getNature());
   			if (e instanceof BinaryAssociation) {
   				res += "\t\t\t<uml-" + e.getUml();
   				res += " name= \"" + e.getName();
