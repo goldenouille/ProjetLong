@@ -871,23 +871,16 @@ public class ClassicGuiController implements GuiController {
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doShowUMLInstanceInRed(Object id, Object nature) {
-		umlDrawingPanel.doShowUMLInstanceInRed(id, nature);
+	public void doShowUMLInstanceInRed(Object id) {
+		umlDrawingPanel.doShowUMLInstanceInRed(id);
 	}
 
 	/**
 	 * Reset color of UML instances to black in element pool
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doResetUMLInstanceColor(Object id, Object nature) {
-		umlDrawingPanel.doResetUMLInstanceColor(id, nature);
+	public void doResetUMLInstanceColor() {
+		umlDrawingPanel.doResetUMLInstanceColor();
 	}
 
 	/**
@@ -904,14 +897,9 @@ public class ClassicGuiController implements GuiController {
 
 	/**
 	 * Reset color of UML drawings to black in drawing area
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doResetUMLDrawingColor(Object id, Object nature) {
-		umlDrawingPanel.doResetUMLDrawingColor(id, nature);
+	public void doResetUMLDrawingColor() {
+		umlDrawingPanel.doResetUMLDrawingColor();
 	}
 	
 	/**

@@ -16,6 +16,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.text.BadLocationException;
 
 import model.UMLNature;
 
@@ -149,23 +150,16 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doShowUMLInstanceInRed(Object id, Object nature) {
-		//TODO
+	public void doShowUMLInstanceInRed(Object id) {
+		poolPanel.addColoredElement(id);
 	}
 	
 	/**
 	 * Reset color of UML instances to black in element pool
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doResetUMLInstanceColor(Object id, Object nature) {
-		//TODO
+	public void doResetUMLInstanceColor() {
+		poolPanel.removeAllColoredElement();
 	}
 	
 	/**
@@ -182,13 +176,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	/**
 	 * Reset color of UML drawings to black in drawing area
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param nature
-	 *            UMLNature of the instance
 	 */
-	public void doResetUMLDrawingColor(Object id, Object nature) {
+	public void doResetUMLDrawingColor() {
 		//TODO
 	}
 	
@@ -232,19 +221,28 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	public void doEditElementFromPool(Object id, Object nature) {
-		// TODO
+		try {
+			controller.doShowUmlInstanceEditionPopup(id, nature);
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if (nature.equals(UMLNature.CLASS)) {
-			// TODO askEdit
-			// TODO doShowEdit...
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+			// TODO edit drawing
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			//poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+			// TODO edit drawing
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			//poolPanel.modifyClass((id, controller.askUmlInstanceName(id));
+			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+			// TODO edit drawing
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			poolPanel.modifyProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
+			// TODO edit drawing
 		} else if (nature.equals(UMLNature.METHOD)) {
 			poolPanel.modifyMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
+			// TODO edit drawing
 		}
 		
 		poolPanel.refresh();
@@ -253,25 +251,30 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS)) {
 			controller.askDeleteClass(id);
+			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
 			controller.askDeleteAbstractClass(id);
+			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.INTERFACE)) {
 			controller.askDeleteInterface(id);
+			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			controller.askDeleteAttribute(id);
+			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeProperty(id);
 		} else if (nature.equals(UMLNature.METHOD)) {
 			controller.askDeleteMethod(id);
+			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeMethod(id);
 		}
 		
 		poolPanel.refresh();
 	}
 	
-	public void doAddElementToDrawingArea(Object id, UMLNature nature, Dimension posistion) {
+	public void doAddElementToDrawingArea(Object id, Object nature, Dimension posistion) {
 		int i = 0;
 		boolean find = false;
 		
@@ -291,6 +294,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			// TODO limit to one drawing
 			while (i < classes.size() && !find) {
 				if (classes.get(i).isUnder(posistion)) {
 					find = true;
@@ -303,6 +307,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				classes.get(i).addProperty(poolPanel.getElementName(id, nature));
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
+			// TODO limit to one drawing
 			while (i < classes.size() && !find) {
 				if (classes.get(i).isUnder(posistion)) {
 					find = true;
@@ -317,10 +322,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 	}
 	
-	public void doRemoveElementFromDrawingArea(String element, UMLNature nature) {
+	public void doRemoveElementFromDrawingArea(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			for(int i = 0 ; i < classes.size() ; i++) {
-				if(element == classes.get(i).getName()) {
+				if(poolPanel.getElementName(id, nature) == classes.get(i).getName()) {
 					classes.remove(i);
 					i--;
 				}
@@ -328,12 +333,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
-				classes.get(i).removeProperty(element);
+				classes.get(i).removeProperty(poolPanel.getElementName(id, nature));
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
-				classes.get(i).removeMethod(element);
+				classes.get(i).removeMethod(poolPanel.getElementName(id, nature));
 			}
 		}
 	}
@@ -449,7 +454,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 							links.get(i).setMotherMultiplicity(linkEdition.getMotherMultiplicity());
 							links.get(i).setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
 							links.get(i).setText(linkEdition.getText());
-							// TODO this.doEditLink(i);
+							// TODO this.askEditLink(i);
 						}
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
@@ -483,7 +488,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 							links.lastElement().setMotherMultiplicity(linkEdition.getMotherMultiplicity());
 							links.lastElement().setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
 							links.lastElement().setText(linkEdition.getText());
-							// TODO this.doLinkingClass(links.size() - 1);
+							// TODO this.askLinkClass(links.size() - 1);
 						}
 						
 						previousClickedClass = NO_CLICKED_CLASS;
