@@ -20,6 +20,7 @@ public class TextSectionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel missingKeywordsLabel;
+	private JLabel missingAssociationsLabel;
 
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
 		super(controller);
@@ -71,6 +72,8 @@ public class TextSectionPanel extends AbstractPanel {
 				+ "<br>expression validee (en vert) et choisissez l'element a associer."
 				+ "<br>Attention ! S'il en manque ou si votre selection est incorrecte vous perdrez des points !</html>");
 		bottomPane.add(validateAssociationButton);
+		missingAssociationsLabel = new JLabel();
+		bottomPane.add(missingAssociationsLabel);
 	}
 
 	public void setMissingKeywords(int nb) {
@@ -78,6 +81,14 @@ public class TextSectionPanel extends AbstractPanel {
 			missingKeywordsLabel.setText("");
 		} else {
 			missingKeywordsLabel.setText(" Mots-cles manquants : " + nb);
+		}
+	}
+
+	public void setMissingAssociation(int nb) {
+		if (nb < 1) {
+			missingAssociationsLabel.setText("");
+		} else {
+			missingAssociationsLabel.setText(" Mots-cles manquants : " + nb);
 		}
 	}
 

@@ -554,6 +554,17 @@ public class ClassicGuiController implements GuiController {
 	public void doShowMissingKeywordNumber(int nb) {
 		textSectionPanel.setMissingKeywords(nb);
 	}
+	
+	/**
+	 * Prints the missing association number. if nb is less than 1, hide the
+	 * missing association label
+	 * 
+	 * @param nb
+	 *            number to show
+	 */
+	public void doShowMissingAssociationNumber(int nb) {
+		textSectionPanel.setMissingAssociation(nb);
+	}
 
 	// *********//
 	// Internal //
@@ -853,6 +864,17 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 	// Do //
 	// ***//
+	
+	//TODO
+	/**
+	 * commente le comportement...
+	 * 
+	 * @param nb
+	 *            number to show
+	 */
+	public void doShowMissingUmlInstanceNumber(int nb) {
+		umlDrawingPanel.setMissingUmlInstance(nb);
+	}
 
 	/**
 	 * Add an UML instance to element pool
