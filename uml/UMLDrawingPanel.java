@@ -106,10 +106,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.get(0).setText("testing");
 		*/
 		
-		this.poolPanel.addClass("Interface1");
-		this.poolPanel.addClass("Class2");
-		this.poolPanel.addProperty("myproperty");
-		this.poolPanel.addMethod("mymethod");
+		this.poolPanel.addClass(0, "Interface1");
+		this.poolPanel.addClass(1, "Class2");
+		this.poolPanel.addProperty(2, "myproperty", "int", "+");
+		this.poolPanel.addMethod(3, "mymethod", null, "", "+");
 		
 		// TODO END TEST
 		
@@ -194,39 +194,55 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		//TODO
 	}
 	
-	public void doAddingNewElementFromPool(int type) {
+	public void doAddNewElementFromPool(Object nature) {
 		// TODO
-		switch (type) {
-		case ELEMENT_CLASS:
-			//poolPanel.addClass(element);
-			break;
-		case ELEMENT_PROPERTY:
-			//poolPanel.addProperty(element);
-			break;
-		case ELEMENT_METHOD:
-			//poolPanel.addMethod(element);
-			break;
-		default:
-			break;
+		if (nature.equals(UMLNature.CLASS)) {
+			//poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			//poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			//poolPanel.modifyClass((id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			//poolPanel.modifyProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
+		} else if (nature.equals(UMLNature.METHOD)) {
+			//poolPanel.modifyMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		}
+		
 		poolPanel.refresh();
 	}
 	
-	public void doEditingElementFromPool(String element, int type) {
+	public void doEditElementFromPool(Object id, Object nature) {
 		// TODO
-		switch (type) {
-		case ELEMENT_CLASS:
-			//poolPanel.addClass(element);
-			break;
-		case ELEMENT_PROPERTY:
-			//poolPanel.addProperty(element);
-			break;
-		case ELEMENT_METHOD:
-			//poolPanel.addMethod(element);
-			break;
-		default:
-			break;
+		if (nature.equals(UMLNature.CLASS)) {
+			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			poolPanel.modifyClass((id, controller.askUmlInstanceName(id));
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			poolPanel.modifyProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
+		} else if (nature.equals(UMLNature.METHOD)) {
+			poolPanel.modifyMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		}
+		
+		poolPanel.refresh();
+	}
+	
+	public void doRemoveElementFromPool(Object id, Object nature) {
+		// TODO
+		if (nature.equals(UMLNature.CLASS)) {
+			poolPanel.removeClass(id);
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			poolPanel.removeClass(id);
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			poolPanel.removeClass(id);
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			poolPanel.removeProperty(id);
+		} else if (nature.equals(UMLNature.METHOD)) {
+			poolPanel.removeMethod(id);
+		}
+		
+		poolPanel.refresh();
 	}
 	
 	public boolean doCheckingClasses() {
@@ -234,7 +250,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		return false;
 	}
 	
-	public void doRemovingElementFromDrawingArea(String element, int type) {
+	public void doRemoveElementFromDrawingArea(String element, int type) {
 		switch (type) {
 		case ELEMENT_CLASS:
 			for(int i = 0 ; i < classes.size() ; i++) {

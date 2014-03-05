@@ -5,14 +5,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import model.UMLNature;
+
 public class UMLElementPanelButton extends JButton {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private UMLElementPanel mainpanel;
 	private int action;
-	private int type;
-	private int id;
+	private UMLNature type;
+	private Object id;
 	
 	/**
 	 * Main constructor, create an UMLElementPanel dedicated button.
@@ -24,16 +26,16 @@ public class UMLElementPanelButton extends JButton {
 	 * @param type
 	 *            UMLDrawingPanel type set by button click
 	 * @param id
-	 *            intern ID set by button click
+	 *            object ID set by button click
 	 * @param text
 	 *            text of button
 	 * @param toolTipText
 	 *            text show as tooltip
 	 */
-	public UMLElementPanelButton (UMLElementPanel mainpanel, int action, int type, int id, String text, String toolTipText) {
+	public UMLElementPanelButton (UMLElementPanel mainpanel, int action, UMLNature type, Object id, String text, String toolTipText) {
 		this.mainpanel = mainpanel;
 		this.action = action;
-		this.type = type;
+		this.UMLNature = type;
 		this.id = id;
 		
 		//this.setPreferredSize(new Dimension(40, 40));
@@ -72,9 +74,9 @@ public class UMLElementPanelButton extends JButton {
 	/**
 	 * Get Element UML Type
 	 * 
-	 * @return UML type int as define in ULMDrawingPanel
+	 * @return UMLNature
 	 */
-	public int getElementType() {
+	public UMLNature getElementType() {
 		return type;
 	}
 
@@ -83,7 +85,7 @@ public class UMLElementPanelButton extends JButton {
 	 * 
 	 * @return id of corresponding element in main UMLElementPanel
 	 */
-	public int getElementID() {
+	public Object getElementID() {
 		return id;
 	}
 
