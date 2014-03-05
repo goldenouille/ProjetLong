@@ -189,7 +189,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            number of missing instance to display
 	 */
 	public void doSetMissingUMLInstanceMissingNumber(int number) {
-		// TODO
+		poolPanel.setMissingAssociation(number);
 	}
 	
 	/**

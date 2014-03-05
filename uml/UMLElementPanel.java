@@ -42,6 +42,7 @@ public class UMLElementPanel extends JPanel {
 	//private static Color COLOR_DEFAULT = Color.BLACK;
 	private static Color COLOR_ALT = Color.RED;
 	private Vector<Object> coloredID;
+	private int missingAssociation;
 	
 	/**
 	 * Main constructor, create an UMLElementPanel dedicated button.
@@ -65,6 +66,7 @@ public class UMLElementPanel extends JPanel {
 		methods = new Vector<String>();
 		
 		coloredID = new Vector<Object>();
+		missingAssociation = 0;
 		
 		this.refresh();
 	}
@@ -461,5 +463,13 @@ public class UMLElementPanel extends JPanel {
 	
 	public void removeAllColoredElement() {
 		coloredID.removeAllElements();
+	}
+
+	public int getMissingAssociation() {
+		return missingAssociation;
+	}
+
+	public void setMissingAssociation(int missingAssociation) {
+		this.missingAssociation = missingAssociation;
 	}
 }
