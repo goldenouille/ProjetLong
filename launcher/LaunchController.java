@@ -10,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
@@ -63,7 +64,7 @@ public class LaunchController extends JFrame {
 		leftPane.add(historyButton);
 		leftPane.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JButton browseButton = new JButton(new ActChooseExercise(this, "Fournir un fichier exercice"));
+		JButton browseButton = new JButton(new ActChooseExercise(this, "Choisir exercice"));
 		browseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		leftPane.add(browseButton);
 		leftPane.add(Box.createVerticalGlue());
@@ -86,9 +87,13 @@ public class LaunchController extends JFrame {
 	}
 
 	public void doStartExercise() {
-		@SuppressWarnings("unused")
-		Controller controller = new Controller(choosenExercise);
-		this.dispose();
+		if (choosenExercise != null) {
+			@SuppressWarnings("unused")
+			Controller controller = new Controller(choosenExercise);
+			this.dispose();
+		} else {
+			JOptionPane.showMessageDialog(this, "Veuillez choisir un exercice", "Erreur", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 
 	public void chooseExercise() {
