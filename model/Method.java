@@ -22,6 +22,7 @@ public class Method implements GraphItem {
 		this.visibility = visibility;
 		this.paramTypes = paramTypes;
 		this.frenchName = "methode";
+		this.id = -1;
 	}
 
 	public String getName() {
