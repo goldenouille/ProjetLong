@@ -867,7 +867,8 @@ public class ClassicGuiController implements GuiController {
 	
 	//TODO
 	/**
-	 * commente le comportement...
+	 * Set number of missing UML drawing to display
+	 * If 0, it is not display
 	 * 
 	 * @param nb
 	 *            number to show
@@ -922,17 +923,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doResetUMLDrawingColor() {
 		umlDrawingPanel.doResetUMLDrawingColor();
-	}
-	
-	/**
-	 * Set number of missing UML drawing to display
-	 * If 0, it is not display
-	 * 
-	 * @param number
-	 *            number of missing drawing to display
-	 */
-	public void doShowMissingUMLDrawingNumber(int number) {
-		umlDrawingPanel.doShowMissingUMLDrawingNumber(number);
 	}
 
 	/**

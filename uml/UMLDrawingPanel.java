@@ -188,8 +188,15 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * @param number
 	 *            number of missing drawing to display
 	 */
-	public void doShowMissingUMLDrawingNumber(int number) {
-		poolPanel.setMissingAssociation(number);
+	public void setMissingUmlInstance(int number) {
+		poolPanel.setMissingUMLDrawing(number);
+	}
+	
+	/**
+	 * Sends to the controller the user's request to validate his Uml diagram
+	 */
+	public void askValidateDiagram() {
+		controller.askValidateDiagram();
 	}
 	
 	public void doAddNewElementFromPool(Object nature) {

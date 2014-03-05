@@ -2,11 +2,14 @@ package uml;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,8 +19,10 @@ import model.UMLNature;
 public class UMLElementPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private UMLDrawingPanel mainpanel;
+	private UMLDrawingPanel mainPanel;
 	private JPanel subPanel;
+	private JButton validationButton;
+	private JLabel missingUMLDrawingLabel;
 	
 	// Action constants
 	public static final int ACTION_NONE = 0;
@@ -42,17 +47,17 @@ public class UMLElementPanel extends JPanel {
 	//private static Color COLOR_DEFAULT = Color.BLACK;
 	private static Color COLOR_ALT = Color.RED;
 	private Vector<Object> coloredID;
-	private int missingAssociation;
+	private int missingUMLDrawing;
 	
 	/**
 	 * Main constructor, create an UMLElementPanel dedicated button.
 	 * 
-	 * @param mainpanel
+	 * @param mainPanel
 	 *            UMLDrawingPanel
 	 */
-	public UMLElementPanel(UMLDrawingPanel mainpanel) {
+	public UMLElementPanel(UMLDrawingPanel mainPanel) {
 		super();
-		this.mainpanel = mainpanel;
+		this.mainPanel = mainPanel;
 		this.resetSelectedElement();
 		this.subPanel=new JPanel();
 		this.add(subPanel);
@@ -66,9 +71,23 @@ public class UMLElementPanel extends JPanel {
 		methods = new Vector<String>();
 		
 		coloredID = new Vector<Object>();
-		missingAssociation = 0;
+		missingUMLDrawing = 0;
 		
+		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.refresh();
+		
+		validationButton = new JButton("Valider diagramme");
+		validationButton.setToolTipText("Valider le diagramme UML");
+		validationButton.addActionListener(new ActionListener() {
+	    	@Override
+        	public void actionPerformed(ActionEvent ae) {
+        		getmainPanel().askValidateDiagram();
+        	}
+	    });
+		this.add(validationButton);
+		
+		missingUMLDrawingLabel = new JLabel("test");
+		this.add(missingUMLDrawingLabel);
 	}
 	
 	/**
@@ -162,6 +181,15 @@ public class UMLElementPanel extends JPanel {
 		subPanel.add(Box.createVerticalGlue());
 
 		subPanel.revalidate();
+	}
+	
+	/**
+	 * Get UMLDrawingPanel
+	 * 
+	 * @return UMLDrawingPanel
+	 */
+	public UMLDrawingPanel getmainPanel() {
+		return mainPanel;
 	}
 
 	/**
@@ -427,22 +455,22 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			//  open editing panel
-			mainpanel.doAddNewElementFromPool(selectedElementType);
+			mainPanel.doAddNewElementFromPool(selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_ADD:
 			// let UMLDrawingPanel in charge of this action
 			break;
 		case ACTION_REMOVE:
-			mainpanel.doRemoveElementFromDrawingArea(selectedElementID, selectedElementType);
+			mainPanel.doRemoveElementFromDrawingArea(selectedElementID, selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_EDIT:
-			mainpanel.doEditElementFromPool(selectedElementID, selectedElementType);
+			mainPanel.doEditElementFromPool(selectedElementID, selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_DELETE:
-			mainpanel.doRemoveElementFromPool(selectedElementID, selectedElementType);
+			mainPanel.doRemoveElementFromPool(selectedElementID, selectedElementType);
 			this.resetSelectedElement();
 			break;
 		default:
@@ -450,7 +478,7 @@ public class UMLElementPanel extends JPanel {
 			break;
 		}
 		
-		mainpanel.repaint();
+		mainPanel.repaint();
 	}
 
 	public void addColoredElement(Object id) {
@@ -465,11 +493,17 @@ public class UMLElementPanel extends JPanel {
 		coloredID.removeAllElements();
 	}
 
-	public int getMissingAssociation() {
-		return missingAssociation;
+	public int getMissingUMLDrawing() {
+		return missingUMLDrawing;
 	}
 
-	public void setMissingAssociation(int missingAssociation) {
-		this.missingAssociation = missingAssociation;
+	public void setMissingUMLDrawing(int number) {
+		this.missingUMLDrawing = number;
+		
+		if (missingUMLDrawing > 0) {
+			missingUMLDrawingLabel.setText("Objets non liees : " + missingUMLDrawing);
+		} else {
+			missingUMLDrawingLabel.setText("");
+		}
 	}
 }
