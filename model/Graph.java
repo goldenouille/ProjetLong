@@ -75,7 +75,7 @@ public class Graph {
 
 	private void removeAttributeFrom(VertexClass vc) {
 		// unlink all the attributes from vc
-		ArrayList<Attribute> att = vertexClass.getAttributes();
+		ArrayList<Attribute> att = vc.getAttributes();
 		for (Attribute a : att) {
 			a.setMotherClass(null);
 		}
@@ -83,9 +83,9 @@ public class Graph {
 
 	private void removeMethodFrom(Vertex v) {
 		// unlink all the methods from v
-		ArrayList<Attribute> att = vertexClass.getAttributes();
-		for (Attribute a : att) {
-			a.setMotherClass(null);
+		ArrayList<Method> mets = v.getMethods();
+		for (Method m : mets) {
+			m.setMotherClass(null);
 		}
 	}
 
