@@ -1,18 +1,22 @@
 package model;
 
 public enum Visibility {
-	PRIVATE("-"),
-	PUBLIC("+"),
-	PROTECTED("#"),
-	DERIVED("/"), 
-	STATIC("_"),
-	PACKAGE("~");
+	PRIVATE("private"),
+	PUBLIC("public"),
+	PROTECTED("protected"),
+	DERIVED("derived"), 
+	STATIC("static"),
+	PACKAGE("package");
 // Derived can be combined with one of the others
 
-	private String symbol;
+	private String name;
 
-	Visibility(String symbol) {
-		this.symbol = symbol;
+	Visibility(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 	public static Visibility getByName(String n) {

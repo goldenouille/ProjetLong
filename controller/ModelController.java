@@ -15,6 +15,7 @@ import model.UMLNature;
 import model.Step;
 import model.StepFactory;
 import model.Exercise;
+import model.*;
 
 import gui.ClassicGuiController;
 
@@ -273,83 +274,49 @@ public class ModelController {
 	// Ask //
 	// ****//
 
-	/**
-	 * Sends to the core the user's request to edit the given class instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditClass(Object id, String name) {
-		//core.askEditClass(id, name);
-
+	public void askEditClass(Object id, String name) {
+		if (id instanceof VertexClass) {
+			((VertexClass) id).setName(name);
+		}	
 		System.out.println("askEditClass " + name);
 	}
 
-		/**
-	 * Sends to the core the user's request to edit the given abstract class
-	 * instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditAbstractClass(Object id, String name) {
-		//core.askEditAbstractClass(id, name);
+
+	public void askEditAbstractClass(Object id, String name) {
+		if (id instanceof VertexAbstract) {
+			((VertexAbstract) id).setName(name);
+		}	
 
 		System.out.println("askEditAbstractClass " + name);
 	}
 
-	/**
-	 * Sends to the core the user's request to edit the given interface instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 */
-	private void askEditInterface(Object id, String name) {
-		//core.askEditInterface(id, name);
+
+	public void askEditInterface(Object id, String name) {
+		if (id instanceof Vertex) {
+			((Vertex) id).setName(name);
+		}	
 
 		System.out.println("askEditInterface " + name);
 	}
 
-		/**
-	 * Sends to the core the user's request to edit the given attribute instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 * @param type
-	 *            type wanted for the new instance
-	 * @param visibility
-	 *            visibility wanted for the new instance
-	 */
-	private void askEditAttribute(Object id, String name, String type, String visibility) {
-		//core.askEditAttribute(id, name, type,visibility);
+
+	public void askEditAttribute(Object id, String name, String type, String visibility) {
+		if (id instanceof Attribute) {
+			((Attribute) id).setName(name);
+			((Attribute) id).setType(TypeBase.getByName(type));
+			((Attribute) id).setVisibility(Visibility.getByName(visibility));
+		}	
 
 		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
 	}
 
-		/**
-	 * Sends to the core the user's request to edit the given method instance
-	 * 
-	 * @param id
-	 *            identifier of the instance to edit
-	 * @param name
-	 *            name wanted for the new instance
-	 * @param paramTypes
-	 *            list of the parameters types wanted for the new instance
-	 * @param returnType
-	 *            returnType wanted for the new instance
-	 * @param visibility
-	 *            visibility wanted for the new instance
-	 */
-	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		//core.askEditMethod(id, name, paramTypes, returnType, visibility);
+
+	public void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		if (id instanceof Method) {
+			((Method) id).setName(name);
+			((Method) id).setReturnType(TypeBase.getByName(returnType));
+			((Method) id).setVisibility(Visibility.getByName(visibility));
+		}	
 
 		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
@@ -364,7 +331,10 @@ public class ModelController {
 	 * @return name of the instance
 	 */
 	public String askUmlInstanceName(Object id) {
-		//return core.askUmlInstanceName(id);
+		if (id instanceof GraphItem) {
+			return ((GraphItem) id).getName();
+		}
+
 		return "askUmlInstanceName " + id.toString();
 	}
 
@@ -377,7 +347,12 @@ public class ModelController {
 	 * @return type or return type of the instance
 	 */
 	public String askUmlInstanceType(Object id) {
-		//return core.askUmlInstanceType(id);
+		if (id instanceof Attribute) {
+			return ((Attribute) id).getType().getName();
+		}
+		if (id instanceof Method) {
+			return ((Method) id).getReturnType().getName();
+		}
 		return "askUmlInstanceType " + id.toString();
 	}
 
@@ -391,7 +366,13 @@ public class ModelController {
 	 * @return visibility of the instance
 	 */
 	public String askUmlInstanceVisibility(Object id) {
-		//return core.askUmlInstanceVisibility(id);
+		if (id instanceof Attribute) {
+			return ((Attribute) id).getVisibility().getName();
+		}
+		if (id instanceof Method) {
+			return ((Method) id).getVisibility().getName();
+		}
+
 		return "askUmlInstanceVisibility " + id.toString();
 	}
 
@@ -404,8 +385,17 @@ public class ModelController {
 	 * @return param types of the instance
 	 */
 	public ArrayList<String> askUmlInstanceParamTypes(Object id) {
-		//return core.askUmlInstanceParamTypes(id);
-		return "askUmlInstanceParamTypes " + id.toString();
+		if (id instanceof Method) {
+			ArrayList<String> stringParams = new ArrayList<String>();
+			ArrayList<Type> params = ((Method) id).getParamType();
+			for (int i = 0; i<params.size();i++) {
+				stringParams.add(params.get(i).getName());
+			}
+			return stringParams;
+		}
+
+
+		return null;
 	}
 
 }

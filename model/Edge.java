@@ -8,4 +8,8 @@ public class Edge implements GraphItem{
 	protected int id;
 	protected String frenchName;
 
+	public String getName() {
+		return this.name;
+	}
+
 }

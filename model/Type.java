@@ -1,3 +1,6 @@
 package model;
 
-public interface Type {}
+public interface Type {
+
+	public String getName();
+}
