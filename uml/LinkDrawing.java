@@ -824,7 +824,7 @@ public class LinkDrawing {
 	 * @return main class name
 	 */
 	public String getMotherClass() {
-		return motherClass.getName();
+		return drawingPanel.getElementName(motherClass.getInstanceID(), motherClass.getClasstype());
 	}
 	
 	/**
@@ -852,7 +852,7 @@ public class LinkDrawing {
 	 * @return second class name
 	 */
 	public String getDaughterClass() {
-		return daughterClass.getName();
+		return drawingPanel.getElementName(daughterClass.getInstanceID(), daughterClass.getClasstype());
 	}
 
 	/**

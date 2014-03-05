@@ -4,8 +4,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Vector;
 
+import model.UMLNature;
+
 
 public class ClassDrawing {
+	
+	private static String STRING_ABSTRACT = "<<class abastraite>>";
+	private static String STRING_INTERFACE = "<<interface>>";
 	
 	private UMLDrawingPanel drawingPanel;
 
@@ -15,8 +20,8 @@ public class ClassDrawing {
 	private int height;
 	private boolean isReduced;
 	
-	private String classtype = "";
-	private String name = "";
+	private Object id;
+	private Object type;
 	private Vector<Object> propertiesID;
 	private Vector<Object> methodsID;
 	
@@ -26,14 +31,18 @@ public class ClassDrawing {
 	/**
 	 * Main constructor, create a ClassDrawing representation of a class
 	 * 
-	 * @param name
-	 *            class name
+	 * @param drawingPanel
+	 *            UMLDrawingPanel component
+	 * @param id
+	 *            class id
+	 * @param nature
+	 *            class nature
 	 * @param x
 	 *            class x-axis drawing position
 	 * @param y
 	 *            class y-axis drawing position
 	 */
-	public ClassDrawing(UMLDrawingPanel drawingPanel, String name, int x, int y) {
+	public ClassDrawing(UMLDrawingPanel drawingPanel, Object id, Object nature, int x, int y) {
 		this.drawingPanel = drawingPanel;
 		
 		propertiesID = new Vector<Object>();
@@ -42,7 +51,8 @@ public class ClassDrawing {
 		this.x = x;
 		this.y = y;
 		isReduced = false;
-		this.name = name;
+		this.id = id;
+		this.type = nature;
 		
 		isColored = false;
 		coloredID = new Vector<Object>();
@@ -128,41 +138,21 @@ public class ClassDrawing {
 	}
 	
 	/**
-	 * Get name of class drawing
+	 * Get UML instance id of class drawing
 	 * 
-	 * @return name
+	 * @return id
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Set name of class drawing
-	 * 
-	 * @param name
-	 *            class name to draw
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public Object getInstanceID() {
+		return id;
 	}
 	
 	/**
-	 * Get type text of class drawing
+	 * Get nature of class drawing
 	 * 
 	 * @return class type
 	 */
-	public String getClasstype() {
-		return classtype;
-	}
-
-	/**
-	 * Set type text of class drawing
-	 * 
-	 * @param type
-	 *            <<type>> of class
-	 */
-	public void setClasstype(String classtype) {
-		this.classtype = classtype;
+	public Object getClasstype() {
+		return type;
 	}
 	
 	/**
@@ -239,19 +229,25 @@ public class ClassDrawing {
 	 */
 	public void draw(Graphics g) {
 		int actualHeight = 0; // for drawing String
-		int stringWidth = g.getFontMetrics().stringWidth(name);
+		int stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getElementName(id, type));
 		
-		if (g.getFontMetrics().stringWidth(classtype) > stringWidth) {
-			stringWidth = g.getFontMetrics().stringWidth(classtype);
+		if (type.equals(UMLNature.ABSTRACT_CLASS)) {
+			if (g.getFontMetrics().stringWidth(STRING_ABSTRACT) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(STRING_ABSTRACT);
+			}
+		} else if (type.equals(UMLNature.INTERFACE)) {
+			if (g.getFontMetrics().stringWidth(STRING_INTERFACE) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(STRING_INTERFACE);
+			}
 		}
 		for (int i = 0; i < propertiesID.size() ; i++) {
-			if (g.getFontMetrics().stringWidth(drawingPanel.getAttributeName(propertiesID.get(i))) > stringWidth) {
-				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getAttributeName(propertiesID.get(i)));
+			if (g.getFontMetrics().stringWidth(drawingPanel.getElementName(propertiesID.get(i), UMLNature.ATTRIBUTE)) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getElementName(propertiesID.get(i), UMLNature.ATTRIBUTE));
 			}
 		}
 		for (int i = 0; i < methodsID.size() ; i++) {
-			if (g.getFontMetrics().stringWidth(drawingPanel.getMethodName(methodsID.get(i))) > stringWidth) {
-				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getMethodName(methodsID.get(i)));
+			if (g.getFontMetrics().stringWidth(drawingPanel.getElementName(methodsID.get(i), UMLNature.METHOD)) > stringWidth) {
+				stringWidth = g.getFontMetrics().stringWidth(drawingPanel.getElementName(methodsID.get(i), UMLNature.METHOD));
 			}
 		}
 		width = stringWidth + 8;
@@ -261,14 +257,18 @@ public class ClassDrawing {
 		}
 		
 		// class type drawing
-		if (classtype != "" && classtype != null) {
+		if (type.equals(UMLNature.ABSTRACT_CLASS) || type.equals(UMLNature.INTERFACE)) {
 			actualHeight += g.getFont().getSize();
-			g.drawString(classtype, x + width/2 - g.getFontMetrics().stringWidth(classtype)/2, y + actualHeight);
+			if (type.equals(UMLNature.ABSTRACT_CLASS)) {
+				g.drawString(STRING_ABSTRACT, x + width/2 - g.getFontMetrics().stringWidth(STRING_ABSTRACT)/2, y + actualHeight);
+			} else if (type.equals(UMLNature.INTERFACE)) {
+				g.drawString(STRING_INTERFACE, x + width/2 - g.getFontMetrics().stringWidth(STRING_INTERFACE)/2, y + actualHeight);
+			}
 		}
 		
 		// class name drawing
 		actualHeight += g.getFont().getSize();
-		g.drawString(name, x + width/2 - g.getFontMetrics().stringWidth(name)/2, y + actualHeight);
+		g.drawString(drawingPanel.getElementName(id, type), x + width/2 - g.getFontMetrics().stringWidth(drawingPanel.getElementName(id, type))/2, y + actualHeight);
 		
 		if (isColored) {
 			g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
@@ -290,7 +290,7 @@ public class ClassDrawing {
 						g.setColor(UMLDrawingPanel.COLOR_ALT);
 					}
 					actualHeight += g.getFont().getSize();
-					g.drawString(drawingPanel.getAttributeName(propertiesID.get(i)), x + 4, y + actualHeight);
+					g.drawString(drawingPanel.getElementName(propertiesID.get(i), UMLNature.ATTRIBUTE), x + 4, y + actualHeight);
 					if (coloredID.contains(propertiesID.get(i))) {
 						g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
 					}
@@ -310,12 +310,12 @@ public class ClassDrawing {
 			}
 			if (!this.isReduced()) {
 				for (int i = 0; i < methodsID.size() ; i++) {
-					if (coloredID.contains(propertiesID.get(i))) {
+					if (coloredID.contains(methodsID.get(i))) {
 						g.setColor(UMLDrawingPanel.COLOR_ALT);
 					}
 					actualHeight += g.getFont().getSize();
-					g.drawString(drawingPanel.getMethodName(methodsID.get(i)), x + 4, y + actualHeight);
-					if (coloredID.contains(propertiesID.get(i))) {
+					g.drawString(drawingPanel.getElementName(methodsID.get(i), UMLNature.METHOD), x + 4, y + actualHeight);
+					if (coloredID.contains(methodsID.get(i))) {
 						g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
 					}
 				}

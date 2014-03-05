@@ -1,6 +1,5 @@
 package uml;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -47,8 +46,6 @@ public class UMLElementPanel extends JPanel {
 	private Vector<Object> methodsID;
 	private Vector<String> methods;
 
-	// private static Color COLOR_DEFAULT = Color.BLACK;
-	private static Color COLOR_ALT = Color.RED;
 	private Vector<Object> coloredID;
 	private int missingUMLDrawing;
 
@@ -140,7 +137,7 @@ public class UMLElementPanel extends JPanel {
 			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
 					"Editer les proprietes");
 			if (coloredID.contains(classesID.get(i))) {
-				label.setForeground(COLOR_ALT);
+				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			classesOnePanel.add(label);
 			
@@ -179,7 +176,7 @@ public class UMLElementPanel extends JPanel {
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
 			if (coloredID.contains(propertiesID.get(i))) {
-				label.setForeground(COLOR_ALT);
+				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			propertiesOnePanel.add(label);
 			
@@ -216,7 +213,7 @@ public class UMLElementPanel extends JPanel {
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
 			if (coloredID.contains(methodsID.get(i))) {
-				label.setForeground(COLOR_ALT);
+				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			methodsOnePanel.add(label);
 			
