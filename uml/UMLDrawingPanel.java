@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -33,7 +32,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * "~"       Package
 	 */
 	
-	// Color constant
+	// Color constant // TODO remove from UMLElementPanel
 	public static Color COLOR_DEFAULT = Color.BLACK;
 	public static Color COLOR_ALT = Color.RED;
 	
@@ -114,13 +113,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.get(0).setDaughterMultiplicity("O..n");
 		links.get(0).setText("testing");
 		*/
-		
+		/*
 		this.poolPanel.addClass(0, UMLNature.INTERFACE, "Interface");
 		this.poolPanel.addClass(1, UMLNature.CLASS, "Class");
 		this.poolPanel.addProperty(2, "myproperty", "int", "+");
 		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
 		//this.doShowUMLInstanceInRed(1);
 		poolPanel.refresh();
+		*/
 		
 		// END TEST
 		
