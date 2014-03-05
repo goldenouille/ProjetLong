@@ -130,6 +130,13 @@ public class ClassicGuiController implements GuiController {
 		// e.printStackTrace();
 		// }
 	}
+	
+	/** Enable or disable the keywords validation button
+	 * @param enabled propertie of the button to set
+	 */
+	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
+		textSectionPanel.setValidateKeywordsButtonEnabled(enabled);
+	}
 
 	/**
 	 * Sends to the core the user's request to validate his keyword Uml
@@ -139,13 +146,26 @@ public class ClassicGuiController implements GuiController {
 		// TODO Auto-generated method stub
 		// System.out.println("askValidateAssociation");
 	}
+	
+	/** Enable or disable the association validation button
+	 * @param enabled propertie of the button to set
+	 */
+	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
+		textSectionPanel.setValidateAssociationButtonEnabled(enabled);
+	}
 
 	/**
 	 * Sends to the core the user's request to validate his Uml diagram
 	 */
 	public void askValidateDiagram() {
 		// TODO Auto-generated method stub
-		// System.out.println("askValidateAssociation");
+	}
+	
+	/** Enable or disable the diagram validation button
+	 * @param enabled propertie of the button to set
+	 */
+	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
+		umlDrawingPanel.setValidateDiagramButtonEnabled(enabled);
 	}
 
 	// ******************************************************************************************************//

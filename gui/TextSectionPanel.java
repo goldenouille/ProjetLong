@@ -21,6 +21,8 @@ public class TextSectionPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel missingKeywordsLabel;
 	private JLabel missingAssociationsLabel;
+	private JButton validateKeywordsButton;
+	private JButton validateAssociationButton;
 
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
 		super(controller);
@@ -54,7 +56,7 @@ public class TextSectionPanel extends AbstractPanel {
 		JButton deselectTextButton = new JButton(new ActUnSelectText(controller, "Deselectionner"));
 		deselectTextButton.setToolTipText("Selectionnez du texte avec le curseur puis cliquez ici pour l'effacer de votre selection");
 		bottomPane.add(deselectTextButton);
-		JButton validateKeywordsButton = new JButton(new ActValidateKeywords(controller, "Valider mots-cles"));
+		validateKeywordsButton = new JButton(new ActValidateKeywords(controller, "Valider mots-cles"));
 		validateKeywordsButton.setToolTipText("<html>Cliquez ici pour valider votre selection de mots cles devant etre traduits en elements UML."
 				+ "<br>Attention ! S'il en manque ou si votre selection est incorrecte vous perdrez des points !</html>");
 		bottomPane.add(validateKeywordsButton);
@@ -66,7 +68,7 @@ public class TextSectionPanel extends AbstractPanel {
 				+ "<br>Attention ! Il y a en général une solution ne nécessitant pas d'ajouter de texte !</html>");
 		bottomPane.add(addTextButton);
 		bottomPane.add(Box.createHorizontalGlue());
-		JButton validateAssociationButton = new JButton(new ActValidateAssociation(controller, "Valider association"));
+		validateAssociationButton = new JButton(new ActValidateAssociation(controller, "Valider association"));
 		validateAssociationButton.setToolTipText("<html>Cliquez ici pour valider votre association de mots cles a des elements UML."
 				+ "<br>Pour associer un mot-cle a un nouvel element, faites un clic droit sur une "
 				+ "<br>expression validee (en vert) et choisissez l'element a associer."
@@ -90,6 +92,14 @@ public class TextSectionPanel extends AbstractPanel {
 		} else {
 			missingAssociationsLabel.setText(" Mots-cles manquants : " + nb);
 		}
+	}
+
+	public void setValidateKeywordsButtonEnabled(boolean enabled) {
+		validateKeywordsButton.setEnabled(enabled);
+	}
+
+	public void setValidateAssociationButtonEnabled(boolean enabled) {
+		validateAssociationButton.setEnabled(enabled);
 	}
 
 }

@@ -553,4 +553,8 @@ public class UMLElementPanel extends JPanel {
 			missingUMLDrawingLabel.setText("");
 		}
 	}
+
+	public void setValidateDiagramButtonEnabled(boolean enabled) {
+		validationButton.setEnabled(enabled);
+	}
 }

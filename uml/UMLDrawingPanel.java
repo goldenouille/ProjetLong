@@ -617,4 +617,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		// Auto-generated method stub
 		
 	}
+
+	public void setValidateDiagramButtonEnabled(boolean enabled) {
+		poolPanel.setValidateDiagramButtonEnabled(enabled);
+	}
 }
