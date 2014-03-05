@@ -1,6 +1,7 @@
 package uml;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +10,13 @@ import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import model.UMLNature;
-
 
 public class UMLElementPanel extends JPanel {
 
@@ -23,7 +25,7 @@ public class UMLElementPanel extends JPanel {
 	private JPanel subPanel;
 	private JButton validationButton;
 	private JLabel missingUMLDrawingLabel;
-	
+
 	// Action constants
 	public static final int ACTION_NONE = 0;
 	public static final int ACTION_ADD = 1;
@@ -35,7 +37,7 @@ public class UMLElementPanel extends JPanel {
 	private int selectedElementAction;
 	private UMLNature selectedElementType;
 	private Object selectedElementID;
-	
+
 	private Vector<Object> classesID;
 	private Vector<UMLNature> classesNature;
 	private Vector<String> classes;
@@ -43,12 +45,17 @@ public class UMLElementPanel extends JPanel {
 	private Vector<String> properties;
 	private Vector<Object> methodsID;
 	private Vector<String> methods;
-	
-	//private static Color COLOR_DEFAULT = Color.BLACK;
+
+	// private static Color COLOR_DEFAULT = Color.BLACK;
 	private static Color COLOR_ALT = Color.RED;
 	private Vector<Object> coloredID;
 	private int missingUMLDrawing;
-	
+
+	// icons
+	private ImageIcon plus = new ImageIcon("images/plus.png");
+	private ImageIcon minus = new ImageIcon("images/minus.png");
+	private ImageIcon bin = new ImageIcon("images/bin.png");
+
 	/**
 	 * Main constructor, create an UMLElementPanel dedicated button.
 	 * 
@@ -57,11 +64,12 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public UMLElementPanel(UMLDrawingPanel mainPanel) {
 		super();
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.mainPanel = mainPanel;
 		this.resetSelectedElement();
-		this.subPanel=new JPanel();
-		this.add(subPanel);
-		
+		this.subPanel = new JPanel();
+		this.add(new JScrollPane(subPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+
 		classesID = new Vector<Object>();
 		classesNature = new Vector<UMLNature>();
 		classes = new Vector<String>();
@@ -69,111 +77,150 @@ public class UMLElementPanel extends JPanel {
 		properties = new Vector<String>();
 		methodsID = new Vector<Object>();
 		methods = new Vector<String>();
-		
+
 		coloredID = new Vector<Object>();
 		missingUMLDrawing = 0;
-		
-		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
 		this.refresh();
-		
+		this.add(Box.createRigidArea(new Dimension(0, 20)));
+
 		validationButton = new JButton("Valider diagramme");
 		validationButton.setToolTipText("Valider le diagramme UML");
+		validationButton.setAlignmentX(CENTER_ALIGNMENT);
 		validationButton.addActionListener(new ActionListener() {
-	    	@Override
-        	public void actionPerformed(ActionEvent ae) {
-        		getmainPanel().askValidateDiagram();
-        	}
-	    });
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				getmainPanel().askValidateDiagram();
+			}
+		});
 		this.add(validationButton);
-		
+		this.add(Box.createRigidArea(new Dimension(0, 20)));
+
 		missingUMLDrawingLabel = new JLabel("");
+		missingUMLDrawingLabel.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(missingUMLDrawingLabel);
+
+		this.add(Box.createRigidArea(new Dimension(0, 20)));
 	}
-	
+
 	/**
 	 * Refresh panel components
 	 */
 	public void refresh() {
 		subPanel.removeAll();
 		subPanel.revalidate();
-		
+
 		subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.PAGE_AXIS));
-		
+
 		JPanel classesPanel = new JPanel();
 		classesPanel.setLayout(new BoxLayout(classesPanel, BoxLayout.PAGE_AXIS));
-		
+
 		JPanel classeNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		classeNamePanel.add(new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLNature.CLASS, null, "+", "Ajouter une nouvelle classe"));
+		UMLElementPanelButton newClass = new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLNature.CLASS, null, "+", "Ajouter une nouvelle classe", plus);
+		newClass.setPreferredSize(new Dimension(20, 20));
+		classeNamePanel.add(newClass);
 		classeNamePanel.add(new JLabel("Classes :"));
 		classesPanel.add(classeNamePanel);
-		
-		for (int i = 0 ; i < classes.size() ; i++) {
+
+		for (int i = 0; i < classes.size(); i++) {
 			JPanel classesOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+			UMLElementPanelButton addClass = new UMLElementPanelButton(this, ACTION_ADD, classesNature.get(i), classesID.get(i), "+",
+					"Ajouter à la zone de dessin, au clique", plus);
+			addClass.setPreferredSize(new Dimension(20, 20));
+			classesOnePanel.add(addClass);
+
+			UMLElementPanelButton remClass = new UMLElementPanelButton(this, ACTION_REMOVE, classesNature.get(i), classesID.get(i), "-", "Retirer de la zone de dessin",minus);
+			remClass.setPreferredSize(new Dimension(20, 20));
+			classesOnePanel.add(remClass);
 			
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, classesNature.get(i), classesID.get(i), "+", "Ajouter à la zone de dessin, au clique"));
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, classesNature.get(i), classesID.get(i), "-", "Retirer de la zone de dessin"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, classesNature.get(i), classesID.get(i), "E", "Editer les proprietes"));	
-		    classesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, classesNature.get(i), classesID.get(i), "D", "Supprimer l'element"));	
-			
-			JLabel label = new JLabel(classes.get(i));
+			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
+					"Editer les proprietes");
 			if (coloredID.contains(classesID.get(i))) {
 				label.setForeground(COLOR_ALT);
 			}
 			classesOnePanel.add(label);
 			
+			UMLElementPanelButton binClass = new UMLElementPanelButton(this, ACTION_DELETE, classesNature.get(i), classesID.get(i), "D", "Supprimer l'element", bin);
+			binClass.setPreferredSize(new Dimension(20, 20));
+			classesOnePanel.add(binClass);
+
 			classesPanel.add(classesOnePanel);
 		}
 		classesPanel.add(Box.createVerticalGlue());
 		subPanel.add(classesPanel);
+		subPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		subPanel.add(Box.createVerticalGlue());
-		
+
 		JPanel propertiesPanel = new JPanel();
 		propertiesPanel.setLayout(new BoxLayout(propertiesPanel, BoxLayout.PAGE_AXIS));
-		
+
 		JPanel propertiesNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		propertiesNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLNature.ATTRIBUTE, null, "+", "Ajouter un nouvel attribut"));
+		UMLElementPanelButton newAtt = new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLNature.ATTRIBUTE, null, "+", "Ajouter un nouvel attribut", plus);
+		newAtt.setPreferredSize(new Dimension(20, 20));
+		propertiesNamePanel.add(newAtt);
 		propertiesNamePanel.add(new JLabel("Attributs :"));
 		propertiesPanel.add(propertiesNamePanel);
-		for (int i = 0 ; i < properties.size() ; i++) {
+		for (int i = 0; i < properties.size(); i++) {
 			JPanel propertiesOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+			UMLElementPanelButton addAtt = new UMLElementPanelButton(this, ACTION_ADD, UMLNature.ATTRIBUTE, propertiesID.get(i), "+",
+					"Ajouter à la zone de dessin, au clique", plus);
+			addAtt.setPreferredSize(new Dimension(20, 20));
+			propertiesOnePanel.add(addAtt);
 			
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLNature.ATTRIBUTE, propertiesID.get(i), "+", "Ajouter à la zone de dessin, au clique"));
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLNature.ATTRIBUTE, propertiesID.get(i), "-", "Retirer de la zone de dessin"));	
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), "E", "Editer les proprietes"));	
-			propertiesOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLNature.ATTRIBUTE, propertiesID.get(i), "D", "Supprimer l'element"));	
+			UMLElementPanelButton remAtt = new UMLElementPanelButton(this, ACTION_REMOVE, UMLNature.ATTRIBUTE, propertiesID.get(i), "-",
+					"Retirer de la zone de dessin", minus);
+			remAtt.setPreferredSize(new Dimension(20, 20));
+			propertiesOnePanel.add(remAtt);
 			
-			JLabel label = new JLabel(properties.get(i));
+			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
 			if (coloredID.contains(propertiesID.get(i))) {
 				label.setForeground(COLOR_ALT);
 			}
 			propertiesOnePanel.add(label);
 			
+			UMLElementPanelButton binAtt = new UMLElementPanelButton(this, ACTION_DELETE, UMLNature.ATTRIBUTE, propertiesID.get(i), "D", "Supprimer l'element", bin);
+			binAtt.setPreferredSize(new Dimension(20, 20));
+			propertiesOnePanel.add(binAtt);
+
 			propertiesPanel.add(propertiesOnePanel);
 		}
 		propertiesPanel.add(Box.createVerticalGlue());
 		subPanel.add(propertiesPanel);
+		subPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		subPanel.add(Box.createVerticalGlue());
-		
+
 		JPanel methodPanel = new JPanel();
 		methodPanel.setLayout(new BoxLayout(methodPanel, BoxLayout.PAGE_AXIS));
 		JPanel methodNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		methodNamePanel.add(new UMLElementPanelButton (this, ACTION_ADD_NEW_ELEMENT, UMLNature.METHOD, null, "+", "Ajouter une nouvelle methode"));
+		UMLElementPanelButton newMethod = new UMLElementPanelButton(this, ACTION_ADD_NEW_ELEMENT, UMLNature.METHOD, null, "+", "Ajouter une nouvelle methode", plus);
+		newMethod.setPreferredSize(new Dimension(20, 20));
+		methodNamePanel.add(newMethod);
 		methodNamePanel.add(new JLabel("Méthodes :"));
 		methodPanel.add(methodNamePanel);
-		for (int i = 0 ; i < methods.size() ; i++) {
+		for (int i = 0; i < methods.size(); i++) {
 			JPanel methodsOnePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+			UMLElementPanelButton addMethod = new UMLElementPanelButton(this, ACTION_ADD, UMLNature.METHOD, methodsID.get(i), "+", "Ajouter à la zone de dessin, au clique",
+					plus);
+			addMethod.setPreferredSize(new Dimension(20, 20));
+			methodsOnePanel.add(addMethod);
 			
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_ADD, UMLNature.METHOD, methodsID.get(i), "+", "Ajouter à la zone de dessin, au clique"));
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_REMOVE, UMLNature.METHOD, methodsID.get(i), "-", "Retirer de la zone de dessin"));	
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), "E", "Editer les proprietes"));	
-			methodsOnePanel.add(new UMLElementPanelButton (this, ACTION_DELETE, UMLNature.METHOD, methodsID.get(i), "D", "Supprimer l'element"));
+			UMLElementPanelButton remMethod = new UMLElementPanelButton(this, ACTION_REMOVE, UMLNature.METHOD, methodsID.get(i), "-", "Retirer de la zone de dessin", minus);
+			remMethod.setPreferredSize(new Dimension(20, 20));
+			methodsOnePanel.add(remMethod);
 			
-			JLabel label = new JLabel(methods.get(i));
+			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
 			if (coloredID.contains(methodsID.get(i))) {
 				label.setForeground(COLOR_ALT);
 			}
 			methodsOnePanel.add(label);
 			
+			UMLElementPanelButton binMethod = new UMLElementPanelButton(this, ACTION_DELETE, UMLNature.METHOD, methodsID.get(i), "D", "Supprimer l'element", bin);
+			binMethod.setPreferredSize(new Dimension(20, 20));
+			methodsOnePanel.add(binMethod);
+
 			methodPanel.add(methodsOnePanel);
 		}
 		methodPanel.add(Box.createVerticalGlue());
@@ -182,7 +229,7 @@ public class UMLElementPanel extends JPanel {
 
 		subPanel.revalidate();
 	}
-	
+
 	/**
 	 * Get UMLDrawingPanel
 	 * 
@@ -205,7 +252,7 @@ public class UMLElementPanel extends JPanel {
 		classesNature.add(nature);
 		classes.add(name);
 	}
-	
+
 	/**
 	 * Modify a class from element pool
 	 * 
@@ -227,9 +274,9 @@ public class UMLElementPanel extends JPanel {
 	public boolean removeClass(Object id) {
 		classes.remove(classesID.indexOf(id));
 		classesNature.remove(classesID.indexOf(id));
-		return classesID.remove((Integer)id);
+		return classesID.remove((Integer) id);
 	}
-	
+
 	/**
 	 * Return uml class nature
 	 * 
@@ -257,7 +304,7 @@ public class UMLElementPanel extends JPanel {
 		propertiesID.add(id);
 		properties.add(visibility + " " + type + " " + name);
 	}
-	
+
 	/**
 	 * Modify a property from element pool
 	 * 
@@ -282,9 +329,9 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public boolean removeProperty(Object id) {
 		properties.remove(propertiesID.indexOf(id));
-		return propertiesID.remove((Integer)id);
+		return propertiesID.remove((Integer) id);
 	}
-	
+
 	/**
 	 * Add a method to element pool
 	 * 
@@ -301,17 +348,17 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public void modifyMethod(Object id, String name, ArrayList<String> paramTypes, String type, String visibility) {
 		String method = visibility + " " + type + " " + name + "(";
-		for (int i = 0 ; i < paramTypes.size() ; i++) {
+		for (int i = 0; i < paramTypes.size(); i++) {
 			method += paramTypes.get(i);
 			if (i < paramTypes.size() - 1) {
 				method += ", ";
 			}
 		}
 		method += ")";
-		
+
 		methods.set(methodsID.indexOf(id), method);
 	}
-	
+
 	/**
 	 * Modify a method from element pool
 	 * 
@@ -328,14 +375,14 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public void addMethod(Object id, String name, ArrayList<String> paramTypes, String type, String visibility) {
 		String method = visibility + " " + type + " " + name + "(";
-		for (int i = 0 ; i < paramTypes.size() ; i++) {
+		for (int i = 0; i < paramTypes.size(); i++) {
 			method += paramTypes.get(i);
 			if (i < paramTypes.size() - 1) {
 				method += ", ";
 			}
 		}
 		method += ")";
-		
+
 		methodsID.add(id);
 		methods.add(method);
 	}
@@ -348,9 +395,9 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public boolean removeMethod(Object id) {
 		methods.remove(methodsID.indexOf(id));
-		return methodsID.remove((Integer)id);
+		return methodsID.remove((Integer) id);
 	}
-	
+
 	/**
 	 * Get element name
 	 * 
@@ -364,16 +411,14 @@ public class UMLElementPanel extends JPanel {
 		String elementName = "";
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			elementName = classes.get(classesID.indexOf(id));
-		}
-		else if (nature.equals(UMLNature.ATTRIBUTE)) {
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			elementName = properties.get(propertiesID.indexOf(id));
-		}
-		else if (nature.equals(UMLNature.METHOD)) {
+		} else if (nature.equals(UMLNature.METHOD)) {
 			elementName = methods.get(methodsID.indexOf(id));
 		}
 		return elementName;
 	}
-	
+
 	/**
 	 * Get current selected element action
 	 * 
@@ -411,7 +456,7 @@ public class UMLElementPanel extends JPanel {
 	public void setSelectedElementType(UMLNature selectedElementType) {
 		this.selectedElementType = selectedElementType;
 	}
-	
+
 	/**
 	 * Get current selected element id
 	 * 
@@ -424,12 +469,13 @@ public class UMLElementPanel extends JPanel {
 	/**
 	 * Set current selected element id
 	 * 
-	 * @param element id
+	 * @param element
+	 *            id
 	 */
 	public void setSelectedElementID(Object selectedElementID) {
 		this.selectedElementID = selectedElementID;
 	}
-	
+
 	/**
 	 * Get current selected element name, from id
 	 * 
@@ -438,7 +484,7 @@ public class UMLElementPanel extends JPanel {
 	public String getSelectedElementName() {
 		return getElementName(selectedElementID, selectedElementType);
 	}
-	
+
 	/**
 	 * Reset current selected element to ACTION_NONE, ELEMENT_NOTYPE and ID 0
 	 */
@@ -447,14 +493,15 @@ public class UMLElementPanel extends JPanel {
 		this.selectedElementType = null;
 		this.selectedElementID = null;
 	}
-	
+
 	/**
-	 * Perform action in consideration of current selected element action, type and id
+	 * Perform action in consideration of current selected element action, type
+	 * and id
 	 */
 	public void doAction() {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
-			//  open editing panel
+			// open editing panel
 			mainPanel.doAddNewElementFromPool(selectedElementType);
 			this.resetSelectedElement();
 			break;
@@ -477,18 +524,18 @@ public class UMLElementPanel extends JPanel {
 			this.resetSelectedElement();
 			break;
 		}
-		
+
 		mainPanel.repaint();
 	}
 
 	public void addColoredElement(Object id) {
 		coloredID.add(id);
 	}
-	
+
 	public boolean removeColoredElement(Object id) {
 		return coloredID.remove(id);
 	}
-	
+
 	public void removeAllColoredElement() {
 		coloredID.removeAllElements();
 	}
@@ -499,7 +546,7 @@ public class UMLElementPanel extends JPanel {
 
 	public void setMissingUMLDrawing(int number) {
 		this.missingUMLDrawing = number;
-		
+
 		if (missingUMLDrawing > 0) {
 			missingUMLDrawingLabel.setText("Objets non traces : " + missingUMLDrawing);
 		} else {

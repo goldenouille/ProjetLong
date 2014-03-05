@@ -1,22 +1,21 @@
 package uml;
 
-import gui.IconButton;
+import javax.swing.JLabel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
 import model.UMLNature;
 
-public class UMLElementPanelButton extends IconButton {
-	
+public class UMLElementListenedLabel extends JLabel {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private UMLElementPanel mainpanel;
 	private int action;
 	private UMLNature nature;
 	private Object id;
-	
+
 	/**
 	 * Main constructor, create an UMLElementPanel dedicated button.
 	 * 
@@ -33,24 +32,41 @@ public class UMLElementPanelButton extends IconButton {
 	 * @param toolTipText
 	 *            text show as tooltip
 	 */
-	public UMLElementPanelButton (UMLElementPanel mainpanel, int action, UMLNature nature, Object id, String text, String toolTipText, ImageIcon icon) {
-		super(null,icon);
+	public UMLElementListenedLabel(UMLElementPanel mainpanel, int action, UMLNature nature, Object id, String text, String toolTipText) {
+		super(text);
 		this.mainpanel = mainpanel;
 		this.action = action;
 		this.nature = nature;
 		this.id = id;
-		
-		//this.setPreferredSize(new Dimension(40, 40));
+
+		// this.setPreferredSize(new Dimension(40, 40));
 		this.setToolTipText(toolTipText);
-		this.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent ae) {
-	    		getMainpanel().setSelectedElementAction(getElementAction());
-	    		getMainpanel().setSelectedElementType(getElementNature());
-	    		getMainpanel().setSelectedElementID(getElementID());
-	    		getMainpanel().doAction();
-	    	}
-	    });
+		this.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				getMainpanel().setSelectedElementAction(getElementAction());
+				getMainpanel().setSelectedElementType(getElementNature());
+				getMainpanel().setSelectedElementID(getElementID());
+				getMainpanel().doAction();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {	
+			}
+		});
 	}
 
 	/**
@@ -61,7 +77,7 @@ public class UMLElementPanelButton extends IconButton {
 	public UMLElementPanel getMainpanel() {
 		return mainpanel;
 	}
-	
+
 	/**
 	 * Get Element Action
 	 * 
