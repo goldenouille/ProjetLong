@@ -182,25 +182,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Set number of missing UML instance to display
-	 * If 0, it is not display
-	 * 
-	 * @param number
-	 *            number of missing instance to display
-	 */
-	public void doSetMissingUMLInstanceMissingNumber(int number) {
-		poolPanel.setMissingAssociation(number);
-	}
-	
-	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
 	 * 
 	 * @param number
 	 *            number of missing drawing to display
 	 */
-	public void doSetMissingUMLDrawingNumber(int number) {
-		// TODO
+	public void doShowMissingUMLDrawingNumber(int number) {
+		poolPanel.setMissingAssociation(number);
 	}
 	
 	public void doAddNewElementFromPool(Object nature) {

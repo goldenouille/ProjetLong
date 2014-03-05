@@ -903,25 +903,14 @@ public class ClassicGuiController implements GuiController {
 	}
 	
 	/**
-	 * Set number of missing UML instance to display
-	 * If 0, it is not display
-	 * 
-	 * @param number
-	 *            number of missing instance to display
-	 */
-	public void doSetMissingUMLInstanceMissingNumber(int number) {
-		umlDrawingPanel.doSetMissingUMLInstanceMissingNumber(number);
-	}
-	
-	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
 	 * 
 	 * @param number
 	 *            number of missing drawing to display
 	 */
-	public void doSetMissingUMLDrawingNumber(int number) {
-		umlDrawingPanel.doSetMissingUMLDrawingNumber(number);
+	public void doShowMissingUMLDrawingNumber(int number) {
+		umlDrawingPanel.doShowMissingUMLDrawingNumber(number);
 	}
 
 	/**
