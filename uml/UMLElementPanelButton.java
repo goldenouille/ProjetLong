@@ -13,7 +13,7 @@ public class UMLElementPanelButton extends JButton {
 	
 	private UMLElementPanel mainpanel;
 	private int action;
-	private UMLNature type;
+	private UMLNature nature;
 	private Object id;
 	
 	/**
@@ -32,10 +32,10 @@ public class UMLElementPanelButton extends JButton {
 	 * @param toolTipText
 	 *            text show as tooltip
 	 */
-	public UMLElementPanelButton (UMLElementPanel mainpanel, int action, UMLNature type, Object id, String text, String toolTipText) {
+	public UMLElementPanelButton (UMLElementPanel mainpanel, int action, UMLNature nature, Object id, String text, String toolTipText) {
 		this.mainpanel = mainpanel;
 		this.action = action;
-		this.UMLNature = type;
+		this.nature = nature;
 		this.id = id;
 		
 		//this.setPreferredSize(new Dimension(40, 40));
@@ -44,7 +44,7 @@ public class UMLElementPanelButton extends JButton {
 	    	@Override
 	    	public void actionPerformed(ActionEvent ae) {
 	    		getMainpanel().setSelectedElementAction(getElementAction());
-	    		getMainpanel().setSelectedElementType(getElementType());
+	    		getMainpanel().setSelectedElementType(getElementNature());
 	    		getMainpanel().setSelectedElementID(getElementID());
 	    		getMainpanel().doAction();
 	    	}
@@ -76,8 +76,8 @@ public class UMLElementPanelButton extends JButton {
 	 * 
 	 * @return UMLNature
 	 */
-	public UMLNature getElementType() {
-		return type;
+	public UMLNature getElementNature() {
+		return nature;
 	}
 
 	/**

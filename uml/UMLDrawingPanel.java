@@ -37,10 +37,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	private static final int DRAGGED_LINK_OFFSET = 1000;
 	private static final int NO_CLICKED_CLASS = -1;
 	
+	/*
 	public static final int ELEMENT_NOTYPE = 0;
 	public static final int ELEMENT_CLASS = 1;
 	public static final int ELEMENT_PROPERTY = 2;
 	public static final int ELEMENT_METHOD = 3;
+	*/
 	
 	private Vector<ClassDrawing> classes;
 	private Vector<LinkDrawing> links;
@@ -116,11 +118,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.repaint();
 	}
 	
-	public boolean doCheckingElementsInPool() {
-		// TODO
-		return false;
-	}
-	
 	/**
 	 * Add an UML instance to element pool
 	 * 
@@ -194,6 +191,28 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		//TODO
 	}
 	
+	/**
+	 * Set number of missing UML instance to display
+	 * If 0, it is not display
+	 * 
+	 * @param number
+	 *            number of missing instance to display
+	 */
+	public void doSetMissingUMLInstanceMissingNumber(int number) {
+		// TODO
+	}
+	
+	/**
+	 * Set number of missing UML drawing to display
+	 * If 0, it is not display
+	 * 
+	 * @param number
+	 *            number of missing drawing to display
+	 */
+	public void doSetMissingUMLDrawingNumber(int number) {
+		// TODO
+	}
+	
 	public void doAddNewElementFromPool(Object nature) {
 		// TODO
 		if (nature.equals(UMLNature.CLASS)) {
@@ -214,11 +233,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	public void doEditElementFromPool(Object id, Object nature) {
 		// TODO
 		if (nature.equals(UMLNature.CLASS)) {
+			// TODO askEdit
+			// TODO doShowEdit...
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
+			//poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			poolPanel.modifyClass((id, controller.askUmlInstanceName(id));
+			//poolPanel.modifyClass((id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			poolPanel.modifyProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		} else if (nature.equals(UMLNature.METHOD)) {
@@ -245,57 +266,84 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
-	public boolean doCheckingClasses() {
-		// TODO
-		return false;
+	public void doAddElementToDrawingArea(String element, UMLNature nature, Dimension posistion) {
+		int i = 0;
+		boolean find = false;
+		
+		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
+			boolean classDoNotExist = true;
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).getName() == poolPanel.getSelectedElementName()) {
+					classDoNotExist = false;
+				}
+			}
+			if (classDoNotExist) {
+				classes.add(new ClassDrawing(poolPanel.getSelectedElementName(), posistion.width, posistion.height));
+			}
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			// TODO link to class
+			while (i < classes.size() && !find) {
+				if (classes.get(i).isUnder(posistion)) {
+					find = true;
+				}
+				i++;
+			}
+			if (find) {
+				i--;
+				classes.get(i).addProperty(poolPanel.getSelectedElementName());
+				this.doLinkingPropertyToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
+			}
+		} else if (nature.equals(UMLNature.METHOD)) {
+			// TODO link to class
+			while (i < classes.size() && !find) {
+				if (classes.get(i).isUnder(posistion)) {
+					find = true;
+				}
+				i++;
+			}
+			if (find) {
+				i--;
+				classes.get(i).addMethod(poolPanel.getSelectedElementName());
+				this.doLinkingMethodToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
+			}
+		}
 	}
 	
-	public void doRemoveElementFromDrawingArea(String element, int type) {
-		switch (type) {
-		case ELEMENT_CLASS:
+	public void doRemoveElementFromDrawingArea(String element, UMLNature nature) {
+		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			for(int i = 0 ; i < classes.size() ; i++) {
 				if(element == classes.get(i).getName()) {
 					classes.remove(i);
 					i--;
 				}
 			}
-			break;
-		case ELEMENT_PROPERTY:
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
 				classes.get(i).removeProperty(element);
 			}
-			break;
-		case ELEMENT_METHOD:
+		} else if (nature.equals(UMLNature.METHOD)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
 				classes.get(i).removeMethod(element);
 			}
-			break;
-		default:
-			break;
 		}
 	}
 	
-	public void doLinkingPropertyToClass(String property, String c) {
+	public void askLinkAttributeToClass(Object attributeID, Object classID) {
 		// TODO
 	}
 	
-	public void doLinkingMethodToClass(String method, String c) {
+	public void askLinkMethodToClass(Object methodID, Object classID) {
 		// TODO
 	}
 	
-	public void doLinkingClass(int linkID) {
+	public void askCreateRelation() {
 		// TODO
 	}
 	
-	public void doEditingLink(int linkID) {
+	public void askEditRelation() {
 		// TODO
-	}
-	
-	public boolean doCheckingLinks() {
-		// TODO
-		return false;
 	}
 	
 	@Override
@@ -458,48 +506,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (e.getButton() == MouseEvent.BUTTON1) {
 				// check for element to add
 				if(poolPanel.getSelectedElementAction() == UMLElementPanel.ACTION_ADD) {
-					switch (poolPanel.getSelectedElementType()) {
-					case ELEMENT_CLASS:
-						boolean classDoNotExist = true;
-						for (int j = 0 ; j < classes.size() ; j++) {
-							if (classes.get(j).getName() == poolPanel.getSelectedElementName()) {
-								classDoNotExist = false;
-							}
-						}
-						if (classDoNotExist) {
-							classes.add(new ClassDrawing(poolPanel.getSelectedElementName(), e.getX(), e.getY()));
-						}
-						break;
-					case ELEMENT_PROPERTY:
-						while (i < classes.size() && !find) {
-							if (classes.get(i).isUnder(mousePos)) {
-								find = true;
-							}
-							i++;
-						}
-						if (find) {
-							i--;
-							classes.get(i).addProperty(poolPanel.getSelectedElementName());
-							this.doLinkingPropertyToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
-						}
-						break;
-					case ELEMENT_METHOD:
-						while (i < classes.size() && !find) {
-							if (classes.get(i).isUnder(mousePos)) {
-								find = true;
-							}
-							i++;
-						}
-						if (find) {
-							i--;
-							classes.get(i).addMethod(poolPanel.getSelectedElementName());
-							this.doLinkingMethodToClass(poolPanel.getSelectedElementName(), classes.get(i).getName());
-						}
-						break;
-					default:
-						break;
-					}
-					
+					this.doAddElementToDrawingArea(poolPanel.getSelectedElementName(), poolPanel.getSelectedElementType(), mousePos);
 					poolPanel.resetSelectedElement();
 				}
 			}
