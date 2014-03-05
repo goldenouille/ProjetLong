@@ -717,6 +717,67 @@ public class ClassicGuiController implements GuiController {
 		// System.out.println("askEditMethod " + name + " " +
 		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
+	
+	/**
+	 * Sends to the core the user's request to delete the given class instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteClass(Object id) {
+		core.askDeleteClass(id);
+
+		// System.out.println("askDeleteClass");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given abstract class
+	 * instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	private void askDeleteAbstractClass(Object id) {
+		core.askDeleteAbstractClass(id);
+
+		// System.out.println("askDeleteAbstractClass");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given interface instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	private void askDeleteInterface(Object id, String name) {
+		core.askDeleteInterface(id);
+
+		// System.out.println("askDeleteInterface");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given attribute instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	private void askDeleteAttribute(Object id) {
+		core.askDeleteAttribute(id);
+
+		// System.out.println("askDeleteAttribute");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given method instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	private void askDeleteMethod(Object id) {
+		core.askDeleteMethod(id);
+
+		// System.out.println("askDeleteMethod");
+	}
 
 	/**
 	 * Ask the core about the name of the Uml instance corresponding to the
