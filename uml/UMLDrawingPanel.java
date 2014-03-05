@@ -238,7 +238,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		try {
 			controller.doShowUmlInstanceEditionPopup(id, nature);
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -325,7 +325,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					// TODO controller.askLinkAttributeToClass(id, classes.get(i).getName());
+					controller.askLinkAttributeToClass(id, classes.get(i).getName());
 					classes.get(i).addProperty(id);
 				}
 			}
@@ -347,7 +347,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					// TODO controller.askLinkMethodToClass(id, classes.get(i).getName());
+					controller.askLinkMethodToClass(id, classes.get(i).getName());
 					classes.get(i).addMethod(id);
 				}
 			}
@@ -356,6 +356,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	public void doRemoveElementFromDrawingArea(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
+			// TODO remove links
+			for(int i = 0 ; i < links.size() ; i++) {
+				if(links.get(i).getMotherClass() == classes.get(i).getName()
+						|| links.get(i).getDaughterClass() == classes.get(i).getName()) {
+					links.remove(i);
+					i--;
+				}
+			}
 			for(int i = 0 ; i < classes.size() ; i++) {
 				if(poolPanel.getElementName(id, nature) == classes.get(i).getName()) {
 					classes.remove(i);
@@ -365,12 +373,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
-				classes.get(i).removeProperty(poolPanel.getElementName(id, nature));
+				classes.get(i).removeProperty(id);
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
 			// TODO remove from class and unlink
 			for(int i = 0 ; i < classes.size() ; i++) {
-				classes.get(i).removeMethod(poolPanel.getElementName(id, nature));
+				classes.get(i).removeMethod(id);
 			}
 		}
 	}
@@ -561,7 +569,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 
@@ -572,12 +580,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 }
