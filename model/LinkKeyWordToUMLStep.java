@@ -17,7 +17,7 @@ public class LinkKeyWordToUMLStep extends Step {
 		ModelController mc = exo.getModelController();
 
 		for (int i = 0; i < text.size(); i++) {
-			if (text.get(i).isSelected()) {
+			if (text.get(i).isKeyWord()) {
 				Word word = text.get(i);
 				if (word.getUmlNature()==word.getUserUmlNature()) {
 					System.out.println("Le type de " + word.getWord() + " est correct !");

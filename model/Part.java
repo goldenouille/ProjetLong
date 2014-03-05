@@ -115,8 +115,8 @@ public class Part {
 	}
 
 	public void addStep(String stepName) {
-		// avec stepFactory?
-		this.nbStep = nbStep; // +1
+		this.steps.add(StepFactory.createStep(stepName));
+		this.nbStep = nbStep+1;
 	}
 
 	public ArrayList<Step> getSteps() {

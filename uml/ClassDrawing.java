@@ -13,12 +13,15 @@ public class ClassDrawing {
 	private int y;
 	private int width;
 	private int height;
-	private boolean reduced;
+	private boolean isReduced;
 	
 	private String classtype = "";
 	private String name = "";
 	private Vector<Object> propertiesID;
 	private Vector<Object> methodsID;
+	
+	private boolean isColored;
+	private Vector<Object> coloredID;
 
 	/**
 	 * Main constructor, create a ClassDrawing representation of a class
@@ -36,10 +39,13 @@ public class ClassDrawing {
 		propertiesID = new Vector<Object>();
 		methodsID = new Vector<Object>();
 		
-		setX(x);
-		setY(y);
-		setReduced(false);
-		setName(name);
+		this.x = x;
+		this.y = y;
+		isReduced = false;
+		this.name = name;
+		
+		isColored = false;
+		coloredID = new Vector<Object>();
 	}
 
 	/**
@@ -104,7 +110,7 @@ public class ClassDrawing {
 	 * @return reduced
 	 */
 	public boolean isReduced() {
-		return reduced;
+		return isReduced;
 	}
 
 	/**
@@ -115,9 +121,9 @@ public class ClassDrawing {
 	 */
 	public void setReduced(boolean reduced) {
 		if (propertiesID.size() != 0 || methodsID.size() != 0) {
-			this.reduced = reduced;
+			this.isReduced = reduced;
 		} else {
-			this.reduced = false;
+			this.isReduced = false;
 		}
 	}
 	
@@ -178,7 +184,7 @@ public class ClassDrawing {
 	public void removeProperty(Object id) {
 		propertiesID.remove(id);
 		if (propertiesID.size() == 0 && methodsID.size() == 0){
-			reduced = false;
+			isReduced = false;
 		}
 	}
 	
@@ -211,7 +217,7 @@ public class ClassDrawing {
 	public void removeMethod(Object id) {
 		methodsID.remove(id);
 		if (propertiesID.size() == 0 && methodsID.size() == 0){
-			reduced = false;
+			isReduced = false;
 		}
 	}
 	
@@ -250,37 +256,81 @@ public class ClassDrawing {
 		}
 		width = stringWidth + 8;
 		
-		//g.drawRect(x, y, width, height);
+		if (isColored) {
+			g.setColor(UMLDrawingPanel.COLOR_ALT);
+		}
+		
+		// class type drawing
 		if (classtype != "" && classtype != null) {
 			actualHeight += g.getFont().getSize();
 			g.drawString(classtype, x + width/2 - g.getFontMetrics().stringWidth(classtype)/2, y + actualHeight);
 		}
+		
+		// class name drawing
 		actualHeight += g.getFont().getSize();
 		g.drawString(name, x + width/2 - g.getFontMetrics().stringWidth(name)/2, y + actualHeight);
 		
+		if (isColored) {
+			g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+		}
+		
+		// properties drawing
 		if (propertiesID.size() != 0) {
 			actualHeight += 4;
+			if (isColored) {
+				g.setColor(UMLDrawingPanel.COLOR_ALT);
+			}
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
+			if (isColored) {
+				g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+			}
 			if (!this.isReduced()) {
 				for (int i = 0; i < propertiesID.size() ; i++) {
+					if (coloredID.contains(propertiesID.get(i))) {
+						g.setColor(UMLDrawingPanel.COLOR_ALT);
+					}
 					actualHeight += g.getFont().getSize();
 					g.drawString(drawingPanel.getAttributeName(propertiesID.get(i)), x + 4, y + actualHeight);
+					if (coloredID.contains(propertiesID.get(i))) {
+						g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+					}
 				}
 			}
 		}
+		
+		// methods drawing
 		if (methodsID.size() != 0) {
 			actualHeight += 4;
+			if (isColored) {
+				g.setColor(UMLDrawingPanel.COLOR_ALT);
+			}
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
+			if (isColored) {
+				g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+			}
 			if (!this.isReduced()) {
 				for (int i = 0; i < methodsID.size() ; i++) {
+					if (coloredID.contains(propertiesID.get(i))) {
+						g.setColor(UMLDrawingPanel.COLOR_ALT);
+					}
 					actualHeight += g.getFont().getSize();
 					g.drawString(drawingPanel.getMethodName(methodsID.get(i)), x + 4, y + actualHeight);
+					if (coloredID.contains(propertiesID.get(i))) {
+						g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+					}
 				}
 			}
 		}
-
+		
+		// borders drawing
 		height = actualHeight + 4;
+		if (isColored) {
+			g.setColor(UMLDrawingPanel.COLOR_ALT);
+		}
 		g.drawRect(x, y, width, height);
+		if (isColored) {
+			g.setColor(UMLDrawingPanel.COLOR_DEFAULT);
+		}
 	}
 	
 	/**
@@ -320,5 +370,55 @@ public class ClassDrawing {
 		}
 		
 		return under;
+	}
+	
+	/**
+	 * Get if class drawing is colored
+	 * properties and methods are not affected
+	 * 
+	 * @return colored
+	 */
+	public boolean isColored() {
+		return isColored;
+	}
+
+	/**
+	 * Set if class drawing is colored
+	 * properties and methods are not affected, use addColoredElement(id) instead
+	 * 
+	 * @param colored
+	 *            if true, class borders and name are colored
+	 */
+	public void setColored(boolean colored) {
+		this.isColored = colored;
+	}
+	
+	/**
+	 * Add an element (attribute or method) to color
+	 * 
+	 * @param id
+	 *            element id
+	 */
+	public void addColoredElement(Object id) {
+		coloredID.add(id);
+	}
+	
+	/**
+	 * Remove an element (attribute or method) from coloring
+	 * 
+	 * @param id
+	 *            element id
+	 * @return true if remove
+	 */
+	public boolean removeColoredElement(Object id) {
+		return coloredID.remove(id);
+	}
+	
+	/**
+	 * Remove all element (class, attribute or method) from coloring
+	 */
+	public void removeAllColoredElement() {
+		isColored = false;
+		coloredID.removeAllElements();
 	}
 }
