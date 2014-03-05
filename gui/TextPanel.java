@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class TextPanel extends AbstractPanel {
 
 		textPane = new JTextPane();
 		textPane.setEditable(false);
+		textPane.setMargin(new Insets(10,10,10,10));
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
 

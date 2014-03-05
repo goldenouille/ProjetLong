@@ -1,6 +1,8 @@
 package launcher;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.Insets;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.JFileChooser;
@@ -20,6 +22,8 @@ public class SimpleExerciseBrowser implements ExerciseBrowser {
 		panel = new JPanel(new BorderLayout());
 		previewPane = new JTextArea();
 		previewPane.setEditable(false);
+		previewPane.setMargin(new Insets(20,20,20,20));
+		previewPane.setFont(new Font("Comic sans ms", Font.BOLD, 25));
 		JScrollPane scrollPreviewPane = new JScrollPane(previewPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		panel.add(scrollPreviewPane);
 	}
