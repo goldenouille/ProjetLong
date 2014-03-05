@@ -37,6 +37,13 @@ public class Word {
 		this.isSelected = false;
 	}
 
+	public Word (String word, int id) {
+		this.word = word;
+		this.isKeyWord = false;
+		this.isSelected = false;
+		this.id = id;
+	}
+
 	public void setFirstWord(int i) {
 		this.firstWord = i;
 	}

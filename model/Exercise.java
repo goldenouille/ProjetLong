@@ -24,6 +24,8 @@ public class Exercise {
 	private int auxNextPart;
 	private int nbParts;
 
+	private int idUserText;
+
 	public Exercise() {
 		
 		this.text = new ArrayList<Word>();
@@ -38,6 +40,8 @@ public class Exercise {
 		this.auxNextPart = -1;
 
 		this.nbParts = 0;
+
+		this.idUserText = 0;
 	}
 	
 	public Exercise(ModelController modelController) {
@@ -150,7 +154,8 @@ public class Exercise {
 		String text[] = string.split(" ");
 		int l = text.length;
 		for (int i = 0; i<l; i++) {
-			this.text.add(new Word(text[i]));
+			this.idUserText = this.idUserText - 1;
+			this.userText.add(new Word(text[i], this.idUserText));
 		}
 	}
 
@@ -186,6 +191,8 @@ public class Exercise {
 
 			Word w = getByPosition(first,last, t);
 			// TODO = verifier que la fin du mot correspond
+
+			vertexClass.setId(w.getId());
 			w.setUserUmlNature(UMLNature.CLASS);
 			w.setUserGraphItem(vertexClass);	
 
@@ -206,6 +213,8 @@ public class Exercise {
 
 			Word w = getByPosition(first,last, t);
 			// TODO = verifier que la fin du mot correspond
+
+			vertexAbstract.setId(w.getId());
 			w.setUserUmlNature(UMLNature.ABSTRACT_CLASS);
 			w.setUserGraphItem(vertexAbstract);	
 	
@@ -225,6 +234,8 @@ public class Exercise {
 
 			Word w = getByPosition(first,last, t);
 			// TODO = verifier que la fin du mot correspond
+
+			vertex.setId(w.getId());
 			w.setUserUmlNature(UMLNature.INTERFACE);
 			w.setUserGraphItem(vertex);
 			
@@ -245,6 +256,8 @@ public class Exercise {
 
 			Word w = getByPosition(first,last, t);
 			// TODO = verifier que la fin du mot correspond
+
+			att.setId(w.getId());
 			w.setUserUmlNature(UMLNature.ATTRIBUTE);
 			w.setUserGraphItem(att);
 
@@ -272,6 +285,8 @@ public class Exercise {
 		
 			Word w = getByPosition(first,last, t);
 			// TODO = verifier que la fin du mot correspond
+
+			met.setId(w.getId());
 			w.setUserUmlNature(UMLNature.METHOD);
 			w.setUserGraphItem(met);		
 

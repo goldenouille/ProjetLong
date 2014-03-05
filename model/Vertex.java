@@ -14,6 +14,7 @@ public class Vertex implements Type, GraphItem {
 		this.methods = new ArrayList<Method>();
 		this.edges = new ArrayList<Edge>();
 		this.frenchName = "interface";
+		this.id = -1;
 	}
 
 	public Vertex(String name, int id) {

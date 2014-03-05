@@ -322,6 +322,71 @@ public class ModelController {
 	}
 
 
+	public void askDeleteClass(Object id) {
+		//core.askDeleteClass(id);
+		if (id instanceof VertexClass) {
+			exo.askDeleteClass((VertexClass) id);
+		}
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given abstract class
+	 * instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteAbstractClass(Object id) {
+		//core.askDeleteAbstractClass(id);
+		if (id instanceof VertexAbstract) {
+			exo.askDeleteAbstractClass((VertexAbstract) id);
+		}
+		// System.out.println("askDeleteAbstractClass");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given interface instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteInterface(Object id, String name) {
+		//core.askDeleteInterface(id);
+		if (id instanceof Vertex) {
+			exo.askDeleteInterface((Vertex) id);
+		}
+		// System.out.println("askDeleteInterface");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given attribute instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteAttribute(Object id) {
+		//core.askDeleteAttribute(id);
+		if (id instanceof Attribute) {
+			exo.askEditAttribute((Attribute) id);
+		}
+		// System.out.println("askDeleteAttribute");
+	}
+
+	/**
+	 * Sends to the core the user's request to delete the given method instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to delete
+	 */
+	public void askDeleteMethod(Object id) {
+		//core.askDeleteMethod(id);
+		if (id instanceof Method) {
+			exo.askDeleteMethod((Method) id);
+		}
+		// System.out.println("askDeleteMethod");
+	}
+
+
 		/**
 	 * Ask the core about the name of the Uml instance corresponding to the
 	 * defined keyword

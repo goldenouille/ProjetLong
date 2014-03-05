@@ -27,6 +27,7 @@ public class Attribute implements GraphItem{
 		this.type = type;
 		this.visibility = visibility; 
 		this.frenchName = "attribut";
+		this.id = -1;
 	}
 
 	public String getName() {
