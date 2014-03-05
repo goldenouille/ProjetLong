@@ -86,7 +86,7 @@ public class UMLElementPanel extends JPanel {
 	    });
 		this.add(validationButton);
 		
-		missingUMLDrawingLabel = new JLabel("test");
+		missingUMLDrawingLabel = new JLabel("");
 		this.add(missingUMLDrawingLabel);
 	}
 	
@@ -501,7 +501,7 @@ public class UMLElementPanel extends JPanel {
 		this.missingUMLDrawing = number;
 		
 		if (missingUMLDrawing > 0) {
-			missingUMLDrawingLabel.setText("Objets non liees : " + missingUMLDrawing);
+			missingUMLDrawingLabel.setText("Objets non traces : " + missingUMLDrawing);
 		} else {
 			missingUMLDrawingLabel.setText("");
 		}
