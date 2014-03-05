@@ -58,7 +58,7 @@ public class Vertex implements Type, GraphItem {
 		return this.methods;
 	}
 
-	public void addMethode(Method method) {
+	public void addMethod(Method method) {
 		this.methods.add(method);
 	}
 

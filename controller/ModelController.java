@@ -130,9 +130,8 @@ public class ModelController {
 		cgc.doShowUmlInstanceCreationPopup(firstWord, lastWord, nature);
 	}
 
-	public void doShowUmlInstanceEditionPopup(int firstWord, int lastWord, boolean userText, Object nature) 
-																				throws BadLocationException {
-		// TODO Auto-generated method stub
+	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
+		cgc.doShowUmlInstanceEditionPopup(id, nature);
 	}
 
 	public void doShowTextAdditionPopup() {
@@ -384,6 +383,26 @@ public class ModelController {
 			exo.askDeleteMethod((Method) id);
 		}
 		// System.out.println("askDeleteMethod");
+	}
+
+	public void askLinkAttributeToClass(Object attributeID, Object classID) {
+		if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
+			exo.askLinkAttributeToClass((Attribute) attributeID,(VertexClass) classID);
+		}
+	}
+	
+	/**
+	 * Sends to the core the user's request to link the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askLinkMethodToClass(Object methodID, Object classID) {
+		if ((methodID instanceof Method) && (classID instanceof Vertex)) {
+			exo.askLinkMethodToClass((Method) methodID, (Vertex) classID);
+		}
 	}
 
 

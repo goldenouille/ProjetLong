@@ -22,7 +22,7 @@ public class VertexClass extends Vertex {
 		return this.attributes;
 	}
 
-	public void addAttributes(Attribute attribute) {
+	public void addAttribute(Attribute attribute) {
 		this.attributes.add(attribute);
 	}
 	

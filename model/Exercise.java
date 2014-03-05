@@ -408,4 +408,15 @@ public class Exercise {
 		}
 	}
 
+
+	public void askLinkAttributeToClass(Attribute att, VertexClass c) {
+		c.addAttribute(att);
+		att.setMotherClass(c);
+	}
+	
+	public void askLinkMethodToClass(Method met, Vertex c) {
+		c.addMethod(met);
+		met.setMotherClass(c);
+	}
+
 }
