@@ -251,7 +251,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	public void doRemoveElementFromPool(Object id, Object nature) {
-		// TODO
 		if (nature.equals(UMLNature.CLASS)) {
 			controller.askDeleteClass(id);
 			poolPanel.removeClass(id);
@@ -292,7 +291,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			// TODO link to class
 			while (i < classes.size() && !find) {
 				if (classes.get(i).isUnder(posistion)) {
 					find = true;
@@ -305,7 +303,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				classes.get(i).addProperty(poolPanel.getElementName(id, nature));
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			// TODO link to class
 			while (i < classes.size() && !find) {
 				if (classes.get(i).isUnder(posistion)) {
 					find = true;

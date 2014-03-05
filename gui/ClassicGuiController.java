@@ -736,7 +736,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	private void askDeleteAbstractClass(Object id) {
+	public void askDeleteAbstractClass(Object id) {
 		core.askDeleteAbstractClass(id);
 
 		// System.out.println("askDeleteAbstractClass");
@@ -748,7 +748,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	private void askDeleteInterface(Object id) {
+	public void askDeleteInterface(Object id) {
 		core.askDeleteInterface(id);
 
 		// System.out.println("askDeleteInterface");
@@ -760,7 +760,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	private void askDeleteAttribute(Object id) {
+	public void askDeleteAttribute(Object id) {
 		core.askDeleteAttribute(id);
 
 		// System.out.println("askDeleteAttribute");
@@ -772,7 +772,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
-	private void askDeleteMethod(Object id) {
+	public void askDeleteMethod(Object id) {
 		core.askDeleteMethod(id);
 
 		// System.out.println("askDeleteMethod");
