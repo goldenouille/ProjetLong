@@ -159,11 +159,12 @@ public class ClassicGuiController implements GuiController {
 
 	/**
 	 * Sends to the core the text the user wants to select as an int table where
-	 * tab[i] = selection %age of the word number i
+	 * tab[i] = selection %age of the word number i and a boolean true if user
+	 * selects from his own text
 	 */
 	public void askSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
-		core.askSelectText(tab);
+		core.askSelectText(tab, userTextFocus);
 
 		// System.out.println("askSelectText : " + Arrays.toString(tab));
 		//
@@ -183,11 +184,12 @@ public class ClassicGuiController implements GuiController {
 
 	/**
 	 * Sends to the core the text the user wants to unselect as an int table
-	 * where tab[i] = selection %age of the word number i
+	 * where tab[i] = selection %age of the word number i and a boolean true if
+	 * user selects from his own text
 	 */
 	public void askUnSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
-		core.askUnSelectText(tab);
+		core.askUnSelectText(tab, userTextFocus);
 
 		// System.out.println("askUnSelectText : " + Arrays.toString(tab));
 		//
@@ -617,7 +619,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Internal method. Gets the currentlu used text font.
+	 * Internal method. Gets the currently used text font.
 	 * 
 	 * @return the texts font
 	 */
@@ -644,7 +646,7 @@ public class ClassicGuiController implements GuiController {
 	private void askEditClass(Object id, String name) {
 		core.askEditClass(id, name);
 
-		//System.out.println("askEditClass " + name);
+		// System.out.println("askEditClass " + name);
 	}
 
 	/**
@@ -659,7 +661,7 @@ public class ClassicGuiController implements GuiController {
 	private void askEditAbstractClass(Object id, String name) {
 		core.askEditAbstractClass(id, name);
 
-		//System.out.println("askEditAbstractClass " + name);
+		// System.out.println("askEditAbstractClass " + name);
 	}
 
 	/**
@@ -673,7 +675,7 @@ public class ClassicGuiController implements GuiController {
 	private void askEditInterface(Object id, String name) {
 		core.askEditInterface(id, name);
 
-		//System.out.println("askEditInterface " + name);
+		// System.out.println("askEditInterface " + name);
 	}
 
 	/**
@@ -689,9 +691,10 @@ public class ClassicGuiController implements GuiController {
 	 *            visibility wanted for the new instance
 	 */
 	private void askEditAttribute(Object id, String name, String type, String visibility) {
-		core.askEditAttribute(id, name, type,visibility);
+		core.askEditAttribute(id, name, type, visibility);
 
-		//System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
+		// System.out.println("askEditAttribute " + name + " " + type + " " +
+		// visibility);
 	}
 
 	/**
@@ -711,7 +714,8 @@ public class ClassicGuiController implements GuiController {
 	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		core.askEditMethod(id, name, paramTypes, returnType, visibility);
 
-		//System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
+		// System.out.println("askEditMethod " + name + " " +
+		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
 	/**
@@ -761,11 +765,11 @@ public class ClassicGuiController implements GuiController {
 	public ArrayList<String> askUmlInstanceParamTypes(Object id) {
 		return core.askUmlInstanceParamTypes(id);
 	}
-	
+
 	// ***//
 	// Do //
 	// ***//
-	
+
 	/**
 	 * Add an UML instance to element pool
 	 * 
@@ -775,9 +779,9 @@ public class ClassicGuiController implements GuiController {
 	 *            UMLNature of the instance
 	 */
 	public void doAddElementToPool(Object id, Object nature) {
-		umlDrawingPanel.doAddingElementToPool(Object id, Object nature);
+		umlDrawingPanel.doAddElementToPool(id, nature);
 	}
-	
+
 	/**
 	 * Change color of UML instance to red in element pool
 	 * 
@@ -787,9 +791,9 @@ public class ClassicGuiController implements GuiController {
 	 *            UMLNature of the instance
 	 */
 	public void doShowUMLInstanceInRed(Object id, Object nature) {
-		umlDrawingPanel.doShowUMLInstanceInRed(Object id, Object nature);
+		umlDrawingPanel.doShowUMLInstanceInRed(id, nature);
 	}
-	
+
 	/**
 	 * Reset color of UML instances to black in element pool
 	 * 
@@ -799,9 +803,9 @@ public class ClassicGuiController implements GuiController {
 	 *            UMLNature of the instance
 	 */
 	public void doResetUMLInstanceColor(Object id, Object nature) {
-		umlDrawingPanel.doResetUMLInstanceColor(Object id, Object nature);
+		umlDrawingPanel.doResetUMLInstanceColor(id, nature);
 	}
-	
+
 	/**
 	 * Change color of UML drawing to red in drawing area
 	 * 
@@ -811,9 +815,9 @@ public class ClassicGuiController implements GuiController {
 	 *            UMLNature of the instance
 	 */
 	public void doShowUMLDrawingInRed(Object id, Object nature) {
-		umlDrawingPanel.doShowUMLDrawingInRed(Object id, Object nature);
+		umlDrawingPanel.doShowUMLDrawingInRed(id, nature);
 	}
-	
+
 	/**
 	 * Reset color of UML drawings to black in drawing area
 	 * 
@@ -823,9 +827,9 @@ public class ClassicGuiController implements GuiController {
 	 *            UMLNature of the instance
 	 */
 	public void doResetUMLDrawingColor(Object id, Object nature) {
-		umlDrawingPanel.doResetUMLDrawingColor(Object id, Object nature);
+		umlDrawingPanel.doResetUMLDrawingColor(id, nature);
 	}
-	
+
 	/**
 	 * Shows a pop-up allowing to specify properties of an existing uml instance
 	 * of the given nature, bound to the specified expression. Calls the
