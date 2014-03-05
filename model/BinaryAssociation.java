@@ -16,4 +16,8 @@ public class BinaryAssociation extends Association {
 		this.nature = UMLNature.ASSOCIATION;
 		this.frenchName = "Association";
 	}
+	
+	public String getUml() {
+		return "association";
+	}
 }

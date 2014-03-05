@@ -6,4 +6,8 @@ public class Dependancy extends DirectionalRelation {
 		this.nature = UMLNature.DEPENDANCY;
 		this.frenchName = "dependance";
 	}
+	
+	public String getUml() {
+		return "dependancy";
+	}
 }

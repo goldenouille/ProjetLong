@@ -6,4 +6,8 @@ public class Generalization extends Heritage {
 		this.nature = UMLNature.GENERALIZATION;
 		this.frenchName = "generalisation";
 	}
+	
+	public String getUml() {
+		return "generalization";
+	}
 }

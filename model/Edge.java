@@ -21,4 +21,13 @@ public class Edge implements GraphItem{
 		return this.name;
 	}
 
+	public String getUml() {
+		return null;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+
 }

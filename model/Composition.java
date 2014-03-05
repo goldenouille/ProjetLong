@@ -6,4 +6,8 @@ public class Composition extends BinaryAssociation {
 		this.nature = UMLNature.COMPOSITION;
 		this.frenchName = "composition";
 	}
+	
+	public String getUml() {
+		return "composition";
+	}
 }

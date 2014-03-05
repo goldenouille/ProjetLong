@@ -62,6 +62,9 @@ public class Parser {
 				digester.addObjectCreate( "exercise/part/UML/uml-realization", "parser.PseudoRealization" );
 			    digester.addSetProperties( "exercise/part/UML/uml-realization" );
 				digester.addSetNext( "exercise/part/UML/uml-realization", "addRealization");
+				digester.addObjectCreate( "exercise/part/UML/uml-aggregation", "parser.PseudoAggregation" );
+			    digester.addSetProperties( "exercise/part/UML/uml-aggregation" );
+				digester.addSetNext( "exercise/part/UML/uml-aggregation", "addAggregation");
 				
 			digester.addSetNext( "exercise/part/UML", "initGraph");
 		digester.addSetNext( "exercise/part", "addPart");
@@ -127,11 +130,12 @@ public class Parser {
   		
   		ArrayList<Method> ml = g.getMethods();
   		for (int j=0; j<ml.size(); j++) {
-  			res += "\t\t\t<uml-method name= \"" + al.get(j).getName();
-  			res += "\" id= '" + al.get(j).getId();
-  			res += "' Type= \"" + al.get(j).getType();
-  			res += "\" visibility= \"" +al.get(j).getVisibility();
-  			res += "\" motherId= '" + al.get(j).getMotherClass().getId();
+  			System.out.println("methode " + ml.get(j).getMotherClass());
+  			res += "\t\t\t<uml-method name= \"" + ml.get(j).getName();
+  			res += "\" id= '" + ml.get(j).getId();
+  			res += "' Type= \"" + ml.get(j).getReturnType();
+  			res += "\" visibility= \"" +ml.get(j).getVisibility();
+  			res += "\" motherId= '" + ml.get(j).getMotherClass().getId();
   			if (ml.get(j).getParamType().size() == 0) {
   				res += "' />\n"; 
   			}
@@ -147,8 +151,19 @@ public class Parser {
   		
   		ArrayList<Vertex> vl = g.getVertex();
   		for (int j=0; j<vl.size(); j++) {
-  			res += "\t\t\t<uml-" + vl.get(j).getUml() + " name= \"" + vl.get(j).getName() + "\" id= '" + vl.get(j).getId() + "' />\n";
+  			res += "\t\t\t<uml-" + vl.get(j).getUml();
+  			res += " name= \"" + vl.get(j).getName();
+  			res += "\" id= '" + vl.get(j).getId() + "' />\n";
   		}
+  		
+  		ArrayList<Edge> el = g.getEdges();
+  		for (int j=0; j<el.size(); j++) {
+  			Edge e = el.get(j);
+  			if (e instanceof Aggregation) {
+  				res += "\t\t\t<uml-" + e.getUml() + " name= \"" + e.getName() + "\" id= '" + e.getId() + "' />\n";
+  			}
+  		}
+  		
   		
   		res += "\t\t</UML>\n";
   		

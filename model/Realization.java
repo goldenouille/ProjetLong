@@ -6,4 +6,8 @@ public class Realization extends Heritage {
 		this.nature = UMLNature.REALIZATION;
 		this.frenchName = "realisation";
 	}
+	
+	public String getUml() {
+		return "realization";
+	}
 }

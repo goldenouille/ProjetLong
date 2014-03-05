@@ -16,6 +16,16 @@ public class Method implements GraphItem {
 		this.frenchName = "methode";
 	}
 
+	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes) {
+		this.name = name;
+		this.returnType = type;
+		this.visibility = visibility;
+		this.paramTypes = paramTypes;
+		this.frenchName = "methode";
+		this.motherClass = mother;
+		this.id = id;
+	}
+	
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
 		this.name = name;
 		this.returnType = type;

@@ -20,6 +20,17 @@
 		<text body = "ce compte ou de le "/><kw id ='6' word= "débiter"/>
 		<text body = " d'un certain montant."/>
 		
-		
+		<UML>
+			<uml-class id='1' name = "account"/>
+			<uml-class id='4' name = "person"/>
+			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name = "solde"/>
+			<uml-method id='5' visibility ="public" motherId='1' type ="void" name="credit">
+				<param type="int"/>
+			</uml-method>
+			<uml-method id='6' visibility ="public" motherId='1' type ="void" name="debit">
+				<param type="int"/>
+			</uml-method>
+			<uml-aggregation id='3' name="titulaire" target='1' source='4' targetMult="0..*" sourceMult="1"/>
+		</UML>
 	</part>
 </exercise>

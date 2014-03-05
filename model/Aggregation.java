@@ -7,4 +7,8 @@ public class Aggregation extends BinaryAssociation {
 		this.nature = UMLNature.AGGREGATION;
 		this.frenchName = "aggregation";
 	}
+	
+	public String getUml() {
+		return "aggregation";
+	}
 }

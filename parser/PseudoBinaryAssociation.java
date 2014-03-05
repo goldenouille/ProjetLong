@@ -10,8 +10,6 @@ public class PseudoBinaryAssociation extends PseudoAssociation{
 	protected String sourceMult;
 	
 	public PseudoBinaryAssociation() {
-		this.nature = UMLNature.ASSOCIATION;
-		this.frenchName = "Association";
 	}
 
 	public int getTarget() {
