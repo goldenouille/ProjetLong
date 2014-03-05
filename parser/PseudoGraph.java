@@ -16,7 +16,8 @@ public class PseudoGraph {
         private ArrayList<PseudoDependancy> dependancies;
         private ArrayList<PseudoAggregation> aggregations;
         private ArrayList<PseudoComposition> compositions;
-
+        private ArrayList<PseudoBinaryAssociation> associations;
+        
         
         public PseudoGraph () {
                 this.classes = new ArrayList<PseudoClass>();
@@ -29,7 +30,8 @@ public class PseudoGraph {
                 this.dependancies = new ArrayList<PseudoDependancy>() ;
                 this.aggregations = new ArrayList<PseudoAggregation>() ;
                 this.compositions = new ArrayList<PseudoComposition>() ;
-
+                this.associations = new ArrayList<PseudoBinaryAssociation>() ;
+                
         }
         
         public Graph buildGraph(HashMap<Integer,model.GraphItem> map) throws ParserException {
@@ -106,7 +108,89 @@ public class PseudoGraph {
                        }
                 }
                 
+                PseudoAggregation pagg;
+                for (int i=0; i<this.aggregations.size(); i++) {
+                        pagg = this.aggregations.get(i);
+                        id = pagg.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		Aggregation gi = new Aggregation((Vertex) map.get(pagg.getTarget()),pagg.getTargetMult(),(Vertex) map.get(pagg.getSource()),pagg.getSourceMult(), id, pagg.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
                 
+                PseudoComposition pcom;
+                for (int i=0; i<this.compositions.size(); i++) {
+                        pcom = this.compositions.get(i);
+                        id = pcom.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		Composition gi = new Composition((Vertex) map.get(pcom.getTarget()),pcom.getTargetMult(),(Vertex) map.get(pcom.getSource()),pcom.getSourceMult(), id, pcom.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                PseudoBinaryAssociation pba;
+                for (int i=0; i<this.associations.size(); i++) {
+                        pba = this.associations.get(i);
+                        id = pba.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		BinaryAssociation gi = new BinaryAssociation((Vertex) map.get(pba.getTarget()),pba.getTargetMult(),(Vertex) map.get(pba.getSource()),pba.getSourceMult(), id, pba.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                PseudoRealization pr;
+                for (int i=0; i<this.realizations.size(); i++) {
+                        pr = this.realizations.get(i);
+                        id = pr.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		Realization gi = new Realization((Vertex) map.get(pr.getTarget()),(Vertex) map.get(pr.getSource()), id, pr.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                PseudoGeneralization pg;
+                for (int i=0; i<this.generalizations.size(); i++) {
+                        pg = this.generalizations.get(i);
+                        id = pg.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		Generalization gi = new Generalization((Vertex) map.get(pg.getTarget()),(Vertex) map.get(pg.getSource()), id, pg.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
+                
+                PseudoDependancy pd;
+                for (int i=0; i<this.dependancies.size(); i++) {
+                        pd = this.dependancies.get(i);
+                        id = pd.getId();
+                        if (map.get(id) == null) {
+                                throw new ParserException("id inconnu");
+                        }
+                        else {
+                        		Dependancy gi = new Dependancy((Vertex) map.get(pd.getTarget()),(Vertex) map.get(pd.getSource()), id, pd.getName());
+                                g.addEdge(gi);
+                                map.put(id, gi);
+                       }
+                }
                 
                 
                 
@@ -151,6 +235,10 @@ public class PseudoGraph {
         
         public void addMethod (PseudoMethod pm) {
             this.methods.add(pm);
+        }
+        
+        public void addAssociation (PseudoBinaryAssociation pba) {
+            this.associations.add(pba);
         }
         
         public ArrayList<PseudoClass> getClasses() {

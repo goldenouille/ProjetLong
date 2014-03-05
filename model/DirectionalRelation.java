@@ -12,4 +12,20 @@ public class DirectionalRelation extends Edge {
 		this.id = id;
 		this.name = name;
 	}
+
+	public Vertex getTarget() {
+		return target;
+	}
+
+	public void setTarget(Vertex target) {
+		this.target = target;
+	}
+
+	public Vertex getSource() {
+		return source;
+	}
+
+	public void setSource(Vertex source) {
+		this.source = source;
+	}
 }

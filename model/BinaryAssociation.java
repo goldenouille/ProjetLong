@@ -20,4 +20,36 @@ public class BinaryAssociation extends Association {
 	public String getUml() {
 		return "association";
 	}
+
+	public Vertex getTarget() {
+		return target;
+	}
+
+	public void setTarget(Vertex target) {
+		this.target = target;
+	}
+
+	public Vertex getSource() {
+		return source;
+	}
+
+	public void setSource(Vertex source) {
+		this.source = source;
+	}
+
+	public String getTargetMult() {
+		return targetMult;
+	}
+
+	public void setTargetMult(String targetMult) {
+		this.targetMult = targetMult;
+	}
+
+	public String getSourceMult() {
+		return sourceMult;
+	}
+
+	public void setSourceMult(String sourceMult) {
+		this.sourceMult = sourceMult;
+	}
 }

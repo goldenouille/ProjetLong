@@ -65,6 +65,18 @@ public class Parser {
 				digester.addObjectCreate( "exercise/part/UML/uml-aggregation", "parser.PseudoAggregation" );
 			    digester.addSetProperties( "exercise/part/UML/uml-aggregation" );
 				digester.addSetNext( "exercise/part/UML/uml-aggregation", "addAggregation");
+				digester.addObjectCreate( "exercise/part/UML/uml-generalization", "parser.PseudoGeneralization" );
+			    digester.addSetProperties( "exercise/part/UML/uml-generalization" );
+				digester.addSetNext( "exercise/part/UML/uml-generalization", "addGeneralization");
+				digester.addObjectCreate( "exercise/part/UML/uml-dependancy", "parser.PseudoDependancy" );
+			    digester.addSetProperties( "exercise/part/UML/uml-dependancy" );
+				digester.addSetNext( "exercise/part/UML/uml-dependancy", "addDependancy");
+				digester.addObjectCreate( "exercise/part/UML/uml-association", "parser.PseudoBinaryAssociation" );
+			    digester.addSetProperties( "exercise/part/UML/uml-association" );
+				digester.addSetNext( "exercise/part/UML/uml-association", "addAssociation");
+				digester.addObjectCreate( "exercise/part/UML/uml-composition", "parser.PseudoComposition" );
+			    digester.addSetProperties( "exercise/part/UML/uml-composition" );
+				digester.addSetNext( "exercise/part/UML/uml-composition", "addComposition");
 				
 			digester.addSetNext( "exercise/part/UML", "initGraph");
 		digester.addSetNext( "exercise/part", "addPart");
@@ -130,7 +142,6 @@ public class Parser {
   		
   		ArrayList<Method> ml = g.getMethods();
   		for (int j=0; j<ml.size(); j++) {
-  			System.out.println("methode " + ml.get(j).getMotherClass());
   			res += "\t\t\t<uml-method name= \"" + ml.get(j).getName();
   			res += "\" id= '" + ml.get(j).getId();
   			res += "' Type= \"" + ml.get(j).getReturnType();
@@ -157,10 +168,25 @@ public class Parser {
   		}
   		
   		ArrayList<Edge> el = g.getEdges();
+		System.out.println("nbEdges : " + el.size());
   		for (int j=0; j<el.size(); j++) {
   			Edge e = el.get(j);
-  			if (e instanceof Aggregation) {
-  				res += "\t\t\t<uml-" + e.getUml() + " name= \"" + e.getName() + "\" id= '" + e.getId() + "' />\n";
+  			System.out.println("nature : " + e.getNature());
+  			if (e instanceof BinaryAssociation) {
+  				res += "\t\t\t<uml-" + e.getUml();
+  				res += " name= \"" + e.getName();
+  				res += "\" id= '" + e.getId();
+  				res += "' source= \"" + ((BinaryAssociation) e).getSource().getId();
+  				res += "' target= \"" + ((BinaryAssociation) e).getTarget().getId();
+  				res += "' sourceMult= \"" + ((BinaryAssociation) e).getSourceMult();
+  				res += "' targetMult= \"" + ((BinaryAssociation) e).getTargetMult() + "\" />\n";
+  			}
+  			if (e instanceof DirectionalRelation) {
+  				res += "\t\t\t<uml-" + e.getUml();
+  				res += " name= \"" + e.getName();
+  				res += "\" id= '" + e.getId();
+  				res += "' source= \"" + ((DirectionalRelation) e).getSource().getId();
+  				res += "' target= \"" + ((DirectionalRelation) e).getTarget().getId() + "\" />\n";
   			}
   		}
   		
