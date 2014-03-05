@@ -29,5 +29,8 @@ public class Edge implements GraphItem{
 		return id;
 	}
 	
+	public ArrayList<Vertex> getVertex() {
+		return new ArrayList<Vertex>();
+	}
 
 }

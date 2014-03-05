@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class DirectionalRelation extends Edge {
 	
 	protected Vertex target;
@@ -27,5 +29,12 @@ public class DirectionalRelation extends Edge {
 
 	public void setSource(Vertex source) {
 		this.source = source;
+	}
+	
+	public ArrayList<Vertex> getVertex() {
+		ArrayList<Vertex> vl = new ArrayList<Vertex>();
+		vl.add(this.source);
+		vl.add(this.target);
+		return vl;
 	}
 }
