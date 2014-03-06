@@ -281,6 +281,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
+	/**
+	 * Remove an UML instance from element panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS)) {
 			controller.askDeleteClass(id);
@@ -339,8 +347,11 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
-					classes.get(i).addProperty(id);
+					// Interface cannot have attribute
+					if (classes.get(i).getClasstype().equals(UMLNature.CLASS) || classes.get(i).getClasstype().equals(UMLNature.ABSTRACT_CLASS)) {
+						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
+						classes.get(i).addProperty(id);
+					}
 				}
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
@@ -369,29 +380,53 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	public void doRemoveElementFromDrawingArea(Object id, Object nature) {
+		int i = 0;
+		boolean find = false;
+		
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			// TODO remove links
-			for(int i = 0 ; i < links.size() ; i++) {
-				if(links.get(i).getMotherClassID().equals(classes.get(i).getInstanceID())
-						|| links.get(i).getDaughterClassID().equals(classes.get(i).getInstanceID())) {
-					links.remove(i);
-					i--;
+			for(int j = 0 ; j < links.size() ; j++) {
+				if(links.get(j).getMotherClassID().equals(classes.get(j).getInstanceID())
+						|| links.get(j).getDaughterClassID().equals(classes.get(j).getInstanceID())) {
+					links.remove(j);
+					j--;
 				}
 			}
-			for(int i = 0 ; i < classes.size() ; i++) {
+			while (i < classes.size() && !find) {
 				if(id.equals(classes.get(i).getInstanceID())) {
-					classes.remove(i);
-					i--;
+					find = true;
 				}
+				i++;
 			}
+			if (find) {
+				i--;
+				controller.askUnLinkAllElementToClass(id);
+				classes.remove(i);
+			}
+			
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			// TODO remove from class and unlink
-			for(int i = 0 ; i < classes.size() ; i++) {
+			while (i < classes.size() && !find) {
+				if (classes.get(i).containProperty(id)) {
+					find = true;
+				}
+				i++;
+			}
+			if (find) {
+				i--;
+				controller.askUnLinkAttributeToClass(id, classes.get(i).getInstanceID());
 				classes.get(i).removeProperty(id);
 			}
+			
 		} else if (nature.equals(UMLNature.METHOD)) {
-			// TODO remove from class and unlink
-			for(int i = 0 ; i < classes.size() ; i++) {
+			while (i < classes.size() && !find) {
+				if (classes.get(i).containMethod(id)) {
+					find = true;
+				}
+				i++;
+			}
+			if (find) {
+				i--;
+				controller.askUnLinkMethodToClass(id, classes.get(i).getInstanceID());
 				classes.get(i).removeMethod(id);
 			}
 		}

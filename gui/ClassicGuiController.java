@@ -822,6 +822,18 @@ public class ClassicGuiController implements GuiController {
 	}
 	
 	/**
+	 * Sends to the core the user's request to unlink the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askUnLinkAttributeToClass(Object attributeID, Object classID) {
+		core.askUnLinkAttributeToClass(attributeID, classID);
+	}
+	
+	/**
 	 * Sends to the core the user's request to link the given method instance to the given class instance
 	 * 
 	 * @param methodID
@@ -831,6 +843,28 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askLinkMethodToClass(Object methodID, Object classID) {
 		core.askLinkMethodToClass(methodID, classID);
+	}
+	
+	/**
+	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askUnLinkMethodToClass(Object methodID, Object classID) {
+		core.askUnLinkMethodToClass(methodID, classID);
+	}
+	
+	/**
+	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * 
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askUnLinkAllElementToClass(Object classID) {
+		core.askUnLinkAllElementToClass(classID);
 	}
 
 	/**
@@ -898,7 +932,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Add an UML instance to element pool
+	 * Add an UML instance to element panel
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -907,6 +941,18 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doAddElementToPool(Object id, Object nature) {
 		umlDrawingPanel.doAddElementToPool(id, nature);
+	}
+	
+	/**
+	 * Remove an UML instance from element panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doRemoveElementFromPool(Object id, Object nature) {
+		umlDrawingPanel.doRemoveElementFromPool(id, nature);
 	}
 
 	/**
