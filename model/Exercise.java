@@ -63,7 +63,7 @@ public class Exercise {
 
 	public Word getByPosition(int firstWord ,int lastWord,ArrayList<Word> t ) {
 		for (int i = 0; i<t.size(); i++) {
-			if (t.get(i).getFirstWord() <= firstWord) {
+			if ((t.get(i).getFirstWord() >= firstWord)) {
 				return t.get(i);
 			}
 		}
@@ -123,9 +123,11 @@ public class Exercise {
 
 		if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
-    			if (selection[i]>90) {
+    			if (selection[i]>80) {
     				Word w = getByPosition(i,i,t);
+    				
     				w.select();
+    				
     				try {
     				this.modelController.doSelectText(w.getFirstWord(),w.getLastWord(), userT );
     				} catch (Exception e) {

@@ -171,6 +171,7 @@ public class TextPanel extends AbstractPanel {
 		if (textPane.getText(start, 1).equals(" "))
 			start++;
 		int end = lenghtTable[lastWord] + lastWord;
+		System.out.println(firstWord + " "+lastWord);
 		textPane.getHighlighter().addHighlight(start, end, new DefaultHighlightPainter(color));
 	}
 

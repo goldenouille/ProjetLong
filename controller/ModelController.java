@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -11,10 +12,6 @@ import javax.swing.text.BadLocationException;
 
 import parser.Parser;
 import controller.ModelController;
-import model.UMLNature;
-import model.Step;
-import model.StepFactory;
-import model.Exercise;
 import model.*;
 
 import gui.ClassicGuiController;
@@ -39,6 +36,7 @@ public class ModelController {
 	}
 
 	public void askSelectText(int[] pourcentages, boolean userText) {
+		System.out.println(Arrays.toString(pourcentages));
 		exo.selectText(pourcentages, userText);
 	}
 
