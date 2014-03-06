@@ -129,7 +129,7 @@ public class Exercise {
     				try {
     				this.modelController.doSelectText(w.getFirstWord(),w.getLastWord(), userT );
     				} catch (Exception e) {
-    					System.out.println("erreur dans select Text");
+    					e.printStackTrace();
     				}	
        			}
 			}
@@ -158,7 +158,7 @@ public class Exercise {
     				try {
     				this.modelController.doUnSelectText(w.getFirstWord(),w.getLastWord(), userT );
     				} catch (Exception e) {
-    					System.out.println("erreur dans Unselect Text");
+    					e.printStackTrace();
     				}	
     			}
 			}
