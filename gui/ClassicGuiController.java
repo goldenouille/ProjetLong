@@ -113,23 +113,7 @@ public class ClassicGuiController implements GuiController {
 	 * Sends to the core the user's request to validate his keyword selection.
 	 */
 	public void askValidateKeywords() {
-		// TODO Auto-generated method stub
-
-		// System.out.println("askValidateKeywords");
-		//
-		// int[] tab = getActiveTextPanel().getSelection();
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doValidateText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
+		core.askValidateKeywords();
 	}
 	
 	/** Enable or disable the keywords validation button
@@ -144,8 +128,7 @@ public class ClassicGuiController implements GuiController {
 	 * association.
 	 */
 	public void askValidateAssociation() {
-		// TODO Auto-generated method stub
-		// System.out.println("askValidateAssociation");
+		core.askValidateAssociation();
 	}
 	
 	/** Enable or disable the association validation button
@@ -159,7 +142,7 @@ public class ClassicGuiController implements GuiController {
 	 * Sends to the core the user's request to validate his Uml diagram
 	 */
 	public void askValidateDiagram() {
-		// TODO Auto-generated method stub
+		core.askValidateDiagram();
 	}
 	
 	/** Enable or disable the diagram validation button

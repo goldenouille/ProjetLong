@@ -36,20 +36,20 @@ public class TextPanel extends AbstractPanel {
 
 		textPane = new JTextPane();
 		textPane.setEditable(false);
-		textPane.setMargin(new Insets(10,10,10,10));
+		textPane.setMargin(new Insets(10, 10, 10, 10));
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
 
-		JScrollPane scrollPane = new JScrollPane(textPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPane = new JScrollPane(textPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public void apendText(String[] strings) {
-		
+
 		int[] newTable = new int[lenghtTable.length + strings.length];
 		DefaultStyledDocument document = (DefaultStyledDocument) textPane.getStyledDocument();
-		
+
 		String str;
 		for (int i = 0; i < lenghtTable.length + strings.length; i++) {
 			if (i < lenghtTable.length) {
@@ -62,7 +62,7 @@ public class TextPanel extends AbstractPanel {
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		}
 		lenghtTable = newTable;
@@ -107,17 +107,13 @@ public class TextPanel extends AbstractPanel {
 		}
 
 		if (premierMot == dernierMot) {
-			selection[premierMot] = Math
-					.min(100,
-							100 - ((100 * (erreurPremierMot + erreurDernierMot)) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0
-									: lenghtTable[premierMot - 1]))    ));
+			selection[premierMot] = Math.min(100, 100 - ((100 * (erreurPremierMot + erreurDernierMot)) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0
+					: lenghtTable[premierMot - 1]))));
 		} else {
-			selection[premierMot] = Math.min(100,
-					100 - ((100 * erreurPremierMot) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0
-							: lenghtTable[premierMot - 1]))));
-			selection[dernierMot] = Math.min(100,
-					100 - ((100 * erreurDernierMot) / (lenghtTable[dernierMot] - ((dernierMot == 0) ? 0
-							: lenghtTable[dernierMot - 1]))));
+			selection[premierMot] = Math.min(100, 100 - ((100 * erreurPremierMot) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0
+					: lenghtTable[premierMot - 1]))));
+			selection[dernierMot] = Math.min(100, 100 - ((100 * erreurDernierMot) / (lenghtTable[dernierMot] - ((dernierMot == 0) ? 0
+					: lenghtTable[dernierMot - 1]))));
 		}
 
 		return selection;
@@ -167,23 +163,21 @@ public class TextPanel extends AbstractPanel {
 	public void highlight(Color color, int firstWord, int lastWord) throws BadLocationException {
 		if (firstWord != 0)
 			firstWord--;
-		int start = lenghtTable[firstWord] + firstWord;
+		int start = (firstWord != 0 ? lenghtTable[firstWord] : 0) + firstWord;
 		if (textPane.getText(start, 1).equals(" "))
 			start++;
 		int end = lenghtTable[lastWord] + lastWord;
-		System.out.println(firstWord + " "+lastWord);
 		textPane.getHighlighter().addHighlight(start, end, new DefaultHighlightPainter(color));
 	}
 
 	public void unHighlight(Color color, int firstWord, int lastWord) throws BadLocationException {
 		if (firstWord != 0)
 			firstWord--;
-		int start = lenghtTable[firstWord] + firstWord;
+		int start = (firstWord != 0 ? lenghtTable[firstWord] : 0) + firstWord;
 		int end = lenghtTable[lastWord] + lastWord;
 		Highlight[] highlightsList = textPane.getHighlighter().getHighlights();
 		ArrayList<HighlightData> newHighlights = new ArrayList<HighlightData>();
 
-		System.out.println(highlightsList.length);
 		for (int i = 0; i < highlightsList.length; i++) {
 			Highlight highlight = highlightsList[i];
 			if (((DefaultHighlightPainter) highlight.getPainter()).getColor() == color) {
@@ -192,14 +186,12 @@ public class TextPanel extends AbstractPanel {
 					// la selection contient tout le highlight
 					textPane.getHighlighter().removeHighlight(highlight);
 
-				} else if (start <= highlight.getStartOffset() && end > highlight.getStartOffset()
-						&& end < highlight.getEndOffset()) {
+				} else if (start <= highlight.getStartOffset() && end > highlight.getStartOffset() && end < highlight.getEndOffset()) {
 					// la selection contient le debut du highlight
 					newHighlights.add(new HighlightData(end, highlight.getEndOffset(), color));
 					textPane.getHighlighter().removeHighlight(highlight);
 
-				} else if (start > highlight.getStartOffset() && start < highlight.getEndOffset()
-						&& end >= highlight.getEndOffset()) {
+				} else if (start > highlight.getStartOffset() && start < highlight.getEndOffset() && end >= highlight.getEndOffset()) {
 					// la selection contient la fin du highlight
 					newHighlights.add(new HighlightData(highlight.getStartOffset(), start, color));
 					textPane.getHighlighter().removeHighlight(highlight);
@@ -220,15 +212,15 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void setTextFont(Font font) {
-        MutableAttributeSet attrs = textPane.getInputAttributes();
-        StyleConstants.setFontFamily(attrs, font.getFamily());
-        StyleConstants.setFontSize(attrs, font.getSize());
-        StyleConstants.setItalic(attrs, (font.getStyle() & Font.ITALIC) != 0);
-        StyleConstants.setBold(attrs, (font.getStyle() & Font.BOLD) != 0);
-        StyledDocument doc = textPane.getStyledDocument();
-        doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, true);
-    }
-	
+		MutableAttributeSet attrs = textPane.getInputAttributes();
+		StyleConstants.setFontFamily(attrs, font.getFamily());
+		StyleConstants.setFontSize(attrs, font.getSize());
+		StyleConstants.setItalic(attrs, (font.getStyle() & Font.ITALIC) != 0);
+		StyleConstants.setBold(attrs, (font.getStyle() & Font.BOLD) != 0);
+		StyledDocument doc = textPane.getStyledDocument();
+		doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, true);
+	}
+
 	public JTextPane getTextPane() {
 		return textPane;
 	}

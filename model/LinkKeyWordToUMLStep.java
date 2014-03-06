@@ -11,7 +11,7 @@ public class LinkKeyWordToUMLStep extends Step {
 		this.frenchName = "Association des mots-clef avec un type UML";
 	}
 	
-	public void getCorrection(Exercise exo) {
+	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
 		ModelController mc = exo.getModelController();

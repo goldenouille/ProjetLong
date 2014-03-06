@@ -49,8 +49,18 @@ public class ModelController {
 		return natures;
 	}
 
-	public void askValidateStep(Object s) {
-		System.out.println("Correction de " + ((Step) s).getFrenchName());
+	public void askValidateKeywords() {
+		//System.out.println("Correction de " + ((Step) s).getFrenchName());
+		SelectKeyWordStep.getCorrection(exo);
+	}
+	
+	public void askValidateAssociation() {
+		//System.out.println("Correction de " + ((Step) s).getFrenchName());
+		((Step) s).getCorrection(exo);
+	}
+	
+	public void askValidateDiagram() {
+		//System.out.println("Correction de " + ((Step) s).getFrenchName());
 		((Step) s).getCorrection(exo);
 	}
 

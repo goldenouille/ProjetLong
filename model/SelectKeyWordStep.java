@@ -11,7 +11,7 @@ public class SelectKeyWordStep extends Step {
 		this.frenchName = "Selection des mots-cle dans l'enonce";
 	}
 
-	public void getCorrection(Exercise exo) {
+	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
 		ModelController mc = exo.getModelController();

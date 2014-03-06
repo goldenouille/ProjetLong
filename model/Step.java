@@ -17,6 +17,7 @@ public abstract class Step {
 		return this.frenchName;
 	}
 
-	public abstract void getCorrection(Exercise exo);
+	public static void getCorrection(Exercise exo) {
+	}
 
 }
