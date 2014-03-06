@@ -81,7 +81,7 @@ public class Part {
 			w.setLength(1);
 			w.setFirstWord(this.auxNbWord);
 			this.auxNbWord = this.auxNbWord + 1;
-			System.out.println("on ajoute 1 au nombre de mots parce qu'on est en train de rajouter du texte");
+			//System.out.println("on ajoute 1 au nombre de mots parce qu'on est en train de rajouter du texte");
 			w.setLastWord(this.auxNbWord - 1);
 			text.add(w);
 		}
@@ -93,7 +93,7 @@ public class Part {
 		keyWord.setLength(l);
 		keyWord.setFirstWord(this.auxNbWord);
 		this.auxNbWord = this.auxNbWord + l;
-		System.out.println("on ajoute " + l +" au nombre de mots parce qu'on ajoute un mot-clef");
+		//System.out.println("on ajoute " + l +" au nombre de mots parce qu'on ajoute un mot-clef");
 		keyWord.setLastWord(this.auxNbWord - 1);
 		text.add(keyWord);
 		idTable.put(keyWord.getId(),new Vertex());
