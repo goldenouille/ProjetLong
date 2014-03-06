@@ -184,6 +184,7 @@ public class Exercise {
 		for(int i=0;i<tab.length;i++) {
 			tab[i]=text.get(i).getWord();
 		}
+		System.out.println(modelController);
 		this.modelController.doAddText(false, tab);
 	}
 	
@@ -430,6 +431,10 @@ public class Exercise {
 	public void askLinkMethodToClass(Method met, Vertex c) {
 		c.addMethod(met);
 		met.setMotherClass(c);
+	}
+
+	public void setModelController(ModelController modelController) {
+		this.modelController=modelController;
 	}
 
 }

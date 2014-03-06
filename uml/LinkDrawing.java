@@ -7,6 +7,8 @@ import java.awt.Polygon;
 import java.awt.Stroke;
 import java.util.Vector;
 
+import model.UMLNature;
+
 
 public class LinkDrawing {
 	
@@ -15,18 +17,6 @@ public class LinkDrawing {
 	private static final int DASH_DELTA = 10;		// pixel size between dash
 	private static final int DRAWSTRING_DELTA = 6;	// pixel space between line and Strings
 	private static final int ARROW_SIZE = 10;		// pixel size for arrow drawing
-	
-	// Link type use by LinkDrawing class representation
-	//public static final int DIRECTIONNAL = 0;
-	//public static final int HERITAGE = 1;
-	public static final int REALIZATION = 2;
-	public static final int GENERALIZATION = 3;
-	public static final int DEPENDANCY = 4;
-	//public static final int ASSOCIATION = 5;
-	public static final int N_ARY_ASSOCIATION = 6;
-	public static final int BINARY_ASSOCIATION = 7;
-	public static final int AGGREGATION = 8;
-	public static final int COMPOSITION = 9;
 	
 	// Position variables for arrow drawing
 	private static final int POSITION_ERROR = -1;
@@ -42,11 +32,14 @@ public class LinkDrawing {
 	private Dimension daughterClassPosition;
 	private Vector<Dimension> points;
 	
-	private int type;
+	private Object id;
+	private Object type;
 	private String text;
 	private String motherMultiplicity;
 	private String daughterMultiplicity;
+	
 	private boolean moved; // not use to its max potential
+	private boolean isColored;
 
 	/**
 	 * Main constructor, create a LinkDrawing representation of a link
@@ -58,21 +51,24 @@ public class LinkDrawing {
 	 * @param type
 	 *            LinkDrawing link type
 	 */
-	public LinkDrawing(ClassDrawing motherClass, ClassDrawing daughterClass, int type) {
+	public LinkDrawing(Object id, Object type, ClassDrawing motherClass, ClassDrawing daughterClass) {
+		this.id = id;
+		this.type = type;
+		
 		this.motherClass = motherClass;
 		motherClassPosition = new Dimension(motherClass.getX(), motherClass.getY());
 		this.daughterClass = daughterClass;
 		
 		daughterClassPosition = new Dimension(daughterClass.getX(), daughterClass.getY());
 		points = new Vector<Dimension>();
-		definePoints();
 		
-		this.type = type;
+		definePoints();
 		text = "";
 		motherMultiplicity = "";
 		daughterMultiplicity = "";
 		
 		moved = false;
+		isColored = false;
 	}
 	
 	/**
@@ -454,21 +450,8 @@ public class LinkDrawing {
 			y = points.firstElement().height - ARROW_SIZE/2;
 		}
 		
-		switch (type) {
-		/*
-		case DIRECTIONNAL:
-			// NOT IMPLEMENTABLE
-			break;
-		case HERITAGE:
-			// NOT IMPLEMENTABLE
-			break;
-		*/
-		case REALIZATION:
+		if (type.equals(UMLNature.REALIZATION) || type.equals(UMLNature.AGGREGATION)) {
 			// complete empty arrow
-			//break; // go to GENERALIZATION
-		case GENERALIZATION:
-			// complete empty arrow
-			
 			if (position == TOP) {
 				g.clearRect(points.firstElement().width, points.firstElement().height - ARROW_SIZE, 1, ARROW_SIZE);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
@@ -496,10 +479,8 @@ public class LinkDrawing {
 			
 			g.drawPolygon(pol);
 			
-			break;
-		case DEPENDANCY:
+		} else if (type.equals(UMLNature.DEPENDANCY)) {
 			// simple arrow
-			
 			if (position == TOP) {
 				g.drawLine(points.firstElement().width, points.firstElement().height, x, y);
 				g.drawLine(x + ARROW_SIZE, y, points.firstElement().width, points.firstElement().height);
@@ -517,21 +498,12 @@ public class LinkDrawing {
 				g.drawLine(x, y, points.firstElement().width, points.firstElement().height);
 			}
 			
-			break;
-		/*
-		case ASSOCIATION:
-			// NOT IMPLEMENTABLE
-			break;
-		*/
-		case N_ARY_ASSOCIATION:
+/*		} else if (type.equals(UMLNature.N_ASSOCIATION)) {
 			// NOT IMPLEMENTED
-			break;
-		case BINARY_ASSOCIATION:
+		} else if (type.equals(UMLNature.ASSOCIATION)) {
 			// no arrow
-			break;
-		case AGGREGATION:
+*/		} else if (type.equals(UMLNature.AGGREGATION)) {
 			// empty diamond
-			
 			if (position == TOP) {
 				g.clearRect(points.firstElement().width, points.firstElement().height - ARROW_SIZE*2, 1, ARROW_SIZE*2);
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
@@ -562,10 +534,9 @@ public class LinkDrawing {
 			}
 			
 			g.drawPolygon(pol);
-			break;
-		case COMPOSITION:
-			// full diamond
 			
+		} else if (type.equals(UMLNature.COMPOSITION)) {
+			// full diamond
 			if (position == TOP) {
 				pol.addPoint(points.firstElement().width, points.firstElement().height);
 				pol.addPoint(x, y);
@@ -592,9 +563,6 @@ public class LinkDrawing {
 			}
 			
 			g.fillPolygon(pol);
-			break;
-		default:
-			//Null
 		}
 	}
 	
@@ -624,7 +592,7 @@ public class LinkDrawing {
 //		}
 	
 		for (int i = 1; i < points.size() ; i++) {
-			if (type != REALIZATION && type != DEPENDANCY) {
+			if (!type.equals(UMLNature.REALIZATION) && !type.equals(UMLNature.DEPENDANCY)) {
 				g.drawLine((int)points.get(i-1).getWidth(), (int)points.get(i-1).getHeight(), (int)points.get(i).getWidth(), (int)points.get(i).getHeight());
 			} else {
 				// draw dashed line
@@ -781,22 +749,21 @@ public class LinkDrawing {
 	}
 	
 	/**
+	 * Get id of link drawing
+	 * 
+	 * @return id object
+	 */
+	public Object getInstanceID() {
+		return id;
+	}
+	
+	/**
 	 * Get type of link drawing
 	 * 
-	 * @return type as defined in LinkDrawing
+	 * @return UMLNature object
 	 */
-	public int getType() {
+	public Object getType() {
 		return type;
-	}
-
-	/**
-	 * Set type of link drawing
-	 * 
-	 * @param type
-	 *            as defined in LinkDrawing
-	 */
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	/**
@@ -872,5 +839,24 @@ public class LinkDrawing {
 	 */
 	public void setDaughterMultiplicity(String daughterMultiplicity) {
 		this.daughterMultiplicity = daughterMultiplicity;
+	}
+	
+	/**
+	 * Get if link drawing is colored
+	 * 
+	 * @return colored
+	 */
+	public boolean isColored() {
+		return isColored;
+	}
+
+	/**
+	 * Set if link drawing is colored
+	 * 
+	 * @param colored
+	 *            if true, lines and text are colored
+	 */
+	public void setColored(boolean colored) {
+		this.isColored = colored;
 	}
 }
