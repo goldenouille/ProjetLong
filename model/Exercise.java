@@ -126,7 +126,12 @@ public class Exercise {
     			if (selection[i]>90) {
     				Word w = getByPosition(i,i,t);
     				w.select();
-    			}
+    				try {
+    				this.modelController.doSelectText(w.getFirstWord(),w.getLastWord(), userT );
+    				} catch (Exception e) {
+    					System.out.println("erreur dans select Text");
+    				}	
+       			}
 			}
 		} // else {LEVER EXCEPTION !! !! !!}
 	}
@@ -150,6 +155,11 @@ public class Exercise {
     			if (selection[i]>90) {
     				Word w = getByPosition(i,i,t);
     				w.unselect();
+    				try {
+    				this.modelController.doUnSelectText(w.getFirstWord(),w.getLastWord(), userT );
+    				} catch (Exception e) {
+    					System.out.println("erreur dans Unselect Text");
+    				}	
     			}
 			}
 		} // else {LEVER EXCEPTION !! !! !!}

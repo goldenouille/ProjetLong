@@ -391,6 +391,12 @@ public class ModelController {
 		}
 	}
 	
+	public void askUnLinkAttributeToClass(Object attributeID, Object classID) {
+		//if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
+		//	exo.askUnLinkAttributeToClass(attributeID, classID);
+		//}	
+	}
+
 	/**
 	 * Sends to the core the user's request to link the given method instance to the given class instance
 	 * 
@@ -405,6 +411,19 @@ public class ModelController {
 		}
 	}
 
+	public void askUnLinkMethodToClass(Object methodID, Object classID) {
+		//core.askUnLinkMethodToClass(methodID, classID);
+	}
+	
+	/**
+	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * 
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void askUnLinkAllElementToClass(Object classID) {
+		//core.askUnLinkAllElementToClass(classID);
+	}
 
 		/**
 	 * Ask the core about the name of the Uml instance corresponding to the
