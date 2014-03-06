@@ -23,9 +23,6 @@ public class IconButton extends JButton {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		// super.paintComponent(g);
-		if (img == null)
-			return;
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 	}
 

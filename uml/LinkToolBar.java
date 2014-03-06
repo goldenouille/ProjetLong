@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
@@ -28,20 +29,30 @@ public class LinkToolBar extends JToolBar {
 	public static final int AGGREGATION = 8;
 	public static final int COMPOSITION = 9;
 
+	// icons
+	private ImageIcon arrow_aggregation = new ImageIcon("images/arrow_aggregation.png");
+	private ImageIcon arrow_association = new ImageIcon("images/arrow_association.png");
+	private ImageIcon arrow_composition = new ImageIcon("images/arrow_composition.png");
+	private ImageIcon arrow_delete = new ImageIcon("images/arrow_delete.png");
+	private ImageIcon arrow_dependancy = new ImageIcon("images/arrow_dependancy.png");
+	private ImageIcon arrow_generalization = new ImageIcon("images/arrow_generalization.png");
+	private ImageIcon arrow_realization = new ImageIcon("images/arrow_realization.png");
+	private ImageIcon arrow_reverse = new ImageIcon("images/arrow_reverse.png");
+	private ImageIcon edition = new ImageIcon("images/edition.png");
+	private ImageIcon move = new ImageIcon("images/move.png");
+
 	/**
 	 * Main constructor, create a LinkToolBar
 	 */
 	public LinkToolBar() {
-		JButton button = null;
-
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createEmptyBorder()));
 		this.setFloatable(false);
-		this.setRollover(true);
 		state = NO_LINK;
 
 		// NO LINK BUTTON
-		button = new JButton();
+		JButton button = new JButton(move);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Deplacer des elements");// "Go back to mouse movement"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -49,12 +60,12 @@ public class LinkToolBar extends JToolBar {
 				setState(NO_LINK);
 			}
 		});
-		button.setText("M");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// LINK_EDITION BUTTON
-		button = new JButton();
+		button = new JButton(edition);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Editer les proprietes d'une relation");// "Edit link properties"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -62,12 +73,12 @@ public class LinkToolBar extends JToolBar {
 				setState(LINK_EDITION);
 			}
 		});
-		button.setText("Ed");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// CHANGE_DIRECTION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_reverse);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Changer la direction d'une relation");// "Change link direction"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -75,12 +86,12 @@ public class LinkToolBar extends JToolBar {
 				setState(CHANGE_DIRECTION);
 			}
 		});
-		button.setText("CD");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// REMOVE LINK BUTTON
-		button = new JButton();
+		button = new JButton(arrow_delete);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Supprimer une relation");// "Remove link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -88,12 +99,12 @@ public class LinkToolBar extends JToolBar {
 				setState(REMOVE_LINK);
 			}
 		});
-		button.setText("RL");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// REALIZATION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_realization);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation de realisation");// "Create realization link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -101,12 +112,12 @@ public class LinkToolBar extends JToolBar {
 				setState(REALIZATION);
 			}
 		});
-		button.setText("R");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// GENERALIZATION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_generalization);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation de generalisation");// "Create generalization link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -114,12 +125,12 @@ public class LinkToolBar extends JToolBar {
 				setState(GENERALIZATION);
 			}
 		});
-		button.setText("G");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// DEPENDANCY BUTTON
-		button = new JButton();
+		button = new JButton(arrow_dependancy);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation de dependance");// "Create dependancy link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -127,12 +138,12 @@ public class LinkToolBar extends JToolBar {
 				setState(DEPENDANCY);
 			}
 		});
-		button.setText("D");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// BINARY ASSOCIATION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_association);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation d'association binaire");// "Create binary association link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -140,12 +151,12 @@ public class LinkToolBar extends JToolBar {
 				setState(BINARY_ASSOCIATION);
 			}
 		});
-		button.setText("BA");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// AGGREGATION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_aggregation);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation d'agregation");// "Create aggregation link"
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -153,12 +164,12 @@ public class LinkToolBar extends JToolBar {
 				setState(AGGREGATION);
 			}
 		});
-		button.setText("A");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// COMPOSITION BUTTON
-		button = new JButton();
+		button = new JButton(arrow_composition);
+		button.setPreferredSize(new Dimension(20, 20));
 		button.setToolTipText("Creer une relation de composition");// "Create composition link");
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -166,7 +177,6 @@ public class LinkToolBar extends JToolBar {
 				setState(COMPOSITION);
 			}
 		});
-		button.setText("C");
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 	}
