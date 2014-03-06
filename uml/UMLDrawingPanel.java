@@ -377,6 +377,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 			}
 		}
+		
+		// TODO relation
 	}
 	
 	public void doRemoveElementFromDrawingArea(Object id, Object nature) {
@@ -384,7 +386,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		boolean find = false;
 		
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
-			// TODO remove links
+			// TODO delete links
 			for(int j = 0 ; j < links.size() ; j++) {
 				if(links.get(j).getMotherClassID().equals(classes.get(j).getInstanceID())
 						|| links.get(j).getDaughterClassID().equals(classes.get(j).getInstanceID())) {
@@ -430,6 +432,28 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				classes.get(i).removeMethod(id);
 			}
 		}
+		
+		// TODO relation
+	}
+	
+	// TODO
+	public void askCreateRelation() { // and other properties Text, Multiplicities
+		
+	}
+	
+	// TODO
+	public void askEditRelation(Object id) { // and other properties Text, Multiplicities
+		
+	}
+	
+	// TODO
+	public void askDeleteRelation(Object id) {
+		
+	}
+	
+	// TODO
+	public void askRevertLink(Object id) {
+		
 	}
 	
 	@Override
