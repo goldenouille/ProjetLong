@@ -58,7 +58,7 @@ public class TextPanel extends AbstractPanel {
 				str = strings[i - lenghtTable.length];
 				newTable[i] = ((i == 0) ? 0 : newTable[i - 1]) + str.length();
 				try {
-					document.insertString(document.getLength(), str + " ", null);
+					document.insertString(document.getLength(), str.trim() + " ", null);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
@@ -110,7 +110,7 @@ public class TextPanel extends AbstractPanel {
 			selection[premierMot] = Math
 					.min(100,
 							100 - ((100 * (erreurPremierMot + erreurDernierMot)) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0
-									: lenghtTable[premierMot - 1]))));
+									: lenghtTable[premierMot - 1]))    ));
 		} else {
 			selection[premierMot] = Math.min(100,
 					100 - ((100 * erreurPremierMot) / (lenghtTable[premierMot] - ((premierMot == 0) ? 0

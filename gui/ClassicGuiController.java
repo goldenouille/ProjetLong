@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -185,7 +186,7 @@ public class ClassicGuiController implements GuiController {
 		int[] tab = getActiveTextPanel().getSelection();
 		core.askSelectText(tab, userTextFocus);
 
-		// System.out.println("askSelectText : " + Arrays.toString(tab));
+		System.out.println("askSelectText : " + Arrays.toString(tab));
 		//
 		// int start = -1, end = -1;
 		// for (int i = 0; i < tab.length - 1; i++) {
