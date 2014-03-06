@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Stroke;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import model.UMLNature;
@@ -25,18 +26,14 @@ public class LinkDrawing {
 	private static final int BOTTOM = 2;
 	private static final int LEFT = 3;
 	
-	private ClassDrawing motherClass;
-	private ClassDrawing daughterClass;
-	
-	private Dimension motherClassPosition;
-	private Dimension daughterClassPosition;
+	private ArrayList<ClassDrawing> classes;
+	private ArrayList<Dimension> classPositions;
 	private Vector<Dimension> points;
 	
 	private Object id;
 	private Object type;
 	private String text;
-	private String motherMultiplicity;
-	private String daughterMultiplicity;
+	private ArrayList<String> multiplicity;
 	
 	private boolean moved; // not use to its max potential
 	private boolean isColored;
@@ -51,21 +48,20 @@ public class LinkDrawing {
 	 * @param type
 	 *            LinkDrawing link type
 	 */
-	public LinkDrawing(Object id, Object type, ClassDrawing motherClass, ClassDrawing daughterClass) {
+	public LinkDrawing(Object id, Object type, ArrayList<ClassDrawing> classes) {
 		this.id = id;
 		this.type = type;
 		
-		this.motherClass = motherClass;
-		motherClassPosition = new Dimension(motherClass.getX(), motherClass.getY());
-		this.daughterClass = daughterClass;
-		
-		daughterClassPosition = new Dimension(daughterClass.getX(), daughterClass.getY());
+		this.classes = classes;
+		classPositions = new ArrayList<Dimension>();
+		for (int i = 0 ; i < classes.size() ; i++) {
+			classPositions.add(new Dimension(classes.get(i).getX(), classes.get(i).getY()));
+		}
 		points = new Vector<Dimension>();
 		
 		definePoints();
 		text = "";
-		motherMultiplicity = "";
-		daughterMultiplicity = "";
+		multiplicity = new ArrayList<String>();
 		
 		moved = false;
 		isColored = false;
@@ -86,89 +82,89 @@ public class LinkDrawing {
 	 */
 	private void definePoints() {
 		// daugtherClass is at LEFT of motherClass
-		if (motherClass.getX() + motherClass.getWidth() <= daughterClass.getX()) {
+		if (classes.get(0).getX() + classes.get(0).getWidth() <= classes.get(classes.size()-1).getX()) {
 			// daugtherClass is at TOP-LEFT of motherClass
-			if (motherClass.getY() > daughterClass.getY() + daughterClass.getHeight()/2) {
-				points.add(new Dimension(motherClass.getX() + motherClass.getWidth(), motherClass.getY() + motherClass.getHeight()/4));
-				points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()/4, motherClass.getY() + motherClass.getHeight()/4));
-				points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()/4, daughterClass.getY() + daughterClass.getHeight()));
+			if (classes.get(0).getY() > classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2) {
+				points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth(), classes.get(0).getY() + classes.get(0).getHeight()/4));
+				points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()/4, classes.get(0).getY() + classes.get(0).getHeight()/4));
+				points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()/4, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()));
 			} else {
 				// daugtherClass is at BOTTOM-LEFT of motherClass
-				if (motherClass.getY() + motherClass.getHeight() < daughterClass.getY() + daughterClass.getHeight()/2) {
-					points.add(new Dimension(motherClass.getX() + motherClass.getWidth(), motherClass.getY() + motherClass.getHeight()*3/4));
-					points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()/4, motherClass.getY() + motherClass.getHeight()*3/4));
-					points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()/4, daughterClass.getY()));
+				if (classes.get(0).getY() + classes.get(0).getHeight() < classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2) {
+					points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth(), classes.get(0).getY() + classes.get(0).getHeight()*3/4));
+					points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()/4, classes.get(0).getY() + classes.get(0).getHeight()*3/4));
+					points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()/4, classes.get(classes.size()-1).getY()));
 				}
 				// daugtherClass is at MIDDLE-LEFT of motherClass
 				else {
-					points.add(new Dimension(motherClass.getX() + motherClass.getWidth(), daughterClass.getY() + daughterClass.getHeight()/2));
-					points.add(new Dimension(daughterClass.getX(), daughterClass.getY() + daughterClass.getHeight()/2));
+					points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2));
+					points.add(new Dimension(classes.get(classes.size()-1).getX(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2));
 				}
 			}
 		}
 		else {
 			// daugtherClass is at RIGHT of motherClass
-			if (motherClass.getX() >= daughterClass.getX() + daughterClass.getWidth()) {
+			if (classes.get(0).getX() >= classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
 			// daugtherClass is at TOP-RIGHT of motherClass
-				if (motherClass.getY() > daughterClass.getY() + daughterClass.getHeight()/2) {
-					points.add(new Dimension(motherClass.getX(), motherClass.getY() + motherClass.getHeight()/4));
-					points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()*3/4, motherClass.getY() + motherClass.getHeight()/4));
-					points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()*3/4, daughterClass.getY() + daughterClass.getHeight()));
+				if (classes.get(0).getY() > classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2) {
+					points.add(new Dimension(classes.get(0).getX(), classes.get(0).getY() + classes.get(0).getHeight()/4));
+					points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()*3/4, classes.get(0).getY() + classes.get(0).getHeight()/4));
+					points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()*3/4, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()));
 				} else {
 					// daugtherClass is at BOTTOM-RIGHT of motherClass
-					if (motherClass.getY() + motherClass.getHeight() < daughterClass.getY() + daughterClass.getHeight()/2) {
-						points.add(new Dimension(motherClass.getX(), motherClass.getY() + motherClass.getHeight()*3/4));
-						points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()*3/4, motherClass.getY() + motherClass.getHeight()*3/4));
-						points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth()*3/4, daughterClass.getY()));
+					if (classes.get(0).getY() + classes.get(0).getHeight() < classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2) {
+						points.add(new Dimension(classes.get(0).getX(), classes.get(0).getY() + classes.get(0).getHeight()*3/4));
+						points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()*3/4, classes.get(0).getY() + classes.get(0).getHeight()*3/4));
+						points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()*3/4, classes.get(classes.size()-1).getY()));
 					}
 					// daugtherClass is at MIDDLE-RIGHT of motherClass
 					else {
-						points.add(new Dimension(motherClass.getX(), daughterClass.getY() + daughterClass.getHeight()/2));
-						points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth(), daughterClass.getY() + daughterClass.getHeight()/2));
+						points.add(new Dimension(classes.get(0).getX(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2));
+						points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/2));
 					}
 				}
 			}
 			// is daugtherClass at MIDDLE TOP or BOTTOM of motherClass ?
 			else {
 				// daughterClass is at TOP-MIDDLE of motherClass
-				if (motherClass.getY() >= daughterClass.getY() + daughterClass.getHeight()) {
+				if (classes.get(0).getY() >= classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()) {
 					// daughterClass is at TOP-MIDDLE-RIGHT of motherClass
-					if (motherClass.getX() + motherClass.getWidth()/2 <= daughterClass.getX()) {
-						points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY()));
-						points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY() + daughterClass.getHeight()*3/4));
-						points.add(new Dimension(daughterClass.getX(), daughterClass.getY() + daughterClass.getHeight()*3/4));
+					if (classes.get(0).getX() + classes.get(0).getWidth()/2 <= classes.get(classes.size()-1).getX()) {
+						points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY()));
+						points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()*3/4));
+						points.add(new Dimension(classes.get(classes.size()-1).getX(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()*3/4));
 					} else {
 						// daughterClass is at TOP-MIDDLE-LEFT of motherClass
-						if (motherClass.getX() + motherClass.getWidth()/2 >= daughterClass.getX() + daughterClass.getWidth()) {
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY()));
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY() + daughterClass.getHeight()*3/4));
-							points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth(), daughterClass.getY() + daughterClass.getHeight()*3/4));
+						if (classes.get(0).getX() + classes.get(0).getWidth()/2 >= classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY()));
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()*3/4));
+							points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()*3/4));
 						}
 						// daughterClass is at TOP-MIDDLE-MID of motherClass
 						else {
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY()));
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY() + daughterClass.getHeight()));
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY()));
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()));
 						}
 					}
 				} else {
 				// daughterClass is at BOTTOM-MIDDLE of motherClass
-					if (motherClass.getY() + motherClass.getHeight() <= daughterClass.getY()) {
+					if (classes.get(0).getY() + classes.get(0).getHeight() <= classes.get(classes.size()-1).getY()) {
 						// daughterClass is at BOTTOM-MIDDLE-RIGHT of motherClass
-						if (motherClass.getX() + motherClass.getWidth()/2 <= daughterClass.getX()) {
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY() + motherClass.getHeight()));
-							points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY() + daughterClass.getHeight()/4));
-							points.add(new Dimension(daughterClass.getX(), daughterClass.getY() + daughterClass.getHeight()/4));
+						if (classes.get(0).getX() + classes.get(0).getWidth()/2 <= classes.get(classes.size()-1).getX()) {
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY() + classes.get(0).getHeight()));
+							points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/4));
+							points.add(new Dimension(classes.get(classes.size()-1).getX(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/4));
 						} else {
 							// daughterClass is at BOTTOM-MIDDLE-LEFT of motherClass
-							if (motherClass.getX() + motherClass.getWidth()/2 >= daughterClass.getX() + daughterClass.getWidth()) {
-								points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY() + motherClass.getHeight()));
-								points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY() + daughterClass.getHeight()/4));
-								points.add(new Dimension(daughterClass.getX() + daughterClass.getWidth(), daughterClass.getY() + daughterClass.getHeight()/4));
+							if (classes.get(0).getX() + classes.get(0).getWidth()/2 >= classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
+								points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY() + classes.get(0).getHeight()));
+								points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/4));
+								points.add(new Dimension(classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth(), classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()/4));
 							}
 							// daughterClass is at BOTTOM-MIDDLE-MID of motherClass
 							else {
-								points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, motherClass.getY() + motherClass.getHeight()));
-								points.add(new Dimension(motherClass.getX() + motherClass.getWidth()/2, daughterClass.getY()));
+								points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(0).getY() + classes.get(0).getHeight()));
+								points.add(new Dimension(classes.get(0).getX() + classes.get(0).getWidth()/2, classes.get(classes.size()-1).getY()));
 							}
 						}
 					} else {
@@ -187,8 +183,8 @@ public class LinkDrawing {
 	private boolean checkClassPosition() {
 		boolean moved = false;
 		// check Mother Class position
-		if (motherClass.getX() != motherClassPosition.getWidth() || motherClass.getY() != motherClassPosition.getHeight()) {
-			Dimension delta = new Dimension(motherClass.getX() - (int)motherClassPosition.getWidth(), motherClass.getY() - (int)motherClassPosition.getHeight());
+		if (classes.get(0).getX() != classPositions.get(0).getWidth() || classes.get(0).getY() != classPositions.get(0).getHeight()) {
+			Dimension delta = new Dimension(classes.get(0).getX() - (int)classPositions.get(0).getWidth(), classes.get(0).getY() - (int)classPositions.get(0).getHeight());
 			
 			// vertical line
 			if (points.firstElement().getWidth() == points.get(1).getWidth()) {
@@ -198,13 +194,13 @@ public class LinkDrawing {
 			}
 			points.firstElement().setSize(points.firstElement().getWidth() + delta.getWidth(), points.firstElement().getHeight() + delta.getHeight());
 			
-			motherClassPosition.setSize(motherClass.getX(), motherClass.getY());
+			classPositions.set(0, new Dimension(classes.get(0).getX(), classes.get(0).getY()));
 			moved = true;
 		}
 		
 		// check Daughter Class position
-		if (daughterClass.getX() != daughterClassPosition.getWidth() || daughterClass.getY() != daughterClassPosition.getHeight()) {
-			Dimension delta = new Dimension(daughterClass.getX() - (int)daughterClassPosition.getWidth(), daughterClass.getY() - (int)daughterClassPosition.getHeight());
+		if (classes.get(classes.size()-1).getX() != classPositions.get(classPositions.size()-1).getWidth() || classes.get(classes.size()-1).getY() != classPositions.get(classPositions.size()-1).getHeight()) {
+			Dimension delta = new Dimension(classes.get(classes.size()-1).getX() - (int)classPositions.get(classPositions.size()-1).getWidth(), classes.get(classes.size()-1).getY() - (int)classPositions.get(classPositions.size()-1).getHeight());
 			
 			// vertical line
 			if (points.get(points.size() - 2).getWidth() == points.lastElement().getWidth()) {
@@ -214,7 +210,7 @@ public class LinkDrawing {
 			}
 			points.lastElement().setSize(points.lastElement().getWidth() + delta.getWidth(), points.lastElement().getHeight() + delta.getHeight());
 			
-			daughterClassPosition.setSize(daughterClass.getX(), daughterClass.getY());
+			classPositions.set(classPositions.size()-1, new Dimension(classes.get(classes.size()-1).getX(), classes.get(classes.size()-1).getY()));
 			moved = true;
 		}
 		
@@ -233,10 +229,10 @@ public class LinkDrawing {
 				if (points.get(i).width == points.get(i-1).width && points.get(i).height == points.get(i-1).height) {
 					toRemove = true;
 				}
-				else if (isIntoClass(points.get(i), motherClass)){
+				else if (isIntoClass(points.get(i), classes.get(0))){
 					toRemove = true;
 				}
-				else if (isIntoClass(points.get(i), daughterClass) && i != points.size() -1) {
+				else if (isIntoClass(points.get(i), classes.get(classes.size()-1)) && i != points.size() -1) {
 					toRemove = true;
 				}
 				if (toRemove) {
@@ -350,25 +346,25 @@ public class LinkDrawing {
 			points.lastElement().height = daughterClass.getY() + daughterClass.getHeight();
 		}*/
 		
-		if ( !((points.lastElement().width == daughterClass.getX() || points.lastElement().width == daughterClass.getX() + daughterClass.getWidth())
-				&& points.lastElement().height >= daughterClass.getY() && points.lastElement().height <= daughterClass.getY() + daughterClass.getHeight())
+		if ( !((points.lastElement().width == classes.get(classes.size()-1).getX() || points.lastElement().width == classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth())
+				&& points.lastElement().height >= classes.get(classes.size()-1).getY() && points.lastElement().height <= classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight())
 				||
-				!((points.lastElement().height == daughterClass.getY() || points.lastElement().height == daughterClass.getY() + daughterClass.getHeight())
-				&& points.lastElement().width >= daughterClass.getX() && points.lastElement().width <= daughterClass.getX() + daughterClass.getWidth())
+				!((points.lastElement().height == classes.get(classes.size()-1).getY() || points.lastElement().height == classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight())
+				&& points.lastElement().width >= classes.get(classes.size()-1).getX() && points.lastElement().width <= classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth())
 				) {
 			// add points
 			int x = points.lastElement().width;
 			int y = points.lastElement().height;
-			if (points.lastElement().width < daughterClass.getX()) {
-				x = daughterClass.getX();
-			} else if (points.lastElement().width > daughterClass.getX() + daughterClass.getWidth()) {
-				x = daughterClass.getX() + daughterClass.getWidth();
+			if (points.lastElement().width < classes.get(classes.size()-1).getX()) {
+				x = classes.get(classes.size()-1).getX();
+			} else if (points.lastElement().width > classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
+				x = classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth();
 			}
 			
-			if (points.lastElement().height < daughterClass.getY()) {
-				y = daughterClass.getY();
-			} else if (points.lastElement().height > daughterClass.getY() + daughterClass.getHeight()) {
-				y = daughterClass.getY() + daughterClass.getHeight();
+			if (points.lastElement().height < classes.get(classes.size()-1).getY()) {
+				y = classes.get(classes.size()-1).getY();
+			} else if (points.lastElement().height > classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()) {
+				y = classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight();
 			}
 			points.add(new Dimension(x,y));
 			/*
@@ -380,16 +376,16 @@ public class LinkDrawing {
 				points.add(new Dimension(x, daughterClass.getY()));
 			}*/
 		} else {
-			if (points.get(points.size() - 2).width < daughterClass.getX()) {
-				points.lastElement().width = daughterClass.getX();
-			} else if (points.get(points.size() - 2).width > daughterClass.getX() + daughterClass.getWidth()) {
-				points.lastElement().width = daughterClass.getX() + daughterClass.getWidth();
+			if (points.get(points.size() - 2).width < classes.get(classes.size()-1).getX()) {
+				points.lastElement().width = classes.get(classes.size()-1).getX();
+			} else if (points.get(points.size() - 2).width > classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
+				points.lastElement().width = classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth();
 			}
 			
-			if (points.get(points.size() - 2).height < daughterClass.getY()) {
-				points.lastElement().height = daughterClass.getY();
-			} else if (points.get(points.size() - 2).height > daughterClass.getY() + daughterClass.getHeight()) {
-				points.lastElement().height = daughterClass.getY() + daughterClass.getHeight();
+			if (points.get(points.size() - 2).height < classes.get(classes.size()-1).getY()) {
+				points.lastElement().height = classes.get(classes.size()-1).getY();
+			} else if (points.get(points.size() - 2).height > classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight()) {
+				points.lastElement().height = classes.get(classes.size()-1).getY() + classes.get(classes.size()-1).getHeight();
 			}
 		}
 	}
@@ -580,8 +576,9 @@ public class LinkDrawing {
 			
 			definePoints();
 			
-			motherClassPosition.setSize(motherClass.getX(), motherClass.getY());
-			daughterClassPosition.setSize(daughterClass.getX(), daughterClass.getY());
+			for (int i = 0 ; i < classes.size() ; i++) {
+				classPositions.set(i, new Dimension(classes.get(i).getX(), classes.get(i).getY()));				
+			}
 //		} else {
 //			checkClassPosition();	// OK
 //			checkAndRemovePoints();	// OK
@@ -610,29 +607,29 @@ public class LinkDrawing {
 		
 		// drawString motherWeighting and text
 		if (points.size() >= 1) {
-			if (points.firstElement().getWidth() == motherClass.getX()) {
-				g.drawString(motherMultiplicity, points.firstElement().width - g.getFontMetrics().stringWidth(motherMultiplicity) - DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
-				g.drawString(text, points.firstElement().width - g.getFontMetrics().stringWidth(motherMultiplicity) - g.getFontMetrics().stringWidth(text) - DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
-			} else if (points.firstElement().getWidth() == motherClass.getX() + motherClass.getWidth()) {
-				g.drawString(motherMultiplicity, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
-				g.drawString(text, points.firstElement().width + g.getFontMetrics().stringWidth(motherMultiplicity) + DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
-			} else if (points.firstElement().getHeight() == motherClass.getY()) {
-				g.drawString(motherMultiplicity, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+			if (points.firstElement().getWidth() == classes.get(0).getX()) {
+				g.drawString(multiplicity.get(0), points.firstElement().width - g.getFontMetrics().stringWidth(multiplicity.get(0)) - DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+				g.drawString(text, points.firstElement().width - g.getFontMetrics().stringWidth(multiplicity.get(0)) - g.getFontMetrics().stringWidth(text) - DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
+			} else if (points.firstElement().getWidth() == classes.get(0).getX() + classes.get(0).getWidth()) {
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+				g.drawString(text, points.firstElement().width + g.getFontMetrics().stringWidth(multiplicity.get(0)) + DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
+			} else if (points.firstElement().getHeight() == classes.get(0).getY()) {
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
 				g.drawString(text, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - g.getFont().getSize() - DRAWSTRING_DELTA*3);
 			} else {
-				g.drawString(motherMultiplicity, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + g.getFont().getSize());
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + g.getFont().getSize());
 				g.drawString(text, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + 2*g.getFont().getSize() + DRAWSTRING_DELTA*2);
 			}
 			
 			// drawString daughterWeighting
-			if (points.lastElement().getWidth() == daughterClass.getX()) {
-				g.drawString(daughterMultiplicity, points.lastElement().width - g.getFontMetrics().stringWidth(daughterMultiplicity) - DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
-			} else if (points.lastElement().getWidth() == daughterClass.getX() + daughterClass.getWidth()) {
-				g.drawString(daughterMultiplicity, points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
-			} else if (points.lastElement().getHeight() == daughterClass.getY()) {
-				g.drawString(daughterMultiplicity, points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
+			if (points.lastElement().getWidth() == classes.get(classes.size()-1).getX()) {
+				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width - g.getFontMetrics().stringWidth(multiplicity.get(multiplicity.size()-1)) - DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
+			} else if (points.lastElement().getWidth() == classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
+				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
+			} else if (points.lastElement().getHeight() == classes.get(classes.size()-1).getY()) {
+				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
 			} else {
-				g.drawString(daughterMultiplicity, points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height + g.getFont().getSize());
+				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height + g.getFont().getSize());
 			}
 		}
 	}
@@ -739,13 +736,13 @@ public class LinkDrawing {
 	 * Invert main class and so arrow drawing position
 	 */
 	public void invertClass() {
-		ClassDrawing aux = this.motherClass;
-		this.motherClass = this.daughterClass;
-		this.daughterClass = aux;
+		ClassDrawing aux = this.classes.get(0);
+		this.classes.set(0, classes.get(1));
+		this.classes.set(1, aux);
 		
-		String temp = this.motherMultiplicity;
-		this.motherMultiplicity = this.daughterMultiplicity;
-		this.daughterMultiplicity = temp;
+		String temp = this.multiplicity.get(0);
+		this.multiplicity.set(0, multiplicity.get(1));
+		this.multiplicity.set(1, temp);
 	}
 	
 	/**
@@ -791,7 +788,7 @@ public class LinkDrawing {
 	 * @return main class id
 	 */
 	public Object getMotherClassID() {
-		return motherClass.getInstanceID();
+		return classes.get(0).getInstanceID();
 	}
 	
 	/**
@@ -800,17 +797,7 @@ public class LinkDrawing {
 	 * @return multiplicity
 	 */
 	public String getMotherMultiplicity() {
-		return motherMultiplicity;
-	}
-
-	/**
-	 * Set multiplicity text of main class of link drawing
-	 * 
-	 * @param multiplicity
-	 *            multiplicity to draw
-	 */
-	public void setMotherMultiplicity(String motherMultiplicity) {
-		this.motherMultiplicity = motherMultiplicity;
+		return multiplicity.get(0);
 	}
 	
 	/**
@@ -819,7 +806,7 @@ public class LinkDrawing {
 	 * @return second class id
 	 */
 	public Object getDaughterClassID() {
-		return daughterClass.getInstanceID();
+		return classes.get(classes.size()-1).getInstanceID();
 	}
 
 	/**
@@ -828,7 +815,7 @@ public class LinkDrawing {
 	 * @return multiplicity
 	 */
 	public String getDaughterMultiplicity() {
-		return daughterMultiplicity;
+		return multiplicity.get(1);
 	}
 
 	/**
@@ -837,8 +824,8 @@ public class LinkDrawing {
 	 * @param multiplicity
 	 *            multiplicity to draw
 	 */
-	public void setDaughterMultiplicity(String daughterMultiplicity) {
-		this.daughterMultiplicity = daughterMultiplicity;
+	public void setMultiplicity(ArrayList<String> multiplicity) {
+		this.multiplicity = multiplicity;
 	}
 	
 	/**
