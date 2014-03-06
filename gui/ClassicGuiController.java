@@ -915,6 +915,9 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
+
+	// A REVOIR
+// PAS POSSIBLE EN L'ETAT
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
@@ -933,8 +936,13 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
+
+	// A REVOIR
+// PAS POSSIBLE EN L'ETAT
+	// on peut modifier le name ou le label de l'objet mais pas sa nature 
+	// modifier la nature demande de detruire l'objet actuel et d'en recreer un nouveau !
 	public void askEditRelation(Object id, Object nature, ArrayList<String> multiplicity, String text) {
-		core.askEditRelation(id, nature, multiplicity, text);
+		//core.askEditRelation(id, nature, multiplicity, text);
 
 		// System.out.println("askEditRelation");
 	}
@@ -947,8 +955,10 @@ public class ClassicGuiController implements GuiController {
 	 * @param nature
 	 *            relation nature
 	 */
+
+	// a quoi sert nature si on doit juste detruire l'objet
 	public void askDeleteRelation(Object id, Object nature) {
-		core.askDeleteRelation(id, nature);
+		//core.askDeleteRelation(id, nature);
 
 		// System.out.println("askDeletRelation");
 	}
@@ -962,8 +972,10 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return classes id linked by the relation
 	 */
+	// idem pourquoi nature?
 	public ArrayList<Object> askUMLRelationCLasses(Object id, Object nature) {
-		core.askUMLRelationCLasses(id, nature);
+		//return core.askUMLRelationCLasses(id, nature);
+		return null;
 	}
 	
 	/**
@@ -975,8 +987,12 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return multiplicity of the relation
 	 */
+
+	// pourquoi nature?
+	// specifier la logique de la liste des multiplicités !
 	public ArrayList<String> askUMLRelationMultiplicity(Object id, Object nature) {
-		return core.askUMLRelationMultiplicity(id, nature);
+		//return core.askUMLRelationMultiplicity(id, nature);
+		return null;
 	}
 	
 	/**
@@ -988,8 +1004,10 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return text of the relation
 	 */
+	// a quoi sert nature?
 	public String askUMLRelationText(Object id, Object nature) {
-		return core.askUMLRelationText(id, nature);
+		//return core.askUMLRelationText(id, nature);
+		return " lol on demande le nom de la relation";
 	}
 	
 	/**
@@ -1000,8 +1018,10 @@ public class ClassicGuiController implements GuiController {
 	 * @param nature
 	 *            nature of the relation
 	 */
+	// à quoi sert la nature ?!
 	public void askReverseRelation(Object id, Object nature) {
-		return core.askReverseRelation(id, nature);
+		// pourquoi return ?
+		//core.askReverseRelation(id, nature);
 	}
 	
 	// ***//

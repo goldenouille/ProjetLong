@@ -56,12 +56,14 @@ public class ModelController {
 	
 	public void askValidateAssociation() {
 		//System.out.println("Correction de " + ((Step) s).getFrenchName());
-		((Step) s).getCorrection(exo);
+		LinkKeyWordToUMLStep.getCorrection(exo);
 	}
 	
 	public void askValidateDiagram() {
 		//System.out.println("Correction de " + ((Step) s).getFrenchName());
-		((Step) s).getCorrection(exo);
+		//((Step) s).getCorrection(exo);
+
+		// step pas encore implemente
 	}
 
 	public void askAddText(String text, String comment) {
@@ -485,6 +487,30 @@ public class ModelController {
 		}
 
 		return "askUmlInstanceVisibility " + id.toString();
+	}
+
+	/**
+	 * Sends to the core the user's request to create a new relation
+	 * 
+	 * @param nature
+	 *            relation nature
+	 * @param classesID
+	 *            classes list linked with this relation
+	 * @param multiplicity
+	 *            multiplicity list for each class
+	 * @param text
+	 *            text of relation
+	 */
+
+// A REVOIR
+// PAS POSSIBLE EN L'ETAT	
+	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
+		//if ((nature instanceof UMLNature) && (classesID instanceof ArrayList<Vertex>)) {
+		//	exo.askCreateRelation((UMLNature) nature, (ArrayList<Vertex>) classesID, multiplicity, text);
+		//}
+
+
+		System.out.println("askCreateRelation");
 	}
 
 	/**
