@@ -18,18 +18,25 @@ public class SelectKeyWordStep extends Step {
 		int missingKW = 0;
 
 		try {
+		System.out.println("on commence la correction de la selection des mots-cle");
 		for (int i = 0; i < text.size(); i++) {
+			System.out.println(" -> on check le mot " + i);
 			if (text.get(i).isSelected()) {
+				System.out.println("--> le mot est selectionne");
 				if (text.get(i).isKeyWord()) {
+						System.out.println("---> et est un mot-cle");
     					mc.doValidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//Selected KW = ok
     				} else {
+    					System.out.println("---> mais n'est pas un mot-cle");
     					mc.doInvalidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//selected not KW = false
     				}	
-    			} else {
-    				if (text.get(i).isKeyWord()) {
-    					missingKW++; // KW not selected = missing
-    				}
+    		} else {
+    			System.out.println("--> le mot est selectionne");
+    			if (text.get(i).isKeyWord()) {
+    				System.out.println("---> mais n'est pas un mot-cle");
+    				missingKW++; // KW not selected = missing
     			}
+    	}
 		}
 		for (int i = 0; i< userText.size() ; i++) {
 			if (userText.get(i).isSelected()) {
@@ -39,6 +46,7 @@ public class SelectKeyWordStep extends Step {
 		mc.doShowMissingKeywordNumber(missingKW);
 		} catch (Exception e) {
 			System.out.println("erreur dans la correction de SelectKeyWordStep");
+			e.printStackTrace();
 		}
 	}
 	
