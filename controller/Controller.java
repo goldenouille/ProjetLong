@@ -12,8 +12,10 @@ public class Controller {
 	public Controller(Exercise ex) {
 		this.modelController = new ModelController();
 		this.modelController.setExercise(ex);
+		ex.setModelController(this.modelController);
 		
 		this.guiController = new ClassicGuiController(this.modelController);
 		this.modelController.setCGC(this.guiController);
+		ex.init();
 	}
 }

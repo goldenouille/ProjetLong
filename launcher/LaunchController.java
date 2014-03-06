@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ import actions.ActViewHistory;
 public class LaunchController extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private ImageIcon lune = new ImageIcon("images/lune.png");
 	private ExerciseBrowser browser;
 	private Exercise choosenExercise;
 
@@ -38,6 +40,7 @@ public class LaunchController extends JFrame {
 
 		this.browser = browser;
 		this.setSize(1280, 720);
+		this.setIconImage(lune.getImage());
 		this.setMinimumSize(new Dimension(800, 600));
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
