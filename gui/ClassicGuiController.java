@@ -915,6 +915,111 @@ public class ClassicGuiController implements GuiController {
 		return core.askUmlInstanceParamTypes(id);
 	}
 
+	// *************//
+	// Ask Relation // TODO
+	// *************//
+	
+	/**
+	 * Sends to the core the user's request to create a new relation
+	 * 
+	 * @param nature
+	 *            relation nature
+	 * @param classesID
+	 *            classes list linked with this relation
+	 * @param multiplicity
+	 *            multiplicity list for each class
+	 * @param text
+	 *            text of relation
+	 */
+	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
+		core.askCreateRelation(nature, classesID, multiplicity, text);
+
+		// System.out.println("askCreateRelation");
+	}
+	
+	/**
+	 * Sends to the core the user's request to create a new relation
+	 * 
+	 * @param id
+	 *            relation id
+	 * @param nature
+	 *            relation nature
+	 * @param multiplicity
+	 *            multiplicity list for each class
+	 * @param text
+	 *            text of relation
+	 */
+	public void askEditRelation(Object id, Object nature, ArrayList<String> multiplicity, String text) {
+		core.askEditRelation(id, nature, multiplicity, text);
+
+		// System.out.println("askEditRelation");
+	}
+	
+	/**
+	 * Sends to the core the user's request to delete a relation
+	 * 
+	 * @param id
+	 *            relation id
+	 * @param nature
+	 *            relation nature
+	 */
+	public void askDeleteRelation(Object id, Object nature) {
+		core.askDeleteRelation(id, nature);
+
+		// System.out.println("askDeletRelation");
+	}
+	
+	/**
+	 * Ask the core about the classes linked with the Uml relation
+	 * 
+	 * @param id
+	 *            identifier of the relation
+	 * @param nature
+	 *            nature of the relation
+	 * @return classes id linked by the relation
+	 */
+	public ArrayList<Object> askUMLRelationCLasses(Object id, Object nature) {
+		core.askUMLRelationCLasses(id, nature);
+	}
+	
+	/**
+	 * Ask the core about the multiplicity of the Uml relation
+	 * 
+	 * @param id
+	 *            identifier of the relation
+	 * @param nature
+	 *            nature of the relation
+	 * @return multiplicity of the relation
+	 */
+	public ArrayList<String> askUMLRelationMultiplicity(Object id, Object nature) {
+		return core.askUMLRelationMultiplicity(id, nature);
+	}
+	
+	/**
+	 * Ask the core about the text of the Uml relation
+	 * 
+	 * @param id
+	 *            identifier of the relation
+	 * @param nature
+	 *            nature of the relation
+	 * @return text of the relation
+	 */
+	public String askUMLRelationText(Object id, Object nature) {
+		return core.askUMLRelationText(id, nature);
+	}
+	
+	/**
+	 * Ask the core to reverse direction of a relation
+	 * 
+	 * @param id
+	 *            identifier of the relation
+	 * @param nature
+	 *            nature of the relation
+	 */
+	public void askReverseRelation(Object id, Object nature) {
+		return core.askReverseRelation(id, nature);
+	}
+	
 	// ***//
 	// Do //
 	// ***//
@@ -955,6 +1060,18 @@ public class ClassicGuiController implements GuiController {
 		umlDrawingPanel.doRemoveElementFromPool(id, nature);
 	}
 
+	/**
+	 * Add an UML relation to drawing panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doAddRelationToDrawingArea(Object id, Object nature) {
+		umlDrawingPanel.doAddRelationToDrawingArea(id, nature);
+	}
+	
 	/**
 	 * Change color of UML instance to red in element pool
 	 * 
