@@ -20,7 +20,7 @@ public class SelectKeyWordStep extends Step {
 		try {
 		System.out.println("on commence la correction de la selection des mots-cle");
 		for (int i = 0; i < text.size(); i++) {
-			System.out.println(" -> on check le mot " + i);
+			System.out.println(" -> on check le mot " + i + " " + text.get(i).getWord());
 			if (text.get(i).isSelected()) {
 				System.out.println("--> le mot est selectionne");
 				if (text.get(i).isKeyWord()) {
