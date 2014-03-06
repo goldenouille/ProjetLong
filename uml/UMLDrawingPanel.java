@@ -232,6 +232,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
+	/**
+	 * Add an UML instance to element pool on element pool request
+	 * 
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
 	public void doAddNewElementFromPool(Object nature) {
 		// TODO
 		if (nature.equals(UMLNature.CLASS)) {
@@ -604,7 +610,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						previousClickedClass = i;
 					} else {
 						// TODO askCreateRelation
-						links.add(new LinkDrawing(classes.get(previousClickedClass), classes.get(i), toolBar.getState()));
+						//links.add(new LinkDrawing(classes.get(previousClickedClass), classes.get(i), toolBar.getState()));
 						
 						// Link Edition Panel
 						LinkEditionPanel linkEdition = new LinkEditionPanel(
