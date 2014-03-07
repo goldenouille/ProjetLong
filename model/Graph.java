@@ -147,4 +147,11 @@ public class Graph {
 		met.getMotherClass().getMethods().remove(met);
 	}
 	
+	public void removeEdge(Edge id) {
+		this.edges.remove(id);
+		ArrayList<Vertex> vl = id.getVertex();
+		for (Vertex v : vl) {
+			v.getEdges().remove(id);
+		}
+	}	
 }

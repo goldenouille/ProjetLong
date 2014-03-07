@@ -39,6 +39,11 @@ public class BinaryAssociation extends Association {
 		this.source = source;
 	}
 
+	public void setMultiplicities(ArrayList<String> m) {
+		this.targetMult = m.get(0);
+		this.sourceMult = m.get(1);
+	}
+
 	public String getTargetMult() {
 		return targetMult;
 	}
@@ -60,5 +65,15 @@ public class BinaryAssociation extends Association {
 		vl.add(this.source);
 		vl.add(this.target);
 		return vl;
+	}
+
+	public void reverseRelation() {
+		Vertex vAux = this.target;
+		this.target = this.source;
+		this.source = vAux;
+
+		String stringAux = this.targetMult;
+		this.targetMult = this.sourceMult;
+		this.sourceMult = stringAux;
 	}
 }

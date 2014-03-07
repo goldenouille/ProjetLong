@@ -37,4 +37,11 @@ public class DirectionalRelation extends Edge {
 		vl.add(this.target);
 		return vl;
 	}
+
+	public void reverseRelation() {
+		Vertex vAux = this.target;
+		this.target = this.source;
+		this.source = vAux;
+	}
+
 }

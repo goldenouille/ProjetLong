@@ -452,7 +452,8 @@ public class Exercise {
 	}
 
 	public void askCreateRelation(UMLNature nature, ArrayList<Vertex> v, ArrayList<String> multiplicity, String label) {
-		Edge newE = Edge.createEdge(nature,v,multiplicity,label);
+		this.idUserItem --;
+		Edge newE = Edge.createEdge(nature,v,multiplicity,label,idUserItem);
 	}
 
 	public void askDeleteRelation(Edge id) {
@@ -465,6 +466,43 @@ public class Exercise {
 
 	public ArrayList<String> askUMLRelationMultiplicity(Edge id) {
 		return id.getMultiplicity();
+	}
+
+	public void editVertex(Vertex id, String  name) {
+		id.setName(name);
+	}
+
+	public void editAttribut(Attribute id, String name, TypeBase type, Visibility visibility) {
+		id.setName(name);
+		id.setType(type);
+		id.setVisibility(visibility);
+	}
+
+	public void editMethod(Method id, String name, ArrayList<Type> lp, Type returnType, Visibility visibility) {
+		id.setName(name);
+		id.setParamType(lp);
+		id.setReturnType(returnType);
+		id.setVisibility(visibility);
+	}
+
+	public void askEditRelation(Edge id, ArrayList<String> multiplicity, String name){
+		id.setName(name);
+		if (id instanceof Association) {
+			((Association) id).setMultiplicities(multiplicity);
+		}
+	}
+
+	public String askUMLRelationText(Edge id) {
+		return id.getName();
+	}
+
+
+	public void askReverseRelation(Object id) {
+		if (id instanceof DirectionalRelation)  {
+			((DirectionalRelation) id).reverseRelation();
+		} else if (id instanceof BinaryAssociation) {
+			((BinaryAssociation) id).reverseRelation();
+		}
 	}
 
 }

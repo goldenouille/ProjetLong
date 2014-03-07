@@ -169,6 +169,10 @@ public class ModelController {
 		cgc.doShowMissingKeywordNumber(nb);
 	}
 
+	public void doShowMissingAssociationNumber(int nb) {
+		cgc.doShowMissingAssociationNumber(nb);
+	}
+
 
 	// ******************************************************************************************************//
 	// *****************************************Navigation_methods*******************************************//
@@ -557,8 +561,9 @@ public class ModelController {
 	}
 
 	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
-		
-		exo.askEditRelation(id, multiplicity, text);
+		if (id instanceof Edge) {
+			exo.askEditRelation((Edge) id, multiplicity, text);
+		}
 	}
 
 
@@ -581,7 +586,7 @@ public class ModelController {
 
 	public String askUMLRelationText(Object id) {
 		if (id instanceof Edge) {
-			return core.askUMLRelationText(id);
+			return exo.askUMLRelationText((Edge) id);
 		}
 		
 		return "DefaultText -> ce n'etait pas un edge";
