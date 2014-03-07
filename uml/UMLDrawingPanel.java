@@ -283,25 +283,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doAddNewElementFromPool(Object nature) {
-		// TODO
+		// TODO see UMLElementPanel
 		try {
-			controller.doShowUmlInstanceEditionPopupWithNoKeyWord(nature);
+			controller.doShowUmlInstanceCreationPopupWithNoKeyWord(nature);
 		} catch (BadLocationException e) {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*
-		if (nature.equals(UMLNature.CLASS)) {
-			//poolPanel.addClass(id, UMLNature.CLASS, controller.askUmlInstanceName(id));
-		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			//poolPanel.addClass(id, UMLNature.ABSTRACT_CLASS, controller.askUmlInstanceName(id));
-		} else if (nature.equals(UMLNature.INTERFACE)) {
-			//poolPanel.addClass(id, UMLNature.INTERFACE, controller.askUmlInstanceName(id));
-		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			//poolPanel.addProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
-		} else if (nature.equals(UMLNature.METHOD)) {
-			//poolPanel.addMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
-		}*/
 		
 		poolPanel.refresh();
 	}
