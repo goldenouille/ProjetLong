@@ -579,8 +579,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateClass(String name) {
-		core.askCreateClass(name);
+	private void askCreateClassInPanel(String name) {
+		core.askCreateClassInPanel(name);
 	}
 
 	/**
@@ -590,8 +590,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateAbstractClass(String name) {
-		core.askCreateAbstractClass(name);
+	private void askCreateAbstractClassInPanel(String name) {
+		core.askCreateAbstractClassInPanel(name);
 	}
 
 	/**
@@ -601,8 +601,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateInterface(String name) {
-		core.askCreateInterface(name);
+	private void askCreateInterfaceInPanel(String name) {
+		core.askCreateInterfaceInPanel(name);
 	}
 
 	/**
@@ -616,8 +616,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateAttribute(String name, String type, String visibility) {
-		core.askCreateAttribute(name, type, visibility);
+	private void askCreateAttributeInPanel(String name, String type, String visibility) {
+		core.askCreateAttributeInPanel(name, type, visibility);
 	}
 
 	/**
@@ -633,8 +633,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateMethod(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		core.askCreateMethod(name, paramTypes, returnType, visibility);
+	private void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		core.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
 	}
 	
 	/**
@@ -1120,37 +1120,37 @@ public class ClassicGuiController implements GuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doShowUmlInstanceEditionPopupWithNoKeyWord(Object nature) throws BadLocationException {
+	public void doShowUmlInstanceCreationPopupWithNoKeyWord(Object nature) throws BadLocationException {
 		if (nature.equals(UMLNature.CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateClass(panel.getVertexName());
+				askCreateClassInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAbstractClass(panel.getVertexName());
+				askCreateAbstractClassInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'interface", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateInterface(panel.getVertexName());
+				askCreateInterfaceInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
 			AttributeEditionPanel panel = new AttributeEditionPanel(this, null, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'attribut", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAttribute(panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+				askCreateAttributeInPanel(panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
 			MethodEditionPanel panel = new MethodEditionPanel(this, null, null, null, null, null);
 			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Edition de methode", JOptionPane.OK_CANCEL_OPTION);
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateMethod(panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
+				askCreateMethodInPanel(panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
 			}
 		}
 	}
