@@ -14,6 +14,7 @@ public class LinkKeyWordToUMLStep extends Step {
 	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
+		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
 		int missingAssociation = 0;
 
@@ -28,11 +29,13 @@ public class LinkKeyWordToUMLStep extends Step {
 				} else if (word.getUserUmlNature() != null) {
 
 					mc.doShowUMLInstanceInRed(word.getUserGraphItem());
-					System.out.println("Le type de " + word.getWord() + " est incorrect !");
+    				score.removeScoreNature(score.getScoreNature()/5);
+    				System.out.println("Le type de " + word.getWord() + " est incorrect !");
 				} else {
 					missingAssociation ++;
 				}
 			}
 		}
+	mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 	}
 }
