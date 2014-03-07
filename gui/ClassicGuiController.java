@@ -822,7 +822,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	// *************//
-	// Ask Relation // TODO
+	// Ask Relation //
 	// *************//
 	
 	/**
@@ -838,8 +838,7 @@ public class ClassicGuiController implements GuiController {
 	 *            text of relation
 	 */
 
-	// TODO A REVOIR
-// PAS POSSIBLE EN L'ETAT
+	// TODO A REVOIR ?
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
@@ -859,12 +858,9 @@ public class ClassicGuiController implements GuiController {
 	 *            text of relation
 	 */
 
-	// TODO A REVOIR
-// PAS POSSIBLE EN L'ETAT
-	// on peut modifier le name ou le label de l'objet mais pas sa nature 
-	// modifier la nature demande de detruire l'objet actuel et d'en recreer un nouveau !
+	// TODO A REVOIR ?
 	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
-		//core.askEditRelation(id, multiplicity, text);
+		core.askEditRelation(id, multiplicity, text);
 
 		// System.out.println("askEditRelation");
 	}
@@ -921,10 +917,10 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return text of the relation
 	 */
-	// TODO
 	public String askUMLRelationText(Object id) {
-		//return core.askUMLRelationText(id);
-		return " lol on demande le nom de la relation";
+		return core.askUMLRelationText(id);
+		
+		// return "DefaultText";
 	}
 	
 	/**
@@ -943,7 +939,6 @@ public class ClassicGuiController implements GuiController {
 	// Do //
 	// ***//
 	
-	//TODO
 	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
@@ -983,7 +978,7 @@ public class ClassicGuiController implements GuiController {
 	 * Add an UML relation to drawing panel
 	 * 
 	 * @param id
-	 *            identifier of the instance to edit
+	 *            identifier of the instance to add
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
@@ -999,6 +994,16 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doShowUMLInstanceInRed(Object id) {
 		umlDrawingPanel.doShowUMLInstanceInRed(id);
+	}
+	
+	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		umlDrawingPanel.doResetUMLInstanceColor(id);
 	}
 
 	/**
@@ -1019,6 +1024,18 @@ public class ClassicGuiController implements GuiController {
 	public void doShowUMLDrawingInRed(Object id, Object nature) {
 		umlDrawingPanel.doShowUMLDrawingInRed(id, nature);
 	}
+	
+	/**
+	 * Reset color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		umlDrawingPanel.doResetUMLDrawingColor(id, nature);
+	}
 
 	/**
 	 * Reset color of UML drawings to black in drawing area
@@ -1032,12 +1049,8 @@ public class ClassicGuiController implements GuiController {
 	 * of the given nature, bound to the specified expression. Calls the
 	 * associated instance edition method if user validates.
 	 * 
-	 * @param firstWord
-	 *            index of expression first word
-	 * @param lastWord
-	 *            index of expression last word
-	 * @param userText
-	 *            true if expression belongs to the user's text
+	 * @param id
+	 *            identifier of the instance to edit
 	 * @param nature
 	 *            UMLNature of the instance
 	 * @throws BadLocationException

@@ -735,14 +735,16 @@ public class LinkDrawing {
 	/**
 	 * Invert main class and so arrow drawing position
 	 */
-	public void invertClass() {
-		ClassDrawing aux = this.classes.get(0);
-		this.classes.set(0, classes.get(1));
-		this.classes.set(1, aux);
-		
-		String temp = this.multiplicity.get(0);
-		this.multiplicity.set(0, multiplicity.get(1));
-		this.multiplicity.set(1, temp);
+	public void reverseClass() {
+		if (!type.equals(UMLNature.ASSOCIATION) || ! type.equals(UMLNature.N_ASSOCIATION)) {
+			ClassDrawing aux = this.classes.get(0);
+			this.classes.set(0, classes.get(1));
+			this.classes.set(1, aux);
+			
+			String temp = this.multiplicity.get(0);
+			this.multiplicity.set(0, multiplicity.get(1));
+			this.multiplicity.set(1, temp);
+		}
 	}
 	
 	/**
