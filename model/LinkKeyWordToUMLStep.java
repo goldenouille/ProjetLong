@@ -24,18 +24,8 @@ public class LinkKeyWordToUMLStep extends Step {
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isKeyWord()) {
 				Word word = text.get(i);
-<<<<<<< HEAD
-				if (word.getUmlNature()==word.getUserUmlNature()) {
-					System.out.println("Le type de " + word.getWord() + " est correct !");
-				} else if (word.getUserUmlNature() != null) {
-					mc.doShowUMLInstanceInRed(word.getUserGraphItem());
-					System.out.println("Le type de " + word.getWord() + " est incorrect !");
-				} else {
-=======
 				GraphItem gi = exo.getCurrentPart().getIdTable().get(text.get(i).getId());
-
 				if (word.getUserUmlNature() == null) {
->>>>>>> 5aa0984113d1ecda4493ef8df142e3d1c4feef74
 					missingAssociation ++;
 				}
 				
@@ -51,10 +41,7 @@ public class LinkKeyWordToUMLStep extends Step {
 				}
 			}
 		}
-<<<<<<< HEAD
-		mc.doShowMissingAssociationNumber(missingAssociation);
-=======
+	mc.doShowMissingAssociationNumber(missingAssociation);
 	mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
->>>>>>> 5aa0984113d1ecda4493ef8df142e3d1c4feef74
 	}
 }
