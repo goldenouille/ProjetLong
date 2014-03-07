@@ -92,14 +92,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TEST
-		/*
-		this.poolPanel.addClass(0, UMLNature.INTERFACE, "Interface");
+/*		this.poolPanel.addClass(0, UMLNature.INTERFACE, "Interface");
 		this.poolPanel.addClass(1, UMLNature.CLASS, "Class");
 		this.poolPanel.addProperty(2, "myproperty", "int", "+");
 		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
 		//this.doShowUMLInstanceInRed(1);
 		poolPanel.refresh();
-		*/
+*/		
 		// END TEST
 		
 		this.repaint();
@@ -378,7 +377,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	public void doAddRelationToDrawingArea(Object id, Object nature) {
 		ArrayList<ClassDrawing> classesLinked = new ArrayList<ClassDrawing>();
-		ArrayList<Object> classesID = controller.askUMLRelationCLasses(id, nature);
+		ArrayList<Object> classesID = controller.askUMLRelationClasses(id);
 		
 		for (int i = 0 ; i < classesID.size() ; i++) {
 			for (int j = 0 ; j < classes.size() ; j++) {
@@ -389,8 +388,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 		
 		links.add(new LinkDrawing(id, nature, classesLinked));
-		links.lastElement().setMultiplicity(controller.askUMLRelationMultiplicity(id, nature));
-		links.lastElement().setText(controller.askUMLRelationText(id, nature));
+		links.lastElement().setMultiplicity(controller.askUMLRelationMultiplicity(id));
+		links.lastElement().setText(controller.askUMLRelationText(id));
 	}
 	
 	
@@ -402,7 +401,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			for(int j = 0 ; j < links.size() ; j++) {
 				if(links.get(j).getMotherClassID().equals(classes.get(j).getInstanceID())
 						|| links.get(j).getDaughterClassID().equals(classes.get(j).getInstanceID())) {
-					controller.askDeleteRelation(links.get(j).getInstanceID(), links.get(j).getType());
+					controller.askDeleteRelation(links.get(j).getInstanceID());
 					links.remove(j);
 					j--;
 				}
@@ -460,14 +459,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			}
 			if (find) {
 				i--;
-				controller.askDeleteRelation(id, nature);
+				controller.askDeleteRelation(id);
 				links.remove(i);
 			}
 		}
 	}
 	
 	public void askCreateRelation(int toolBarType, Object firtsClassID, Object secondClassID,
-			String firttMultiplicity, String secondMultiplicity, String text) {
+			String firstMultiplicity, String secondMultiplicity, String text) {
 		UMLNature nature = null;
 		
 		if (toolBarType == LinkToolBar.AGGREGATION) {
@@ -491,15 +490,66 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		classesID.add(secondClassID);
 		
 		ArrayList<String> multiplicity = new ArrayList<String>();
-		multiplicity.add(firttMultiplicity);
+		multiplicity.add(firstMultiplicity);
 		multiplicity.add(secondMultiplicity);
 		
 		controller.askCreateRelation(nature, classesID, multiplicity, text);
-	}
-	
-	// TODO
-	public void askEditRelation(Object id) { // and other properties Text, Multiplicities
 		
+		// Test
+/*		int id = 5;
+		ArrayList<ClassDrawing> classesLinked = new ArrayList<ClassDrawing>();
+		for (int i = 0 ; i < classesID.size() ; i++) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).getInstanceID().equals(classesID.get(i))) {
+					classesLinked.add(classes.get(j));
+				}
+			}
+		}
+		
+		links.add(new LinkDrawing(id, nature, classesLinked));
+		links.lastElement().setMultiplicity(multiplicity);
+		links.lastElement().setText(text);
+*/	}
+	
+	public void askEditRelation(Object id, String firstMultiplicity, String secondMultiplicity, String text) {
+		ArrayList<String> multiplicity = new ArrayList<String>();
+		multiplicity.add(firstMultiplicity);
+		multiplicity.add(secondMultiplicity);
+		
+		controller.askEditRelation(id, multiplicity, text);
+		this.doEditRelation(id);
+		
+		// test
+/*		int i = 0;
+		boolean find = false;
+		while (i < links.size() && !find) {
+			if(id.equals(links.get(i).getInstanceID())) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			links.get(i).setMultiplicity(multiplicity);
+			links.get(i).setText(text);
+		}
+*/	}
+	
+	public void doEditRelation(Object id) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < links.size() && !find) {
+			if(id.equals(links.get(i).getInstanceID())) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			links.get(i).setMultiplicity(controller.askUMLRelationMultiplicity(id));
+			links.get(i).setText(controller.askUMLRelationText(id));
+		}
 	}
 	
 	@Override
@@ -601,8 +651,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				if (find) {
 					i--;
 					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
-						// TODO askEditRelation
-
 						// Open Link Edition Panel
 						LinkEditionPanel linkEdition = new LinkEditionPanel(
 								getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS),
@@ -614,19 +662,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
 								"Edition de relation de " + getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS) + " vers " + getElementName(links.get(i).getDaughterClassID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
-							// TODO
-							/*
-							links.get(i).setMotherMultiplicity(linkEdition.getMotherMultiplicity());
-							links.get(i).setDaughterMultiplicity(linkEdition.getDaughterMultiplicity());
-							links.get(i).setText(linkEdition.getText());
-							 */
+							this.askEditRelation(links.get(i).getInstanceID(), linkEdition.getMotherMultiplicity(), linkEdition.getDaughterMultiplicity(), linkEdition.getText());
 						}
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
-						controller.askReverseRelation(links.get(i).getInstanceID(), links.get(i).getType());
+						controller.askReverseRelation(links.get(i).getInstanceID());
 						links.get(i).invertClass();
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
-						controller.askDeleteRelation(links.get(i).getInstanceID(), links.get(i).getType());
+						controller.askDeleteRelation(links.get(i).getInstanceID());
 						links.remove(i);
 					}
 				}
@@ -647,14 +690,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						
 						// Link Edition Panel
 						LinkEditionPanel linkEdition = new LinkEditionPanel(
-								getElementName(links.lastElement().getMotherClassID(), UMLNature.CLASS),
-								links.lastElement().getMotherMultiplicity(),
-								getElementName(links.lastElement().getDaughterClassID(), UMLNature.CLASS),
-								links.lastElement().getDaughterMultiplicity(),
-								links.lastElement().getText());
+								getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS),
+								"",
+								getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS),
+								"", "");
 						
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-								"Nouvelle relation de " + getElementName(links.lastElement().getMotherClassID(), UMLNature.CLASS) + " vers " + getElementName(links.lastElement().getDaughterClassID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
+								"Nouvelle relation de " + getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS)
+								+ " vers " + getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
 							this.askCreateRelation(toolBar.getState(), classes.get(previousClickedClass).getInstanceID(), classes.get(i).getInstanceID(),
 									linkEdition.getMotherMultiplicity(), linkEdition.getDaughterMultiplicity(), linkEdition.getText());
