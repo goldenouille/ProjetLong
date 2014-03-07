@@ -97,8 +97,6 @@ public class Graph {
 		removeMethodFrom(vertexClass);
 		// TODO retirer les methodes qui ont comme type la classe retiree
 		// pour l'instant non gere.
-
-
 	}
 
 

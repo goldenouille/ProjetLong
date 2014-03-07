@@ -352,15 +352,25 @@ public class Exercise {
 		return "0 / 100";
 	}
 
+	public void removeUMLNatureAndGraphItemFromKeyWord(int id) {
+		if (id < 0) {
+			Word w = getById(id, this.userText);
+			if (w !=null) {
+				w.setUserGraphItem(null);
+				w.setUserUmlNature(null);
+			}
+		} else {
+			Word w = getById(id, this.text);
+			w.setUserGraphItem(null);
+			w.setUserUmlNature(null);
+		}
+	}
+
 
 	public void askDeleteClass(VertexClass vertexClass) {
 		int id = vertexClass.getId();
 		this.userGraph.removeClass(vertexClass);
-		if (id < 0) {
-			getById(id, this.userText).setUserGraphItem(null);
-		} else {
-			getById(id, this.userText).setUserGraphItem(null);
-		}
+		removeUMLNatureAndGraphItemFromKeyWord(id);
 	}
 
 	/**
@@ -373,11 +383,7 @@ public class Exercise {
 	public void askDeleteAbstractClass(VertexAbstract vertexAbstract) {
 		int id = vertexAbstract.getId();
 		this.userGraph.removeAbstractClass(vertexAbstract);
-		if (id < 0) {
-			getById(id, this.userText).setUserGraphItem(null);
-		} else {
-			getById(id, this.userText).setUserGraphItem(null);
-		}
+		removeUMLNatureAndGraphItemFromKeyWord(id);
 	}
 
 	/**
@@ -389,11 +395,7 @@ public class Exercise {
 	public void askDeleteInterface(Vertex vertex) {
 		int id = vertex.getId();
 		this.userGraph.removeInterface(vertex);
-		if (id < 0) {
-			getById(id, this.userText).setUserGraphItem(null);
-		} else {
-			getById(id, this.userText).setUserGraphItem(null);
-		}
+		removeUMLNatureAndGraphItemFromKeyWord(id);
 	}
 
 	/**
@@ -405,11 +407,7 @@ public class Exercise {
 	public void askDeleteAttribute(Attribute att) {
 		int id = att.getId();
 		this.userGraph.removeAttribute(att);
-		if (id < 0) {
-			getById(id, this.userText).setUserGraphItem(null);
-		} else {
-			getById(id, this.userText).setUserGraphItem(null);
-		}
+		removeUMLNatureAndGraphItemFromKeyWord(id);
 	}
 
 	/**
@@ -421,11 +419,7 @@ public class Exercise {
 	public void askDeleteMethod(Method met) {
 		int id = met.getId();
 		this.userGraph.removeMethod(met);
-		if (id < 0) {
-			getById(id, this.userText).setUserGraphItem(null);
-		} else {
-			getById(id, this.userText).setUserGraphItem(null);
-		}
+		removeUMLNatureAndGraphItemFromKeyWord(id);
 	}
 
 

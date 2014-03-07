@@ -29,12 +29,14 @@ public class Word {
 		if (this.isKeyWord) {
 			this.id = id;
 		}
+		this.userUmlNature = null;
 	}
 
 	public Word (String word) {
 		this.word = word;
 		this.isKeyWord = false;
 		this.isSelected = false;
+		this.userUmlNature = null;
 	}
 
 	public Word (String word, int id) {
@@ -42,6 +44,7 @@ public class Word {
 		this.isKeyWord = false;
 		this.isSelected = false;
 		this.id = id;
+		this.userUmlNature = null;
 	}
 
 	public void setFirstWord(int i) {
