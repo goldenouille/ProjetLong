@@ -61,7 +61,9 @@ public class ModelController {
 	
 	public void askValidateDiagram() {
 		//System.out.println("Correction de " + ((Step) s).getFrenchName());
-		((Step) s).getCorrection(exo);
+		//((Step) s).getCorrection(exo);
+
+		// step pas encore implemente
 	}
 
 	public void askAddText(String text, String comment) {
@@ -76,32 +78,37 @@ public class ModelController {
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
-		exo.addClass(firstWord,lastWord,userText,name);
+		Vertex v = exo.addClass(firstWord,lastWord,userText,name);
+		cgc.doAddElementToPool(v, UMLNature.CLASS);
 		System.out.println("askCreateClass " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
-		exo.addAbstractClass(firstWord, lastWord, userText, name);
+		Vertex v = exo.addAbstractClass(firstWord, lastWord, userText, name);
+		cgc.doAddElementToPool(v, UMLNature.ABSTRACT_CLASS);
 		System.out.println("askCreateAbstractClass " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
-		exo.addInterface(firstWord, lastWord, userText, name);
+		Vertex v = exo.addInterface(firstWord, lastWord, userText, name);
+		cgc.doAddElementToPool(v, UMLNature.INTERFACE);
 		System.out.println("askCreateInterface " + name);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
-		exo.addAttribute(firstWord, lastWord, userText, name, type, visibility);
+		Attribute a = exo.addAttribute(firstWord, lastWord, userText, name, type, visibility);
+		cgc.doAddElementToPool(a, UMLNature.Attribute);
 		System.out.println("askCreateAttribute " + name + " " + type + " " + visibility);
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
 	public void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		exo.addMethod(firstWord, lastWord, userText, name,  paramTypes, returnType, visibility);
+		Method m = exo.addMethod(firstWord, lastWord, userText, name,  paramTypes, returnType, visibility);
+		cgc.doAddElementToPool(m, UMLNature.METHOD);
 		System.out.println("askCreateMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
@@ -491,6 +498,8 @@ public class ModelController {
 		return "askUmlInstanceVisibility " + id.toString();
 	}
 
+
+
 	/**
 	 * Ask the core about the param types of the Uml instance corresponding to
 	 * the defined keyword
@@ -511,6 +520,64 @@ public class ModelController {
 
 
 		return null;
+	}
+
+		/**
+	 * Sends to the core the user's request to create a new relation
+	 * 
+	 * @param nature
+	 *            relation nature
+	 * @param classesID
+	 *            classes list linked with this relation
+	 * @param multiplicity
+	 *            multiplicity list for each class
+	 * @param text
+	 *            text of relation
+	 */
+
+
+	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
+		if (nature instanceof UMLNature) {
+			ArrayList<Vertex> v = new ArrayList<Vertex>();
+			for (Object object : classesID) {
+    			v.add(object instanceof Vertex ? (Vertex) object : null); // enfait il faudrait throw
+			}									// une exception, si on tombe sur le cas -> nullPointerException
+			exo.askCreateRelation((UMLNature) nature, v, multiplicity, text);
+		}
+
+
+		System.out.println("askCreateRelation");
+	}
+
+	public void askDeleteRelation(Object id) {
+		if (id instanceof Edge) {
+			exo.askDeleteRelation((Edge)id);
+		}
+		
+	}
+
+
+	public ArrayList<Object> askUMLRelationClasses(Object id) {
+		if (id instanceof Edge) {
+			ArrayList<Vertex> l = exo.askUMLRelationClasses((Edge) id);
+			ArrayList<Object> r = new ArrayList<Object>();
+			for (Vertex v : l) {
+				r.add((Object) v);
+			}
+			return r;
+		}
+	}
+
+	public ArrayList<String> askUMLRelationMultiplicity(Object id) {
+		if (id instanceof Edge) {
+			return exo.askUMLRelationMultiplicity((Edge) id);
+		}
+	}
+
+	public void askReverseRelation(Object id) {
+		if ((id instanceof Edge) && (!(id instanceof NaryAssociation))) {
+			exo.askReverseRelation((Edge) id);
+		}
 	}
 
 }

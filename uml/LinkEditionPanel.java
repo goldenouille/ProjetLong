@@ -11,63 +11,81 @@ import javax.swing.JTextField;
 public class LinkEditionPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField motherMultiplicityField;
-	private JTextField daughterMultiplicityField;
+	private JTextField firstMultiplicityField;
+	private JTextField secondMultiplicityField;
 	private JTextField textField;
 
 	/**
 	 * Main constructor, create a LinkEditionPanel
 	 * 
-	 * @param motherClass
+	 * @param firstClass
 	 *            main class name
-	 * @param motherMultiplicity
+	 * @param firstMultiplicity
 	 *            main class multiplicity
-	 * @param daughterClass
+	 * @param displayFirstMultiplicityField
+	 *            set display first multiplicity field
+	 * @param secondClass
 	 *            second class name
-	 * @param daughterMultiplicity
+	 * @param secondMultiplicity
 	 *            second class multiplicity
+	 * @param displaySecondMultiplicityField
+	 *            set display second multiplicity field
 	 * @param text
 	 *            previous link text
+	 * @param displayTextField
+	 *            set display text field
 	 */
-	public LinkEditionPanel(String motherClass, String motherMultiplicity, String daughterClass, String daughterMultiplicity, String text){
+	public LinkEditionPanel(String firstClass,
+			String firstMultiplicity, boolean displayFirstMultiplicityField,
+			String secondClass,
+			String secondMultiplicity, boolean displaySecondMultiplicityField,
+			String text, boolean displayTextField){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
 
-		JPanel motherPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		motherPanel.add(new JLabel("Multiciplicité de " + motherClass + " : "));
-		this.motherMultiplicityField = new JTextField(motherMultiplicity, 30);
-		motherPanel.add(motherMultiplicityField);
-		this.add(motherPanel);
-
-		JPanel daughterPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		daughterPanel.add(new JLabel("Multiciplicité de " + daughterClass + " : "));
-		this.daughterMultiplicityField = new JTextField(daughterMultiplicity, 30);
-		daughterPanel.add(daughterMultiplicityField);
-		this.add(daughterPanel);
-
-		JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		textPanel.add(new JLabel("Texte : "));
+		this.firstMultiplicityField = new JTextField(firstMultiplicity, 30);
+		this.secondMultiplicityField = new JTextField(secondMultiplicity, 30);
 		this.textField = new JTextField(text, 30);
-		textPanel.add(textField);
-		this.add(textPanel);
+
+		if (displayFirstMultiplicityField) {
+			JPanel firstClassPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			firstClassPanel.add(new JLabel("Multiciplicité de " + firstClass + " : "));
+			firstClassPanel.add(firstMultiplicityField);
+			this.add(firstClassPanel);
+		}
+
+		if (displaySecondMultiplicityField) {
+			JPanel daughterPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			daughterPanel.add(new JLabel("Multiciplicité de " + secondClass + " : "));
+			daughterPanel.add(secondMultiplicityField);
+			this.add(daughterPanel);
+		}
+
+		if (displayTextField) {
+			JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			textPanel.add(new JLabel("Texte : "));
+			textPanel.add(textField);
+			this.add(textPanel);
+		}
 	}
 
 	/**
-	 * Get main class multipiclicity
+	 * Get main class multiplicity
 	 * 
 	 * @return multiplicity text
 	 */
-	public String getMotherMultiplicity() {
-		return motherMultiplicityField.getText();
+	public String getFirstClassMultiplicity() {
+		return firstMultiplicityField.getText();
 	}
 
 	/**
-	 * Get second class multipiclicity
+	 * Get second class multiplicity
 	 * 
 	 * @return multiplicity text
 	 */
-	public String getDaughterMultiplicity() {
-		return daughterMultiplicityField.getText();
+	public String getSecondClassMultiplicity() {
+		return secondMultiplicityField.getText();
 	}
 
 	/**

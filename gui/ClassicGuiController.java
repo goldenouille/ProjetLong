@@ -8,10 +8,7 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
-
-import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import uml.UMLDrawingPanel;
 import controller.ModelController;
@@ -40,13 +37,6 @@ public class ClassicGuiController implements GuiController {
 	public static final Color VALIDATION_COLOR = new Color(212, 255, 212);
 	public static final Color INVALIDATION_COLOR = new Color(255, 212, 212);
 
-	// test
-	// private Iterator itP;
-	// private Iterator itS1;
-	// private Iterator itS2;
-
-	// test
-
 	// *** General methods ***//
 
 	/**
@@ -56,34 +46,8 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public ClassicGuiController(ModelController core) {
 
-		// test
-		// ArrayList<String> parts = new ArrayList<String>();
-		// parts.add("Partie 1");
-		// parts.add("Partie 2");
-		// ArrayList<String> steps1 = new ArrayList<String>();
-		// steps1.add("1.1");
-		// steps1.add("1.2");
-		// steps1.add("1.3");
-		// ArrayList<String> steps2 = new ArrayList<String>();
-		// steps2.add("2.1");
-		// steps2.add("2.2");
-		// steps2.add("2.3");
-		// itP = parts.iterator();
-		// itS1 = steps1.iterator();
-		// itS2 = steps2.iterator();
-		// test
-
 		this.core = core;
 		this.userTextFocus = false;
-
-		try {
-			UIManager.setLookAndFeel(new WindowsLookAndFeel());
-		} catch (Exception e) {
-		}
-		// com.jgoodies.looks.windows.WindowsLookAndFeel
-		// com.jgoodies.looks.plastic.PlasticLookAndFeel
-		// com.jgoodies.looks.plastic.Plastic3DLookAndFeel
-		// com.jgoodies.looks.plastic.PlasticXPLookAndFeel
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
@@ -167,22 +131,9 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
+		//TODO
+		System.out.println("CGC.askSelectText : " + Arrays.toString(tab));
 		core.askSelectText(tab, userTextFocus);
-
-		System.out.println("askSelectText : " + Arrays.toString(tab));
-		//
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doSelectText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 	/**
@@ -192,22 +143,9 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askUnSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
+		//TODO
+		System.out.println("CGC.askUnSelectText : " + Arrays.toString(tab));
 		core.askUnSelectText(tab, userTextFocus);
-
-		// System.out.println("askUnSelectText : " + Arrays.toString(tab));
-		//
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doUnSelectText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 	/**
@@ -231,10 +169,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askAddText(String text, String comment) {
 		core.askAddText(text, comment);
-
-		// System.out.println("askAddText " + text + "\n" + comment);
-		//
-		// doAddText(true, text.split(" "));
 	}
 
 	/**
@@ -252,8 +186,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateClass(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateClass " + name);
 	}
 
 	/**
@@ -271,8 +203,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateAbstractClass(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateAbstractClass " + name);
 	}
 
 	/**
@@ -290,8 +220,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateInterface(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateInterface " + name);
 	}
 
 	/**
@@ -313,9 +241,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
 		core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
-
-		// System.out.println("askCreateAttribute " + name + " " + type + " " +
-		// visibility);
 	}
 
 	/**
@@ -339,9 +264,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
-
-		// System.out.println("askCreateMethod " + name + " " +
-		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
 	// ***//
@@ -900,7 +822,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	// *************//
-	// Ask Relation // TODO
+	// Ask Relation //
 	// *************//
 	
 	/**
@@ -915,6 +837,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
+
+	// TODO A REVOIR ?
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
@@ -933,8 +857,10 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
-	public void askEditRelation(Object id, Object nature, ArrayList<String> multiplicity, String text) {
-		core.askEditRelation(id, nature, multiplicity, text);
+
+	// TODO A REVOIR ?
+	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
+		core.askEditRelation(id, multiplicity, text);
 
 		// System.out.println("askEditRelation");
 	}
@@ -947,14 +873,15 @@ public class ClassicGuiController implements GuiController {
 	 * @param nature
 	 *            relation nature
 	 */
-	public void askDeleteRelation(Object id, Object nature) {
-		core.askDeleteRelation(id, nature);
+	public void askDeleteRelation(Object id) {
+		core.askDeleteRelation(id);
 
 		// System.out.println("askDeletRelation");
 	}
 	
 	/**
 	 * Ask the core about the classes linked with the Uml relation
+	 * First class is consider as main class (or target class) for drawing arrow
 	 * 
 	 * @param id
 	 *            identifier of the relation
@@ -962,12 +889,14 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return classes id linked by the relation
 	 */
-	public ArrayList<Object> askUMLRelationCLasses(Object id, Object nature) {
-		core.askUMLRelationCLasses(id, nature);
+	public ArrayList<Object> askUMLRelationClasses(Object id) {
+		return core.askUMLRelationClasses(id);
 	}
 	
 	/**
 	 * Ask the core about the multiplicity of the Uml relation
+	 * List starts the main class (target, where arrow is draw)
+	 * and ends with other class in same askUMLRelationClasses class order.
 	 * 
 	 * @param id
 	 *            identifier of the relation
@@ -975,8 +904,8 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return multiplicity of the relation
 	 */
-	public ArrayList<String> askUMLRelationMultiplicity(Object id, Object nature) {
-		return core.askUMLRelationMultiplicity(id, nature);
+	public ArrayList<String> askUMLRelationMultiplicity(Object id) {
+		return core.askUMLRelationMultiplicity(id);
 	}
 	
 	/**
@@ -988,8 +917,10 @@ public class ClassicGuiController implements GuiController {
 	 *            nature of the relation
 	 * @return text of the relation
 	 */
-	public String askUMLRelationText(Object id, Object nature) {
-		return core.askUMLRelationText(id, nature);
+	public String askUMLRelationText(Object id) {
+		return core.askUMLRelationText(id);
+		
+		// return "DefaultText";
 	}
 	
 	/**
@@ -1000,15 +931,14 @@ public class ClassicGuiController implements GuiController {
 	 * @param nature
 	 *            nature of the relation
 	 */
-	public void askReverseRelation(Object id, Object nature) {
-		return core.askReverseRelation(id, nature);
+	public void askReverseRelation(Object id) {
+		core.askReverseRelation(id);
 	}
 	
 	// ***//
 	// Do //
 	// ***//
 	
-	//TODO
 	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
@@ -1048,7 +978,7 @@ public class ClassicGuiController implements GuiController {
 	 * Add an UML relation to drawing panel
 	 * 
 	 * @param id
-	 *            identifier of the instance to edit
+	 *            identifier of the instance to add
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
@@ -1064,6 +994,16 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doShowUMLInstanceInRed(Object id) {
 		umlDrawingPanel.doShowUMLInstanceInRed(id);
+	}
+	
+	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		umlDrawingPanel.doResetUMLInstanceColor(id);
 	}
 
 	/**
@@ -1084,6 +1024,18 @@ public class ClassicGuiController implements GuiController {
 	public void doShowUMLDrawingInRed(Object id, Object nature) {
 		umlDrawingPanel.doShowUMLDrawingInRed(id, nature);
 	}
+	
+	/**
+	 * Reset color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		umlDrawingPanel.doResetUMLDrawingColor(id, nature);
+	}
 
 	/**
 	 * Reset color of UML drawings to black in drawing area
@@ -1097,12 +1049,8 @@ public class ClassicGuiController implements GuiController {
 	 * of the given nature, bound to the specified expression. Calls the
 	 * associated instance edition method if user validates.
 	 * 
-	 * @param firstWord
-	 *            index of expression first word
-	 * @param lastWord
-	 *            index of expression last word
-	 * @param userText
-	 *            true if expression belongs to the user's text
+	 * @param id
+	 *            identifier of the instance to edit
 	 * @param nature
 	 *            UMLNature of the instance
 	 * @throws BadLocationException
@@ -1175,8 +1123,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askCorrectStep(Object step) {
 		core.askCorrectStep(step);
-
-		// System.out.println("askCorrectStep " + step.toString());
 	}
 
 	/**
@@ -1188,12 +1134,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public Object askNextPart() {
 		return core.askNextPart();
-
-		// try {
-		// return itP.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
 	}
 
 	/**
@@ -1205,15 +1145,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	Object askNextStep() {
 		return core.askNextStep();
-
-		// try {
-		// if (itP.hasNext())
-		// return itS1.next();
-		// else
-		// return itS2.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
 	}
 
 	// ****************************************************************************************************//
