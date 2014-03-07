@@ -146,9 +146,6 @@ public class TextPanel extends AbstractPanel {
 				}
 			}
 		}
-
-		// System.out.println(acc.getTextBounds(start, end).toString());
-
 		return keywordPosition;
 	}
 
