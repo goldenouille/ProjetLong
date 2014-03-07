@@ -16,6 +16,7 @@ public class LinkKeyWordToUMLStep extends Step {
 		ArrayList<Word> userText = exo.getUserText();
 		ModelController mc = exo.getModelController();
 
+		System.out.println("on commence la correction de l'association des mots-cle");
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isKeyWord()) {
 				Word word = text.get(i);
