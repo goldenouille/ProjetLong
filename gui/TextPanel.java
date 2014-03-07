@@ -161,9 +161,11 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void highlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		if (firstWord != 0)
+		int start=0;
+		if (firstWord != 0) {
 			firstWord--;
-		int start = (firstWord != 0 ? lenghtTable[firstWord] : 0) + firstWord;
+			start = lenghtTable[firstWord] + firstWord;
+		}
 		if (textPane.getText(start, 1).equals(" "))
 			start++;
 		int end = lenghtTable[lastWord] + lastWord;
@@ -171,9 +173,11 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void unHighlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		if (firstWord != 0)
+		int start=0;
+		if (firstWord != 0) {
 			firstWord--;
-		int start = (firstWord != 0 ? lenghtTable[firstWord] : 0) + firstWord;
+			start = lenghtTable[firstWord] + firstWord;
+		}
 		int end = lenghtTable[lastWord] + lastWord;
 		Highlight[] highlightsList = textPane.getHighlighter().getHighlights();
 		ArrayList<HighlightData> newHighlights = new ArrayList<HighlightData>();
