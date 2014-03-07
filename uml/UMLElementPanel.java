@@ -524,10 +524,35 @@ public class UMLElementPanel extends JPanel {
 		case ACTION_ADD_NEW_ELEMENT:
 			// open editing panel
 			// TODO difference between CLASS ABSTRACT_CLASS INTERFACE
+			boolean actionCanceled = false;
 			if (selectedElementType.equals(UMLNature.CLASS)) {
-				//int result = JOptionPane.showOptionDialog(null, new JLabel("De quel type de classe s'agit-il ?"), "", JOptionPane., messageType, icon, options, initialValue);
+				String[] options = new String[] {"Classe", "Classe abstraite", "Interface", "Annuler"};
+				int result = JOptionPane.showOptionDialog(null, "De quel type de classe s'agit-il ?", "Type de classe", 
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+			        null, options, options[0]);
+				switch (result) {
+				case 0:
+					selectedElementType = UMLNature.CLASS;
+					// TODO
+					System.out.println("ElementPanel : new class");
+					break;
+				case 1:
+					selectedElementType = UMLNature.ABSTRACT_CLASS;
+					// TODO
+					System.out.println("ElementPanel : new abstract class");
+					break;
+				case 2:
+					selectedElementType = UMLNature.INTERFACE;
+					// TODO
+					System.out.println("ElementPanel : new interface");
+					break;
+				default:
+					actionCanceled = true;
+					break;
+				}}
+			if (!actionCanceled) {
+				mainPanel.doAddNewElementFromPool(selectedElementType);
 			}
-			mainPanel.doAddNewElementFromPool(selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_ADD:
