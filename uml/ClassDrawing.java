@@ -253,7 +253,7 @@ public class ClassDrawing {
 		width = stringWidth + 8;
 		
 		if (isColored) {
-			g.setColor(UMLDrawingPanel.COLOR_ALT);
+			g.setColor(UMLDrawingPanel.COLOR_ERROR);
 		}
 		
 		// class type drawing
@@ -278,7 +278,7 @@ public class ClassDrawing {
 		if (propertiesID.size() != 0) {
 			actualHeight += 4;
 			if (isColored) {
-				g.setColor(UMLDrawingPanel.COLOR_ALT);
+				g.setColor(UMLDrawingPanel.COLOR_ERROR);
 			}
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
 			if (isColored) {
@@ -287,7 +287,7 @@ public class ClassDrawing {
 			if (!this.isReduced()) {
 				for (int i = 0; i < propertiesID.size() ; i++) {
 					if (coloredID.contains(propertiesID.get(i))) {
-						g.setColor(UMLDrawingPanel.COLOR_ALT);
+						g.setColor(UMLDrawingPanel.COLOR_ERROR);
 					}
 					actualHeight += g.getFont().getSize();
 					g.drawString(drawingPanel.getElementName(propertiesID.get(i), UMLNature.ATTRIBUTE), x + 4, y + actualHeight);
@@ -302,7 +302,7 @@ public class ClassDrawing {
 		if (methodsID.size() != 0) {
 			actualHeight += 4;
 			if (isColored) {
-				g.setColor(UMLDrawingPanel.COLOR_ALT);
+				g.setColor(UMLDrawingPanel.COLOR_ERROR);
 			}
 			g.drawLine(x, y + actualHeight, x + width, y + actualHeight);
 			if (isColored) {
@@ -311,7 +311,7 @@ public class ClassDrawing {
 			if (!this.isReduced()) {
 				for (int i = 0; i < methodsID.size() ; i++) {
 					if (coloredID.contains(methodsID.get(i))) {
-						g.setColor(UMLDrawingPanel.COLOR_ALT);
+						g.setColor(UMLDrawingPanel.COLOR_ERROR);
 					}
 					actualHeight += g.getFont().getSize();
 					g.drawString(drawingPanel.getElementName(methodsID.get(i), UMLNature.METHOD), x + 4, y + actualHeight);
@@ -325,7 +325,7 @@ public class ClassDrawing {
 		// borders drawing
 		height = actualHeight + 4;
 		if (isColored) {
-			g.setColor(UMLDrawingPanel.COLOR_ALT);
+			g.setColor(UMLDrawingPanel.COLOR_ERROR);
 		}
 		g.drawRect(x, y, width, height);
 		if (isColored) {

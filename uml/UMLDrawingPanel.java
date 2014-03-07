@@ -35,7 +35,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	// Color constant
 	public static Color COLOR_DEFAULT = Color.BLACK;
-	public static Color COLOR_ALT = Color.RED;
+	public static Color COLOR_VALIDATE = Color.GREEN;
+	public static Color COLOR_ERROR = Color.RED;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -98,13 +99,24 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Change color of UML instance to red in element pool
+	 * Change color of UML instance to validate color in element pool
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 */
-	public void doShowUMLInstanceInRed(Object id) {
-		poolPanel.addColoredElement(id);
+	public void doShowUMLInstanceInRightColor(Object id) {
+		poolPanel.addRightColoredElement(id);
+		poolPanel.refresh();
+	}
+	
+	/**
+	 * Change color of UML instance to error color in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 */
+	public void doShowUMLInstanceInWrongColor(Object id) {
+		poolPanel.addWrongColoredElement(id);
 		poolPanel.refresh();
 	}
 	
@@ -128,14 +140,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Change color of UML drawing to red in drawing area
+	 * Change color of UML drawing to error color in drawing area
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
-	public void doShowUMLDrawingInRed(Object id, Object nature) {
+	public void doShowUMLDrawingInErrorColor(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
 			for (int j = 0 ; j < classes.size() ; j++) {
 				if (classes.get(j).getInstanceID().equals(id)) {

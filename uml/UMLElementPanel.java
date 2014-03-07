@@ -47,7 +47,8 @@ public class UMLElementPanel extends JPanel {
 	private Vector<Object> methodsID;
 	private Vector<String> methods;
 
-	private Vector<Object> coloredID;
+	private Vector<Object> rightColoredID;
+	private Vector<Object> wrongColoredID;
 	private int missingUMLDrawing;
 
 	// icons
@@ -79,7 +80,8 @@ public class UMLElementPanel extends JPanel {
 		methodsID = new Vector<Object>();
 		methods = new Vector<String>();
 
-		coloredID = new Vector<Object>();
+		rightColoredID = new Vector<Object>();
+		wrongColoredID = new Vector<Object>();
 		missingUMLDrawing = 0;
 
 		this.refresh();
@@ -137,10 +139,14 @@ public class UMLElementPanel extends JPanel {
 			
 			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
 					"Editer les proprietes");
-			if (coloredID.contains(classesID.get(i))) {
+			if (wrongColoredID.contains(classesID.get(i))) {
 				// TODO
-				System.out.println("class " + i + " is paint in red");
-				label.setForeground(UMLDrawingPanel.COLOR_ALT);
+				System.out.println("class " + i + " is paint in right color");
+				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+			} else if (wrongColoredID.contains(classesID.get(i))) {
+				// TODO
+				System.out.println("class " + i + " is paint in wrong color");
+				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
 			}
 			classesOnePanel.add(label);
 			
@@ -178,10 +184,14 @@ public class UMLElementPanel extends JPanel {
 			propertiesOnePanel.add(remAtt);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
-			if (coloredID.contains(propertiesID.get(i))) {
+			if (wrongColoredID.contains(propertiesID.get(i))) {
 				// TODO
-				System.out.println("attribute " + i + " is paint in red");
-				label.setForeground(UMLDrawingPanel.COLOR_ALT);
+				System.out.println("attribute " + i + " is paint in right color");
+				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+			} else if (wrongColoredID.contains(propertiesID.get(i))) {
+				// TODO
+				System.out.println("attribute " + i + " is paint in wrong color");
+				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
 			}
 			propertiesOnePanel.add(label);
 			
@@ -217,10 +227,14 @@ public class UMLElementPanel extends JPanel {
 			methodsOnePanel.add(remMethod);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
-			if (coloredID.contains(methodsID.get(i))) {
+			if (wrongColoredID.contains(methodsID.get(i))) {
 				// TODO
-				System.out.println("method " + i + " is paint in red");
-				label.setForeground(UMLDrawingPanel.COLOR_ALT);
+				System.out.println("method " + i + " is paint in right color");
+				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+			} else if (wrongColoredID.contains(methodsID.get(i))) {
+				// TODO
+				System.out.println("method " + i + " is paint in wrong color");
+				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
 			}
 			methodsOnePanel.add(label);
 			
@@ -509,7 +523,7 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			// open editing panel
-			// TODO difrence between CLASS ABSTRACT_CLASS INTERFACE
+			// TODO difference between CLASS ABSTRACT_CLASS INTERFACE
 			if (selectedElementType.equals(UMLNature.CLASS)) {
 				//int result = JOptionPane.showOptionDialog(null, new JLabel("De quel type de classe s'agit-il ?"), "", JOptionPane., messageType, icon, options, initialValue);
 			}
@@ -538,15 +552,34 @@ public class UMLElementPanel extends JPanel {
 
 		mainPanel.repaint();
 	}
-
+	
 	/**
-	 * Add an element to coloring
+	 * Add an element to wrong coloring
 	 * 
 	 * @param id
 	 *            element id
 	 */
-	public void addColoredElement(Object id) {
-		coloredID.add(id);
+	public void addRightColoredElement(Object id) {
+		if (wrongColoredID.contains(id)) {
+			wrongColoredID.remove(id);
+		}
+		rightColoredID.add(id);
+		
+		// TODO
+		System.out.println("some element will be paint in green");
+	}
+
+	/**
+	 * Add an element to wrong coloring
+	 * 
+	 * @param id
+	 *            element id
+	 */
+	public void addWrongColoredElement(Object id) {
+		if (rightColoredID.contains(id)) {
+			rightColoredID.remove(id);
+		}
+		wrongColoredID.add(id);
 		
 		// TODO
 		System.out.println("some element will be paint in red");
@@ -557,23 +590,24 @@ public class UMLElementPanel extends JPanel {
 	 * 
 	 * @param id
 	 *            element id
-	 * @return true if remove
 	 */
-	public boolean removeColoredElement(Object id) {
+	public void removeColoredElement(Object id) {
+		rightColoredID.remove(id);
+		wrongColoredID.remove(id);
+		
 		// TODO
 		System.out.println("some element will no more be paint in red");
-		
-		return coloredID.remove(id);
 	}
 
 	/**
 	 * Remove all element from coloring
 	 */
 	public void removeAllColoredElement() {
-		coloredID.removeAllElements();
+		rightColoredID.removeAllElements();
+		wrongColoredID.removeAllElements();
 		
 		// TODO
-		System.out.println("all element will no more be paint in red");
+		System.out.println("all element will no more be paint in color");
 	}
 
 	/**
