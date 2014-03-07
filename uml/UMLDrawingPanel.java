@@ -284,6 +284,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doAddNewElementFromPool(Object nature) {
 		// TODO
+		try {
+			controller.doShowUmlInstanceEditionPopupWithNoKeyWord(nature);
+		} catch (BadLocationException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*
 		if (nature.equals(UMLNature.CLASS)) {
 			//poolPanel.addClass(id, UMLNature.CLASS, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
@@ -294,7 +301,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			//poolPanel.addProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		} else if (nature.equals(UMLNature.METHOD)) {
 			//poolPanel.addMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
-		}
+		}*/
 		
 		poolPanel.refresh();
 	}
