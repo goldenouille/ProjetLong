@@ -435,6 +435,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	/**
 	 * Add an UML relation to drawing panel
+	 * Ask core about values for classes linked, multiplicities and text
 	 * 
 	 * @param id
 	 *            identifier of the instance to add
@@ -539,6 +540,22 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 	}
 	
+	/**
+	 * Ask core to create a new relation
+	 * 
+	 * @param toolBarType
+	 *            relation type from LinkToolBar
+	 * @param firstClassID
+	 *            id of main class
+	 * @param secondClassID
+	 *            id of second class
+	 * @param firstMultiplicity
+	 *            multiplicity of main class
+	 * @param secondMultiplicity
+	 *            multiplicity of second class
+	 * @param text
+	 *            relation text
+	 */
 	public void askCreateRelation(int toolBarType, Object firtsClassID, Object secondClassID,
 			String firstMultiplicity, String secondMultiplicity, String text) {
 		UMLNature nature = null;
@@ -585,6 +602,18 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		links.lastElement().setText(text);
 */	}
 	
+	/**
+	 * Ask core to edit a relation
+	 * 
+	 * @param id
+	 *            relation core id
+	 * @param firstMultiplicity
+	 *            multiplicity of main class
+	 * @param secondMultiplicity
+	 *            multiplicity of second class
+	 * @param text
+	 *            relation text
+	 */
 	public void askEditRelation(Object id, String firstMultiplicity, String secondMultiplicity, String text) {
 		ArrayList<String> multiplicity = new ArrayList<String>();
 		multiplicity.add(firstMultiplicity);
@@ -609,6 +638,13 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 */	}
 	
+	/**
+	 * Do edition of a relation
+	 * Ask core about new values for multiplicities and text
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
 	public void doEditRelation(Object id) {
 		int i = 0;
 		boolean find = false;
