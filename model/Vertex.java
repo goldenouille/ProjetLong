@@ -70,5 +70,7 @@ public class Vertex implements Type, GraphItem {
 		this.edges.add(edge);
 	}
 
-
+	public UMLNature getUmlNature() {
+		return UMLNature.INTERFACE;
+	}
 }

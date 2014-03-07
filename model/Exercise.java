@@ -87,6 +87,10 @@ public class Exercise {
 			return this.text;
 	}
 
+	public Part getCurrentPart() {
+		return this.parts.get(currentPart);
+	}
+
 	public void setName(String s) {
 		this.name = s;
 	}

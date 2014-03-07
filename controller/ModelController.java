@@ -593,16 +593,21 @@ public class ModelController {
 		}
 	}
 
-		/**
+	/**
 	 * Change color of UML instance to red in element pool
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 */
-	public void doShowUMLInstanceInRed(Object id) {
-		cgc.doShowUMLInstanceInRed(id);
+	public void doShowUMLInstanceInErrorColor(Object id) {
+		cgc.doShowUMLInstanceInErrorColor(id);
 	}
 	
+	
+	public void doShowUMLInstanceInGreen(Object id) {
+		cgc.doShowUMLInstanceInValidateColor(id);
+		
+	}
 	/**
 	 * Reset color of UML instance to default in element pool
 	 * 
@@ -642,6 +647,7 @@ public class ModelController {
 	public void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		exo.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
 	}
+
 
 }
 

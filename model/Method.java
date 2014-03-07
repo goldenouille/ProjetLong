@@ -90,4 +90,8 @@ public class Method implements GraphItem {
 	public Vertex getMotherClass() {
 		return this.motherClass;
 	}
+
+	public UMLNature getUmlNature() {
+		return UMLNature.METHOD;
+	}
 }

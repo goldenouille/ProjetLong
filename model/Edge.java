@@ -38,4 +38,9 @@ public class Edge implements GraphItem{
 		return new ArrayList<String>();
 	}
 
+	@Override
+	public UMLNature getUmlNature() {
+		return this.nature;
+	}
+
 }

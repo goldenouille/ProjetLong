@@ -23,4 +23,8 @@ public enum UMLNature {
 	public String toString() {
 		return this.name;
 	}
+	
+	public boolean equals(UMLNature uml) {
+		return uml.name().equalsIgnoreCase(this.name());
+	}
 }	

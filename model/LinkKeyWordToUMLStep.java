@@ -24,15 +24,21 @@ public class LinkKeyWordToUMLStep extends Step {
 		for (int i = 0; i < text.size(); i++) {
 			if (text.get(i).isKeyWord()) {
 				Word word = text.get(i);
-				if (word.getUmlNature()==word.getUserUmlNature()) {
-					System.out.println("Le type de " + word.getWord() + " est correct !");
-				} else if (word.getUserUmlNature() != null) {
+				GraphItem gi = exo.getCurrentPart().getIdTable().get(text.get(i).getId());
 
-					mc.doShowUMLInstanceInRed(word.getUserGraphItem());
+				if (word.getUserUmlNature() == null) {
+					missingAssociation ++;
+				}
+				
+				else if (gi.getUmlNature().equals(word.getUserUmlNature())) {
+					System.out.println("Le type de " + word.getWord() + " est correct !");
+					mc.doShowUMLInstanceInGreen(word.getUserGraphItem());
+				}
+				
+				else {
+					mc.doShowUMLInstanceInErrorColor(word.getUserGraphItem());
     				score.removeScoreNature(score.getScoreNature()/5);
     				System.out.println("Le type de " + word.getWord() + " est incorrect !");
-				} else {
-					missingAssociation ++;
 				}
 			}
 		}
