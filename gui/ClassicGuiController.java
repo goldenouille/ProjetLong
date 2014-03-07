@@ -822,7 +822,7 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	// *************//
-	// Ask Relation // TODO
+	// Ask Relation //
 	// *************//
 	
 	/**
@@ -995,6 +995,16 @@ public class ClassicGuiController implements GuiController {
 	public void doShowUMLInstanceInRed(Object id) {
 		umlDrawingPanel.doShowUMLInstanceInRed(id);
 	}
+	
+	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		umlDrawingPanel.doResetUMLInstanceColor(id);
+	}
 
 	/**
 	 * Reset color of UML instances to black in element pool
@@ -1013,6 +1023,18 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doShowUMLDrawingInRed(Object id, Object nature) {
 		umlDrawingPanel.doShowUMLDrawingInRed(id, nature);
+	}
+	
+	/**
+	 * Reset color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		umlDrawingPanel.doResetUMLDrawingColor(id, nature);
 	}
 
 	/**

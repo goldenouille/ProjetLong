@@ -115,6 +115,16 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		poolPanel.removeColoredElement(id);
+	}
+	
+	/**
 	 * Reset color of UML instances to black in element pool
 	 */
 	public void doResetUMLInstanceColor() {
@@ -158,6 +168,48 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			for (int j = 0 ; j < classes.size() ; j++) {
 				if (links.get(j).getInstanceID().equals(id)) {
 					links.get(j).setColored(true);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Reset color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		if (nature.equals(UMLNature.CLASS) || nature.equals(UMLNature.ABSTRACT_CLASS) || nature.equals(UMLNature.INTERFACE)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).getInstanceID().equals(id)) {
+					classes.get(j).setColored(false);
+				}
+			}
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containProperty(id)) {
+					classes.get(j).removeColoredElement(id);
+				}
+			}
+		} else if (nature.equals(UMLNature.METHOD)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (classes.get(j).containMethod(id)) {
+					classes.get(j).removeColoredElement(id);
+				}
+			}
+		} else if (nature.equals(UMLNature.AGGREGATION)
+			|| nature.equals(UMLNature.ASSOCIATION)
+			|| nature.equals(UMLNature.COMPOSITION)
+			|| nature.equals(UMLNature.DEPENDANCY)
+			|| nature.equals(UMLNature.GENERALIZATION)
+			|| nature.equals(UMLNature.N_ASSOCIATION)
+			|| nature.equals(UMLNature.REALIZATION)) {
+			for (int j = 0 ; j < classes.size() ; j++) {
+				if (links.get(j).getInstanceID().equals(id)) {
+					links.get(j).setColored(false);
 				}
 			}
 		}
@@ -667,7 +719,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
 						controller.askReverseRelation(links.get(i).getInstanceID());
-						links.get(i).invertClass();
+						links.get(i).reverseClass();
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
 						controller.askDeleteRelation(links.get(i).getInstanceID());
 						links.remove(i);
