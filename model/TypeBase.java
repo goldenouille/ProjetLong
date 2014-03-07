@@ -12,7 +12,8 @@ public enum TypeBase implements Type {
 	STRING("String",false),
 	VOID("void",false),
 	ARRAYLIST("ArrayList",true),
-	LIST("List",true);
+	LIST("List",true),
+	ANY("Any",false);
 
 	private String name;
 	private boolean isList;
@@ -46,6 +47,10 @@ public enum TypeBase implements Type {
 
 	public Type getTypeList() {
 		return this.typeList;
+	}
+	
+	public boolean compareTo(Type type) {
+		return (this.getName().equalsIgnoreCase(type.getName()) || this.getName().equalsIgnoreCase("any") || type.getName().equalsIgnoreCase("any"));
 	}
 
 	public boolean isValide() {
@@ -109,6 +114,6 @@ public enum TypeBase implements Type {
 			return list;
 			
 		}
-		return TypeBase.VOID; // valeur par defaut -> modifer plus tard
+		return TypeBase.ANY; // valeur par defaut -> modifer plus tard
 	}
 }

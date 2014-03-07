@@ -245,7 +245,7 @@ public class Exercise {
 			w.setUserGraphItem(vertexAbstract);	
 	
 		this.userGraph.addVertex(vertexAbstract);
-		return VertexAbstract;
+		return vertexAbstract;
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
