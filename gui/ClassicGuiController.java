@@ -8,10 +8,7 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
-
-import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import uml.UMLDrawingPanel;
 import controller.ModelController;
@@ -40,13 +37,6 @@ public class ClassicGuiController implements GuiController {
 	public static final Color VALIDATION_COLOR = new Color(212, 255, 212);
 	public static final Color INVALIDATION_COLOR = new Color(255, 212, 212);
 
-	// test
-	// private Iterator itP;
-	// private Iterator itS1;
-	// private Iterator itS2;
-
-	// test
-
 	// *** General methods ***//
 
 	/**
@@ -56,34 +46,8 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public ClassicGuiController(ModelController core) {
 
-		// test
-		// ArrayList<String> parts = new ArrayList<String>();
-		// parts.add("Partie 1");
-		// parts.add("Partie 2");
-		// ArrayList<String> steps1 = new ArrayList<String>();
-		// steps1.add("1.1");
-		// steps1.add("1.2");
-		// steps1.add("1.3");
-		// ArrayList<String> steps2 = new ArrayList<String>();
-		// steps2.add("2.1");
-		// steps2.add("2.2");
-		// steps2.add("2.3");
-		// itP = parts.iterator();
-		// itS1 = steps1.iterator();
-		// itS2 = steps2.iterator();
-		// test
-
 		this.core = core;
 		this.userTextFocus = false;
-
-		try {
-			UIManager.setLookAndFeel(new WindowsLookAndFeel());
-		} catch (Exception e) {
-		}
-		// com.jgoodies.looks.windows.WindowsLookAndFeel
-		// com.jgoodies.looks.plastic.PlasticLookAndFeel
-		// com.jgoodies.looks.plastic.Plastic3DLookAndFeel
-		// com.jgoodies.looks.plastic.PlasticXPLookAndFeel
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
@@ -167,22 +131,9 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
+		//TODO
+		System.out.println("CGC.askSelectText : " + Arrays.toString(tab));
 		core.askSelectText(tab, userTextFocus);
-
-		System.out.println("askSelectText : " + Arrays.toString(tab));
-		//
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doSelectText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 	/**
@@ -192,22 +143,9 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askUnSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
+		//TODO
+		System.out.println("CGC.askUnSelectText : " + Arrays.toString(tab));
 		core.askUnSelectText(tab, userTextFocus);
-
-		// System.out.println("askUnSelectText : " + Arrays.toString(tab));
-		//
-		// int start = -1, end = -1;
-		// for (int i = 0; i < tab.length - 1; i++) {
-		// if (start == -1 && tab[i] != 0)
-		// start = i;
-		// if (end == -1 && start != -1 && tab[i + 1] == 0)
-		// end = i;
-		// }
-		// try {
-		// doUnSelectText(start, end, userTextFocus);
-		// } catch (BadLocationException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 	/**
@@ -231,10 +169,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askAddText(String text, String comment) {
 		core.askAddText(text, comment);
-
-		// System.out.println("askAddText " + text + "\n" + comment);
-		//
-		// doAddText(true, text.split(" "));
 	}
 
 	/**
@@ -252,8 +186,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateClass(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateClass " + name);
 	}
 
 	/**
@@ -271,8 +203,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateAbstractClass(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateAbstractClass " + name);
 	}
 
 	/**
@@ -290,8 +220,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
 		core.askCreateInterface(firstWord, lastWord, userText, name);
-
-		// System.out.println("askCreateInterface " + name);
 	}
 
 	/**
@@ -313,9 +241,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
 		core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
-
-		// System.out.println("askCreateAttribute " + name + " " + type + " " +
-		// visibility);
 	}
 
 	/**
@@ -339,9 +264,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
-
-		// System.out.println("askCreateMethod " + name + " " +
-		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
 	// ***//
@@ -1188,8 +1110,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askCorrectStep(Object step) {
 		core.askCorrectStep(step);
-
-		// System.out.println("askCorrectStep " + step.toString());
 	}
 
 	/**
@@ -1201,12 +1121,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public Object askNextPart() {
 		return core.askNextPart();
-
-		// try {
-		// return itP.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
 	}
 
 	/**
@@ -1218,15 +1132,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	Object askNextStep() {
 		return core.askNextStep();
-
-		// try {
-		// if (itP.hasNext())
-		// return itS1.next();
-		// else
-		// return itS2.next();
-		// } catch (Exception e) {
-		// return null;
-		// }
 	}
 
 	// ****************************************************************************************************//
