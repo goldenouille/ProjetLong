@@ -131,8 +131,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
-		//TODO
-		System.out.println("CGC.askSelectText : " + Arrays.toString(tab));
 		core.askSelectText(tab, userTextFocus);
 	}
 
@@ -143,8 +141,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askUnSelectText() {
 		int[] tab = getActiveTextPanel().getSelection();
-		//TODO
-		System.out.println("CGC.askUnSelectText : " + Arrays.toString(tab));
 		core.askUnSelectText(tab, userTextFocus);
 	}
 
@@ -1221,8 +1217,6 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void askSelectPart(Object part) {
 		core.askSelectPart(part);
-
-		// System.out.println("askSelectPart " + part.toString());
 	}
 
 	/**

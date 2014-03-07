@@ -20,6 +20,7 @@ public class Exercise {
 	private ArrayList<Part> parts;
 	private int currentPart;
 
+	private Score score;
 
 	private int auxNextPart;
 	private int nbParts;
@@ -36,6 +37,8 @@ public class Exercise {
 
 		this.parts = new ArrayList<Part>();
 		this.currentPart = 0;
+		
+		this.score = new Score();
 
 		this.auxNextPart = -1;
 
@@ -89,6 +92,14 @@ public class Exercise {
 	}
 	public String getName() {
 		return this.name;
+	}
+
+	public Score getScore() {
+		return score;
+	}
+
+	public void setScore(Score score) {
+		this.score = score;
 	}
 
 	public String getPreview() {
@@ -187,7 +198,9 @@ public class Exercise {
 		for(int i=0;i<tab.length;i++) {
 			tab[i]=text.get(i).getWord();
 		}
+		this.score = this.parts.get(0).getScore();
 		this.modelController.doAddText(false, tab);
+		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
 	}
 	
 	public void addPart(Part p) {

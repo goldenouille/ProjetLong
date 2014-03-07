@@ -26,13 +26,13 @@ public class LinkKeyWordToUMLStep extends Step {
 				if (word.getUmlNature()==word.getUserUmlNature()) {
 					System.out.println("Le type de " + word.getWord() + " est correct !");
 				} else if (word.getUserUmlNature() != null) {
-						mc.doShowUMLInstanceInRed(word.getUserGraphItem());
-						System.out.println("Le type de " + word.getWord() + " est incorrect !");
-					} else {
-						missingAssociation ++;
-					}
+
+					mc.doShowUMLInstanceInRed(word.getUserGraphItem());
+					System.out.println("Le type de " + word.getWord() + " est incorrect !");
+				} else {
+					missingAssociation ++;
+				}
 			}
 		}
 	}
-}		
-
+}

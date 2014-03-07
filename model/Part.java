@@ -19,6 +19,8 @@ public class Part {
 	private Iterator<Step> stepsIterator;
 	private HashMap<Integer, GraphItem> idTable;
 
+	private Score score;
+	
 	private int auxNbStep;
 	private int nbStep;
 
@@ -32,6 +34,7 @@ public class Part {
 		this.auxNbStep = -1;
 		this.auxNbWord = 0;
 		this.graph = new Graph();
+		this.score = new Score();
 	}
 
 	public int getNbStep() {
@@ -80,7 +83,7 @@ public class Part {
 			Word w = new Word(words[i]);
 			w.setLength(1);
 			w.setFirstWord(this.auxNbWord);
-			this.auxNbWord = this.auxNbWord + 1;
+			this.auxNbWord++;
 			//System.out.println("on ajoute 1 au nombre de mots parce qu'on est en train de rajouter du texte");
 			w.setLastWord(this.auxNbWord - 1);
 			text.add(w);
@@ -89,6 +92,7 @@ public class Part {
 
 	public void addKeyWord(KeyWord keyWord) {
 		String w = keyWord.getWord();
+		this.score.setScoreText(this.score.getScoreText() + keyWord.getScore());
 		int l = (w.split(" ")).length;
 		keyWord.setLength(l);
 		keyWord.setFirstWord(this.auxNbWord);
@@ -137,13 +141,21 @@ public class Part {
 		return this.idTable;
 	}
 
-	// c'est quoi ce truc?!?!?
+	// Pour creer un graphe complet à partir d'un Pseudo graph contenant les infos brutes de l'xml
 	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
 	}
 
 	public String toString() {
 		return name;
+	}
+
+	public Score getScore() {
+		return score;
+	}
+
+	public void setScore(Score score) {
+		this.score= score;
 	}
 
 }

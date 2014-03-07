@@ -14,6 +14,7 @@ public class SelectKeyWordStep extends Step {
 	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
+		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
 		int missingKW = 0;
 
@@ -29,6 +30,7 @@ public class SelectKeyWordStep extends Step {
     				mc.doValidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//Selected KW = ok
     			} else {
     				//System.out.println("---> mais n'est pas un mot-cle");
+    				score.removeScoreText(score.getScoreText()/10);
     				mc.doUnSelectText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//selected not KW = false
     				mc.doInvalidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//selected not KW = false
     				
@@ -37,6 +39,7 @@ public class SelectKeyWordStep extends Step {
     			//System.out.println("--> le mot n'est pas selectionne");
     			if (text.get(i).isKeyWord()) {
     				//System.out.println("---> mais c'est un mot-cle");
+    				score.removeScoreText(((KeyWord) text.get(i)).getScore()/4);
     				missingKW++; // KW not selected = missing
     			}
     		}
@@ -47,6 +50,7 @@ public class SelectKeyWordStep extends Step {
 			}
 		}
 		mc.doShowMissingKeywordNumber(missingKW);
+		mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 		} catch (Exception e) {
 			System.out.println("erreur dans la correction de SelectKeyWordStep");
 			e.printStackTrace();
