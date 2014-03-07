@@ -56,7 +56,7 @@ public class ModelController {
 	
 	public void askValidateAssociation() {
 		//System.out.println("Correction de " + ((Step) s).getFrenchName());
-		((Step) s).getCorrection(exo);
+		LinkKeyWordToUMLStep.getCorrection(exo);
 	}
 	
 	public void askValidateDiagram() {
@@ -131,6 +131,10 @@ public class ModelController {
 
 	public void doUnInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		cgc.doUnInvalidateText(firstWord, lastWord, userText);
+	}
+	
+	public void doResetTextHighlight(int firstWord, int lastWord, boolean userText) throws BadLocationException {
+		cgc.doResetTextHighlight(firstWord, lastWord, userText);
 	}
 
 	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) 

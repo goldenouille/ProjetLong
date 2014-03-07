@@ -154,10 +154,11 @@ public class Exercise {
 
 		if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
-    			if (selection[i]>90) {
+    			if (selection[i]>80) {
     				Word w = getByPosition(i,i,t);
     				w.unselect();
     				try {
+    				this.modelController.doResetTextHighlight(w.getFirstWord(),w.getLastWord(), userT );
     				this.modelController.doUnSelectText(w.getFirstWord(),w.getLastWord(), userT );
     				} catch (Exception e) {
     					e.printStackTrace();

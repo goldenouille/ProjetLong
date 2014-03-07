@@ -143,7 +143,7 @@ public class Word {
 	}	
 
 	public void select() {
-		this.isSelected = true;
+		this.isSelected = true;		
 	}
 
 	public void unselect() {
