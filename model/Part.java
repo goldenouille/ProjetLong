@@ -19,9 +19,7 @@ public class Part {
 	private Iterator<Step> stepsIterator;
 	private HashMap<Integer, GraphItem> idTable;
 
-	private int scoreText;
-	private int scoreNature;
-	private int scoreGraphe;
+	private Score score;
 	
 	private int auxNbStep;
 	private int nbStep;
@@ -36,9 +34,7 @@ public class Part {
 		this.auxNbStep = -1;
 		this.auxNbWord = 0;
 		this.graph = new Graph();
-		this.scoreText = 0;
-		this.scoreNature = 0;
-		this.scoreGraphe = 0;
+		this.score = new Score();
 	}
 
 	public int getNbStep() {
@@ -96,7 +92,7 @@ public class Part {
 
 	public void addKeyWord(KeyWord keyWord) {
 		String w = keyWord.getWord();
-		this.scoreText += keyWord.getScore();
+		this.score.setScoreText(this.score.getScoreText() + keyWord.getScore());
 		int l = (w.split(" ")).length;
 		keyWord.setLength(l);
 		keyWord.setFirstWord(this.auxNbWord);
@@ -154,32 +150,12 @@ public class Part {
 		return name;
 	}
 
-	public int getScoreText() {
-		return scoreText;
+	public Score getScore() {
+		return score;
 	}
 
-	public void setScoreText(int scoreText) {
-		this.scoreText = scoreText;
-	}
-
-	public int getScoreNature() {
-		return scoreNature;
-	}
-
-	public void setScoreNature(int scoreNature) {
-		this.scoreNature = scoreNature;
-	}
-
-	public int getScoreGraphe() {
-		return scoreGraphe;
-	}
-
-	public void setScoreGraphe(int scoreGraphe) {
-		this.scoreGraphe = scoreGraphe;
-	}
-	
-	public int getScoreMax() {
-		return this.getScoreNature() + this.getScoreGraphe() + this.getScoreText();
+	public void setScore(Score score) {
+		this.score= score;
 	}
 
 }

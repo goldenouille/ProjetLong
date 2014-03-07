@@ -1,8 +1,8 @@
 <exercise name="banque" preview="exercise de la banque simplifie">
-	<part name="compte" scoreText="30" scoreNature="" scoreGraph="">
+	<part name="compte" scoreNature="30" scoreGraph="40">
 		<text body = "Un "/> <kw id='1' word="compte" score="10"/>
-		<text body = " simple est caractérisé par un "/> <kw id='2' word = "solde" score="10"/>
-		<text body = " en euros1"/><kw id ='3' word= "creditable." score="10"/>
+		<text body = "simple est caractérisé par un"/> <kw id='2' word = "solde" score="10"/>
+		<text body = "en euros"/><kw id ='3' word= "creditable." score="10"/>
 		
 		<UML>
 			<uml-class id='1' name = "account"/>

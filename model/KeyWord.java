@@ -15,5 +15,6 @@ public class KeyWord extends Word {
 	public KeyWord() {
 		super();
 		this.isKeyWord = true;
+		this.score = 0;
 	}
 }

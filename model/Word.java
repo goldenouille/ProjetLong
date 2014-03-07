@@ -108,10 +108,10 @@ public class Word {
 		this.umlNature = umlNature;
 	}
 
-	public void setUmlNature(String umlNature) {
+	/*public void setUmlNature(String umlNature) {
 		//TODO TODO TODO TODO TODO -> aller implémenter une fonction dans UMLNature pour récupérer une constante 
 		// a part d'une string
-	}
+	}*/
 
 	public UMLNature getUmlNature() {
 		return this.umlNature;
@@ -120,10 +120,10 @@ public class Word {
 		this.userUmlNature = userUmlNature;
 	}
 
-	public void setUserUmlNature(String userUmlNature) {
+	/*public void setUserUmlNature(String userUmlNature) {
 		//TODO TODO TODO TODO TODO -> aller implémenter une fonction dans UMLNature pour récupérer une constante 
 		// a part d'une string
-	}
+	}*/
 
 	public UMLNature getUserUmlNature() {
 		return this.userUmlNature;
