@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -137,6 +138,8 @@ public class UMLElementPanel extends JPanel {
 			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
 					"Editer les proprietes");
 			if (coloredID.contains(classesID.get(i))) {
+				// TODO
+				System.out.println("class" + i + "is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			classesOnePanel.add(label);
@@ -176,6 +179,8 @@ public class UMLElementPanel extends JPanel {
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
 			if (coloredID.contains(propertiesID.get(i))) {
+				// TODO
+				System.out.println("attribute" + i + "is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			propertiesOnePanel.add(label);
@@ -213,6 +218,8 @@ public class UMLElementPanel extends JPanel {
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
 			if (coloredID.contains(methodsID.get(i))) {
+				// TODO
+				System.out.println("method" + i + "is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			methodsOnePanel.add(label);
@@ -502,6 +509,10 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			// open editing panel
+			// TODO difrence between CLASS ABSTRACT_CLASS INTERFACE
+			if (selectedElementType.equals(UMLNature.CLASS)) {
+				//int result = JOptionPane.showOptionDialog(null, new JLabel("De quel type de classe s'agit-il ?"), "", JOptionPane., messageType, icon, options, initialValue);
+			}
 			mainPanel.doAddNewElementFromPool(selectedElementType);
 			this.resetSelectedElement();
 			break;
@@ -536,6 +547,9 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public void addColoredElement(Object id) {
 		coloredID.add(id);
+		
+		// TODO
+		System.out.println("some element will be paint in red");
 	}
 
 	/**
@@ -546,6 +560,9 @@ public class UMLElementPanel extends JPanel {
 	 * @return true if remove
 	 */
 	public boolean removeColoredElement(Object id) {
+		// TODO
+		System.out.println("some element will no more be paint in red");
+		
 		return coloredID.remove(id);
 	}
 
@@ -554,6 +571,9 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public void removeAllColoredElement() {
 		coloredID.removeAllElements();
+		
+		// TODO
+		System.out.println("all element will no more be paint in red");
 	}
 
 	/**
