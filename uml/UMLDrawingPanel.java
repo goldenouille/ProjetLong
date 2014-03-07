@@ -44,13 +44,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	private static final int DRAGGED_LINK_OFFSET = 1000;
 	private static final int NO_CLICKED_CLASS = -1;
 	
-	/*
-	public static final int ELEMENT_NOTYPE = 0;
-	public static final int ELEMENT_CLASS = 1;
-	public static final int ELEMENT_PROPERTY = 2;
-	public static final int ELEMENT_METHOD = 3;
-	*/
-	
 	private Vector<ClassDrawing> classes;
 	private Vector<LinkDrawing> links;
 	private Dimension previousMousePos = new Dimension(0, 0);
@@ -363,6 +356,19 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
+	/**
+	 * Add an UML element to drawing panel
+	 * Position affect X and Y position for class drawing
+	 * For attribute and method, position while affect it to class under this position
+	 * 		if not class is under, attribute or method is not affected
+	 * 
+	 * @param id
+	 *            identifier of the instance to add
+	 * @param nature
+	 *            UMLNature of the instance
+	 * @param position
+	 *            position where to draw element
+	 */
 	public void doAddElementToDrawingArea(Object id, Object nature, Dimension position) {
 		int i = 0;
 		boolean find = false;
@@ -427,6 +433,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 	}
 	
+	/**
+	 * Add an UML relation to drawing panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to add
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
 	public void doAddRelationToDrawingArea(Object id, Object nature) {
 		ArrayList<ClassDrawing> classesLinked = new ArrayList<ClassDrawing>();
 		ArrayList<Object> classesID = controller.askUMLRelationClasses(id);
@@ -440,11 +454,19 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 		
 		links.add(new LinkDrawing(id, nature, classesLinked));
+		// TODO limit to necessary relation nature
 		links.lastElement().setMultiplicity(controller.askUMLRelationMultiplicity(id));
 		links.lastElement().setText(controller.askUMLRelationText(id));
 	}
 	
-	
+	/**
+	 * Edit an UML relation to drawing panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
 	public void doRemoveElementFromDrawingArea(Object id, Object nature) {
 		int i = 0;
 		boolean find = false;
@@ -599,6 +621,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		}
 		if (find) {
 			i--;
+			// TODO limit to necessary relation nature
 			links.get(i).setMultiplicity(controller.askUMLRelationMultiplicity(id));
 			links.get(i).setText(controller.askUMLRelationText(id));
 		}
@@ -704,17 +727,18 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					i--;
 					if (toolBar.getState() == LinkToolBar.LINK_EDITION) {
 						// Open Link Edition Panel
+						// TODO limit to necessary relation nature
 						LinkEditionPanel linkEdition = new LinkEditionPanel(
 								getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS),
-								links.get(i).getMotherMultiplicity(),
+								links.get(i).getMotherMultiplicity(), true,
 								getElementName(links.get(i).getDaughterClassID(), UMLNature.CLASS),
-								links.get(i).getDaughterMultiplicity(),
-								links.get(i).getText());
+								links.get(i).getDaughterMultiplicity(), true,
+								links.get(i).getText(), true);
 						
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
 								"Edition de relation de " + getElementName(links.get(i).getMotherClassID(), UMLNature.CLASS) + " vers " + getElementName(links.get(i).getDaughterClassID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
-							this.askEditRelation(links.get(i).getInstanceID(), linkEdition.getMotherMultiplicity(), linkEdition.getDaughterMultiplicity(), linkEdition.getText());
+							this.askEditRelation(links.get(i).getInstanceID(), linkEdition.getFirstClassMultiplicity(), linkEdition.getSecondClassMultiplicity(), linkEdition.getText());
 						}
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
@@ -741,18 +765,19 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					} else {
 						
 						// Link Edition Panel
+						// TODO limit to necessary relation nature
 						LinkEditionPanel linkEdition = new LinkEditionPanel(
 								getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS),
-								"",
+								"", true,
 								getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS),
-								"", "");
+								"", true, "", true);
 						
 						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
 								"Nouvelle relation de " + getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS)
 								+ " vers " + getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
 						if (result == JOptionPane.OK_OPTION) {
 							this.askCreateRelation(toolBar.getState(), classes.get(previousClickedClass).getInstanceID(), classes.get(i).getInstanceID(),
-									linkEdition.getMotherMultiplicity(), linkEdition.getDaughterMultiplicity(), linkEdition.getText());
+									linkEdition.getFirstClassMultiplicity(), linkEdition.getSecondClassMultiplicity(), linkEdition.getText());
 						}
 						
 						previousClickedClass = NO_CLICKED_CLASS;

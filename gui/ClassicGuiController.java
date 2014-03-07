@@ -978,7 +978,7 @@ public class ClassicGuiController implements GuiController {
 	 * Add an UML relation to drawing panel
 	 * 
 	 * @param id
-	 *            identifier of the instance to edit
+	 *            identifier of the instance to add
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
