@@ -1,10 +1,10 @@
 <exercise name="banque" preview="exercise de la banque simplifie">
-	<part name="compte" scoreText="">
-		<text body = "Un "/> <kw id='1' word="compte" score=""/>
-		<text body = " simple est caractérisé par un "/> <kw id='2' word = "solde" score=""/>
-		<text body = " en euros1"/><kw id ='3' word= "creditable." score=""/>
+	<part name="compte" scoreText="30" scoreNature="" scoreGraph="">
+		<text body = "Un "/> <kw id='1' word="compte" score="10"/>
+		<text body = " simple est caractérisé par un "/> <kw id='2' word = "solde" score="10"/>
+		<text body = " en euros1"/><kw id ='3' word= "creditable." score="10"/>
 		
-		<UML scoreNature="" scoreGraph="">
+		<UML>
 			<uml-class id='1' name = "account"/>
 			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name = "solde"/>
 			<uml-method id='3' visibility ="public" motherId='1' type ="void" name="credit">

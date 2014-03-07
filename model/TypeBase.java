@@ -50,7 +50,7 @@ public enum TypeBase implements Type {
 	}
 	
 	public boolean compareTo(Type type) {
-		return (this.getName().equalsIgnoreCase(type.getName()) || this.getName().equalsIgnoreCase("any") || type.getName().equalsIgnoreCase("any"));
+		return (this.getName().equalsIgnoreCase(type.getName()) || this.getName().equalsIgnoreCase("any"));
 	}
 
 	public boolean isValide() {

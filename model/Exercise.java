@@ -20,6 +20,10 @@ public class Exercise {
 	private ArrayList<Part> parts;
 	private int currentPart;
 
+	private int scoreText;
+	private int scoreNature;
+	private int scoreGraphe;
+	private int score;
 
 	private int auxNextPart;
 	private int nbParts;
@@ -36,6 +40,8 @@ public class Exercise {
 
 		this.parts = new ArrayList<Part>();
 		this.currentPart = 0;
+		
+		this.score =0;
 
 		this.auxNextPart = -1;
 
@@ -187,7 +193,9 @@ public class Exercise {
 		for(int i=0;i<tab.length;i++) {
 			tab[i]=text.get(i).getWord();
 		}
+		this.score = this.parts.get(0).getScoreMax();
 		this.modelController.doAddText(false, tab);
+		this.modelController.doSetScore(this.parts.get(0).getScoreMax()+ "");
 	}
 	
 	public void addPart(Part p) {

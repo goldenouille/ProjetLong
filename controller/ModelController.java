@@ -100,7 +100,7 @@ public class ModelController {
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
 		Attribute a = exo.addAttribute(firstWord, lastWord, userText, name, type, visibility);
-		cgc.doAddElementToPool(a, UMLNature.Attribute);
+		cgc.doAddElementToPool(a, UMLNature.ATTRIBUTE);
 		System.out.println("askCreateAttribute " + name + " " + type + " " + visibility);
 	}
 
