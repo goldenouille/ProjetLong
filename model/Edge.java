@@ -8,6 +8,7 @@ public class Edge implements GraphItem{
 	protected int id;
 	protected String frenchName;
 	protected UMLNature nature;
+	protected String label;
 	
 	public Edge() {
 		this.id = -1;
@@ -31,6 +32,10 @@ public class Edge implements GraphItem{
 	
 	public ArrayList<Vertex> getVertex() {
 		return new ArrayList<Vertex>();
+	}
+
+	public ArrayList<String> getMultiplicity() {
+		return new ArrayList<String>();
 	}
 
 }

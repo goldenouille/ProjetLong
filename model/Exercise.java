@@ -24,7 +24,7 @@ public class Exercise {
 	private int auxNextPart;
 	private int nbParts;
 
-	private int idUserText;
+	private int idUserItem;
 
 	public Exercise() {
 		
@@ -41,7 +41,7 @@ public class Exercise {
 
 		this.nbParts = 0;
 
-		this.idUserText = 0;
+		this.idUserItem = 0;
 	}
 	
 	public Exercise(ModelController modelController) {
@@ -175,8 +175,8 @@ public class Exercise {
 		String text[] = string.split(" ");
 		int l = text.length;
 		for (int i = 0; i<l; i++) {
-			this.idUserText = this.idUserText - 1;
-			this.userText.add(new Word(text[i], this.idUserText));
+			this.idUserItem = this.idUserItem - 1;
+			this.userText.add(new Word(text[i], this.idUserItem));
 		}
 	}
 
@@ -202,7 +202,7 @@ public class Exercise {
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addClass(int first, int last, boolean userT, String name) {
+	public Vertex addClass(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -221,10 +221,11 @@ public class Exercise {
 			w.setUserGraphItem(vertexClass);	
 
 		this.userGraph.addVertex(vertexClass);
+		return vertexClass;
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addAbstractClass(int first, int last, boolean userT, String name) {
+	public Vertex addAbstractClass(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -243,10 +244,11 @@ public class Exercise {
 			w.setUserGraphItem(vertexAbstract);	
 	
 		this.userGraph.addVertex(vertexAbstract);
+		return VertexAbstract;
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	public void addInterface(int first, int last, boolean userT, String name) {
+	public Vertex addInterface(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
@@ -264,11 +266,12 @@ public class Exercise {
 			w.setUserGraphItem(vertex);
 			
 		this.userGraph.addVertex(vertex);
+		return vertex;
 	}
 
 	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
 	// ne fonctionne qu'avec des types de bases
-	public void addAttribute(int first, int last, boolean userT, String name, 
+	public Attribute addAttribute(int first, int last, boolean userT, String name, 
 														String type, String visibility) {
 		ArrayList<Word> t;
 		if (userT) {
@@ -286,12 +289,13 @@ public class Exercise {
 			w.setUserGraphItem(att);
 
 		this.userGraph.addAttribute(att);
+		return att;
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
 	 
-	public void addMethod(int first, int last, boolean userT, String name, 
+	public Method addMethod(int first, int last, boolean userT, String name, 
 											ArrayList<String> paramTypes, String returnType, String visibility) {
 		ArrayList<Word> t;
 		ArrayList<Type> params = new ArrayList<Type>();
@@ -315,6 +319,7 @@ public class Exercise {
 			w.setUserGraphItem(met);		
 
 		this.userGraph.addMethod(met);
+		return met;
 	}
 
 	// pas encore implementee
@@ -436,6 +441,22 @@ public class Exercise {
 
 	public void setModelController(ModelController modelController) {
 		this.modelController=modelController;
+	}
+
+	public void askCreateRelation(UMLNature nature, ArrayList<Vertex> v, ArrayList<String> multiplicity, String label) {
+		Edge newE = Edge.createEdge(nature,v,multiplicity,label);
+	}
+
+	public void askDeleteRelation(Edge id) {
+		userGraph.removeEdge(id);
+	}
+
+	public ArrayList<Vertex> askUMLRelationClasses(Edge id) {
+		return id.getVertex();
+	}
+
+	public ArrayList<String> askUMLRelationMultiplicity(Edge id) {
+		return id.getMultiplicity();
 	}
 
 }
