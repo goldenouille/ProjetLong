@@ -899,8 +899,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
-
-	// TODO A REVOIR ?
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
@@ -919,8 +917,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
-
-	// TODO A REVOIR ?
 	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
 		core.askEditRelation(id, multiplicity, text);
 
