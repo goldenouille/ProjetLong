@@ -105,6 +105,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doShowUMLInstanceInRed(Object id) {
 		poolPanel.addColoredElement(id);
+		poolPanel.refresh();
 	}
 	
 	/**
@@ -115,6 +116,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doResetUMLInstanceColor(Object id) {
 		poolPanel.removeColoredElement(id);
+		poolPanel.refresh();
 	}
 	
 	/**
@@ -122,6 +124,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doResetUMLInstanceColor() {
 		poolPanel.removeAllColoredElement();
+		poolPanel.refresh();
 	}
 	
 	/**

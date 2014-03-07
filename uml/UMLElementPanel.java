@@ -139,7 +139,7 @@ public class UMLElementPanel extends JPanel {
 					"Editer les proprietes");
 			if (coloredID.contains(classesID.get(i))) {
 				// TODO
-				System.out.println("class" + i + "is paint in red");
+				System.out.println("class " + i + " is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			classesOnePanel.add(label);
@@ -180,7 +180,7 @@ public class UMLElementPanel extends JPanel {
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
 			if (coloredID.contains(propertiesID.get(i))) {
 				// TODO
-				System.out.println("attribute" + i + "is paint in red");
+				System.out.println("attribute " + i + " is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			propertiesOnePanel.add(label);
@@ -219,7 +219,7 @@ public class UMLElementPanel extends JPanel {
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
 			if (coloredID.contains(methodsID.get(i))) {
 				// TODO
-				System.out.println("method" + i + "is paint in red");
+				System.out.println("method " + i + " is paint in red");
 				label.setForeground(UMLDrawingPanel.COLOR_ALT);
 			}
 			methodsOnePanel.add(label);
@@ -281,7 +281,7 @@ public class UMLElementPanel extends JPanel {
 	public boolean removeClass(Object id) {
 		classes.remove(classesID.indexOf(id));
 		classesNature.remove(classesID.indexOf(id));
-		return classesID.remove((Integer) id);
+		return classesID.remove(id);
 	}
 
 	/**
@@ -336,7 +336,7 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public boolean removeProperty(Object id) {
 		properties.remove(propertiesID.indexOf(id));
-		return propertiesID.remove((Integer) id);
+		return propertiesID.remove(id);
 	}
 
 	/**
@@ -402,7 +402,7 @@ public class UMLElementPanel extends JPanel {
 	 */
 	public boolean removeMethod(Object id) {
 		methods.remove(methodsID.indexOf(id));
-		return methodsID.remove((Integer) id);
+		return methodsID.remove(id);
 	}
 
 	/**
