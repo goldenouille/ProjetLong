@@ -15,6 +15,9 @@ public class LinkKeyWordToUMLStep extends Step {
 		ArrayList<Word> text = exo.getText();
 		ArrayList<Word> userText = exo.getUserText();
 		ModelController mc = exo.getModelController();
+		int missingAssociation = 0;
+
+		mc.doResetUMLInstanceColor();
 
 		System.out.println("on commence la correction de l'association des mots-cle");
 		for (int i = 0; i < text.size(); i++) {
@@ -22,10 +25,29 @@ public class LinkKeyWordToUMLStep extends Step {
 				Word word = text.get(i);
 				if (word.getUmlNature()==word.getUserUmlNature()) {
 					System.out.println("Le type de " + word.getWord() + " est correct !");
-				} else {
-					System.out.println("Le type de " + word.getWord() + " est incorrect !");
+				} else if (word.getUserUmlNature() != null) {
+						mc.doShowUMLInstanceInRed(word.getUserGraphItem);
+						System.out.println("Le type de " + word.getWord() + " est incorrect !");
+					} else {
+						missingAssociation ++;
+					}
 				}
 			}
 		}
 	}		
 }
+
+
+	public void doShowUMLInstanceInRed(Object id) {
+		umlDrawingPanel.doShowUMLInstanceInRed(id);
+	}
+	
+	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		umlDrawingPanel.doResetUMLInstanceColor(id);
+	}

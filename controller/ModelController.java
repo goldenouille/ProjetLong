@@ -580,6 +580,33 @@ public class ModelController {
 		}
 	}
 
+		/**
+	 * Change color of UML instance to red in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 */
+	public void doShowUMLInstanceInRed(Object id) {
+		cgc.doShowUMLInstanceInRed(id);
+	}
+	
+	/**
+	 * Reset color of UML instance to default in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to reset
+	 */
+	public void doResetUMLInstanceColor(Object id) {
+		cgc.doResetUMLInstanceColor(id);
+	}
+
+	/**
+	 * Reset color of UML instances to black in element pool
+	 */
+	public void doResetUMLInstanceColor() {
+		cgc.doResetUMLInstanceColor();
+	}
+
 }
 
 

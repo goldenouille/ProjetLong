@@ -32,14 +32,12 @@ public class LinkEditionPanel extends JPanel {
 	 *            set display second multiplicity field
 	 * @param text
 	 *            previous link text
-	 * @param displayTextField
-	 *            set display text field
 	 */
 	public LinkEditionPanel(String firstClass,
 			String firstMultiplicity, boolean displayFirstMultiplicityField,
 			String secondClass,
 			String secondMultiplicity, boolean displaySecondMultiplicityField,
-			String text, boolean displayTextField){
+			String text){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -62,12 +60,11 @@ public class LinkEditionPanel extends JPanel {
 			this.add(daughterPanel);
 		}
 
-		if (displayTextField) {
-			JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-			textPanel.add(new JLabel("Texte : "));
-			textPanel.add(textField);
-			this.add(textPanel);
-		}
+		
+		JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		textPanel.add(new JLabel("Texte : "));
+		textPanel.add(textField);
+		this.add(textPanel);
 	}
 
 	/**
