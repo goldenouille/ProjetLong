@@ -74,4 +74,9 @@ public class Attribute implements GraphItem{
 	public Vertex getMotherClass() {
 		return this.motherClass;
 	}
+
+	@Override
+	public UMLNature getUmlNature() {
+		return UMLNature.ATTRIBUTE;
+	}
 }

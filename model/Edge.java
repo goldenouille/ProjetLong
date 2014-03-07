@@ -41,6 +41,7 @@ public class Edge implements GraphItem{
 		return new ArrayList<String>();
 	}
 
+
 	public static Edge createEdge(UMLNature nature,ArrayList<Vertex> v,ArrayList<String> multiplicity,String name, int id) {
 		if (nature.equals(UMLNature.AGGREGATION)) {
 			return new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name);
@@ -65,6 +66,11 @@ public class Edge implements GraphItem{
 		if (nature.equals(UMLNature.REALIZATION)) {
 			return new Realization(v.get(0), v.get(1), id, name);
 		}
+
+	@Override
+	public UMLNature getUmlNature() {
+		return this.nature;
+
 	}
 
 }

@@ -63,5 +63,10 @@ public class Score {
 	
 	public void removeScoreText(int n) {
 		this.setCurrScoreText(this.getCurrScoreText() -n );
+		System.out.println("- " + n + " points.");
+	}
+	
+	public void removeScoreNature(int n) {
+		this.setCurrScoreNature(this.getCurrScoreNature() -n );
 	}
 }

@@ -157,5 +157,13 @@ public class Part {
 	public void setScore(Score score) {
 		this.score= score;
 	}
+	
+	public void setScoreNature(int s) {
+		this.score.setScoreNature(s);
+	}
+	
+	public void setScoreGraph(int s) {
+		this.score.setScoreGraphe(s);
+	}
 
 }

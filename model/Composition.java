@@ -10,4 +10,8 @@ public class Composition extends BinaryAssociation {
 	public String getUml() {
 		return "composition";
 	}
+	
+	public UMLNature getUmlNature() {
+		return UMLNature.COMPOSITION;
+	}
 }

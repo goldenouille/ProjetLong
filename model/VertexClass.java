@@ -30,4 +30,7 @@ public class VertexClass extends Vertex {
 		return "class";
 	}
 
+	public UMLNature getUmlNature() {
+		return UMLNature.CLASS;
+	}
 }

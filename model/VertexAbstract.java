@@ -18,4 +18,8 @@ public class VertexAbstract extends VertexClass {
 	public String getUml() {
 		return "abstract";
 	}
+	
+	public UMLNature getUmlNature() {
+		return UMLNature.ABSTRACT_CLASS;
+	}
 }

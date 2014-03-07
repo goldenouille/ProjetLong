@@ -899,8 +899,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
-
-	// TODO A REVOIR ?
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
@@ -919,8 +917,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param text
 	 *            text of relation
 	 */
-
-	// TODO A REVOIR ?
 	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
 		core.askEditRelation(id, multiplicity, text);
 
@@ -1049,13 +1045,23 @@ public class ClassicGuiController implements GuiController {
 	}
 	
 	/**
-	 * Change color of UML instance to red in element pool
+	 * Change color of UML instance to validate color in element pool
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 */
-	public void doShowUMLInstanceInRed(Object id) {
-		umlDrawingPanel.doShowUMLInstanceInRed(id);
+	public void doShowUMLInstanceInValidateColor(Object id) {
+		umlDrawingPanel.doShowUMLInstanceInRightColor(id);
+	}
+	
+	/**
+	 * Change color of UML instance to error color in element pool
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 */
+	public void doShowUMLInstanceInErrorColor(Object id) {
+		umlDrawingPanel.doShowUMLInstanceInWrongColor(id);
 	}
 	
 	/**
@@ -1076,15 +1082,15 @@ public class ClassicGuiController implements GuiController {
 	}
 
 	/**
-	 * Change color of UML drawing to red in drawing area
+	 * Change color of UML drawing to error color in drawing area
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
-	public void doShowUMLDrawingInRed(Object id, Object nature) {
-		umlDrawingPanel.doShowUMLDrawingInRed(id, nature);
+	public void doShowUMLDrawingInErrorColor(Object id, Object nature) {
+		umlDrawingPanel.doShowUMLDrawingInErrorColor(id, nature);
 	}
 	
 	/**
