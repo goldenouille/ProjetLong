@@ -294,7 +294,7 @@ public class ModelController {
 
 	public void askEditClass(Object id, String name) {
 		if (id instanceof VertexClass) {
-			((VertexClass) id).setName(name);
+			exo.editVertex((VertexClass) id,name);
 		}	
 		System.out.println("askEditClass " + name);
 	}
@@ -302,7 +302,7 @@ public class ModelController {
 
 	public void askEditAbstractClass(Object id, String name) {
 		if (id instanceof VertexAbstract) {
-			((VertexAbstract) id).setName(name);
+			exo.editVertex((VertexAbstract) id,name);
 		}	
 
 		System.out.println("askEditAbstractClass " + name);
@@ -311,7 +311,7 @@ public class ModelController {
 
 	public void askEditInterface(Object id, String name) {
 		if (id instanceof Vertex) {
-			((Vertex) id).setName(name);
+			exo.editVertex((Vertex) id,name);
 		}	
 
 		System.out.println("askEditInterface " + name);
@@ -320,9 +320,7 @@ public class ModelController {
 
 	public void askEditAttribute(Object id, String name, String type, String visibility) {
 		if (id instanceof Attribute) {
-			((Attribute) id).setName(name);
-			((Attribute) id).setType(TypeBase.getByName(type));
-			((Attribute) id).setVisibility(Visibility.getByName(visibility));
+			exo.editAttribut((Attribute) id, name, TypeBase.getByName(type), Visibility.getByName(visibility));
 		}	
 
 		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
@@ -331,9 +329,11 @@ public class ModelController {
 
 	public void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		if (id instanceof Method) {
-			((Method) id).setName(name);
-			((Method) id).setReturnType(TypeBase.getByName(returnType));
-			((Method) id).setVisibility(Visibility.getByName(visibility));
+			ArrayList<Type> lp = new ArrayList<Type>();
+			for (String s : paramTypes) {
+				lp.add(TypeBase.getByName(s));
+			}
+			exo.editMethod((Method) id, name, lp, TypeBase.getByName(returnType), Visibility.getByName(visibility));
 		}	
 
 		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
@@ -556,6 +556,11 @@ public class ModelController {
 		
 	}
 
+	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
+		
+		exo.askEditRelation(id, multiplicity, text);
+	}
+
 
 	public ArrayList<Object> askUMLRelationClasses(Object id) {
 		if (id instanceof Edge) {
@@ -572,6 +577,14 @@ public class ModelController {
 		if (id instanceof Edge) {
 			return exo.askUMLRelationMultiplicity((Edge) id);
 		}
+	}
+
+	public String askUMLRelationText(Object id) {
+		if (id instanceof Edge) {
+			return core.askUMLRelationText(id);
+		}
+		
+		return "DefaultText -> ce n'etait pas un edge";
 	}
 
 	public void askReverseRelation(Object id) {
@@ -605,6 +618,29 @@ public class ModelController {
 	 */
 	public void doResetUMLInstanceColor() {
 		cgc.doResetUMLInstanceColor();
+	}
+
+	public void askCreateClassInPanel(String name) {
+		exo.askCreateClassInPanel(name);
+	}
+
+	public void askCreateAbstractClassInPanel(String name) {
+		exo.askCreateAbstractClassInPanel(name);
+	}
+
+
+	public void askCreateInterfaceInPanel(String name) {
+		exo.askCreateInterfaceInPanel(name);
+	}
+
+
+	public void askCreateAttributeInPanel(String name, String type, String visibility) {
+		exo.askCreateAttributeInPanel(name, type, visibility);
+	}
+
+
+	public void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+		exo.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
 	}
 
 }

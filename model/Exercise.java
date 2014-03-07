@@ -123,7 +123,7 @@ public class Exercise {
 
 		if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
-    			if (selection[i]>80) {
+    			if (selection[i]>=80) {
     				Word w = getByPosition(i,i,t);
     				
     				w.select();
