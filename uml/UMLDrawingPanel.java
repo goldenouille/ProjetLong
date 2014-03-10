@@ -249,6 +249,22 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
+	 * Get number of UML element drawn and linked
+	 * 
+	 * @return number
+	 *            number of display element
+	 */
+	public int getUmlDrawingElementNumber() {
+		int result = classes.size() + links.size();
+		
+		for (int j = 0 ; j < classes.size() ; j++) {
+			result += classes.get(j).getPropertyNumber() + classes.get(j).getMethodNumber();
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * Get element name from id
 	 * 
 	 * @param id
@@ -657,6 +673,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	/**
 	 * Do edition of a relation
 	 * Ask core about new values for multiplicity and text
+	 * Use in this.askEditRelation
 	 * 
 	 * @param id
 	 *            relation core id

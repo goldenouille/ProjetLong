@@ -996,6 +996,16 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 	
 	/**
+	 * Get number of missing UML drawing to display
+	 * If 0, it is not display
+	 * 
+	 * @return number of drawing element
+	 */
+	public int doGetUmlDrawingElementNumber() {
+		return umlDrawingPanel.getUmlDrawingElementNumber();
+	}
+	
+	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
 	 * 
