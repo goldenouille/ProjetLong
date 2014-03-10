@@ -826,31 +826,33 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					if (previousClickedClass == NO_CLICKED_CLASS) {
 						previousClickedClass = i;
 					} else {
-						// Link Edition Panel
-						
-						// limit to necessary relation nature
-						boolean displayMultiplicityField = false;
-						if (toolBar.getState() == LinkToolBar.BINARY_ASSOCIATION
-								|| toolBar.getState() == LinkToolBar.AGGREGATION
-								|| toolBar.getState() == LinkToolBar.COMPOSITION) {
-							displayMultiplicityField = true;
+						if (previousClickedClass != i) { // TODO link drawing from one class to the same one is not implemented
+							// Link Edition Panel
+							
+							// limit to necessary relation nature
+							boolean displayMultiplicityField = false;
+							if (toolBar.getState() == LinkToolBar.BINARY_ASSOCIATION
+									|| toolBar.getState() == LinkToolBar.AGGREGATION
+									|| toolBar.getState() == LinkToolBar.COMPOSITION) {
+								displayMultiplicityField = true;
+							}
+							
+							LinkEditionPanel linkEdition = new LinkEditionPanel(
+									getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS),
+									"", displayMultiplicityField,
+									getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS),
+									"", displayMultiplicityField, "");
+							
+							int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+									"Nouvelle relation de " + getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS)
+									+ " vers " + getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
+							if (result == JOptionPane.OK_OPTION) {
+								this.askCreateRelation(toolBar.getState(), classes.get(previousClickedClass).getInstanceID(), classes.get(i).getInstanceID(),
+										linkEdition.getFirstClassMultiplicity(), linkEdition.getSecondClassMultiplicity(), linkEdition.getText());
+							}
+							
+							previousClickedClass = NO_CLICKED_CLASS;
 						}
-						
-						LinkEditionPanel linkEdition = new LinkEditionPanel(
-								getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS),
-								"", displayMultiplicityField,
-								getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS),
-								"", displayMultiplicityField, "");
-						
-						int result = JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-								"Nouvelle relation de " + getElementName(classes.get(previousClickedClass).getInstanceID(), UMLNature.CLASS)
-								+ " vers " + getElementName(classes.get(i).getInstanceID(), UMLNature.CLASS), JOptionPane.OK_CANCEL_OPTION);
-						if (result == JOptionPane.OK_OPTION) {
-							this.askCreateRelation(toolBar.getState(), classes.get(previousClickedClass).getInstanceID(), classes.get(i).getInstanceID(),
-									linkEdition.getFirstClassMultiplicity(), linkEdition.getSecondClassMultiplicity(), linkEdition.getText());
-						}
-						
-						previousClickedClass = NO_CLICKED_CLASS;
 					}
 				}
 			}

@@ -6,6 +6,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+/* import for regex input validation
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
+*/
 
 
 public class LinkEditionPanel extends JPanel {
@@ -40,11 +46,28 @@ public class LinkEditionPanel extends JPanel {
 			String text){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		
 
 		this.firstMultiplicityField = new JTextField(firstMultiplicity, 30);
 		this.secondMultiplicityField = new JTextField(secondMultiplicity, 30);
 		this.textField = new JTextField(text, 30);
+		
+		/* TODO check for input
+		((AbstractDocument) firstMultiplicityField.getDocument()).setDocumentFilter(new DocumentFilter() {
+			@Override
+			public void insertString(FilterBypass fb, int offset, String string,
+					AttributeSet attr) throws BadLocationException {
+				//if (string.matches("[0-9]*"))//"(\\* | ([0-9]+ \\. \\. ([0-9]+ | \\*)))?"))
+					super.insertString(fb, offset, string, attr);
+			}
+
+			@Override
+			public void replace(FilterBypass fb, int offset, int length, String text,
+					AttributeSet attrs) throws BadLocationException {
+				if (text.matches("[0-9]+\\.\\."))//"(\\* | ([0-9]+ \\. \\. ([0-9]+ | \\*)))?"))
+					super.insertString(fb, offset, text, attrs);
+			}
+		});
+		*/
 
 		if (displayFirstMultiplicityField) {
 			JPanel firstClassPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
