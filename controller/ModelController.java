@@ -692,6 +692,9 @@ public class ModelController {
 		cgc.doReverseRelation(id);
 	}
 
+	public void doEditElementFromPool(Object id, Object nature) {
+		cgc.doEditElementFromPool(id, nature);
+	}
 
 }
 
