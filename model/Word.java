@@ -47,6 +47,10 @@ public class Word {
 		this.userUmlNature = null;
 	}
 
+	public void validate() {
+		this.userGraphItem.validate();
+	}
+
 	public void setFirstWord(int i) {
 		this.firstWord = i;
 	}

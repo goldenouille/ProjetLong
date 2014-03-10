@@ -716,16 +716,24 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		g.setColor(COLOR_DEFAULT);
 		Graphics2D g2d = (Graphics2D)g;
 		
+		// Draw classes
 		for (int i = 0; i < classes.size() ; i++) {
 			classes.get(i).draw(g2d);
 		}
 		
+		// Draw relations
 		for (int i = 0; i < links.size() ; i++) {
 			links.get(i).draw(g2d);
 		}
 		
+		// Draw a line in case of relation class selection
 		if (toolBar.isInLinkRelationState() && previousClickedClass != NO_CLICKED_CLASS) {
 			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
+		}
+		
+		// Draw UML element name on Add selection
+		if (poolPanel.getSelectedElementAction() == UMLElementPanel.ACTION_ADD) {
+			g2d.drawString(getElementName(poolPanel.getSelectedElementID(), poolPanel.getSelectedElementType()), previousMousePos.width, previousMousePos.height);
 		}
 		
 		//System.out.println("Nombre d'element dessinés : " + getUmlDrawingElementNumber());
@@ -791,6 +799,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		previousMousePos.width	= e.getX();
 		previousMousePos.height	= e.getY();
 		currentDraggedElement = NO_DRAGGED_ELEMENT;
+		
 		this.repaint();
 	}
 

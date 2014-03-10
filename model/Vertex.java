@@ -9,12 +9,14 @@ public class Vertex implements Type, GraphItem {
 	protected ArrayList<Method> methods;
 	protected ArrayList<Edge> edges;
 	protected String frenchName;
+	protected boolean isDeletable;
 	
 	public Vertex() {
 		this.methods = new ArrayList<Method>();
 		this.edges = new ArrayList<Edge>();
 		this.frenchName = "interface";
 		this.id = -1;
+		this.isDeletable = true;
 	}
 
 	public Vertex(String name, int id) {
@@ -23,6 +25,15 @@ public class Vertex implements Type, GraphItem {
 		this.methods = new ArrayList<Method>();
 		this.edges = new ArrayList<Edge>();
 		this.frenchName = "interface";
+		this.isDeletable = true;
+	}
+
+	public void validate() {
+		this.isDeletable = false;
+	}
+
+	public boolean isDeletable() {
+		return this.isDeletable;
 	}
 	
 	public String getUml() {

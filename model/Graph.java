@@ -133,7 +133,10 @@ public class Graph {
 	 */
 	public void removeAttribute(Attribute att) {
 		this.attributes.remove(att);
-		((VertexClass) att.getMotherClass()).getAttributes().remove(att);
+		VertexClass v = ((VertexClass) att.getMotherClass());
+		if (v != null) {
+			v.getAttributes().remove(att);
+		}
 	}
 
 	/**
@@ -144,7 +147,10 @@ public class Graph {
 	 */
 	public void removeMethod(Method met) {
 		this.methods.remove(met);
-		met.getMotherClass().getMethods().remove(met);
+		Vertex v = met.getMotherClass();
+		if (v != null) {
+			v.getMethods().remove(met);
+		}
 	}
 	
 	public void removeEdge(Edge id) {
