@@ -67,7 +67,7 @@ public class ModelController {
 	}
 
 	public void askAddText(String text, String comment) {
-		System.out.println("askAddText " + text + "\n" + comment);
+		//System.out.println("askAddText " + text + "\n" + comment);
 		exo.addText(text);
 	}
 	
