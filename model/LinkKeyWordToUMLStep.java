@@ -41,6 +41,12 @@ public class LinkKeyWordToUMLStep extends Step {
 				}
 			}
 		}
+	if (missingAssociation == 0) {
+		mc.doPrintMessage("Succes", "association juste");
+	}
+	else {
+		mc.doPrintMessage("Echec", "Il manque " + missingAssociation + " mots-cle.");
+	}
 	mc.doShowMissingAssociationNumber(missingAssociation);
 	mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 	}

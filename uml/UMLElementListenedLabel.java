@@ -33,7 +33,19 @@ public class UMLElementListenedLabel extends JLabel {
 	 *            text show as tooltip
 	 */
 	public UMLElementListenedLabel(UMLElementPanel mainpanel, int action, UMLNature nature, Object id, String text, String toolTipText) {
-		super(text);
+		super();
+		
+		String textLabel = "";
+		if (nature.equals(UMLNature.CLASS)) {
+			textLabel += "C ";
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			textLabel += "CA ";
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			textLabel += "I ";
+		}
+		textLabel += text;
+		this.setText(textLabel);
+		
 		this.mainpanel = mainpanel;
 		this.action = action;
 		this.nature = nature;

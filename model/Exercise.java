@@ -203,7 +203,7 @@ public class Exercise {
 			tab[i]=text.get(i).getWord();
 		}
 		this.score = this.parts.get(0).getScore();
-		this.modelController.doAddText(false, tab);
+		this.modelController.doReplaceText(false, tab);
 		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
 	}
 	
@@ -350,7 +350,7 @@ public class Exercise {
 			tab[i]=text.get(i).getWord();
 		}
 		this.score = part.getScore();
-		this.modelController.doAddText(false, tab);
+		this.modelController.doReplaceText(false, tab);
 		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
 		System.out.println("askSelectPart from Exercise " + p.toString());
 	}
