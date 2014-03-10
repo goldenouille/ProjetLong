@@ -349,7 +349,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Do edition request of an UML instance
+	 * Do edition of an UML instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -357,6 +357,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doEditElementFromPool(Object id, Object nature) {
+		// TODO let core in charge of this
 		if (nature.equals(UMLNature.CLASS)) {
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
@@ -508,6 +509,102 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
+	 * Link the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void doLinkAttributeToClass(Object attributeID, Object classID) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < classes.size() && !find) {
+			if (classes.get(i).getInstanceID().equals(classID)) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			classes.get(i).addProperty(attributeID);
+		}
+	}
+	
+	/**
+	 * Unlink the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void doUnLinkAttributeToClass(Object attributeID, Object classID) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < classes.size() && !find) {
+			if (classes.get(i).getInstanceID().equals(classID)) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			classes.get(i).removeProperty(attributeID);
+		}
+	}
+	
+	/**
+	 * Link the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void doLinkMethodToClass(Object methodID, Object classID) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < classes.size() && !find) {
+			if (classes.get(i).getInstanceID().equals(classID)) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			classes.get(i).addMethod(methodID);
+		}
+	}
+	
+	/**
+	 * Unlink the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	public void doUnLinkMethodToClass(Object methodID, Object classID) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < classes.size() && !find) {
+			if (classes.get(i).getInstanceID().equals(classID)) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			classes.get(i).removeMethod(methodID);
+		}
+	}
+	
+	/**
 	 * Add an UML relation to drawing panel
 	 * Ask core about values for classes linked, multiplicity and text
 	 * 
@@ -569,6 +666,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askUnLinkAllElementToClass(id);
+				// TODO let core incharge of this
 				classes.remove(i);
 			}
 			
@@ -582,6 +680,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askUnLinkAttributeToClass(id, classes.get(i).getInstanceID());
+				// TODO let core incharge of this
 				classes.get(i).removeProperty(id);
 			}
 			
