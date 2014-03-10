@@ -24,15 +24,6 @@ import model.UMLNature;
 
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
-	/* Visibility
-	 * "+"       Public 
-	 * "-"       Private 
-	 * "#"       Protected 
-	 * "/"       Derived (can be combined with one of the others)
-	 * "_"       Static
-	 * "~"       Package
-	 */
-	
 	// Color constant
 	public static Color COLOR_DEFAULT = Color.BLACK;
 	public static Color COLOR_VALIDATE = Color.GREEN;
