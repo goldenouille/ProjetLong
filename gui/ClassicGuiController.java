@@ -1380,7 +1380,7 @@ public class ClassicGuiController implements GuiController {
 	 * @return an object that the core can use to identify a step, null if no
 	 *         more steps in current part
 	 */
-	Object askNextStep() {
+	public Object askNextStep() {
 		return core.askNextStep();
 	}
 
