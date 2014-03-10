@@ -36,7 +36,7 @@ public class LaunchController extends JFrame {
 	private Exercise choosenExercise;
 
 	public LaunchController(ExerciseBrowser browser) {
-		super("Uml Serious Game");
+		super("L.U.N.E : an Uml Serious Game");
 
 		this.browser = browser;
 		this.setSize(1280, 720);

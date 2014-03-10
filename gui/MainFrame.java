@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame(ClassicGuiController controller, AbstractPanel navigationPanel, AbstractPanel scorePanel, AbstractPanel timerPanel,
 			AbstractPanel textSectionPanel, JPanel umlPanel) throws HeadlessException {
-		super("Uml Serious Game");
+		super("L.U.N.E : an Uml Serious Game");
 
 		this.setSize(1280, 720);
 		this.setIconImage(lune.getImage());
