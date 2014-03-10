@@ -713,7 +713,7 @@ public class ModelController {
 	 */
 	// TODO
 	public void doLinkAttributeToClass(Object attributeID, Object classID) {
-		umlDrawingPanel.doLinkAttributeToClass(attributeID, classID);
+		cgc.doLinkAttributeToClass(attributeID, classID);
 	}
 
 	/**
@@ -726,7 +726,7 @@ public class ModelController {
 	 */
 	// TODO
 	public void doUnLinkAttributeToClass(Object attributeID, Object classID) {
-		umlDrawingPanel.doUnLinkAttributeToClass(attributeID, classID);
+		cgc.doUnLinkAttributeToClass(attributeID, classID);
 	}
 
 	/**
@@ -739,7 +739,7 @@ public class ModelController {
 	 */
 	// TODO
 	public void doLinkMethodToClass(Object methodID, Object classID) {
-		umlDrawingPanel.doLinkMethodToClass(methodID, classID);
+		cgc.doLinkMethodToClass(methodID, classID);
 	}
 
 	/**
@@ -752,7 +752,7 @@ public class ModelController {
 	 */
 	// TODO
 	public void doUnLinkMethodToClass(Object methodID, Object classID) {
-		umlDrawingPanel.doUnLinkMethodToClass(methodID, classID);
+		cgc.doUnLinkMethodToClass(methodID, classID);
 	}
 
 }
