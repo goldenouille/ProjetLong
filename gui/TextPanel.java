@@ -12,6 +12,7 @@ import java.util.Arrays;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Highlighter.Highlight;
 import javax.swing.text.JTextComponent.AccessibleJTextComponent;
@@ -37,6 +38,7 @@ public class TextPanel extends AbstractPanel {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setMargin(new Insets(10, 10, 10, 10));
+		textPane.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
 
