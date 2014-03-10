@@ -139,7 +139,7 @@ public class UMLElementPanel extends JPanel {
 			
 			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
 					"Editer les proprietes");
-			if (wrongColoredID.contains(classesID.get(i))) {
+			if (rightColoredID.contains(classesID.get(i))) {
 				// TODO
 				System.out.println("class " + i + " is paint in right color");
 				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
@@ -184,7 +184,7 @@ public class UMLElementPanel extends JPanel {
 			propertiesOnePanel.add(remAtt);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
-			if (wrongColoredID.contains(propertiesID.get(i))) {
+			if (rightColoredID.contains(propertiesID.get(i))) {
 				// TODO
 				System.out.println("attribute " + i + " is paint in right color");
 				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
@@ -227,7 +227,7 @@ public class UMLElementPanel extends JPanel {
 			methodsOnePanel.add(remMethod);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
-			if (wrongColoredID.contains(methodsID.get(i))) {
+			if (rightColoredID.contains(methodsID.get(i))) {
 				// TODO
 				System.out.println("method " + i + " is paint in right color");
 				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);

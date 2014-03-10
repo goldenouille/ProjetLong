@@ -90,7 +90,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		this.poolPanel.addClass(1, UMLNature.CLASS, "Class");
 		this.poolPanel.addProperty(2, "myproperty", "int", "+");
 		this.poolPanel.addMethod(3, "mymethod", new ArrayList<String>(), "", "+");
-		//this.doShowUMLInstanceInRed(1);
+		//this.doShowUMLInstanceInRightColor(0);
+		//this.doShowUMLInstanceInWrongColor(1);
 		poolPanel.refresh();
 */		
 		// END TEST
