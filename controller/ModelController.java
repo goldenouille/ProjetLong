@@ -667,6 +667,18 @@ public class ModelController {
 	public void doShowUMLDrawingInErrorColor(Object id, Object nature){
 		cgc.doShowUMLDrawingInErrorColor(id, nature);
 	}
+	
+	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
+		cgc.doSetValidateAssociationButtonEnabled(enabled);
+	}
+	
+	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
+		cgc.doSetValidateDiagramButtonEnabled(enabled);
+	}
+	
+	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
+		cgc.doSetValidateKeywordsButtonEnabled(enabled);
+	}
 
 }
 
