@@ -557,7 +557,7 @@ public class UMLElementPanel extends JPanel {
 			this.resetSelectedElement();
 			break;
 		case ACTION_DELETE:
-			mainPanel.doRemoveElementFromPool(selectedElementID, selectedElementType);
+			mainPanel.askRemoveElementFromPool(selectedElementID, selectedElementType);
 			this.resetSelectedElement();
 			break;
 		default:

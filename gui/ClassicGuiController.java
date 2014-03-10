@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -1075,6 +1076,37 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doAddRelationToDrawingArea(Object id, Object nature) {
 		umlDrawingPanel.doAddRelationToDrawingArea(id, nature);
+	}
+	
+	/**
+	 * Do edition of a relation
+	 * Ask core about new values for multiplicity and text
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
+	public void doEditRelation(Object id) {
+		umlDrawingPanel.doEditRelation(id);
+	}
+	
+	/**
+	 * Delete a relation from drawing panel
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
+	public void doDeleteRelation(Object id) {
+		umlDrawingPanel.doDeleteRelation(id);
+	}
+	
+	/**
+	 * Revert a relation from drawing panel
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
+	public void doRevertRelation(Object id) {
+		umlDrawingPanel.doRevertRelation(id);
 	}
 	
 	/**

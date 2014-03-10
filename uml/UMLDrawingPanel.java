@@ -362,25 +362,42 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * @param nature
 	 *            UMLNature of the instance
 	 */
-	public void doRemoveElementFromPool(Object id, Object nature) {
+	public void askRemoveElementFromPool(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS)) {
 			controller.askDeleteClass(id);
+		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
+			controller.askDeleteAbstractClass(id);
+		} else if (nature.equals(UMLNature.INTERFACE)) {
+			controller.askDeleteInterface(id);
+		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
+			controller.askDeleteAttribute(id);
+		} else if (nature.equals(UMLNature.METHOD)) {
+			controller.askDeleteMethod(id);
+		}
+	}
+	
+	/**
+	 * Remove an UML instance from element panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doRemoveElementFromPool(Object id, Object nature) {
+		if (nature.equals(UMLNature.CLASS)) {
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			controller.askDeleteAbstractClass(id);
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			controller.askDeleteInterface(id);
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			controller.askDeleteAttribute(id);
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeProperty(id);
 		} else if (nature.equals(UMLNature.METHOD)) {
-			controller.askDeleteMethod(id);
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeMethod(id);
 		}
@@ -436,6 +453,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					// Interface cannot have attribute
 					if (classes.get(i).getClasstype().equals(UMLNature.CLASS) || classes.get(i).getClasstype().equals(UMLNature.ABSTRACT_CLASS)) {
 						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
+						// TODO to let model in charge of prevent panel to add
 						classes.get(i).addProperty(id);
 					} else if (classes.get(i).getClasstype().equals(UMLNature.INTERFACE)) {
 						// TODO preferably manage by model
@@ -464,6 +482,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				if (find) {
 					i--;
 					controller.askLinkMethodToClass(id, classes.get(i).getInstanceID());
+					// TODO to let model in charge of prevent panel to add
 					classes.get(i).addMethod(id);
 				}
 			}
@@ -577,6 +596,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askDeleteRelation(id);
+				// TODO let core in charge
 				links.remove(i);
 			}
 		}
@@ -662,7 +682,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		multiplicity.add(secondMultiplicity);
 		
 		controller.askEditRelation(id, multiplicity, text);
-		this.doEditRelation(id);
+		// TODO to let model in charge of prevent panel for edition
+		//this.doEditRelation(id);
 		
 		// TEST
 /*		int i = 0;
@@ -707,6 +728,50 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					|| links.get(i).getType().equals(UMLNature.COMPOSITION)) {
 				links.get(i).setMultiplicity(controller.askUMLRelationMultiplicity(id));
 			}
+		}
+	}
+	
+	/**
+	 * Delete a relation from drawing panel
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
+	public void doDeleteRelation(Object id) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < links.size() && !find) {
+			if(id.equals(links.get(i).getInstanceID())) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			links.remove(i);
+		}
+	}
+	
+	/**
+	 * Revert a relation
+	 * 
+	 * @param id
+	 *            relation core id
+	 */
+	public void doRevertRelation(Object id) {
+		int i = 0;
+		boolean find = false;
+		
+		while (i < links.size() && !find) {
+			if(id.equals(links.get(i).getInstanceID())) {
+				find = true;
+			}
+			i++;
+		}
+		if (find) {
+			i--;
+			links.get(i).reverseClass();
 		}
 	}
 	
@@ -845,10 +910,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
 						controller.askReverseRelation(links.get(i).getInstanceID());
-						links.get(i).reverseClass();
+						//links.get(i).reverseClass(); // TODO core
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
 						controller.askDeleteRelation(links.get(i).getInstanceID());
-						links.remove(i);
+						//links.remove(i); // TODO core
 					}
 				}
 				
