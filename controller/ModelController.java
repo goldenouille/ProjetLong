@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -13,7 +14,6 @@ import javax.swing.text.BadLocationException;
 import parser.Parser;
 import controller.ModelController;
 import model.*;
-
 import gui.ClassicGuiController;
 
 public class ModelController {
@@ -664,6 +664,9 @@ public class ModelController {
 		cgc.doAddElementToPool(met, UMLNature.METHOD);
 	}
 
+	public void doShowUMLDrawingInErrorColor(Object id, Object nature){
+		cgc.doShowUMLDrawingInErrorColor(id, nature);
+	}
 
 }
 
