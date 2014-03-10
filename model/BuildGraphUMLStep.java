@@ -15,6 +15,7 @@ public class BuildGraphUMLStep extends Step {
 		ArrayList<Word> text = exo.getText();
 		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
+		String errormsg="";
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);
@@ -24,8 +25,14 @@ public class BuildGraphUMLStep extends Step {
 				case ATTRIBUTE :
 					Attribute attribute = ((Attribute)word.getGraphItem());
 					Attribute userattribute = ((Attribute)word.getUserGraphItem());
-					error=(attribute.getType()==userattribute.getType());
-					error=error||(attribute.getMotherClass().getId()==userattribute.getMotherClass().getId());
+					if (attribute.getType()!=userattribute.getType()) {
+						error=true;
+						errormsg+=("le type de "+attribute.getName()+" est faux.\n");
+					}
+					if (attribute.getMotherClass().getId()==userattribute.getMotherClass().getId()) {
+						error=true;
+						errormsg+=("la classe de "+attribute.getName()+" est fausse.\n");
+					}
 					if (error) {
 						mc.doShowUMLDrawingInErrorColor(userattribute,UMLNature.ATTRIBUTE);
 					}
@@ -33,7 +40,19 @@ public class BuildGraphUMLStep extends Step {
 				case METHOD :
 					Method method = ((Method)word.getGraphItem());
 					Method usermethod = ((Method)word.getUserGraphItem());
-					error=error||(method.getMotherClass().getId()==usermethod.getMotherClass().getId());
+					if (method.getReturnType()==usermethod.getReturnType()) {
+						error=true;
+						errormsg+=("le type de retour de "+method.getName()+" est faux.\n");
+					}
+					
+					if (method.getMotherClass().getId()==usermethod.getMotherClass().getId()){
+						error=true;
+						errormsg+=("la classe de "+method.getName()+" est fausse.\n");
+					}
+					if (method.getParamType().containsAll(usermethod.getParamType())&&usermethod.getParamType().containsAll(method.getParamType())){
+						error=true;
+						errormsg+=("les types d'entrees de "+method.getName()+" sont faux.\n");
+					}
 					if (error) {
 						mc.doShowUMLDrawingInErrorColor(usermethod,UMLNature.METHOD);
 					}
@@ -43,7 +62,11 @@ public class BuildGraphUMLStep extends Step {
 				}
 			}
 		}
-		
+		if (errormsg=="") {
+			mc.doPrintMessage("Succes !", "Vous pouvez passer a la suite.");
+		} else {
+			mc.doPrintMessage("Echec", errormsg);
+		}
 	}
 
 }

@@ -1055,7 +1055,20 @@ public class ClassicGuiController implements GuiController {
 	}
 	
 	/**
+	 * Edit an UML instance of element panel
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doEditElementFromPool(Object id, Object nature) {
+		umlDrawingPanel.doEditElementFromPool(id, nature);
+	}
+	
+	/**
 	 * Remove an UML instance from element panel
+	 * and eventually also from drawing panel if drawn
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -1105,8 +1118,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            relation core id
 	 */
-	public void doRevertRelation(Object id) {
-		umlDrawingPanel.doRevertRelation(id);
+	public void doReverseRelation(Object id) {
+		umlDrawingPanel.doReverseRelation(id);
 	}
 	
 	/**

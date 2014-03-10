@@ -331,14 +331,32 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		poolPanel.refresh();
 	}
 	
-	public void doEditElementFromPool(Object id, Object nature) {
+	/**
+	 * Ask core to edit an UML instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void askEditElementFromPool(Object id, Object nature) {
 		try {
 			controller.doShowUmlInstanceEditionPopup(id, nature);
 		} catch (BadLocationException e) {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+	
+	/**
+	 * Do edition request of an UML instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doEditElementFromPool(Object id, Object nature) {
 		if (nature.equals(UMLNature.CLASS)) {
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
@@ -754,12 +772,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Revert a relation
+	 * Reverse a relation
 	 * 
 	 * @param id
 	 *            relation core id
 	 */
-	public void doRevertRelation(Object id) {
+	public void doReverseRelation(Object id) {
 		int i = 0;
 		boolean find = false;
 		

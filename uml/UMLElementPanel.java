@@ -553,7 +553,7 @@ public class UMLElementPanel extends JPanel {
 			this.resetSelectedElement();
 			break;
 		case ACTION_EDIT:
-			mainPanel.doEditElementFromPool(selectedElementID, selectedElementType);
+			mainPanel.askEditElementFromPool(selectedElementID, selectedElementType);
 			this.resetSelectedElement();
 			break;
 		case ACTION_DELETE:
