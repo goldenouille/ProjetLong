@@ -70,6 +70,10 @@ public class ModelController {
 		System.out.println("askAddText " + text + "\n" + comment);
 		exo.addText(text);
 	}
+	
+	public void doReplaceText(boolean userText, String[] text) {
+		cgc.doReplaceText(userText, text);
+	}
 
 	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
 		// TODO Auto-generated method stub
