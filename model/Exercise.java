@@ -203,8 +203,13 @@ public class Exercise {
 			tab[i]=text.get(i).getWord();
 		}
 		this.score = this.parts.get(0).getScore();
+		
 		this.modelController.doReplaceText(false, tab);
 		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
+		this.modelController.doSetValidateKeywordsButtonEnabled(true);
+		this.modelController.doSetValidateAssociationButtonEnabled(false);
+		this.modelController.doSetValidateDiagramButtonEnabled(false);
+
 	}
 	
 	public void addPart(Part p) {
@@ -352,6 +357,9 @@ public class Exercise {
 		this.score = part.getScore();
 		this.modelController.doReplaceText(false, tab);
 		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
+		this.modelController.doSetValidateKeywordsButtonEnabled(true);
+		this.modelController.doSetValidateAssociationButtonEnabled(false);
+		this.modelController.doSetValidateDiagramButtonEnabled(false);
 		System.out.println("askSelectPart from Exercise " + p.toString());
 	}
 

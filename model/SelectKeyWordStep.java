@@ -51,7 +51,9 @@ public class SelectKeyWordStep extends Step {
 		}
 		
 		if (missingKW == 0) {
-			mc.doPrintMessage("Succes", "tout les mots-cle sont selectionnés");
+			mc.doPrintMessage("Succes", "Tous les mots-cle sont selectionnés");
+			mc.doSetValidateAssociationButtonEnabled(true);
+			mc.doSetValidateKeywordsButtonEnabled(false);
 		}
 		else {
 			mc.doPrintMessage("Echec", "Il manque " + missingKW + " mots-cle.");

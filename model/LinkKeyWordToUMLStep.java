@@ -17,6 +17,9 @@ public class LinkKeyWordToUMLStep extends Step {
 		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
 		int missingAssociation = 0;
+		
+		boolean juste = true;
+		String msg = "";
 
 		mc.doResetUMLInstanceColor();
 
@@ -27,22 +30,27 @@ public class LinkKeyWordToUMLStep extends Step {
 				GraphItem gi = exo.getCurrentPart().getIdTable().get(text.get(i).getId());
 				if (word.getUserUmlNature() == null) {
 					missingAssociation ++;
+					juste = false;
 				}
 				
 				else if (gi.getUmlNature().equals(word.getUserUmlNature())) {
 					System.out.println("Le type de " + word.getWord() + " est correct !");
 					mc.doShowUMLInstanceInValidateColor(word.getUserGraphItem());
+					gi.validate();
 				}
 				
 				else {
 					mc.doShowUMLInstanceInErrorColor(word.getUserGraphItem());
     				score.removeScoreNature(score.getScoreNature()/5);
     				System.out.println("Le type de " + word.getWord() + " est incorrect !");
+    				juste = false;
 				}
 			}
 		}
-	if (missingAssociation == 0) {
-		mc.doPrintMessage("Succes", "association juste");
+	if (juste) {
+		mc.doPrintMessage("Succes", "Association juste");
+		mc.doSetValidateAssociationButtonEnabled(false);
+		mc.doSetValidateDiagramButtonEnabled(true);
 	}
 	else {
 		mc.doPrintMessage("Echec", "Il manque " + missingAssociation + " mots-cle.");
