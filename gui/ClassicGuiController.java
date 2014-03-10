@@ -1006,6 +1006,19 @@ public class ClassicGuiController implements GuiController {
 	}
 	
 	/**
+	 * Get number of missing UML element drawn and linked
+	 * It is the difference between number of classes and attribute and method linked
+	 * and number of element in UML element panel
+	 * 
+	 *  ! Relation are not count
+	 * 
+	 * @return number
+	 */
+	public int doGetMissingUmlDrawingElementNumber() {
+		return umlDrawingPanel.getMissingUmlDrawingElementNumber();
+	}
+	
+	/**
 	 * Set number of missing UML drawing to display
 	 * If 0, it is not display
 	 * 

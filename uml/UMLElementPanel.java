@@ -634,6 +634,15 @@ public class UMLElementPanel extends JPanel {
 		// TODO
 		System.out.println("all element will no more be paint in color");
 	}
+	
+	/**
+	 * Get number for UML element in panel
+	 * 
+	 * @return number
+	 */
+	public int getUMLInstanceNumber() {
+		return (classesID.size() + methodsID.size() + propertiesID.size());
+	}
 
 	/**
 	 * Get displayed number for missing UML drawing

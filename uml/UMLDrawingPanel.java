@@ -252,13 +252,28 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 * Get number of UML element drawn and linked
 	 * 
 	 * @return number
-	 *            number of display element
 	 */
 	public int getUmlDrawingElementNumber() {
 		int result = classes.size() + links.size();
 		
 		for (int j = 0 ; j < classes.size() ; j++) {
 			result += classes.get(j).getPropertyNumber() + classes.get(j).getMethodNumber();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Get number of missing UML element drawn and linked
+	 * Relation are not count
+	 * 
+	 * @return number
+	 */
+	public int getMissingUmlDrawingElementNumber() {
+		int result = poolPanel.getUMLInstanceNumber() - classes.size();
+		
+		for (int j = 0 ; j < classes.size() ; j++) {
+			result -= classes.get(j).getPropertyNumber() + classes.get(j).getMethodNumber();
 		}
 		
 		return result;
@@ -718,6 +733,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
 		}
 		
+		//System.out.println("Nombre d'element dessinés : " + getUmlDrawingElementNumber());
+		//System.out.println("Nombre d'element non dessinés : " + getMissingUmlDrawingElementNumber());
 		//poolPanel.refresh();
 	}
 	
