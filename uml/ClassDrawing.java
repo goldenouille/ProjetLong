@@ -9,7 +9,7 @@ import model.UMLNature;
 
 public class ClassDrawing {
 	
-	private static String STRING_ABSTRACT = "<<class abastraite>>";
+	private static String STRING_ABSTRACT = "<<classe abstraite>>";
 	private static String STRING_INTERFACE = "<<interface>>";
 	
 	private UMLDrawingPanel drawingPanel;

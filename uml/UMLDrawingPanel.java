@@ -447,6 +447,9 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					if (classes.get(i).getClasstype().equals(UMLNature.CLASS) || classes.get(i).getClasstype().equals(UMLNature.ABSTRACT_CLASS)) {
 						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
 						classes.get(i).addProperty(id);
+					} else if (classes.get(i).getClasstype().equals(UMLNature.INTERFACE)) {
+						//TODO
+						controller.doPrintMessage("Avertissement", "Une interface ne peut contenir un attribut !");
 					}
 				}
 			}
