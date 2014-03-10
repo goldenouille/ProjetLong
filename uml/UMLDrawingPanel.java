@@ -24,15 +24,6 @@ import model.UMLNature;
 
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
-	/* Visibility
-	 * "+"       Public 
-	 * "-"       Private 
-	 * "#"       Protected 
-	 * "/"       Derived (can be combined with one of the others)
-	 * "_"       Static
-	 * "~"       Package
-	 */
-	
 	// Color constant
 	public static Color COLOR_DEFAULT = Color.BLACK;
 	public static Color COLOR_VALIDATE = Color.GREEN;
@@ -249,6 +240,37 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
+	 * Get number of UML element drawn and linked
+	 * 
+	 * @return number
+	 */
+	public int getUmlDrawingElementNumber() {
+		int result = classes.size() + links.size();
+		
+		for (int j = 0 ; j < classes.size() ; j++) {
+			result += classes.get(j).getPropertyNumber() + classes.get(j).getMethodNumber();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Get number of missing UML element drawn and linked
+	 * Relation are not count
+	 * 
+	 * @return number
+	 */
+	public int getMissingUmlDrawingElementNumber() {
+		int result = poolPanel.getUMLInstanceNumber() - classes.size();
+		
+		for (int j = 0 ; j < classes.size() ; j++) {
+			result -= classes.get(j).getPropertyNumber() + classes.get(j).getMethodNumber();
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * Get element name from id
 	 * 
 	 * @param id
@@ -299,7 +321,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doAddNewElementFromPool(Object nature) {
-		// TODO see UMLElementPanel
 		try {
 			controller.doShowUmlInstanceCreationPopupWithNoKeyWord(nature);
 		} catch (BadLocationException e) {
@@ -416,6 +437,11 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					if (classes.get(i).getClasstype().equals(UMLNature.CLASS) || classes.get(i).getClasstype().equals(UMLNature.ABSTRACT_CLASS)) {
 						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
 						classes.get(i).addProperty(id);
+					} else if (classes.get(i).getClasstype().equals(UMLNature.INTERFACE)) {
+						// TODO preferably manage by model
+						// send the link request between attribute and interface
+						// show popup message for error and can change score
+						controller.doPrintMessage("Avertissement", "Une interface ne peut contenir un attribut !");
 					}
 				}
 			}
@@ -657,6 +683,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	/**
 	 * Do edition of a relation
 	 * Ask core about new values for multiplicity and text
+	 * Use in this.askEditRelation
 	 * 
 	 * @param id
 	 *            relation core id
@@ -701,6 +728,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			g2d.drawLine(classes.get(previousClickedClass).getX(), classes.get(previousClickedClass).getY(), previousMousePos.width, previousMousePos.height);
 		}
 		
+		//System.out.println("Nombre d'element dessinés : " + getUmlDrawingElementNumber());
+		//System.out.println("Nombre d'element non dessinés : " + getMissingUmlDrawingElementNumber());
 		//poolPanel.refresh();
 	}
 	

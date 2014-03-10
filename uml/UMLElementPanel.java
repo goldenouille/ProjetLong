@@ -523,7 +523,6 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			// open editing panel
-			// TODO difference between CLASS ABSTRACT_CLASS INTERFACE
 			boolean actionCanceled = false;
 			if (selectedElementType.equals(UMLNature.CLASS)) {
 				String[] options = new String[] {"Classe", "Classe abstraite", "Interface", "Annuler"};
@@ -633,6 +632,15 @@ public class UMLElementPanel extends JPanel {
 		
 		// TODO
 		System.out.println("all element will no more be paint in color");
+	}
+	
+	/**
+	 * Get number for UML element in panel
+	 * 
+	 * @return number
+	 */
+	public int getUMLInstanceNumber() {
+		return (classesID.size() + methodsID.size() + propertiesID.size());
 	}
 
 	/**

@@ -18,7 +18,7 @@ public class Exercise {
 	private Graph userGraph;
 
 	private ArrayList<Part> parts;
-	private int currentPart;
+	private Part currentPart;
 
 	private Score score;
 
@@ -36,7 +36,6 @@ public class Exercise {
 		this.userGraph = new Graph();
 
 		this.parts = new ArrayList<Part>();
-		this.currentPart = 0;
 		
 		this.score = new Score();
 
@@ -57,7 +56,6 @@ public class Exercise {
 		this.userGraph = new Graph();
 
 		this.parts = new ArrayList<Part>();
-		this.currentPart = 0;
 
 		this.auxNextPart = -1;
 
@@ -88,7 +86,7 @@ public class Exercise {
 	}
 
 	public Part getCurrentPart() {
-		return this.parts.get(currentPart);
+		return this.currentPart;
 	}
 
 	public void setName(String s) {
@@ -198,6 +196,8 @@ public class Exercise {
 
 	public void init() {
 		this.text = this.parts.get(0).getText();
+		this.currentPart = this.parts.get(0);
+		this.graph = this.parts.get(0).getGraph();
 		String[] tab = new String[text.size()];
 		for(int i=0;i<tab.length;i++) {
 			tab[i]=text.get(i).getWord();
@@ -340,8 +340,18 @@ public class Exercise {
 		return met;
 	}
 
-	// pas encore implementee
 	public void selectPart(Object p) {
+		Part part = (Part) p;
+		this.text = part.getText();
+		this.currentPart = part;
+		this.graph = part.getGraph();
+		String[] tab = new String[text.size()];
+		for(int i=0;i<tab.length;i++) {
+			tab[i]=text.get(i).getWord();
+		}
+		this.score = part.getScore();
+		this.modelController.doAddText(false, tab);
+		this.modelController.doSetScore(score.getCurrScore()+ "/" + score.getScoreMax());
 		System.out.println("askSelectPart from Exercise " + p.toString());
 	}
 

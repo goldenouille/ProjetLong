@@ -12,6 +12,7 @@ import java.util.Arrays;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Highlighter.Highlight;
 import javax.swing.text.JTextComponent.AccessibleJTextComponent;
@@ -37,12 +38,24 @@ public class TextPanel extends AbstractPanel {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setMargin(new Insets(10, 10, 10, 10));
+		textPane.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
 
 		JScrollPane scrollPane = new JScrollPane(textPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		this.add(scrollPane, BorderLayout.CENTER);
+	}
+
+	public void replaceText(String[] text) {
+		try {
+			lenghtTable = new int[0];
+			textPane.getStyledDocument().remove(0, textPane.getStyledDocument().getLength());
+			apendText(text);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public void apendText(String[] strings) {
@@ -158,7 +171,7 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void highlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		int start=0;
+		int start = 0;
 		if (firstWord != 0) {
 			firstWord--;
 			start = lenghtTable[firstWord] + firstWord;
@@ -170,7 +183,7 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void unHighlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		int start=0;
+		int start = 0;
 		if (firstWord != 0) {
 			firstWord--;
 			start = lenghtTable[firstWord] + firstWord;

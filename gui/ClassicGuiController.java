@@ -452,6 +452,18 @@ public class ClassicGuiController implements GuiController {
 	public void doAddText(boolean userText, String[] text) {
 		(userText ? userTextPanel : textPanel).apendText(text);
 	}
+	
+	/**
+	 * Replace text of the specified panel
+	 * 
+	 * @param userText
+	 *            true to add to user's text panel
+	 * @param text
+	 *            the text to add
+	 */
+	public void doReplaceText(boolean userText, String[] text) {
+		(userText ? userTextPanel : textPanel).replaceText(text);
+	}
 
 	/**
 	 * Sets the texts font
@@ -994,6 +1006,29 @@ public class ClassicGuiController implements GuiController {
 	// ***//
 	// Do //
 	// ***//
+	
+	/**
+	 * Get number of UML drawing element
+	 * ie number of classes, linked attribute and method, and relations
+	 * 
+	 * @return number of drawing element
+	 */
+	public int doGetUmlDrawingElementNumber() {
+		return umlDrawingPanel.getUmlDrawingElementNumber();
+	}
+	
+	/**
+	 * Get number of missing UML element drawn and linked
+	 * It is the difference between number of classes and attribute and method linked
+	 * and number of element in UML element panel
+	 * 
+	 *  ! Relation are not count
+	 * 
+	 * @return number
+	 */
+	public int doGetMissingUmlDrawingElementNumber() {
+		return umlDrawingPanel.getMissingUmlDrawingElementNumber();
+	}
 	
 	/**
 	 * Set number of missing UML drawing to display

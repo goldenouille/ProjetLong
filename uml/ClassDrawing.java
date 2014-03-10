@@ -9,7 +9,7 @@ import model.UMLNature;
 
 public class ClassDrawing {
 	
-	private static String STRING_ABSTRACT = "<<class abastraite>>";
+	private static String STRING_ABSTRACT = "<<classe abstraite>>";
 	private static String STRING_INTERFACE = "<<interface>>";
 	
 	private UMLDrawingPanel drawingPanel;
@@ -189,6 +189,15 @@ public class ClassDrawing {
 	}
 	
 	/**
+	 * Return number of attribute links to this class
+	 * 
+	 * @return number of attribute
+	 */
+	public int getPropertyNumber() {
+		return propertiesID.size();
+	}
+	
+	/**
 	 * Add a method to draw
 	 * 
 	 * @param method
@@ -219,6 +228,15 @@ public class ClassDrawing {
 	 */
 	public boolean containMethod(Object id) {
 		return methodsID.contains(id);
+	}
+	
+	/**
+	 * Return number of method links to this class
+	 * 
+	 * @return number of method
+	 */
+	public int getMethodNumber() {
+		return methodsID.size();
 	}
 	
 	/**
