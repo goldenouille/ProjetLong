@@ -11,9 +11,11 @@ public class Method implements GraphItem {
 	private int id;
 	private String frenchName;
 	private Vertex motherClass;
+	private boolean isDeletable;
 
 	public Method() {
 		this.frenchName = "methode";
+		this.isDeletable = true;
 	}
 
 	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes) {
@@ -24,6 +26,7 @@ public class Method implements GraphItem {
 		this.frenchName = "methode";
 		this.motherClass = mother;
 		this.id = id;
+		this.isDeletable = true;
 	}
 	
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
@@ -33,6 +36,11 @@ public class Method implements GraphItem {
 		this.paramTypes = paramTypes;
 		this.frenchName = "methode";
 		this.id = -1;
+		this.isDeletable = true;
+	}
+
+	public boolean isDeletable() {
+		return this.isDeletable;
 	}
 
 	public String getName() {

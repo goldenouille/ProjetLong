@@ -8,13 +8,20 @@ public class Edge implements GraphItem{
 	protected int id;
 	protected String frenchName;
 	protected UMLNature nature;
+	protected boolean isDeletable;
+
 	
 	public Edge() {
 		this.id = -1;
+		this.isDeletable = true;
 	}
 
 	public UMLNature getNature() {
 		return nature;
+	}
+
+	public boolean isDeletable() {
+		return this.isDeletable;
 	}
 
 	public String getName() {

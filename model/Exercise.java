@@ -396,9 +396,13 @@ public class Exercise {
 
 
 	public void askDeleteClass(VertexClass vertexClass) {
-		int id = vertexClass.getId();
-		this.userGraph.removeClass(vertexClass);
-		removeUMLNatureAndGraphItemFromKeyWord(id);
+		if (vertexClass.isDeletable()) {
+			int id = vertexClass.getId();
+			this.userGraph.removeClass(vertexClass);
+			removeUMLNatureAndGraphItemFromKeyWord(id);
+		} else {
+			this.modelController.doPrintMessage("Classe non supprimable", "La classe que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+		}
 	}
 
 	/**
@@ -409,9 +413,13 @@ public class Exercise {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteAbstractClass(VertexAbstract vertexAbstract) {
-		int id = vertexAbstract.getId();
-		this.userGraph.removeAbstractClass(vertexAbstract);
-		removeUMLNatureAndGraphItemFromKeyWord(id);
+		if (vertexAbstract.isDeletable()) {
+			int id = vertexAbstract.getId();
+			this.userGraph.removeAbstractClass(vertexAbstract);
+			removeUMLNatureAndGraphItemFromKeyWord(id);
+		} else {
+			this.modelController.doPrintMessage("Classe abstraite non supprimable", "La que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+		}
 	}
 
 	/**
@@ -421,9 +429,13 @@ public class Exercise {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteInterface(Vertex vertex) {
-		int id = vertex.getId();
-		this.userGraph.removeInterface(vertex);
-		removeUMLNatureAndGraphItemFromKeyWord(id);
+		if (vertex.isDeletable()) {
+			int id = vertex.getId();
+			this.userGraph.removeInterface(vertex);
+			removeUMLNatureAndGraphItemFromKeyWord(id);
+		} else {
+			this.modelController.doPrintMessage("Interface non supprimable", "L'interface que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+		}
 	}
 
 	/**
@@ -433,9 +445,13 @@ public class Exercise {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteAttribute(Attribute att) {
-		int id = att.getId();
-		this.userGraph.removeAttribute(att);
-		removeUMLNatureAndGraphItemFromKeyWord(id);
+		if (att.isDeletable()) {
+			int id = att.getId();
+			this.userGraph.removeAttribute(att);
+			removeUMLNatureAndGraphItemFromKeyWord(id);
+		} else {
+			this.modelController.doPrintMessage("Attribute non supprimable", "L'attribute que vous cherchez a supprimer a ete valide et donc ne peut etre supprime.");
+		}
 	}
 
 	/**
@@ -445,9 +461,13 @@ public class Exercise {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteMethod(Method met) {
-		int id = met.getId();
-		this.userGraph.removeMethod(met);
-		removeUMLNatureAndGraphItemFromKeyWord(id);
+		if (met.isDeletable()) {
+			int id = met.getId();
+			this.userGraph.removeMethod(met);
+			removeUMLNatureAndGraphItemFromKeyWord(id);
+		} else {
+			this.modelController.doPrintMessage("Method non supprimable", "La methode que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+		}
 	}
 
 
@@ -471,7 +491,11 @@ public class Exercise {
 	}
 
 	public void askDeleteRelation(Edge id) {
-		userGraph.removeEdge(id);
+		if (id.isDeletable()) {
+			userGraph.removeEdge(id);
+		} else {
+			this.modelController.doPrintMessage("Relation non supprimable", "La relation que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+		}
 	}
 
 	public ArrayList<Vertex> askUMLRelationClasses(Edge id) {

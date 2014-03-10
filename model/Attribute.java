@@ -8,9 +8,11 @@ public class Attribute implements GraphItem{
 	private String frenchName;
 	private int id;
 	private Vertex motherClass;
+	private boolean isDeletable;
 
 	public Attribute () {
 		this.frenchName = "attribut";
+		this.isDeletable = true;
 	}
 
 	public Attribute (String name, Type type, Visibility visibility, Vertex mother, int id) {
@@ -20,6 +22,7 @@ public class Attribute implements GraphItem{
 		this.frenchName = "attribut";
 		this.motherClass = mother;
 		this.id = id;
+		this.isDeletable = true;
 	}
 	
 	public Attribute (String name, Type type, Visibility visibility) {
@@ -28,6 +31,11 @@ public class Attribute implements GraphItem{
 		this.visibility = visibility; 
 		this.frenchName = "attribut";
 		this.id = -1;
+		this.isDeletable = true;
+	}
+
+	public boolean isDeletable() {
+		return this.isDeletable;
 	}
 
 	public String getName() {
