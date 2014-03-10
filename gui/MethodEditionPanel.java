@@ -29,7 +29,7 @@ public class MethodEditionPanel extends AbstractPanel {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		if (name == null)
+		if (name == null && keyword != null)
 			name = keyword.trim().toLowerCase().replaceAll("[^\\w ]", "");
 
 		JPanel keywordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
