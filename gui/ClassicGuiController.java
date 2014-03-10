@@ -1087,7 +1087,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param claasID
 	 *            identifier of the class instance
 	 */
-	// TODO
 	public void doLinkAttributeToClass(Object attributeID, Object classID) {
 		umlDrawingPanel.doLinkAttributeToClass(attributeID, classID);
 	}
@@ -1100,7 +1099,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param claasID
 	 *            identifier of the class instance
 	 */
-	// TODO
 	public void doUnLinkAttributeToClass(Object attributeID, Object classID) {
 		umlDrawingPanel.doUnLinkAttributeToClass(attributeID, classID);
 	}
@@ -1113,7 +1111,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param claasID
 	 *            identifier of the class instance
 	 */
-	// TODO
 	public void doLinkMethodToClass(Object methodID, Object classID) {
 		umlDrawingPanel.doLinkMethodToClass(methodID, classID);
 	}
@@ -1126,7 +1123,6 @@ public class ClassicGuiController implements GuiController {
 	 * @param claasID
 	 *            identifier of the class instance
 	 */
-	// TODO
 	public void doUnLinkMethodToClass(Object methodID, Object classID) {
 		umlDrawingPanel.doUnLinkMethodToClass(methodID, classID);
 	}
