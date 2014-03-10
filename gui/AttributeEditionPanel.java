@@ -17,6 +17,9 @@ public class AttributeEditionPanel extends AbstractPanel {
 	public AttributeEditionPanel(ClassicGuiController controller, String keyword, String name, String type, String visibility) throws BadLocationException {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
+		if (name == null)
+			name = keyword.trim().toLowerCase().replaceAll("[^\\w ]", "");
 
 		JPanel keywordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		if (keyword == null) {
@@ -27,8 +30,6 @@ public class AttributeEditionPanel extends AbstractPanel {
 		keywordPanel.add(new JLabel(keyword));
 		this.add(keywordPanel);
 
-		if (name == null)
-			name = keyword.trim().toLowerCase().replaceAll("[^\\w ]", "");
 		JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		namePanel.add(new JLabel("Nom : "));
 		this.nameField = new JTextField(name, 30);
