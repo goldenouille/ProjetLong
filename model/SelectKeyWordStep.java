@@ -49,6 +49,13 @@ public class SelectKeyWordStep extends Step {
 				mc.doValidateText(userText.get(i).getFirstWord(), userText.get(i).getLastWord(),true); //KW in user text are considered correct for now.
 			}
 		}
+		
+		if (missingKW == 0) {
+			mc.doPrintMessage("Succes", "tout les mots-cle sont selectionnés");
+		}
+		else {
+			mc.doPrintMessage("Echec", "Il manque " + missingKW + " mots-cle.");
+		}
 		mc.doShowMissingKeywordNumber(missingKW);
 		mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 		} catch (Exception e) {
