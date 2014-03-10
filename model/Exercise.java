@@ -509,4 +509,58 @@ public class Exercise {
 		}
 	}
 
+	public Vertex askCreateClassInPanel(String name) {
+		VertexClass vertexClass = new VertexClass();
+		vertexClass.setName(name);
+		this.idUserItem --;
+		vertexClass.setId(this.idUserItem);
+		this.userGraph.addVertex(vertexClass);
+		return vertexClass;
+	}
+
+
+	public Vertex askCreateAbstractClassInPanel(String name) {
+		VertexAbstract vertexAbstract = new VertexAbstract();
+		vertexAbstract.setName(name);
+		this.idUserItem --;
+		vertexAbstract.setId(this.idUserItem);
+		this.userGraph.addVertex(vertexAbstract);
+		return vertexAbstract;
+	}
+
+
+	public Vertex askCreateInterfaceInPanel(String name) {
+		Vertex v = new Vertex();
+		v.setName(name);
+		this.idUserItem --;
+		v.setId(this.idUserItem);
+		this.userGraph.addVertex(v);
+		return v;
+	}
+
+
+	public Attribute askCreateAttributeInPanel(String name, String type, String visibility) {
+		Attribute att = new Attribute(name,TypeBase.getByName(type),Visibility.getByName(visibility));
+		this.idUserItem --;
+		att.setId(this.idUserItem);
+		this.userGraph.addAttribute(att);
+		return att;
+	}
+
+
+	public Method askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, 
+																						String visibility) {
+		ArrayList<Type> params = new ArrayList<Type>();
+		for (int i= 0; i<paramTypes.size(); i++) {
+			params.add(TypeBase.getByName(paramTypes.get(i)));
+		}
+
+		Method met = new Method(name, TypeBase.getByName(returnType), Visibility.getByName(visibility), params);
+		this.idUserItem --;
+		met.setId(this.idUserItem);
+		this.userGraph.addMethod(met);
+		return met;
+	}
+
+
 }

@@ -576,12 +576,14 @@ public class ModelController {
 			}
 			return r;
 		}
+		return null;
 	}
 
 	public ArrayList<String> askUMLRelationMultiplicity(Object id) {
 		if (id instanceof Edge) {
 			return exo.askUMLRelationMultiplicity((Edge) id);
 		}
+		return null;
 	}
 
 	public String askUMLRelationText(Object id) {
@@ -631,26 +633,31 @@ public class ModelController {
 	}
 
 	public void askCreateClassInPanel(String name) {
-		exo.askCreateClassInPanel(name);
+		Vertex v = exo.askCreateClassInPanel(name);
+		cgc.doAddElementToPool(v, UMLNature.CLASS);
 	}
 
 	public void askCreateAbstractClassInPanel(String name) {
-		exo.askCreateAbstractClassInPanel(name);
+		Vertex v = exo.askCreateAbstractClassInPanel(name);
+		cgc.doAddElementToPool(v, UMLNature.ABSTRACT_CLASS);
 	}
 
 
 	public void askCreateInterfaceInPanel(String name) {
-		exo.askCreateInterfaceInPanel(name);
+		Vertex v = exo.askCreateInterfaceInPanel(name);
+		cgc.doAddElementToPool(v, UMLNature.INTERFACE);
 	}
 
 
 	public void askCreateAttributeInPanel(String name, String type, String visibility) {
-		exo.askCreateAttributeInPanel(name, type, visibility);
+		Attribute att = exo.askCreateAttributeInPanel(name, type, visibility);
+		cgc.doAddElementToPool(att, UMLNature.ATTRIBUTE);
 	}
 
 
 	public void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		exo.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
+		Method met = exo.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
+		cgc.doAddElementToPool(met, UMLNature.METHOD);
 	}
 
 
