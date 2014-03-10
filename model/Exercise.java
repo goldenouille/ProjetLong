@@ -134,7 +134,7 @@ public class Exercise {
 			t = text;
 		}
 
-		if (selection.length == t.size()) {
+		//if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>=80) {
     				Word w = getByPosition(i,i,t);
@@ -148,7 +148,7 @@ public class Exercise {
     				}	
        			}
 			}
-		} // else {LEVER EXCEPTION !! !! !!}
+		//} // else {LEVER EXCEPTION !! !! !!}
 	}
 
 	/*
@@ -165,7 +165,7 @@ public class Exercise {
 			t = text;
 		}
 
-		if (selection.length == t.size()) {
+		//if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>80) {
     				Word w = getByPosition(i,i,t);
@@ -178,7 +178,7 @@ public class Exercise {
     				}	
     			}
 			}
-		} // else {LEVER EXCEPTION !! !! !!}
+		//} // else {LEVER EXCEPTION !! !! !!}
 	}
 
 	/*
@@ -408,6 +408,7 @@ public class Exercise {
 			int id = vertexClass.getId();
 			this.userGraph.removeClass(vertexClass);
 			removeUMLNatureAndGraphItemFromKeyWord(id);
+			this.modelController.doRemoveElementFromPool(vertexClass,UMLNature.CLASS);
 		} else {
 			this.modelController.doPrintMessage("Classe non supprimable", "La classe que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
 		}
@@ -425,6 +426,7 @@ public class Exercise {
 			int id = vertexAbstract.getId();
 			this.userGraph.removeAbstractClass(vertexAbstract);
 			removeUMLNatureAndGraphItemFromKeyWord(id);
+			this.modelController.doRemoveElementFromPool(vertexAbstract,UMLNature.ABSTRACT_CLASS);
 		} else {
 			this.modelController.doPrintMessage("Classe abstraite non supprimable", "La que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
 		}
@@ -441,6 +443,7 @@ public class Exercise {
 			int id = vertex.getId();
 			this.userGraph.removeInterface(vertex);
 			removeUMLNatureAndGraphItemFromKeyWord(id);
+			this.modelController.doRemoveElementFromPool(vertex, UMLNature.INTERFACE);
 		} else {
 			this.modelController.doPrintMessage("Interface non supprimable", "L'interface que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
 		}
@@ -457,6 +460,7 @@ public class Exercise {
 			int id = att.getId();
 			this.userGraph.removeAttribute(att);
 			removeUMLNatureAndGraphItemFromKeyWord(id);
+			this.modelController.doRemoveElementFromPool(att,UMLNature.ATTRIBUTE);
 		} else {
 			this.modelController.doPrintMessage("Attribute non supprimable", "L'attribute que vous cherchez a supprimer a ete valide et donc ne peut etre supprime.");
 		}
@@ -473,6 +477,7 @@ public class Exercise {
 			int id = met.getId();
 			this.userGraph.removeMethod(met);
 			removeUMLNatureAndGraphItemFromKeyWord(id);
+			this.modelController.doRemoveElementFromPool(met,UMLNature.METHOD);
 		} else {
 			this.modelController.doPrintMessage("Method non supprimable", "La methode que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
 		}

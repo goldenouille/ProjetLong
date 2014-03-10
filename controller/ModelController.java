@@ -6,7 +6,6 @@ import java.awt.Point;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -14,6 +13,7 @@ import javax.swing.text.BadLocationException;
 import parser.Parser;
 import controller.ModelController;
 import model.*;
+
 import gui.ClassicGuiController;
 
 public class ModelController {
@@ -67,12 +67,8 @@ public class ModelController {
 	}
 
 	public void askAddText(String text, String comment) {
-		//System.out.println("askAddText " + text + "\n" + comment);
+		System.out.println("askAddText " + text + "\n" + comment);
 		exo.addText(text);
-	}
-	
-	public void doReplaceText(boolean userText, String[] text) {
-		cgc.doReplaceText(userText, text);
 	}
 
 	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
@@ -163,6 +159,10 @@ public class ModelController {
 
 	public void doAddText(boolean userText, String[] text) {
 		cgc.doAddText(userText, text);
+	}
+
+	public void doReplaceText(boolean userText, String[] text) {
+		cgc.doReplaceText(userText, text);
 	}
 
 	public void doSetTextFont(Font font) {
@@ -664,21 +664,34 @@ public class ModelController {
 		cgc.doAddElementToPool(met, UMLNature.METHOD);
 	}
 
-	public void doShowUMLDrawingInErrorColor(Object id, Object nature){
-		cgc.doShowUMLDrawingInErrorColor(id, nature);
+	public void doRemoveElementFromPool(Object id, Object nature) { 
+		cgc.doRemoveElementFromPool(id, nature);
 	}
-	
-	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
-		cgc.doSetValidateAssociationButtonEnabled(enabled);
-	}
-	
-	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
-		cgc.doSetValidateDiagramButtonEnabled(enabled);
-	}
-	
+
 	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
 		cgc.doSetValidateKeywordsButtonEnabled(enabled);
 	}
+
+	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
+		cgc.doSetValidateAssociationButtonEnabled(enabled);
+	}
+
+	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
+		cgc.doSetValidateDiagramButtonEnabled(enabled);
+	}
+
+	public void doEditRelation(Object id) {
+		cgc.doEditRelation(id);
+	}
+
+	public void doDeleteRelation(Object id) {
+		cgc.doDeleteRelation(id);
+	}
+
+	public void doReverseRelation(Object id) {
+		cgc.doReverseRelation(id);
+	}
+
 
 }
 
