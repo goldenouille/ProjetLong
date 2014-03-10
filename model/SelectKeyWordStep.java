@@ -28,7 +28,6 @@ public class SelectKeyWordStep extends Step {
 					//System.out.println("---> et est un mot-cle");
     				mc.doUnSelectText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//Selected KW = ok
     				mc.doValidateText(text.get(i).getFirstWord(), text.get(i).getLastWord(), false);//Selected KW = ok
-    				text.get(i).validate();
     			} else {
     				//System.out.println("---> mais n'est pas un mot-cle");
     				score.removeScoreText(score.getScoreText()/10);
