@@ -28,6 +28,10 @@ public class Vertex implements Type, GraphItem {
 		this.isDeletable = true;
 	}
 
+	public void validate() {
+		this.isDeletable = false;
+	}
+
 	public boolean isDeletable() {
 		return this.isDeletable;
 	}

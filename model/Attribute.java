@@ -38,6 +38,10 @@ public class Attribute implements GraphItem{
 		return this.isDeletable;
 	}
 
+	public void validate() {
+		this.isDeletable = false;
+	}
+
 	public String getName() {
 		return this.name;
 	}

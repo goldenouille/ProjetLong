@@ -7,4 +7,5 @@ public interface GraphItem {
 	public UMLNature getUmlNature();
 
 	public boolean isDeletable();
+	public void validate();
 }
