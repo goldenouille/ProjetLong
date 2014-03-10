@@ -385,7 +385,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doRemoveElementFromPool(Object id, Object nature) {
-		// TODO let model in charge of this
 		if (nature.equals(UMLNature.CLASS)) {
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
@@ -755,12 +754,12 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Revert a relation
+	 * Reverse a relation
 	 * 
 	 * @param id
 	 *            relation core id
 	 */
-	public void doRevertRelation(Object id) {
+	public void doReverseRelation(Object id) {
 		int i = 0;
 		boolean find = false;
 		

@@ -1106,8 +1106,8 @@ public class ClassicGuiController implements GuiController {
 	 * @param id
 	 *            relation core id
 	 */
-	public void doRevertRelation(Object id) {
-		umlDrawingPanel.doRevertRelation(id);
+	public void doReverseRelation(Object id) {
+		umlDrawingPanel.doReverseRelation(id);
 	}
 	
 	/**
