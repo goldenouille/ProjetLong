@@ -523,7 +523,6 @@ public class UMLElementPanel extends JPanel {
 		switch (selectedElementAction) {
 		case ACTION_ADD_NEW_ELEMENT:
 			// open editing panel
-			// TODO difference between CLASS ABSTRACT_CLASS INTERFACE
 			boolean actionCanceled = false;
 			if (selectedElementType.equals(UMLNature.CLASS)) {
 				String[] options = new String[] {"Classe", "Classe abstraite", "Interface", "Annuler"};

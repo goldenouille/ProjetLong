@@ -24,15 +24,6 @@ import model.UMLNature;
 
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
-	/* Visibility
-	 * "+"       Public 
-	 * "-"       Private 
-	 * "#"       Protected 
-	 * "/"       Derived (can be combined with one of the others)
-	 * "_"       Static
-	 * "~"       Package
-	 */
-	
 	// Color constant
 	public static Color COLOR_DEFAULT = Color.BLACK;
 	public static Color COLOR_VALIDATE = Color.GREEN;
@@ -330,7 +321,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doAddNewElementFromPool(Object nature) {
-		// TODO see UMLElementPanel
 		try {
 			controller.doShowUmlInstanceCreationPopupWithNoKeyWord(nature);
 		} catch (BadLocationException e) {
@@ -448,7 +438,9 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
 						classes.get(i).addProperty(id);
 					} else if (classes.get(i).getClasstype().equals(UMLNature.INTERFACE)) {
-						//TODO
+						// TODO preferably manage by model
+						// send the link request between attribute and interface
+						// show popup message for error and can change score
 						controller.doPrintMessage("Avertissement", "Une interface ne peut contenir un attribut !");
 					}
 				}
