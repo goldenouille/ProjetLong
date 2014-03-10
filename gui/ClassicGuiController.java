@@ -1056,6 +1056,7 @@ public class ClassicGuiController implements GuiController {
 	
 	/**
 	 * Remove an UML instance from element panel
+	 * and eventually also from drawing panel if drawn
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit

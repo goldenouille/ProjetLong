@@ -385,6 +385,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doRemoveElementFromPool(Object id, Object nature) {
+		// TODO let model in charge of this
 		if (nature.equals(UMLNature.CLASS)) {
 			this.doRemoveElementFromDrawingArea(id, nature);
 			poolPanel.removeClass(id);
