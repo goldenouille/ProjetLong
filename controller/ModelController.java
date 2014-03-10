@@ -609,7 +609,7 @@ public class ModelController {
 	}
 	
 	
-	public void doShowUMLInstanceInGreen(Object id) {
+	public void doShowUMLInstanceInValidateColor(Object id) {
 		cgc.doShowUMLInstanceInValidateColor(id);
 		
 	}

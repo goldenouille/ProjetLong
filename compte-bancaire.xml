@@ -14,7 +14,7 @@
 	<part name="partie 2" scoreNature="30" scoreGraph="40">
 		<text body ="Un"/> <kw id='1' word="compte" score="0"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
-		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\n" score="10"/>
+		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\\n" score="10"/>
 		<text body ="Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une"/><kw id='4' word="personne physique." score="10"/>
 		<text body ="Il est possible de"/><kw id ='5' word="créditer" score="10"/>
 		<text body ="ce compte ou de le"/><kw id ='6' word="débiter" score="10"/>
@@ -37,11 +37,11 @@
 	<part name="partie 3" scoreNature="30" scoreGraph="40">
 		<text body ="Un"/> <kw id='1' word="compte" score="10"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
-		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\n" score="10"/>
+		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\\n" score="10"/>
 		<text body ="Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une"/><kw id='4' word="personne physique." score="10"/>
 		<text body ="Il est possible de"/><kw id ='5' word="créditer" score="10"/>
 		<text body ="ce compte ou de le"/><kw id ='6' word="débiter" score="10"/>
-		<text body ="d'un certain montant.\n"/>
+		<text body ="d'un certain montant.\\n"/>
 		<text body ="Il existe aussi des"/><kw id ='7' word="comptes courants" score="10"/>
 		<text body ="pour lesquels"/><kw id ='8' word="l'historique" score="10"/>
 		<text body ="des opérations qui les concernent (on se limite ici aux opérations de crédit et de débit) est concervé.  Un compte courant permet d'"/><kw id ='9' word="afficher" score="10"/>
