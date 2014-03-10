@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,6 +21,7 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
 
 import actions.ActClickText;
 
@@ -38,7 +40,7 @@ public class TextPanel extends AbstractPanel {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setMargin(new Insets(10, 10, 10, 10));
-		textPane.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
+		textPane.setContentType("text/html");
 		lenghtTable = new int[0];
 		textPane.addMouseListener(new ActClickText(controller));
 
@@ -55,30 +57,32 @@ public class TextPanel extends AbstractPanel {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void apendText(String[] strings) {
+		try {
+			int[] newTable = new int[lenghtTable.length + strings.length];
+			HTMLDocument document = (HTMLDocument) textPane.getDocument();
+			//DefaultStyledDocument document = (DefaultStyledDocument) textPane.getStyledDocument();
+			document.putProperty(DefaultEditorKit.EndOfLineStringProperty, "<br>\n");
 
-		int[] newTable = new int[lenghtTable.length + strings.length];
-		DefaultStyledDocument document = (DefaultStyledDocument) textPane.getStyledDocument();
-
-		String str;
-		for (int i = 0; i < lenghtTable.length + strings.length; i++) {
-			if (i < lenghtTable.length) {
-				newTable[i] = lenghtTable[i];
-			} else {
-				str = strings[i - lenghtTable.length];
-				newTable[i] = ((i == 0) ? 0 : newTable[i - 1]) + str.length();
-				try {
-					document.insertString(document.getLength(), str.trim() + " ", null);
-				} catch (BadLocationException e) {
-					e.printStackTrace();
+			String str;
+			for (int i = 0; i < lenghtTable.length + strings.length; i++) {
+				if (i < lenghtTable.length) {
+					newTable[i] = lenghtTable[i];
+				} else {
+					str = strings[i - lenghtTable.length];
+					str = str.trim().replaceAll("\\\\n", "<br>");
+					newTable[i] = ((i == 0) ? 0 : newTable[i - 1]) + str.length();
+					str += " ";
+					//document.insertString(document.getLength(), str + " ", null);
+					document.insertAfterEnd(document.getCharacterElement(document.getLength()), str);
 				}
-
 			}
+			lenghtTable = newTable;
+		} catch (BadLocationException | IOException e) {
+			e.printStackTrace();
 		}
-		lenghtTable = newTable;
 	}
 
 	/**
