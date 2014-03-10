@@ -452,6 +452,18 @@ public class ClassicGuiController implements GuiController {
 	public void doAddText(boolean userText, String[] text) {
 		(userText ? userTextPanel : textPanel).apendText(text);
 	}
+	
+	/**
+	 * Replace text of the specified panel
+	 * 
+	 * @param userText
+	 *            true to add to user's text panel
+	 * @param text
+	 *            the text to add
+	 */
+	public void doReplaceText(boolean userText, String[] text) {
+		(userText ? userTextPanel : textPanel).replaceText(text);
+	}
 
 	/**
 	 * Sets the texts font

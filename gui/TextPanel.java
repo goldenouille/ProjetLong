@@ -45,6 +45,17 @@ public class TextPanel extends AbstractPanel {
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 
+	public void replaceText(String[] text) {
+		try {
+			lenghtTable = new int[0];
+			textPane.getStyledDocument().remove(0, textPane.getStyledDocument().getLength());
+			apendText(text);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void apendText(String[] strings) {
 
 		int[] newTable = new int[lenghtTable.length + strings.length];
@@ -158,7 +169,7 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void highlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		int start=0;
+		int start = 0;
 		if (firstWord != 0) {
 			firstWord--;
 			start = lenghtTable[firstWord] + firstWord;
@@ -170,7 +181,7 @@ public class TextPanel extends AbstractPanel {
 	}
 
 	public void unHighlight(Color color, int firstWord, int lastWord) throws BadLocationException {
-		int start=0;
+		int start = 0;
 		if (firstWord != 0) {
 			firstWord--;
 			start = lenghtTable[firstWord] + firstWord;
