@@ -357,7 +357,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 *            UMLNature of the instance
 	 */
 	public void doEditElementFromPool(Object id, Object nature) {
-		// TODO let core in charge of this
 		if (nature.equals(UMLNature.CLASS)) {
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
@@ -469,17 +468,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				}
 				if (find) {
 					i--;
-					// Interface cannot have attribute
-					if (classes.get(i).getClasstype().equals(UMLNature.CLASS) || classes.get(i).getClasstype().equals(UMLNature.ABSTRACT_CLASS)) {
-						controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
-						// TODO to let model in charge of prevent panel to add
-						classes.get(i).addProperty(id);
-					} else if (classes.get(i).getClasstype().equals(UMLNature.INTERFACE)) {
-						// TODO preferably manage by model
-						// send the link request between attribute and interface
-						// show popup message for error and can change score
-						controller.doPrintMessage("Avertissement", "Une interface ne peut contenir un attribut !");
-					}
+					controller.askLinkAttributeToClass(id, classes.get(i).getInstanceID());
 				}
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
@@ -501,8 +490,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				if (find) {
 					i--;
 					controller.askLinkMethodToClass(id, classes.get(i).getInstanceID());
-					// TODO to let model in charge of prevent panel to add
-					classes.get(i).addMethod(id);
 				}
 			}
 		}
@@ -666,7 +653,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askUnLinkAllElementToClass(id);
-				// TODO let core incharge of this
+				// TODO let core in charge of this ?
 				classes.remove(i);
 			}
 			
@@ -680,8 +667,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askUnLinkAttributeToClass(id, classes.get(i).getInstanceID());
-				// TODO let core incharge of this
-				classes.get(i).removeProperty(id);
 			}
 			
 		} else if (nature.equals(UMLNature.METHOD)) {
@@ -694,7 +679,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askUnLinkMethodToClass(id, classes.get(i).getInstanceID());
-				classes.get(i).removeMethod(id);
 			}
 			
 		} else if (nature.equals(UMLNature.AGGREGATION)
@@ -713,8 +697,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			if (find) {
 				i--;
 				controller.askDeleteRelation(id);
-				// TODO let core in charge
-				links.remove(i);
 			}
 		}
 	}
@@ -799,8 +781,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		multiplicity.add(secondMultiplicity);
 		
 		controller.askEditRelation(id, multiplicity, text);
-		// TODO to let model in charge of prevent panel for edition
-		//this.doEditRelation(id);
 		
 		// TEST
 /*		int i = 0;
@@ -1027,10 +1007,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 					}
 					else if (toolBar.getState() == LinkToolBar.CHANGE_DIRECTION) {
 						controller.askReverseRelation(links.get(i).getInstanceID());
-						//links.get(i).reverseClass(); // TODO core
 					} else { // toolBar.getState() == LinkToolBar.REMOVE_LINK
 						controller.askDeleteRelation(links.get(i).getInstanceID());
-						//links.remove(i); // TODO core
 					}
 				}
 				
