@@ -1078,6 +1078,58 @@ public class ClassicGuiController implements GuiController {
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		umlDrawingPanel.doRemoveElementFromPool(id, nature);
 	}
+	
+	/**
+	 * Link the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	// TODO
+	public void doLinkAttributeToClass(Object attributeID, Object classID) {
+		umlDrawingPanel.doLinkAttributeToClass(attributeID, classID);
+	}
+	
+	/**
+	 * Unlink the given attribute instance to the given class instance
+	 * 
+	 * @param attributeID
+	 *            identifier of the attribute instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	// TODO
+	public void doUnLinkAttributeToClass(Object attributeID, Object classID) {
+		umlDrawingPanel.doUnLinkAttributeToClass(attributeID, classID);
+	}
+	
+	/**
+	 * Link the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	// TODO
+	public void doLinkMethodToClass(Object methodID, Object classID) {
+		umlDrawingPanel.doLinkMethodToClass(methodID, classID);
+	}
+	
+	/**
+	 * Unlink the given method instance to the given class instance
+	 * 
+	 * @param methodID
+	 *            identifier of the method instance
+	 * @param claasID
+	 *            identifier of the class instance
+	 */
+	// TODO
+	public void doUnLinkMethodToClass(Object methodID, Object classID) {
+		umlDrawingPanel.doUnLinkMethodToClass(methodID, classID);
+	}
 
 	/**
 	 * Add an UML relation to drawing panel
