@@ -25,6 +25,10 @@ public class VertexClass extends Vertex {
 	public void addAttribute(Attribute attribute) {
 		this.attributes.add(attribute);
 	}
+
+	public void removeAttribute(Attribute att) {
+		this.attributes.remove(att);
+	}
 	
 	public String getUml() {
 		return "class";
