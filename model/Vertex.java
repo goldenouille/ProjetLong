@@ -56,14 +56,6 @@ public class Vertex implements Type, GraphItem {
 		this.id = id;
 	}
 
-/*	public ArrayList<Attribute> getAttributes() {
-		return this.attributes;
-	}
-
-	public void addAttribute(Attribute attribute) {
-		this.attributes.add(attribute);
-	}
-*/	
 
 	public ArrayList<Method> getMethods() {
 		return this.methods;
@@ -71,6 +63,10 @@ public class Vertex implements Type, GraphItem {
 
 	public void addMethod(Method method) {
 		this.methods.add(method);
+	}
+
+	public void removeMethod(Method met) {
+		this.methods.remove(met);
 	}
 
 	public ArrayList<Edge> getEdges() {
