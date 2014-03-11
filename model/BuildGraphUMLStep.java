@@ -22,7 +22,10 @@ public class BuildGraphUMLStep extends Step {
 		ArrayList<Edge> useredges = usergraph.getEdges();
 
 		mc.doResetUMLDrawingColor();
-		errormsg += mc.doGetMissingUmlDrawingElementNumber() + " n'ont pas ete dessines.\n";
+		int missing = mc.doGetMissingUmlDrawingElementNumber();
+		if (missing == 0) {
+			errormsg += mc.doGetMissingUmlDrawingElementNumber() + " n'ont pas ete dessines.\n";
+		}
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);
