@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * @author Will
+ * Generic Panel allowing to display a score and change its display properties
+ */
 public class ScorePanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;

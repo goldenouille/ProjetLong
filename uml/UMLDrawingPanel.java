@@ -223,8 +223,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doResetUMLDrawingColor() {
 		for (int j = 0 ; j < classes.size() ; j++) {
-			//TODO 
-			System.out.println("doResetColor class " + j);
+			//System.out.println("doResetColor class " + j);
 			classes.get(j).removeAllColoredElement();
 		}
 		
@@ -515,8 +514,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).addProperty(attributeID);
 		}
-		// TODO
-		System.out.println("doLinkAttributeToClass");
+		// System.out.println("doLinkAttributeToClass");
 	}
 	
 	/**
@@ -542,8 +540,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			classes.get(i).removeProperty(attributeID);
 		}
 
-		// TODO
-		System.out.println("doUnLinkAttributeToClass");
+		// System.out.println("doUnLinkAttributeToClass");
 	}
 	
 	/**
@@ -569,8 +566,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			classes.get(i).addMethod(methodID);
 		}
 
-		// TODO
-		System.out.println("doLinkMethodToClass");
+		// System.out.println("doLinkMethodToClass");
 	}
 	
 	/**
@@ -595,8 +591,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).removeMethod(methodID);
 		}
-		// TODO
-		System.out.println("doUnLinkMethodToClass");
+		// System.out.println("doUnLinkMethodToClass");
 	}
 	
 	/**
