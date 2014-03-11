@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class DirectionalRelation extends Edge {
-	
+
 	protected Vertex target;
 	protected Vertex source;
-	
+
 	public DirectionalRelation(Vertex trg, Vertex src, int id, String name) {
 		super();
 		this.target = trg;
@@ -30,22 +30,13 @@ public class DirectionalRelation extends Edge {
 	public void setSource(Vertex source) {
 		this.source = source;
 	}
-	
+
 	public ArrayList<Vertex> getVertex() {
 		ArrayList<Vertex> vl = new ArrayList<Vertex>();
 		vl.add(this.source);
 		vl.add(this.target);
 		return vl;
 	}
-
-	public ArrayList<String> getMutliplicity() {
-		ArrayList<String> vm = new ArrayList<String>();
-		vm.add(this.source);
-		vm.add(this.target);
-		return vm;
-	}
-
-
 
 	public void reverseRelation() {
 		Vertex vAux = this.target;
