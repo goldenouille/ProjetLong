@@ -190,13 +190,14 @@ public class Exercise {
 	 * son texte en mot et utilisant un split sur les espaces, cela permettra à
 	 * l'étudiant de sélectionner un mot clé précis dans son texte
 	 */
-	public void addText(String string) {
+	public String[] addText(String string) {
 		String text[] = string.split(" ");
 		int l = text.length;
 		for (int i = 0; i < l; i++) {
 			this.idUserItem = this.idUserItem - 1;
 			this.userText.add(new Word(text[i], this.idUserItem));
 		}
+		return text;
 	}
 
 	public void init() {
