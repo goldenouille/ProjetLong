@@ -46,6 +46,7 @@ public class SelectKeyWordStep extends Step {
 		}
 		for (int i = 0; i< userText.size() ; i++) {
 			if (userText.get(i).isSelected()) {
+				mc.doUnSelectText(userText.get(i).getFirstWord(), userText.get(i).getLastWord(),true); //KW in user text are considered correct for now.
 				mc.doValidateText(userText.get(i).getFirstWord(), userText.get(i).getLastWord(),true); //KW in user text are considered correct for now.
 			}
 		}
