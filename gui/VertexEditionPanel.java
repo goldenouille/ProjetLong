@@ -7,11 +7,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 
+/**
+ * @author Will
+ *
+ */
 public class VertexEditionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
 	protected JTextField nameField;
 
+	/** Classic constructor
+	 * @param controller link to controller
+	 * @param keyword
+	 * @param name
+	 * @throws BadLocationException
+	 */
 	public VertexEditionPanel(ClassicGuiController controller, String keyword, String name) throws BadLocationException {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
