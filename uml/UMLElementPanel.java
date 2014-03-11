@@ -187,7 +187,7 @@ public class UMLElementPanel extends JPanel {
 			remAtt.setPreferredSize(new Dimension(20, 20));
 			propertiesOnePanel.add(remAtt);
 			
-			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
+			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i).split(" ")[2], "Editer les proprietes");
 			label.setOpaque(true);
 			if (rightColoredID.contains(propertiesID.get(i))) {
 				// System.out.println("attribute " + i + " is paint in right color");
@@ -229,7 +229,7 @@ public class UMLElementPanel extends JPanel {
 			remMethod.setPreferredSize(new Dimension(20, 20));
 			methodsOnePanel.add(remMethod);
 			
-			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
+			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i).split(" ")[2], "Editer les proprietes");
 			label.setOpaque(true);
 			if (rightColoredID.contains(methodsID.get(i))) {
 				// System.out.println("method " + i + " is paint in right color");
