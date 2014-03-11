@@ -50,18 +50,18 @@ public class ModelController {
 	}
 
 	public void askValidateKeywords() {
-		//System.out.println("Correction de " + ((Step) s).getFrenchName());
+		// System.out.println("Correction de " + ((Step) s).getFrenchName());
 		SelectKeyWordStep.getCorrection(exo);
 	}
-	
+
 	public void askValidateAssociation() {
-		//System.out.println("Correction de " + ((Step) s).getFrenchName());
+		// System.out.println("Correction de " + ((Step) s).getFrenchName());
 		LinkKeyWordToUMLStep.getCorrection(exo);
 	}
-	
+
 	public void askValidateDiagram() {
-		//System.out.println("Correction de " + ((Step) s).getFrenchName());
-		//((Step) s).getCorrection(exo);
+		// System.out.println("Correction de " + ((Step) s).getFrenchName());
+		// ((Step) s).getCorrection(exo);
 
 		// step pas encore implemente
 	}
@@ -79,7 +79,7 @@ public class ModelController {
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
 	public void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
-		Vertex v = exo.addClass(firstWord,lastWord,userText,name);
+		Vertex v = exo.addClass(firstWord, lastWord, userText, name);
 		cgc.doAddElementToPool(v, UMLNature.CLASS);
 		System.out.println("askCreateClass " + name);
 	}
@@ -106,9 +106,10 @@ public class ModelController {
 	}
 
 	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	// pour l'instant ne peut prendre que des types de base comme type de retour et comme parametres
+	// pour l'instant ne peut prendre que des types de base comme type de retour
+	// et comme parametres
 	public void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		Method m = exo.addMethod(firstWord, lastWord, userText, name,  paramTypes, returnType, visibility);
+		Method m = exo.addMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
 		cgc.doAddElementToPool(m, UMLNature.METHOD);
 		System.out.println("askCreateMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
@@ -126,7 +127,7 @@ public class ModelController {
 	}
 
 	public void doValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		cgc.doValidateText(firstWord,lastWord,userText);
+		cgc.doValidateText(firstWord, lastWord, userText);
 	}
 
 	public void doUnValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
@@ -140,13 +141,12 @@ public class ModelController {
 	public void doUnInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		cgc.doUnInvalidateText(firstWord, lastWord, userText);
 	}
-	
+
 	public void doResetTextHighlight(int firstWord, int lastWord, boolean userText) throws BadLocationException {
 		cgc.doResetTextHighlight(firstWord, lastWord, userText);
 	}
 
-	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) 
-																			throws BadLocationException {
+	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) throws BadLocationException {
 		cgc.doShowUmlInstanceCreationPopup(firstWord, lastWord, nature);
 	}
 
@@ -178,7 +178,6 @@ public class ModelController {
 		cgc.doShowMissingAssociationNumber(nb);
 	}
 
-
 	// ******************************************************************************************************//
 	// *****************************************Navigation_methods*******************************************//
 	// ******************************************************************************************************//
@@ -207,7 +206,6 @@ public class ModelController {
 		return exo.nextStep();
 	}
 
-
 	// ****************************************************************************************************//
 	// *********************************************Timer_methods******************************************//
 	// ****************************************************************************************************//
@@ -222,13 +220,15 @@ public class ModelController {
 		return "0";
 	}
 
-	// pour l'instant valeur par defaut... mais d'ou le controleur du model est suppose trouver cette info?
+	// pour l'instant valeur par defaut... mais d'ou le controleur du model est
+	// suppose trouver cette info?
 	public Font askTimerFont() {
 		// TODO Auto-generated method stub
 		return new Font("Arial", Font.BOLD, 40);
 	}
 
-	// pour l'instant valeur par defaut... mais d'ou le controleur du model est suppose trouver cette info?
+	// pour l'instant valeur par defaut... mais d'ou le controleur du model est
+	// suppose trouver cette info?
 	public Color askTimerBgColor() {
 		// TODO Auto-generated method stub
 		return Color.GRAY;
@@ -250,7 +250,6 @@ public class ModelController {
 		cgc.doSetTimerBgColor(color);
 	}
 
-
 	// ******************************************************************************************************//
 	// *******************************************Score_methods**********************************************//
 	// ******************************************************************************************************//
@@ -264,13 +263,15 @@ public class ModelController {
 		return exo.askScore();
 	}
 
-	// pour l'instant valeur par defaut... mais d'ou le controleur du model est suppose trouver cette info?
+	// pour l'instant valeur par defaut... mais d'ou le controleur du model est
+	// suppose trouver cette info?
 	public Font askScoreFont() {
 		// TODO Auto-generated method stub
 		return new Font("Arial", Font.BOLD, 40);
 	}
 
-	// par l'instant valeur par defaut... mais d'ou le controleur du model est suppose trouver cette info?
+	// par l'instant valeur par defaut... mais d'ou le controleur du model est
+	// suppose trouver cette info?
 	public Color askScoreBgColor() {
 		// TODO Auto-generated method stub
 		return Color.GRAY;
@@ -292,7 +293,6 @@ public class ModelController {
 		cgc.doSetScoreBgColor(color);
 	}
 
-
 	// ******************************************************************************************************//
 	// ******************************************Uml_section_methods*****************************************//
 	// ******************************************************************************************************//
@@ -303,38 +303,34 @@ public class ModelController {
 
 	public void askEditClass(Object id, String name) {
 		if (id instanceof VertexClass) {
-			exo.editVertex((VertexClass) id,name);
-		}	
+			exo.editVertex((VertexClass) id, name);
+		}
 		System.out.println("askEditClass " + name);
 	}
 
-
 	public void askEditAbstractClass(Object id, String name) {
 		if (id instanceof VertexAbstract) {
-			exo.editVertex((VertexAbstract) id,name);
-		}	
+			exo.editVertex((VertexAbstract) id, name);
+		}
 
 		System.out.println("askEditAbstractClass " + name);
 	}
 
-
 	public void askEditInterface(Object id, String name) {
 		if (id instanceof Vertex) {
-			exo.editVertex((Vertex) id,name);
-		}	
+			exo.editVertex((Vertex) id, name);
+		}
 
 		System.out.println("askEditInterface " + name);
 	}
 
-
 	public void askEditAttribute(Object id, String name, String type, String visibility) {
 		if (id instanceof Attribute) {
 			exo.editAttribut((Attribute) id, name, TypeBase.getByName(type), Visibility.getByName(visibility));
-		}	
+		}
 
 		System.out.println("askEditAttribute " + name + " " + type + " " + visibility);
 	}
-
 
 	public void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		if (id instanceof Method) {
@@ -343,14 +339,13 @@ public class ModelController {
 				lp.add(TypeBase.getByName(s));
 			}
 			exo.editMethod((Method) id, name, lp, TypeBase.getByName(returnType), Visibility.getByName(visibility));
-		}	
+		}
 
 		System.out.println("askEditMethod " + name + " " + paramTypes.toString() + " " + returnType + " " + visibility);
 	}
 
-
 	public void askDeleteClass(Object id) {
-		//core.askDeleteClass(id);
+		// core.askDeleteClass(id);
 		if (id instanceof VertexClass) {
 			exo.askDeleteClass((VertexClass) id);
 		}
@@ -364,7 +359,7 @@ public class ModelController {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteAbstractClass(Object id) {
-		//core.askDeleteAbstractClass(id);
+		// core.askDeleteAbstractClass(id);
 		if (id instanceof VertexAbstract) {
 			exo.askDeleteAbstractClass((VertexAbstract) id);
 		}
@@ -372,13 +367,14 @@ public class ModelController {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given interface instance
+	 * Sends to the core the user's request to delete the given interface
+	 * instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteInterface(Object id) {
-		//core.askDeleteInterface(id);
+		// core.askDeleteInterface(id);
 		if (id instanceof Vertex) {
 			exo.askDeleteInterface((Vertex) id);
 		}
@@ -386,13 +382,14 @@ public class ModelController {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given attribute instance
+	 * Sends to the core the user's request to delete the given attribute
+	 * instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteAttribute(Object id) {
-		//core.askDeleteAttribute(id);
+		// core.askDeleteAttribute(id);
 		if (id instanceof Attribute) {
 			exo.askDeleteAttribute((Attribute) id);
 		}
@@ -406,7 +403,7 @@ public class ModelController {
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteMethod(Object id) {
-		//core.askDeleteMethod(id);
+		// core.askDeleteMethod(id);
 		if (id instanceof Method) {
 			exo.askDeleteMethod((Method) id);
 		}
@@ -415,18 +412,20 @@ public class ModelController {
 
 	public void askLinkAttributeToClass(Object attributeID, Object classID) {
 		if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
-			exo.askLinkAttributeToClass((Attribute) attributeID,(VertexClass) classID);
+			exo.askLinkAttributeToClass((Attribute) attributeID, (VertexClass) classID);
 		}
 	}
-	
+
 	public void askUnLinkAttributeToClass(Object attributeID, Object classID) {
-		//if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
-		//	exo.askUnLinkAttributeToClass(attributeID, classID);
-		//}	
+		// if ((attributeID instanceof Attribute) && (classID instanceof
+		// VertexClass)) {
+		// exo.askUnLinkAttributeToClass(attributeID, classID);
+		// }
 	}
 
 	/**
-	 * Sends to the core the user's request to link the given method instance to the given class instance
+	 * Sends to the core the user's request to link the given method instance to
+	 * the given class instance
 	 * 
 	 * @param methodID
 	 *            identifier of the method instance
@@ -440,20 +439,21 @@ public class ModelController {
 	}
 
 	public void askUnLinkMethodToClass(Object methodID, Object classID) {
-		//core.askUnLinkMethodToClass(methodID, classID);
+		// core.askUnLinkMethodToClass(methodID, classID);
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * Sends to the core the user's request to unlink the given method instance
+	 * to the given class instance
 	 * 
 	 * @param claasID
 	 *            identifier of the class instance
 	 */
 	public void askUnLinkAllElementToClass(Object classID) {
-		//core.askUnLinkAllElementToClass(classID);
+		// core.askUnLinkAllElementToClass(classID);
 	}
 
-		/**
+	/**
 	 * Ask the core about the name of the Uml instance corresponding to the
 	 * defined keyword
 	 * 
@@ -487,8 +487,7 @@ public class ModelController {
 		return "askUmlInstanceType " + id.toString();
 	}
 
-
-		/**
+	/**
 	 * Ask the core about the visibility of the Uml instance corresponding to
 	 * the defined keyword
 	 * 
@@ -507,8 +506,6 @@ public class ModelController {
 		return "askUmlInstanceVisibility " + id.toString();
 	}
 
-
-
 	/**
 	 * Ask the core about the param types of the Uml instance corresponding to
 	 * the defined keyword
@@ -521,17 +518,16 @@ public class ModelController {
 		if (id instanceof Method) {
 			ArrayList<String> stringParams = new ArrayList<String>();
 			ArrayList<Type> params = ((Method) id).getParamType();
-			for (int i = 0; i<params.size();i++) {
+			for (int i = 0; i < params.size(); i++) {
 				stringParams.add(params.get(i).getName());
 			}
 			return stringParams;
 		}
 
-
 		return null;
 	}
 
-		/**
+	/**
 	 * Sends to the core the user's request to create a new relation
 	 * 
 	 * @param nature
@@ -544,25 +540,26 @@ public class ModelController {
 	 *            text of relation
 	 */
 
-
 	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
 		if (nature instanceof UMLNature) {
 			ArrayList<Vertex> v = new ArrayList<Vertex>();
 			for (Object object : classesID) {
-    			v.add(object instanceof Vertex ? (Vertex) object : null); // enfait il faudrait throw
-			}									// une exception, si on tombe sur le cas -> nullPointerException
+				v.add(object instanceof Vertex ? (Vertex) object : null); // enfait
+																			// il
+																			// faudrait
+																			// throw
+			} // une exception, si on tombe sur le cas -> nullPointerException
 			exo.askCreateRelation((UMLNature) nature, v, multiplicity, text);
 		}
-
 
 		System.out.println("askCreateRelation");
 	}
 
 	public void askDeleteRelation(Object id) {
 		if (id instanceof Edge) {
-			exo.askDeleteRelation((Edge)id);
+			exo.askDeleteRelation((Edge) id);
 		}
-		
+
 	}
 
 	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
@@ -570,7 +567,6 @@ public class ModelController {
 			exo.askEditRelation((Edge) id, multiplicity, text);
 		}
 	}
-
 
 	public ArrayList<Object> askUMLRelationClasses(Object id) {
 		if (id instanceof Edge) {
@@ -595,7 +591,7 @@ public class ModelController {
 		if (id instanceof Edge) {
 			return exo.askUMLRelationText((Edge) id);
 		}
-		
+
 		return "DefaultText -> ce n'etait pas un edge";
 	}
 
@@ -614,12 +610,12 @@ public class ModelController {
 	public void doShowUMLInstanceInErrorColor(Object id) {
 		cgc.doShowUMLInstanceInErrorColor(id);
 	}
-	
-	
+
 	public void doShowUMLInstanceInValidateColor(Object id) {
 		cgc.doShowUMLInstanceInValidateColor(id);
-		
+
 	}
+
 	/**
 	 * Reset color of UML instance to default in element pool
 	 * 
@@ -647,27 +643,22 @@ public class ModelController {
 		cgc.doAddElementToPool(v, UMLNature.ABSTRACT_CLASS);
 	}
 
-
 	public void askCreateInterfaceInPanel(String name) {
 		Vertex v = exo.askCreateInterfaceInPanel(name);
 		cgc.doAddElementToPool(v, UMLNature.INTERFACE);
 	}
-
 
 	public void askCreateAttributeInPanel(String name, String type, String visibility) {
 		Attribute att = exo.askCreateAttributeInPanel(name, type, visibility);
 		cgc.doAddElementToPool(att, UMLNature.ATTRIBUTE);
 	}
 
-
 	public void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		Method met = exo.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
 		cgc.doAddElementToPool(met, UMLNature.METHOD);
 	}
 
-
-	
-	public void doRemoveElementFromPool(Object id, Object nature) { 
+	public void doRemoveElementFromPool(Object id, Object nature) {
 		cgc.doRemoveElementFromPool(id, nature);
 	}
 
@@ -683,12 +674,10 @@ public class ModelController {
 		cgc.doSetValidateDiagramButtonEnabled(enabled);
 	}
 
-	
 	public void doEditRelation(Object id) {
 		cgc.doEditRelation(id);
 	}
 
-	
 	public void doDeleteRelation(Object id) {
 		cgc.doDeleteRelation(id);
 	}
@@ -697,11 +686,10 @@ public class ModelController {
 		cgc.doReverseRelation(id);
 	}
 
-	//ToDo
+	// ToDo
 	public void doEditElementFromPool(Object id, Object nature) {
 		cgc.doEditElementFromPool(id, nature);
 	}
-
 
 	/**
 	 * Link the given attribute instance to the given class instance
@@ -758,7 +746,7 @@ public class ModelController {
 	public void doShowUMLDrawingInErrorColor(Object id, Object nature) {
 		cgc.doShowUMLDrawingInErrorColor(id, nature);
 	}
-	
+
 	/**
 	 * Reset color of UML drawing to red in drawing area
 	 * 
@@ -778,6 +766,14 @@ public class ModelController {
 		cgc.doResetUMLDrawingColor();
 	}
 
+	public void askCloseExercise() {
+		// TODO Auto-generated method stub
+		System.out.println("askCloseExercise ");
+	}
+
+	public void askSaveExercise() {
+		// TODO Auto-generated method stub
+		System.out.println("askSaveExercise ");
+	}
+
 }
-
-
