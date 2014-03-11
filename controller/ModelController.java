@@ -693,7 +693,6 @@ public class ModelController {
 		cgc.doDeleteRelation(id);
 	}
 
-	//ToDO
 	public void doReverseRelation(Object id) {
 		cgc.doReverseRelation(id);
 	}
@@ -777,16 +776,6 @@ public class ModelController {
 	 */
 	public void doResetUMLDrawingColor() {
 		cgc.doResetUMLDrawingColor();
-	}
-
-	public void askCloseExercise() {
-		// TODO Auto-generated method stub
-		System.out.println("askCloseExercise ");
-	}
-
-	public void askSaveExercise() {
-		// TODO Auto-generated method stub
-		System.out.println("askSaveExercise ");
 	}
 
 }
