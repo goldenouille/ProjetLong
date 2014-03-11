@@ -265,7 +265,7 @@ public class Exercise {
 
 		Word w = getByPosition(first, last, t);
 		// TODO = verifier que la fin du mot correspond
-
+		removeUMLNatureAndGraphItemFromKeyWord(w);
 		vertexClass.setId(w.getId());
 		w.setUserUmlNature(UMLNature.CLASS);
 		w.setUserGraphItem(vertexClass);
@@ -287,7 +287,7 @@ public class Exercise {
 
 		Word w = getByPosition(first, last, t);
 		// TODO = verifier que la fin du mot correspond
-
+		removeUMLNatureAndGraphItemFromKeyWord(w);
 		vertexAbstract.setId(w.getId());
 		w.setUserUmlNature(UMLNature.ABSTRACT_CLASS);
 		w.setUserGraphItem(vertexAbstract);
@@ -309,7 +309,7 @@ public class Exercise {
 
 		Word w = getByPosition(first, last, t);
 		// TODO = verifier que la fin du mot correspond
-
+		removeUMLNatureAndGraphItemFromKeyWord(w);
 		vertex.setId(w.getId());
 		w.setUserUmlNature(UMLNature.INTERFACE);
 		w.setUserGraphItem(vertex);
@@ -331,7 +331,7 @@ public class Exercise {
 
 		Word w = getByPosition(first, last, t);
 		// TODO = verifier que la fin du mot correspond
-
+		removeUMLNatureAndGraphItemFromKeyWord(w);
 		att.setId(w.getId());
 		w.setUserUmlNature(UMLNature.ATTRIBUTE);
 		w.setUserGraphItem(att);
@@ -361,7 +361,7 @@ public class Exercise {
 
 		Word w = getByPosition(first, last, t);
 		// TODO = verifier que la fin du mot correspond
-
+		removeUMLNatureAndGraphItemFromKeyWord(w);
 		met.setId(w.getId());
 		w.setUserUmlNature(UMLNature.METHOD);
 		w.setUserGraphItem(met);
@@ -422,15 +422,32 @@ public class Exercise {
 		return "0 / 100";
 	}
 
+	public void removeUMLNatureAndGraphItemFromKeyWord(Word w) {
+			GraphItem gi = w.getUserGraphItem();
+			if (gi != null) {
+				this.modelController.doRemoveElementFromPool(w.getUserGraphItem(), w.getUserUmlNature());
+			}
+			w.setUserGraphItem(null);
+			w.setUserUmlNature(null);
+	}
+
 	public void removeUMLNatureAndGraphItemFromKeyWord(int id) {
 		if (id < 0) {
 			Word w = getById(id, this.userText);
 			if (w != null) {
+				GraphItem gi = w.getUserGraphItem();
+				if (gi != null) {
+					this.modelController.doRemoveElementFromPool(w.getUserGraphItem(),w.getUserUmlNature());
+				}
 				w.setUserGraphItem(null);
 				w.setUserUmlNature(null);
 			}
 		} else {
 			Word w = getById(id, this.text);
+				GraphItem gi = w.getUserGraphItem();
+				if (gi != null) {
+					this.modelController.doRemoveElementFromPool(w.getUserGraphItem(), w.getUserUmlNature());
+				}
 			w.setUserGraphItem(null);
 			w.setUserUmlNature(null);
 		}
