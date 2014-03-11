@@ -16,12 +16,16 @@ import actions.ActSelectPart;
 
 /**
  * @author Will
- * Generic Panel allowing to display selct and ask for correction of generic parts and steps
+ * Generic Panel allowing to display select and ask for correction of generic parts and steps
  */
 public class NavigationPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Creates and layout 
+	 * @param controller
+	 */
 	public NavigationPanel(ClassicGuiController controller) {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
