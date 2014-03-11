@@ -20,6 +20,8 @@ public class BuildGraphUMLStep extends Step {
 		Graph usergraph = exo.getUserGraph();
 		ArrayList<Edge> edges = graph.getEdges();
 		ArrayList<Edge> useredges = usergraph.getEdges();
+
+		mc.doResetUMLDrawingColor()
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);
