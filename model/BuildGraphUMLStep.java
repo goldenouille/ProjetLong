@@ -13,7 +13,6 @@ public class BuildGraphUMLStep extends Step {
 	
 	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
-		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
 		String errormsg="";
 		Graph graph = exo.getGraph();
