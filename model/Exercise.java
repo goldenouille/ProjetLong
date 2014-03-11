@@ -205,7 +205,7 @@ public class Exercise {
 		int l = text.length;
 		for (int i = 0; i < l; i++) {
 			this.idUserItem = this.idUserItem - 1;
-			this.nbUserWords --;
+			this.nbUserWords ++;
 			Word w = new Word(text[i], this.idUserItem);
 			w.setFirstWord(this.nbUserWords);
 			w.setLastWord(this.nbUserWords);
