@@ -8,7 +8,7 @@ public class SelectKeyWordStep extends Step {
 
 	public SelectKeyWordStep() {
 		this.name = "selectKeyWordStep";
-		this.frenchName = "Selection des mots-cle dans l'enonce";
+		this.frenchName = "Selection des mots-cles";
 	}
 
 	public static void getCorrection(Exercise exo) {
