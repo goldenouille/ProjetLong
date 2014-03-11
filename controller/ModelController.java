@@ -307,14 +307,14 @@ public class ModelController {
 
 	public void askEditClass(Object id, String name) {
 		if (id instanceof VertexClass) {
-			exo.editVertex((VertexClass) id, name);
+			exo.editVertexClass((VertexClass) id, name);
 		}
 		System.out.println("askEditClass " + name);
 	}
 
 	public void askEditAbstractClass(Object id, String name) {
 		if (id instanceof VertexAbstract) {
-			exo.editVertex((VertexAbstract) id, name);
+			exo.editVertexAbstract((VertexAbstract) id, name);
 		}
 
 		System.out.println("askEditAbstractClass " + name);

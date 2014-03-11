@@ -4,24 +4,41 @@ import java.util.ArrayList;
 
 public class Word {
 
-	protected String word;
-	protected boolean isKeyWord;
-	protected boolean isSelected;
-	protected int id;
-	protected UMLNature umlNature;
-	protected UMLNature userUmlNature;
 
-	protected GraphItem graphItem;
-	protected GraphItem userGraphItem;
+	protected String word;		// string remembered by the word
+	protected boolean isKeyWord;	// if the word is a keyWord or not
+	protected boolean isSelected;	// if the word is currently selected
+	protected int id;	// the word's id, which will be the same as the one of the associated GraphItem
+	
+	protected UMLNature umlNature;	// expected UMLNature
+	protected UMLNature userUmlNature;	// UMLNature given by the user
 
-	protected int firstWord;
-	protected int lastWord;
-	protected int length;
+	protected GraphItem graphItem;	// expected GraphItem
+	protected GraphItem userGraphItem;	// GraphItem given by the user
 
+
+	protected int length;	// number of words included in the remembered string
+	protected int firstWord;	// index of the beginning of the Word in the printed text in the GUI
+	protected int lastWord;		// index of the end of the Word in the printed text in the GUI
+
+	/**
+	 * Basic constructor
+	 */
 	public Word() {
 		this.isSelected = false;
 	}
 
+
+	/**
+	 * Create a word with a string and its id
+	 * 
+	 * @param word
+	 *            	the string to be remembered by the word
+	 * @param isKeyWord
+	 *				define if the word is a keyWord or not
+	 * @param id
+	 *				the word's id
+	 */
 	public Word (String word, boolean isKeyWord, int id) {
 		this.word = word;
 		this.isKeyWord = isKeyWord;
@@ -32,12 +49,28 @@ public class Word {
 		this.userUmlNature = null;
 	}
 
+	/**
+	 * Create a basic word wich is not a keyword and has no id
+	 * 
+	 * @param word
+	 *            	the string to be remembered by the word
+	 */	
+
 	public Word (String word) {
 		this.word = word;
 		this.isKeyWord = false;
 		this.isSelected = false;
 		this.userUmlNature = null;
 	}
+
+	/**
+	 * Create a word with its id but which is not a keyword
+	 * 
+	 * @param word
+	 *            	the string to be remembered by the word
+	 * @param id
+	 *				the word's id
+	 */
 
 	public Word (String word, int id) {
 		this.word = word;
@@ -47,6 +80,10 @@ public class Word {
 		this.userUmlNature = null;
 	}
 
+	/**
+	 * Ask to validate the userGraphItem
+	 * 
+	 */
 	public void validate() {
 		this.userGraphItem.validate();
 	}
@@ -112,22 +149,12 @@ public class Word {
 		this.umlNature = umlNature;
 	}
 
-	/*public void setUmlNature(String umlNature) {
-		//TODO TODO TODO TODO TODO -> aller implémenter une fonction dans UMLNature pour récupérer une constante 
-		// a part d'une string
-	}*/
-
 	public UMLNature getUmlNature() {
 		return this.umlNature;
 	}
 	public void setUserUmlNature(UMLNature userUmlNature) {
 		this.userUmlNature = userUmlNature;
 	}
-
-	/*public void setUserUmlNature(String userUmlNature) {
-		//TODO TODO TODO TODO TODO -> aller implémenter une fonction dans UMLNature pour récupérer une constante 
-		// a part d'une string
-	}*/
 
 	public UMLNature getUserUmlNature() {
 		return this.userUmlNature;
