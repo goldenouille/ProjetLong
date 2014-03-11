@@ -243,7 +243,7 @@ public class Exercise {
 	public void addPart(Part p) {
 		p.addStep("selectKeyWord");
 		p.addStep("LinkKeyWordToUML");
-		p.addStep("BuildUMLGraph");
+		p.addStep("BuildGraphUML");
 		this.parts.add(p);
 		this.nbParts = this.nbParts + 1;
 	}
