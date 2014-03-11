@@ -593,14 +593,28 @@ public class Exercise {
 
 	public void editVertex(Vertex id, String name) {
 		id.setName(name);
-		this.modelController.doEditElementFromPool(id, UMLNature.CLASS);
+		this.modelController.doEditElementFromPool(id, UMLNature.INTERFACE);
+	}
+
+	public void editVertexAbstract(VertexAbstract id, String name) {
+		id.setName(name);
+		this.modelController.doEditElementFromPool(id, UMLNature.ABSTRACT_CLASS);
 
 	}
+
+	public void editVertexClass(VertexClass id, String name) {
+		id.setName(name);
+		this.modelController.doEditElementFromPool(id, UMLNature.CLASS);
+	}
+
+
 
 	public void editAttribut(Attribute id, String name, TypeBase type, Visibility visibility) {
 		id.setName(name);
 		id.setType(type);
 		id.setVisibility(visibility);
+		this.modelController.doEditElementFromPool(id, UMLNature.ATTRIBUTE);
+
 	}
 
 	public void editMethod(Method id, String name, ArrayList<Type> lp, Type returnType, Visibility visibility) {
@@ -608,6 +622,8 @@ public class Exercise {
 		id.setParamType(lp);
 		id.setReturnType(returnType);
 		id.setVisibility(visibility);
+		this.modelController.doEditElementFromPool(id, UMLNature.METHOD);
+
 	}
 
 	public void askEditRelation(Edge id, ArrayList<String> multiplicity, String name) {

@@ -8,7 +8,7 @@ public class LinkKeyWordToUMLStep extends Step {
 
 	public LinkKeyWordToUMLStep() {
 		this.name = "LinkKeyWordToUMLStep";
-		this.frenchName = "Association des mots-clef avec un type UML";
+		this.frenchName = "Lier mots-cles et UML";
 	}
 	
 	public static void getCorrection(Exercise exo) {
