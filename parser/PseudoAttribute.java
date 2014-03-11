@@ -1,7 +1,5 @@
 package parser;
 
-import model.*;
-
 public class PseudoAttribute {
         private String name;
         private int id;

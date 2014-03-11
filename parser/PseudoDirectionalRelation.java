@@ -1,7 +1,5 @@
 package parser;
 
-import model.Vertex;
-
 public class PseudoDirectionalRelation extends PseudoEdge {
 	protected int target;
 	protected int source;

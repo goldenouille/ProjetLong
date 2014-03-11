@@ -1,19 +1,12 @@
 package parser;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import model.*;
 
-import static org.apache.commons.digester3.binder.DigesterLoader.newLoader;
-
 import org.apache.commons.digester3.Digester;
-import org.apache.commons.digester3.binder.DigesterLoader;
-import org.apache.commons.digester3.xmlrules.FromXmlRulesModule;
 import org.xml.sax.SAXException;
 
 
@@ -24,7 +17,8 @@ public class Parser {
 	private Digester digester;
 	
 	
-	/*  This constructor initialize the xml parser with all the rules nedded to create an exercise. 
+	/** This constructor initialize the xml parser with all the rules nedded to create an exercise. 
+	 *	 
 	 */
 	public Parser() {
 		this.digester = new Digester();
@@ -83,18 +77,24 @@ public class Parser {
 		  
 	}
 
-	/* 
-	 * This fonction create an exercise from a xml file given
-	 */
-  public Exercise parse (InputStream file) throws IOException, SAXException {
+
+  /**	This fonction create an exercise from a xml file given
+ * @param file the input file
+ * @return the exercise created
+ * @throws IOException
+ * @throws SAXException
+ */
+public Exercise parse (InputStream file) throws IOException, SAXException {
   	System.out.println("parsing ...");
   	return digester.parse(file);
   }
   
-  /*
-   * This fonction create an xml String describing the given exercise
-   */
-  public String parse (Exercise exo) {
+
+  /**	This fonction create an xml String describing the given exercise
+ * @param exo The exercise to parse
+ * @return	The string respecting the xml format describing the exercise
+ */
+public String parse (Exercise exo) {
   	
   	String res = "<exercise name=\"" + exo.getName();
   	if (exo.getPreview()!=null) {
@@ -105,9 +105,12 @@ public class Parser {
   	Word w;
   	boolean isBody = false;
   	
+  	//The loop on the parts
   	for (int i=0; i<exo.getParts().size(); i++) {
   		p = exo.getParts().get(i);
   		res += "\t<part name=\"" + p.getName() + "\">\n\t\t";
+  		
+  		//The loop on the text
   		for(int j=0; j<p.getText().size(); j++) {
   			w = p.getText().get(j);
   			if (w.isKeyWord()) {
@@ -130,6 +133,7 @@ public class Parser {
   		}
   		res +="\n\n\t\t<UML>\n";
   		
+  		//The loop on the attributes
   		Graph g = p.getGraph();
   		ArrayList<Attribute> al = g.getAttributes();
   		for (int j=0; j<al.size(); j++) {
@@ -140,6 +144,7 @@ public class Parser {
   			res += "\" motherId= '" + al.get(j).getMotherClass().getId() + "' />\n"; 
   		}
   		
+  		//The loop on the methods
   		ArrayList<Method> ml = g.getMethods();
   		for (int j=0; j<ml.size(); j++) {
   			res += "\t\t\t<uml-method name= \"" + ml.get(j).getName();
@@ -160,6 +165,7 @@ public class Parser {
   			}
   		}
   		
+  		//The loop on the Vertex (class, interface, abstract class)
   		ArrayList<Vertex> vl = g.getVertex();
   		for (int j=0; j<vl.size(); j++) {
   			res += "\t\t\t<uml-" + vl.get(j).getUml();
@@ -167,6 +173,7 @@ public class Parser {
   			res += "\" id= '" + vl.get(j).getId() + "' />\n";
   		}
   		
+  		//The loop on the edges
   		ArrayList<Edge> el = g.getEdges();
   		for (int j=0; j<el.size(); j++) {
   			Edge e = el.get(j);
