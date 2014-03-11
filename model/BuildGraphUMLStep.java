@@ -69,4 +69,7 @@ public class BuildGraphUMLStep extends Step {
 		}
 	}
 
+	public String toString() {
+		return this.frenchName;
+	}
 }
