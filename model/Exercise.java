@@ -537,11 +537,29 @@ public class Exercise {
 	public void askLinkAttributeToClass(Attribute att, VertexClass c) {
 		c.addAttribute(att);
 		att.setMotherClass(c);
+		// allow to check if it can be linked
+		this.modelController.doLinkAttributeToClass(att, c);
+	}
+
+	public void askUnLinkAttributeToClass(Attribute att, VertexClass c) {
+		c.removeAttribute(att);
+		att.setMotherClass(null);
+		// allow to check if it can be unlinked
+		this.modelController.doUnLinkAttributeToClass(att,c);
 	}
 
 	public void askLinkMethodToClass(Method met, Vertex c) {
 		c.addMethod(met);
 		met.setMotherClass(c);
+		// allow to check if it can be linked
+		this.modelController.doLinkMethodToClass(met, c);
+	}
+
+	public void askUnLinkMethodToClass(Method met, Vertex c) {
+		c.removeMethod(met);
+		met.setMotherClass(null);
+		// allow to check if it can be unlinked
+		this.modelController.doUnLinkMethodToClass(met,c);
 	}
 
 	public void setModelController(ModelController modelController) {
@@ -551,6 +569,7 @@ public class Exercise {
 	public void askCreateRelation(UMLNature nature, ArrayList<Vertex> v, ArrayList<String> multiplicity, String label) {
 		this.idUserItem--;
 		Edge newE = Edge.createEdge(nature, v, multiplicity, label, idUserItem);
+		this.modelController.doAddRelationToDrawingArea(newE, nature); 
 	}
 
 	public void askDeleteRelation(Edge id) {

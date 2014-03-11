@@ -413,14 +413,15 @@ public class ModelController {
 	public void askLinkAttributeToClass(Object attributeID, Object classID) {
 		if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
 			exo.askLinkAttributeToClass((Attribute) attributeID, (VertexClass) classID);
+		} else if ((classID instanceof Vertex) && (!(classID instanceof VertexClass))) {
+			cgc.doPrintMessage("Attention aux interfaces", "Il n'est pas possible d'ajouter un attribut a une interface");
 		}
 	}
 
 	public void askUnLinkAttributeToClass(Object attributeID, Object classID) {
-		// if ((attributeID instanceof Attribute) && (classID instanceof
-		// VertexClass)) {
-		// exo.askUnLinkAttributeToClass(attributeID, classID);
-		// }
+		if ((attributeID instanceof Attribute) && (classID instanceof VertexClass)) {
+			exo.askUnLinkAttributeToClass((Attribute) attributeID, (VertexClass) classID);
+		 } 
 	}
 
 	/**
@@ -439,7 +440,8 @@ public class ModelController {
 	}
 
 	public void askUnLinkMethodToClass(Object methodID, Object classID) {
-		// core.askUnLinkMethodToClass(methodID, classID);
+		if ((methodID instanceof Method) && (classID instanceof Vertex))
+		exo.askUnLinkMethodToClass((Method) methodID, (Vertex) classID);
 	}
 
 	/**
@@ -774,6 +776,10 @@ public class ModelController {
 	public void askSaveExercise() {
 		// TODO Auto-generated method stub
 		System.out.println("askSaveExercise ");
+	}
+
+	public void doAddRelationToDrawingArea(Object id, Object nature) {
+		cgc.doAddRelationToDrawingArea(id, nature);
 	}
 
 }
