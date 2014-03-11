@@ -779,6 +779,16 @@ public class ModelController {
 		cgc.doResetUMLDrawingColor();
 	}
 
+	public void askCloseExercise() {
+		// TODO Auto-generated method stub
+		System.out.println("askCloseExercise ");
+	}
+
+	public void askSaveExercise() {
+		// TODO Auto-generated method stub
+		System.out.println("askSaveExercise ");
+	}
+
 }
 
 

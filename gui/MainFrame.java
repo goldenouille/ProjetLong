@@ -16,6 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
+import actions.ActCloseExercise;
+import actions.ActSaveExercise;
+
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -37,8 +40,8 @@ public class MainFrame extends JFrame {
 		leftPane.setPreferredSize(new Dimension(180, 720));
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Fichier");
-		JMenuItem itemSave = new JMenuItem();
-		JMenuItem itemQuit = new JMenuItem();
+		JMenuItem itemSave = new JMenuItem(new ActSaveExercise(controller, "Enregistrer l'exercice en xml"));
+		JMenuItem itemQuit = new JMenuItem(new ActCloseExercise(controller, "Quitter l'exercice"));
 		menuFichier.add(itemSave);
 		menuFichier.add(itemQuit);
 		menuBar.add(menuFichier);

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -11,6 +12,7 @@ import javax.swing.text.BadLocationException;
 
 import uml.UMLDrawingPanel;
 import controller.ModelController;
+import launcher.Launcher;
 import model.UMLNature;
 
 public class ClassicGuiController implements GuiController {
@@ -113,6 +115,22 @@ public class ClassicGuiController implements GuiController {
 	 */
 	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
 		umlDrawingPanel.setValidateDiagramButtonEnabled(enabled);
+	}
+	
+	/**
+	 * Sends to the core the user's request to close current exercise
+	 */
+	public void askCloseExercise() {
+		core.askCloseExercise();
+		mainFrame.dispose();
+		Launcher.main(null);
+	}
+	
+	/**
+	 * Sends to the core the user's request to save current exercise as xml
+	 */
+	public void askSaveExercise() {
+		core.askSaveExercise();
 	}
 
 	// ******************************************************************************************************//
