@@ -21,7 +21,8 @@ public class BuildGraphUMLStep extends Step {
 		ArrayList<Edge> edges = graph.getEdges();
 		ArrayList<Edge> useredges = usergraph.getEdges();
 
-		mc.doResetUMLDrawingColor()
+		mc.doResetUMLDrawingColor();
+		errormsg += mc.doGetMissingUmlDrawingElementNumber() + " n'ont pas ete dessines.\n";
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);

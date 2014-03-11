@@ -66,6 +66,10 @@ public class ModelController {
 		// step pas encore implemente
 	}
 
+	public int doGetMissingUmlDrawingElementNumber() {
+		return cgc.doGetMissingUmlDrawingElementNumber();
+	}
+
 	public void askAddText(String text, String comment) {
 		System.out.println("askAddText " + text + "\n" + comment);
 		cgc.doAddText(true, exo.addText(text));
