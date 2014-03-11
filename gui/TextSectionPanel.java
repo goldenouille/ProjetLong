@@ -13,14 +13,12 @@ import actions.ActChangeTextFont;
 import actions.ActSelectText;
 import actions.ActStartTextAddition;
 import actions.ActUnSelectText;
-import actions.ActValidateAssociation;
 import actions.ActValidateKeywords;
 
 public class TextSectionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel missingKeywordsLabel;
-	private JLabel missingAssociationsLabel;
 	private JButton validateKeywordsButton;
 	private JButton selectTextButton;
 	private JButton deselectTextButton;
@@ -68,7 +66,6 @@ public class TextSectionPanel extends AbstractPanel {
 		addTextButton.setToolTipText("<html>Vous permet d'ajouter du texte a l'enonce pour justifier votre solution."
 				+ "<br>Attention ! Il y a en général une solution ne nécessitant pas d'ajouter de texte !</html>");
 		bottomPane.add(addTextButton);
-		bottomPane.add(Box.createHorizontalGlue());
 	}
 
 	public void setMissingKeywords(int nb) {
