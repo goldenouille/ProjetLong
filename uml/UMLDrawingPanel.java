@@ -510,6 +510,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).addProperty(attributeID);
 		}
+		// TODO
+		System.out.println("doLinkAttributeToClass");
 	}
 	
 	/**
@@ -534,6 +536,9 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).removeProperty(attributeID);
 		}
+
+		// TODO
+		System.out.println("doUnLinkAttributeToClass");
 	}
 	
 	/**
@@ -558,6 +563,9 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).addMethod(methodID);
 		}
+
+		// TODO
+		System.out.println("doLinkMethodToClass");
 	}
 	
 	/**
@@ -582,6 +590,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			i--;
 			classes.get(i).removeMethod(methodID);
 		}
+		// TODO
+		System.out.println("doUnLinkMethodToClass");
 	}
 	
 	/**
