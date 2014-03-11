@@ -16,6 +16,10 @@ public class BuildGraphUMLStep extends Step {
 		Score score = exo.getScore();
 		ModelController mc = exo.getModelController();
 		String errormsg="";
+		Graph graph = exo.getGraph();
+		Graph usergraph = exo.getUserGraph();
+		ArrayList<Edge> edges = graph.getEdges();
+		ArrayList<Edge> useredges = usergraph.getEdges();
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);
@@ -60,6 +64,11 @@ public class BuildGraphUMLStep extends Step {
 				default :
 					break;
 				}
+				for (Edge useredge:useredges){
+					if (!compare(useredge,edges)){
+						//warn error !
+					}
+				}
 			}
 		}
 		if (errormsg=="") {
@@ -69,6 +78,10 @@ public class BuildGraphUMLStep extends Step {
 		}
 	}
 
+	private static boolean compare(Edge useredge, ArrayList<Edge> edges){
+		return true;
+	}
+	
 	public String toString() {
 		return this.frenchName;
 	}

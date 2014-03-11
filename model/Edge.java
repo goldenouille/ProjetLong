@@ -9,6 +9,7 @@ public class Edge implements GraphItem{
 	protected String frenchName;
 	protected UMLNature nature;
 	protected boolean isDeletable;
+	protected boolean isCorrected;
 
 	
 	public Edge() {
@@ -35,7 +36,15 @@ public class Edge implements GraphItem{
 	public void setName(String n) {
 		this.name = n;
 	}
-
+	
+	public boolean getIsCorrected() {
+		return this.isCorrected;
+	}
+	
+	public void setIsCorrected(boolean corrected) {
+		this.isCorrected = corrected;
+	}
+	
 	public String getUml() {
 		return null;
 	}
