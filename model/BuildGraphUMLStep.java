@@ -82,9 +82,39 @@ public class BuildGraphUMLStep extends Step {
 	}
 
 	private static boolean compare(Edge useredge, ArrayList<Edge> edges){
-		return true;
+		boolean correct=false;
+		for (Edge edge:edges){
+			if (edge.getNature()==useredge.getNature()&&!edge.getIsCorrected()){
+				ArrayList<Vertex> edgevertex=edge.getVertex();
+				ArrayList<Vertex> useredgevertex=edge.getVertex();
+				if (edgevertex.size()==useredgevertex.size()){
+					correct=true;
+					for (int i = 0; i< edgevertex.size() ; i++){
+						if (edgevertex.get(i).getId()!=useredgevertex.get(i).getId()){
+							correct = false;
+						}
+					}
+					ArrayList<String> edgemultiplicity = edge.getMultiplicity();
+					ArrayList<String> useredgemultiplicity = edge.getMultiplicity();
+					if (edgemultiplicity.size()==useredgemultiplicity.size()){
+						for (int i = 0; i< edgemultiplicity.size() ; i++){
+							if (!edgemultiplicity.get(i).equals(useredgemultiplicity.get(i))){
+								correct = false;
+							}
+						}
+					}
+				}
+				if (correct) {
+					edge.setIsCorrected(true);
+					useredge.setIsCorrected(true);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
+
 	public String toString() {
 		return this.frenchName;
 	}
