@@ -36,7 +36,7 @@ public class LinkKeyWordToUMLStep extends Step {
 				else if (gi.getUmlNature().equals(word.getUserUmlNature())) {
 					System.out.println("Le type de " + word.getWord() + " est correct !");
 					mc.doShowUMLInstanceInValidateColor(word.getUserGraphItem());
-					gi.validate();
+					word.getUserGraphItem().validate();
 				}
 				
 				else {

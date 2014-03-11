@@ -755,6 +755,29 @@ public class ModelController {
 		cgc.doUnLinkMethodToClass(methodID, classID);
 	}
 
+	public void doShowUMLDrawingInErrorColor(Object id, Object nature) {
+		cgc.doShowUMLDrawingInErrorColor(id, nature);
+	}
+	
+	/**
+	 * Reset color of UML drawing to red in drawing area
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @param nature
+	 *            UMLNature of the instance
+	 */
+	public void doResetUMLDrawingColor(Object id, Object nature) {
+		cgc.doResetUMLDrawingColor(id, nature);
+	}
+
+	/**
+	 * Reset color of UML drawings to black in drawing area
+	 */
+	public void doResetUMLDrawingColor() {
+		cgc.doResetUMLDrawingColor();
+	}
+
 }
 
 
