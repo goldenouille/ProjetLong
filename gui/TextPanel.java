@@ -22,6 +22,10 @@ import javax.swing.text.StyledDocument;
 
 import actions.ActClickText;
 
+/**
+ * @author Will Class allowing to interract with a JTextPane as required by the
+ *         classic exercise flow
+ */
 public class TextPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -29,8 +33,16 @@ public class TextPanel extends AbstractPanel {
 	private int[] lenghtTable;
 	private boolean userText;
 
-	public TextPanel(ClassicGuiController c, boolean userText) {
-		super(c);
+	/**
+	 * Creates and lays out a textpanel
+	 * 
+	 * @param controller
+	 *            link to gui controller
+	 * @param userText
+	 *            true if the panel is supposed to display user's text
+	 */
+	public TextPanel(ClassicGuiController controller, boolean userText) {
+		super(controller);
 		this.userText = userText;
 		this.setLayout(new BorderLayout());
 
@@ -45,6 +57,11 @@ public class TextPanel extends AbstractPanel {
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Replaces the text of the panel with the given text
+	 * 
+	 * @param text
+	 */
 	public void replaceText(String[] text) {
 		try {
 			lenghtTable = new int[0];
@@ -56,6 +73,11 @@ public class TextPanel extends AbstractPanel {
 
 	}
 
+	/**
+	 * Append the given text to the displayed text
+	 * 
+	 * @param strings
+	 */
 	public void apendText(String[] strings) {
 
 		int[] newTable = new int[lenghtTable.length + strings.length];
@@ -130,6 +152,16 @@ public class TextPanel extends AbstractPanel {
 		return selection;
 	}
 
+	/**
+	 * Search for a keyword at the specified coordinates (relatively to itself)
+	 * 
+	 * @param point
+	 *            coordinates where to search for a validated keyword
+	 * @return int[2] giving the first and last word of the found keyword, null
+	 *         otherwise
+	 * @throws BadLocationException
+	 *             if a keyword is found but his position cannot be computed
+	 */
 	public int[] getKeywordPosition(Point point) throws BadLocationException {
 		int[] keywordPosition = null;
 		AccessibleJTextComponent context = ((AccessibleJTextComponent) textPane.getAccessibleContext());
@@ -160,6 +192,17 @@ public class TextPanel extends AbstractPanel {
 		return keywordPosition;
 	}
 
+	/**
+	 * Returns the specified expression.
+	 * 
+	 * @param firstWord
+	 *            index of expression first word
+	 * @param lastWord
+	 *            index of expression last word
+	 * @returnthe specified expression
+	 * @throws BadLocationException
+	 *             if expression does not exist
+	 */
 	public String getText(int firstWord, int lastWord) throws BadLocationException {
 		if (firstWord != 0)
 			firstWord--;
@@ -168,6 +211,18 @@ public class TextPanel extends AbstractPanel {
 		return textPane.getText(start, end - start).trim();
 	}
 
+	/**
+	 * Highlight the given expression with given color
+	 * 
+	 * @param color
+	 *            to use for highlighting
+	 * @param firstWord
+	 *            index of expression first word
+	 * @param lastWord
+	 *            index of expression last word
+	 * @throws BadLocationException
+	 *             if expression does not exist
+	 */
 	public void highlight(Color color, int firstWord, int lastWord) throws BadLocationException {
 		int start = 0;
 		if (firstWord != 0) {
@@ -180,6 +235,16 @@ public class TextPanel extends AbstractPanel {
 		textPane.getHighlighter().addHighlight(start, end, new DefaultHighlightPainter(color));
 	}
 
+	/** unHighlight the given expression with given color.
+	  * @param color
+	 *            to use for highlighting
+	 * @param firstWord
+	 *            index of expression first word
+	 * @param lastWord
+	 *            index of expression last word
+	 * @throws BadLocationException
+	 *             if expression does not exist
+	 */
 	public void unHighlight(Color color, int firstWord, int lastWord) throws BadLocationException {
 		int start = 0;
 		if (firstWord != 0) {
@@ -223,6 +288,9 @@ public class TextPanel extends AbstractPanel {
 		}
 	}
 
+	/** Sets the text font
+	 * @param font
+	 */
 	public void setTextFont(Font font) {
 		MutableAttributeSet attrs = textPane.getInputAttributes();
 		StyleConstants.setFontFamily(attrs, font.getFamily());
@@ -233,14 +301,24 @@ public class TextPanel extends AbstractPanel {
 		doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, true);
 	}
 
+	/** Acces the JTextPane
+	 * @return the JTextPane
+	 */
 	public JTextPane getTextPane() {
 		return textPane;
 	}
 
+	/** 
+	 * @return true if panel displays usertext
+	 */
 	public boolean isUserText() {
 		return userText;
 	}
 
+	/**
+	 * @author Will
+	 * internal class for temporary storage of highlighting data
+	 */
 	private class HighlightData {
 		public int start, end;
 		public Color color;

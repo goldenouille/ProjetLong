@@ -15,6 +15,10 @@ import actions.ActStartTextAddition;
 import actions.ActUnSelectText;
 import actions.ActValidateKeywords;
 
+/**
+ * @author Will
+ * Sets the layout of the test panels
+ */
 public class TextSectionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +27,11 @@ public class TextSectionPanel extends AbstractPanel {
 	private JButton selectTextButton;
 	private JButton deselectTextButton;
 
+	/** Creates a panel laying the given text panels and displaying the classic exercise buttons
+	 * @param controller
+	 * @param textPanel
+	 * @param userTextPanel
+	 */
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
 		super(controller);
 		this.setLayout(new BorderLayout());
@@ -68,6 +77,9 @@ public class TextSectionPanel extends AbstractPanel {
 		bottomPane.add(addTextButton);
 	}
 
+	/** Sets the displayed missing keyword number
+	 * @param nb number to show, hides the label if <1
+	 */
 	public void setMissingKeywords(int nb) {
 		if (nb < 1) {
 			missingKeywordsLabel.setText("");
@@ -76,6 +88,10 @@ public class TextSectionPanel extends AbstractPanel {
 		}
 	}
 
+	/** !! Currently desactivated !!
+	 * Set enabled state of the text selection, deselection and validation buttons
+	 * @param enabled
+	 */
 	public void setValidateKeywordsButtonEnabled(boolean enabled) {
 		//validateKeywordsButton.setEnabled(enabled);
 		//selectTextButton.setEnabled(enabled);

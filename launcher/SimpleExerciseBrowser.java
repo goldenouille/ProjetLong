@@ -13,11 +13,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import parser.Parser;
 
+/**
+ * @author Will
+ * Very basic exercise browser. Allow the user to browse its file system for an xml file and displays a preview of choosen exercises.
+ */
 public class SimpleExerciseBrowser implements ExerciseBrowser {
 
 	private JPanel panel;
 	private JTextArea previewPane;
 	
+	/**
+	 * Creates the browser and a simple preview panel
+	 */
 	public SimpleExerciseBrowser() {
 		panel = new JPanel(new BorderLayout());
 		previewPane = new JTextArea();

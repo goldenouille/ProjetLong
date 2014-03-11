@@ -33,8 +33,8 @@ public class UMLElementListenedLabel extends JLabel {
 	 *            text show as tooltip
 	 */
 	public UMLElementListenedLabel(UMLElementPanel mainpanel, int action, UMLNature nature, Object id, String text, String toolTipText) {
-		super();
-		
+		super(text);
+		/*
 		String textLabel = "";
 		if (nature.equals(UMLNature.CLASS)) {
 			textLabel += "C ";
@@ -45,6 +45,7 @@ public class UMLElementListenedLabel extends JLabel {
 		}
 		textLabel += text;
 		this.setText(textLabel);
+		*/
 		
 		this.mainpanel = mainpanel;
 		this.action = action;

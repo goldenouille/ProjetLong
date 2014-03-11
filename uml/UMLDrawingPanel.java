@@ -361,10 +361,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		} else if (nature.equals(UMLNature.INTERFACE)) {
 			poolPanel.modifyClass(id, controller.askUmlInstanceName(id));
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			// TODO
-			System.out.println("doEditElement Attribute");
+			// System.out.println("doEditElement Attribute");
 			poolPanel.modifyProperty(id, controller.askUmlInstanceName(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		} else if (nature.equals(UMLNature.METHOD)) {
+			// System.out.println("doEditElement Method");
 			poolPanel.modifyMethod(id, controller.askUmlInstanceName(id), controller.askUmlInstanceParamTypes(id), controller.askUmlInstanceType(id), controller.askUmlInstanceVisibility(id));
 		}
 		
