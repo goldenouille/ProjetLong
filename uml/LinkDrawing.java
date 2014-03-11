@@ -605,24 +605,32 @@ public class LinkDrawing {
 		
 		drawArrow(g);
 		
-		// drawString motherWeighting and text
+		// drawString text
 		if (points.size() >= 1) {
+			
 			if (points.firstElement().getWidth() == classes.get(0).getX()) {
-				g.drawString(multiplicity.get(0), points.firstElement().width - g.getFontMetrics().stringWidth(multiplicity.get(0)) - DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
 				g.drawString(text, points.firstElement().width - g.getFontMetrics().stringWidth(multiplicity.get(0)) - g.getFontMetrics().stringWidth(text) - DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
 			} else if (points.firstElement().getWidth() == classes.get(0).getX() + classes.get(0).getWidth()) {
-				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
 				g.drawString(text, points.firstElement().width + g.getFontMetrics().stringWidth(multiplicity.get(0)) + DRAWSTRING_DELTA*3, points.firstElement().height - DRAWSTRING_DELTA);
 			} else if (points.firstElement().getHeight() == classes.get(0).getY()) {
-				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
 				g.drawString(text, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - g.getFont().getSize() - DRAWSTRING_DELTA*3);
 			} else {
-				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + g.getFont().getSize());
 				g.drawString(text, points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + 2*g.getFont().getSize() + DRAWSTRING_DELTA*2);
 			}
 			
+			// drawString motherWeighting
+			if (points.firstElement().getWidth() == classes.get(0).getX() && multiplicity.size() >= 1) {
+				g.drawString(multiplicity.get(0), points.firstElement().width - g.getFontMetrics().stringWidth(multiplicity.get(0)) - DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+			} else if (points.firstElement().getWidth() == classes.get(0).getX() + classes.get(0).getWidth()) {
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+			} else if (points.firstElement().getHeight() == classes.get(0).getY()) {
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height - DRAWSTRING_DELTA);
+			} else {
+				g.drawString(multiplicity.get(0), points.firstElement().width + DRAWSTRING_DELTA, points.firstElement().height + g.getFont().getSize());
+			}
+			
 			// drawString daughterWeighting
-			if (points.lastElement().getWidth() == classes.get(classes.size()-1).getX()) {
+			if (points.lastElement().getWidth() == classes.get(classes.size()-1).getX() && multiplicity.size() >= 2) {
 				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width - g.getFontMetrics().stringWidth(multiplicity.get(multiplicity.size()-1)) - DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);
 			} else if (points.lastElement().getWidth() == classes.get(classes.size()-1).getX() + classes.get(classes.size()-1).getWidth()) {
 				g.drawString(multiplicity.get(multiplicity.size()-1), points.lastElement().width + DRAWSTRING_DELTA, points.lastElement().height - DRAWSTRING_DELTA);

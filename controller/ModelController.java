@@ -62,8 +62,12 @@ public class ModelController {
 	public void askValidateDiagram() {
 		// System.out.println("Correction de " + ((Step) s).getFrenchName());
 		// ((Step) s).getCorrection(exo);
-
+		BuildGraphUMLStep.getCorrection(exo);
 		// step pas encore implemente
+	}
+
+	public int doGetMissingUmlDrawingElementNumber() {
+		return cgc.doGetMissingUmlDrawingElementNumber();
 	}
 
 	public void askAddText(String text, String comment) {
