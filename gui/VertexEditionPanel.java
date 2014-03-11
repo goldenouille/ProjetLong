@@ -9,7 +9,7 @@ import javax.swing.text.BadLocationException;
 
 /**
  * @author Will
- *
+ * This panel allows to view and edit Vertex (class, abstract class and interface) properties
  */
 public class VertexEditionPanel extends AbstractPanel {
 
@@ -18,11 +18,10 @@ public class VertexEditionPanel extends AbstractPanel {
 
 	/** Classic constructor
 	 * @param controller link to controller
-	 * @param keyword
-	 * @param name
-	 * @throws BadLocationException
+	 * @param keyword the keyword linked to the vertex, null otherwise
+	 * @param name name of the vertex, can be null
 	 */
-	public VertexEditionPanel(ClassicGuiController controller, String keyword, String name) throws BadLocationException {
+	public VertexEditionPanel(ClassicGuiController controller, String keyword, String name) {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
