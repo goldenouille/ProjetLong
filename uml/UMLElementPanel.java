@@ -1,9 +1,9 @@
 package uml;
 
+import gui.ClassicGuiController;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import actions.ActValidateAssociation;
+
 import model.UMLNature;
 
 public class UMLElementPanel extends JPanel {
@@ -25,6 +27,7 @@ public class UMLElementPanel extends JPanel {
 	private UMLDrawingPanel mainPanel;
 	private JPanel subPanel;
 	private JButton validationButton;
+	private JLabel missingAssociationsLabel;
 	private JLabel missingUMLDrawingLabel;
 
 	// Action constants
@@ -61,8 +64,9 @@ public class UMLElementPanel extends JPanel {
 	 * 
 	 * @param mainPanel
 	 *            UMLDrawingPanel
+	 * @param controller 
 	 */
-	public UMLElementPanel(UMLDrawingPanel mainPanel) {
+	public UMLElementPanel(UMLDrawingPanel mainPanel, ClassicGuiController controller) {
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
@@ -87,18 +91,19 @@ public class UMLElementPanel extends JPanel {
 		this.refresh();
 		this.add(Box.createRigidArea(new Dimension(140, 20)));
 
-		validationButton = new JButton("Valider diagramme");
-		validationButton.setToolTipText("Valider le diagramme UML");
+		validationButton =new JButton(new ActValidateAssociation(controller, "Valider association"));
+		validationButton.setToolTipText("<html>Cliquez ici pour valider votre association de mots cles a des elements UML."
+					+ "<br>Pour associer un mot-cle a un nouvel element, faites un clic droit sur une "
+					+ "<br>expression validee (en vert) et choisissez l'element a associer."
+					+ "<br>Attention ! S'il en manque ou si votre selection est incorrecte vous perdrez des points !</html>");
 		validationButton.setAlignmentX(CENTER_ALIGNMENT);
-		validationButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				getmainPanel().askValidateDiagram();
-			}
-		});
 		this.add(validationButton);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 
+		missingAssociationsLabel = new JLabel();
+		missingAssociationsLabel.setAlignmentX(CENTER_ALIGNMENT);
+		this.add(missingAssociationsLabel);
+		
 		missingUMLDrawingLabel = new JLabel("");
 		missingUMLDrawingLabel.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(missingUMLDrawingLabel);
@@ -139,12 +144,13 @@ public class UMLElementPanel extends JPanel {
 			
 			UMLElementListenedLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, classesNature.get(i), classesID.get(i), classes.get(i),
 					"Editer les proprietes");
+			label.setOpaque(true);
 			if (rightColoredID.contains(classesID.get(i))) {
 				// System.out.println("class " + i + " is paint in right color");
-				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+				label.setBackground(ClassicGuiController.VALIDATION_COLOR);
 			} else if (wrongColoredID.contains(classesID.get(i))) {
 				// System.out.println("class " + i + " is paint in wrong color");
-				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
+				label.setBackground(ClassicGuiController.INVALIDATION_COLOR);
 			}
 			classesOnePanel.add(label);
 			
@@ -182,12 +188,13 @@ public class UMLElementPanel extends JPanel {
 			propertiesOnePanel.add(remAtt);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.ATTRIBUTE, propertiesID.get(i), properties.get(i), "Editer les proprietes");
+			label.setOpaque(true);
 			if (rightColoredID.contains(propertiesID.get(i))) {
 				// System.out.println("attribute " + i + " is paint in right color");
-				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+				label.setBackground(ClassicGuiController.VALIDATION_COLOR);
 			} else if (wrongColoredID.contains(propertiesID.get(i))) {
 				// System.out.println("attribute " + i + " is paint in wrong color");
-				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
+				label.setBackground(ClassicGuiController.INVALIDATION_COLOR);
 			}
 			propertiesOnePanel.add(label);
 			
@@ -223,12 +230,13 @@ public class UMLElementPanel extends JPanel {
 			methodsOnePanel.add(remMethod);
 			
 			JLabel label = new UMLElementListenedLabel(this, ACTION_EDIT, UMLNature.METHOD, methodsID.get(i), methods.get(i), "Editer les proprietes");
+			label.setOpaque(true);
 			if (rightColoredID.contains(methodsID.get(i))) {
 				// System.out.println("method " + i + " is paint in right color");
-				label.setForeground(UMLDrawingPanel.COLOR_VALIDATE);
+				label.setBackground(ClassicGuiController.VALIDATION_COLOR);
 			} else if (wrongColoredID.contains(methodsID.get(i))) {
 				// System.out.println("method " + i + " is paint in wrong color");
-				label.setForeground(UMLDrawingPanel.COLOR_ERROR);
+				label.setBackground(ClassicGuiController.INVALIDATION_COLOR);
 			}
 			methodsOnePanel.add(label);
 			
@@ -638,6 +646,14 @@ public class UMLElementPanel extends JPanel {
 	public int getMissingUMLDrawing() {
 		return missingUMLDrawing;
 	}
+	
+	public void setMissingAssociation(int nb) {
+		if (nb < 1) {
+			missingAssociationsLabel.setText("");
+		} else {
+			missingAssociationsLabel.setText(" Mots-cles manquants : " + nb);
+		}
+	}
 
 	/**
 	 * Set number to display for missing UML drawing
@@ -661,7 +677,7 @@ public class UMLElementPanel extends JPanel {
 	 * @param enabled
 	 *            enable button
 	 */
-	public void setValidateDiagramButtonEnabled(boolean enabled) {
+	public void setValidateAssociationButtonEnabled(boolean enabled) {
 		validationButton.setEnabled(enabled);
 	}
 }

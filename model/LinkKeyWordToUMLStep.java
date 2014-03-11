@@ -58,4 +58,8 @@ public class LinkKeyWordToUMLStep extends Step {
 	mc.doShowMissingAssociationNumber(missingAssociation);
 	mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 	}
+
+	public String toString() {
+		return this.frenchName;
+	}
 }
