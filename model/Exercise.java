@@ -95,7 +95,15 @@ public class Exercise {
 	public String getName() {
 		return this.name;
 	}
-
+	
+	public Graph getGraph() {
+		return this.graph;
+	}
+	
+	public Graph getUserGraph() {
+		return this.userGraph;
+	}
+	
 	public Score getScore() {
 		return score;
 	}

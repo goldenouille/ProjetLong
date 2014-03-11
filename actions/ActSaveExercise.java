@@ -4,17 +4,17 @@ import java.awt.event.ActionEvent;
 
 import gui.ClassicGuiController;
 
-public class ActCloseExercise extends BasicAbstractAction {
+public class ActSaveExercise extends BasicAbstractAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public ActCloseExercise(ClassicGuiController controller, String string) {
+	public ActSaveExercise(ClassicGuiController controller, String string) {
 		super(controller, string);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		controller.askCloseExercise();
+		controller.askSaveExercise();
 	}
 
 }

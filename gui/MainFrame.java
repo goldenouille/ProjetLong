@@ -8,10 +8,16 @@ import java.awt.HeadlessException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
+
+import actions.ActCloseExercise;
+import actions.ActSaveExercise;
 
 public class MainFrame extends JFrame {
 
@@ -32,13 +38,22 @@ public class MainFrame extends JFrame {
 
 		JPanel leftPane = new JPanel(new BorderLayout());
 		leftPane.setPreferredSize(new Dimension(180, 720));
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menuFichier = new JMenu("Fichier");
+		JMenuItem itemSave = new JMenuItem(new ActSaveExercise(controller, "Enregistrer l'exercice en xml"));
+		JMenuItem itemQuit = new JMenuItem(new ActCloseExercise(controller, "Quitter l'exercice"));
+		menuFichier.add(itemSave);
+		menuFichier.add(itemQuit);
+		menuBar.add(menuFichier);
+		
 		JPanel botLeftPane = new JPanel(new GridLayout(2, 1));
 		botLeftPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
 		botLeftPane.add(scorePanel);
 		botLeftPane.add(timerPanel);
+		leftPane.add(menuBar, BorderLayout.NORTH);
 		leftPane.add(new JScrollPane(navigationPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 		leftPane.add(botLeftPane, BorderLayout.SOUTH);
-
+		
 		textSectionPanel.setPreferredSize(new Dimension(900, 300));
 		textSectionPanel.setMinimumSize(new Dimension(600, 25));
 		umlPanel.setMinimumSize(new Dimension(600, 200));
