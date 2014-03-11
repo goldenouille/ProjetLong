@@ -531,6 +531,8 @@ public class Exercise {
 	public void askDeleteRelation(Edge id) {
 		if (id.isDeletable()) {
 			userGraph.removeEdge(id);
+			// allow to check the relation can be deleted or not
+			this.modelController.doDeleteRelation(id);
 		} else {
 			this.modelController.doPrintMessage("Relation non supprimable",
 					"La relation que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
@@ -547,6 +549,8 @@ public class Exercise {
 
 	public void editVertex(Vertex id, String name) {
 		id.setName(name);
+		this.modelController.doEditElementFromPool(id, UMLNature.CLASS);
+
 	}
 
 	public void editAttribut(Attribute id, String name, TypeBase type, Visibility visibility) {
@@ -567,6 +571,8 @@ public class Exercise {
 		if (id instanceof Association) {
 			((Association) id).setMultiplicities(multiplicity);
 		}
+		// allow to check what can be modified or not
+		this.modelController.doEditRelation(id); 
 	}
 
 	public String askUMLRelationText(Edge id) {
@@ -579,6 +585,8 @@ public class Exercise {
 		} else if (id instanceof BinaryAssociation) {
 			((BinaryAssociation) id).reverseRelation();
 		}
+		// allow to check what can be reversed or not
+		this.modelController.doReverseRelation(id);
 	}
 
 	public Vertex askCreateClassInPanel(String name) {

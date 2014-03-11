@@ -38,6 +38,15 @@ public class DirectionalRelation extends Edge {
 		return vl;
 	}
 
+	public ArrayList<String> getMutliplicity() {
+		ArrayList<String> vm = new ArrayList<String>();
+		vm.add(this.source);
+		vm.add(this.target);
+		return vm;
+	}
+
+
+
 	public void reverseRelation() {
 		Vertex vAux = this.target;
 		this.target = this.source;

@@ -67,6 +67,13 @@ public class BinaryAssociation extends Association {
 		return vl;
 	}
 
+	public ArrayList<String> getMultiplicity() {
+		ArrayList<String> vm = new ArrayList<String>();
+		vm.add(this.sourceMult);
+		wm.add(this.targetMult);
+		return vm;
+	}
+
 	public void reverseRelation() {
 		Vertex vAux = this.target;
 		this.target = this.source;

@@ -666,7 +666,7 @@ public class ModelController {
 	}
 
 
-	//ToDo
+	
 	public void doRemoveElementFromPool(Object id, Object nature) { 
 		cgc.doRemoveElementFromPool(id, nature);
 	}
@@ -683,12 +683,12 @@ public class ModelController {
 		cgc.doSetValidateDiagramButtonEnabled(enabled);
 	}
 
-	//ToDo
+	
 	public void doEditRelation(Object id) {
 		cgc.doEditRelation(id);
 	}
 
-	//ToDo
+	
 	public void doDeleteRelation(Object id) {
 		cgc.doDeleteRelation(id);
 	}
