@@ -85,11 +85,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		//this.doShowUMLInstanceInWrongColor(1);
 		poolPanel.refresh();
 */		
-
-		LinkEditionPanel linkEdition = new LinkEditionPanel("test1", "", true, "test2", "", true, "");
+/*		LinkEditionPanel linkEdition = new LinkEditionPanel("test1", "", true, "test2", "", true, "");
 		JOptionPane.showConfirmDialog(null, new JScrollPane(linkEdition, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
 				"Nouvelle relation de test1 vers test2", JOptionPane.OK_CANCEL_OPTION);
-		// END TEST
+*/		// END TEST
 		
 		this.repaint();
 	}
@@ -224,6 +223,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doResetUMLDrawingColor() {
 		for (int j = 0 ; j < classes.size() ; j++) {
+			//TODO 
+			System.out.println("doResetColor class " + j);
 			classes.get(j).removeAllColoredElement();
 		}
 		
