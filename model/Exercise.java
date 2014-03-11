@@ -436,18 +436,12 @@ public class Exercise {
 			Word w = getById(id, this.userText);
 			if (w != null) {
 				GraphItem gi = w.getUserGraphItem();
-				if (gi != null) {
-					this.modelController.doRemoveElementFromPool(w.getUserGraphItem(),w.getUserUmlNature());
-				}
 				w.setUserGraphItem(null);
 				w.setUserUmlNature(null);
 			}
 		} else {
 			Word w = getById(id, this.text);
-				GraphItem gi = w.getUserGraphItem();
-				if (gi != null) {
-					this.modelController.doRemoveElementFromPool(w.getUserGraphItem(), w.getUserUmlNature());
-				}
+			GraphItem gi = w.getUserGraphItem();
 			w.setUserGraphItem(null);
 			w.setUserUmlNature(null);
 		}
