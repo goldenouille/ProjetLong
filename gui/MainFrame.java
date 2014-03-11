@@ -19,11 +19,24 @@ import javax.swing.WindowConstants;
 import actions.ActCloseExercise;
 import actions.ActSaveExercise;
 
+/**
+ * @author Will
+ * Sets the main layout of the exercise
+ */
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private ImageIcon lune = new ImageIcon("images/lune.png");
 
+	/** Creates a frame and lays out the given components for a classic exercise
+	 * @param controller
+	 * @param navigationPanel
+	 * @param scorePanel
+	 * @param timerPanel
+	 * @param textSectionPanel
+	 * @param umlPanel
+	 * @throws HeadlessException
+	 */
 	public MainFrame(ClassicGuiController controller, AbstractPanel navigationPanel, AbstractPanel scorePanel, AbstractPanel timerPanel,
 			AbstractPanel textSectionPanel, JPanel umlPanel) throws HeadlessException {
 		super("L.U.N.E : an Uml Serious Game");
