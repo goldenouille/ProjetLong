@@ -375,7 +375,7 @@ public class Exercise {
 		
 		this.score = part.getScore();
 		this.modelController.doReplaceText(false, tab);
-		this.modelController.doReplaceText(true, []);
+		this.modelController.doReplaceText(true, (new String[] {}));
 		this.modelController.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 		this.modelController.doSetValidateKeywordsButtonEnabled(true);
 		this.modelController.doSetValidateAssociationButtonEnabled(false);
