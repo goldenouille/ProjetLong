@@ -22,6 +22,8 @@ public class TextSectionPanel extends AbstractPanel {
 	private JLabel missingKeywordsLabel;
 	private JLabel missingAssociationsLabel;
 	private JButton validateKeywordsButton;
+	private JButton selectTextButton;
+	private JButton deselectTextButton;
 	private JButton validateAssociationButton;
 
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
@@ -50,10 +52,10 @@ public class TextSectionPanel extends AbstractPanel {
 		fontSlider.addChangeListener(new ActChangeTextFont(controller));
 		sliderPane.add(fontSlider);
 		bottomPane.add(sliderPane);
-		JButton selectTextButton = new JButton(new ActSelectText(controller, "Selectionner"));
+		selectTextButton = new JButton(new ActSelectText(controller, "Selectionner"));
 		selectTextButton.setToolTipText("Selectionnez une expression importante du texte avec le curseur puis cliquez ici pour memoriser votre selection");
 		bottomPane.add(selectTextButton);
-		JButton deselectTextButton = new JButton(new ActUnSelectText(controller, "Deselectionner"));
+		deselectTextButton = new JButton(new ActUnSelectText(controller, "Deselectionner"));
 		deselectTextButton.setToolTipText("Selectionnez du texte avec le curseur puis cliquez ici pour l'effacer de votre selection");
 		bottomPane.add(deselectTextButton);
 		validateKeywordsButton = new JButton(new ActValidateKeywords(controller, "Valider mots-cles"));
@@ -95,7 +97,9 @@ public class TextSectionPanel extends AbstractPanel {
 	}
 
 	public void setValidateKeywordsButtonEnabled(boolean enabled) {
-		validateKeywordsButton.setEnabled(enabled);
+		//validateKeywordsButton.setEnabled(enabled);
+		//selectTextButton.setEnabled(enabled);
+		//deselectTextButton.setEnabled(enabled);
 	}
 
 	public void setValidateAssociationButtonEnabled(boolean enabled) {
