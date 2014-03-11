@@ -192,8 +192,9 @@ public class LinkToolBar extends JToolBar {
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		// Validation BUTTON
-		validationButton = new JButton(validation);
+		validationButton = new JButton();
 		validationButton.setAction(new ActValidateDiagram(controller, null));
+		validationButton.setIcon(validation);
 		validationButton.setPreferredSize(new Dimension(20, 20));
 		validationButton.setToolTipText("Valider le diagramme");
 		this.add(validationButton);
