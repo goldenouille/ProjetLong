@@ -22,23 +22,24 @@ public class BuildGraphUMLStep extends Step {
 
 		mc.doResetUMLDrawingColor();
 		int missing = mc.doGetMissingUmlDrawingElementNumber();
-		if (missing == 0) {
+		if (missing != 0) {
 			errormsg += mc.doGetMissingUmlDrawingElementNumber() + " n'ont pas ete dessines.\n";
 		}
 		
 		for (int i = 0; i< text.size() ; i++) {
 			Word word=text.get(i);
+			GraphItem gi = exo.getCurrentPart().getIdTable().get(text.get(i).getId());
 			if (word.isKeyWord()) {
 				boolean error=false;
-				switch (word.getUmlNature()) {
+				switch (gi.getUmlNature()) {
 				case ATTRIBUTE :
-					Attribute attribute = ((Attribute)word.getGraphItem());
+					Attribute attribute = ((Attribute)gi);
 					Attribute userattribute = ((Attribute)word.getUserGraphItem());
-					if (attribute.getType()!=userattribute.getType()) {
+					if (userattribute.getMotherClass()==null){
 						error=true;
-						errormsg+=("le type de "+attribute.getName()+" est faux.\n");
+						errormsg+=("l'attribut "+attribute.getName()+" n'est pas placé.\n");
 					}
-					if (attribute.getMotherClass().getId()==userattribute.getMotherClass().getId()) {
+					else if (attribute.getMotherClass().getId()!=userattribute.getMotherClass().getId()) {
 						error=true;
 						errormsg+=("la classe de "+attribute.getName()+" est fausse.\n");
 					}
@@ -76,7 +77,7 @@ public class BuildGraphUMLStep extends Step {
 				}
 			}
 		}
-		if (errormsg=="") {
+		if (errormsg.equals("")) {
 			mc.doPrintMessage("Succes !", "Vous pouvez passer a la suite.");
 		} else {
 			mc.doPrintMessage("Echec", errormsg);
