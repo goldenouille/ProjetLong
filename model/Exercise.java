@@ -569,6 +569,7 @@ public class Exercise {
 	public void askCreateRelation(UMLNature nature, ArrayList<Vertex> v, ArrayList<String> multiplicity, String label) {
 		this.idUserItem--;
 		Edge newE = Edge.createEdge(nature, v, multiplicity, label, idUserItem);
+		this.modelController.doAddRelationToDrawingArea(newE, nature); 
 	}
 
 	public void askDeleteRelation(Edge id) {

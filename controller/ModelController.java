@@ -778,4 +778,8 @@ public class ModelController {
 		System.out.println("askSaveExercise ");
 	}
 
+	public void doAddRelationToDrawingArea(Object id, Object nature) {
+		cgc.doAddRelationToDrawingArea(id, nature);
+	}
+
 }
