@@ -1,21 +1,28 @@
 package gui;
 
 import java.awt.FlowLayout;
-import java.awt.HeadlessException;
-
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+
+/**
+ * @author Will
+ * Panel allowing to enter a text and a comment
+ */
 public class TextAdditionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextArea textArea;
 	private JTextArea commentArea;
 
-	public TextAdditionPanel(ClassicGuiController controller) throws HeadlessException {
+	
+	/** Creates and lays out the panel
+	 * @param controller link to gui controller
+	 */
+	public TextAdditionPanel(ClassicGuiController controller) {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -34,10 +41,16 @@ public class TextAdditionPanel extends AbstractPanel {
 		this.add(commentPane);
 	}
 	
+	/**
+	 * @return the text entered in the text area
+	 */
 	public String getNewText(){
 		return textArea.getText();
 	}
 
+	/**
+	 * @return the text entered in the comment area
+	 */
 	public String getComment(){
 		return commentArea.getText();
 	}

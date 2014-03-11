@@ -28,6 +28,10 @@ import actions.ActChooseExercise;
 import actions.ActStartExercise;
 import actions.ActViewHistory;
 
+/**
+ * @author Will
+ * Frame and controller of the launcher, allows to browse and launch exercises
+ */
 public class LaunchController extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +39,9 @@ public class LaunchController extends JFrame {
 	private ExerciseBrowser browser;
 	private Exercise choosenExercise;
 
+	/** Creates and lays out the launcher frame
+	 * @param browser the exercise browser to use
+	 */
 	public LaunchController(ExerciseBrowser browser) {
 		super("L.U.N.E : an Uml Serious Game");
 
@@ -85,10 +92,16 @@ public class LaunchController extends JFrame {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Paints the history of previous game sessions
+	 */
 	public void doShowHistory() {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Creates an exercise controller and destroys current frame
+	 */
 	public void doStartExercise() {
 		if (choosenExercise != null) {
 			@SuppressWarnings("unused")
@@ -99,6 +112,9 @@ public class LaunchController extends JFrame {
 		}
 	}
 
+	/**
+	 * Asks the exercise browser for an exercise file
+	 */
 	public void chooseExercise() {
 		File selectedFile = browser.getExerciseFile();
 		try {
