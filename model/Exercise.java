@@ -26,6 +26,7 @@ public class Exercise {
 	private int nbParts;
 
 	private int idUserItem;
+	private int nbUserWords;
 
 	public Exercise() {
 
@@ -44,6 +45,7 @@ public class Exercise {
 		this.nbParts = 0;
 
 		this.idUserItem = 0;
+		this.nbUserWords = -1;
 	}
 
 	public Exercise(ModelController modelController) {
@@ -203,7 +205,11 @@ public class Exercise {
 		int l = text.length;
 		for (int i = 0; i < l; i++) {
 			this.idUserItem = this.idUserItem - 1;
-			this.userText.add(new Word(text[i], this.idUserItem));
+			this.nbUserWords --;
+			Word w = new Word(text[i], this.idUserItem);
+			w.setFirstWord(this.nbUserWords);
+			w.setLastWord(this.nbUserWords);
+			this.userText.add(w);
 		}
 		return text;
 	}
