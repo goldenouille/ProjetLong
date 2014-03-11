@@ -23,8 +23,8 @@ public class NavigationPanel extends AbstractPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Creates and layout 
-	 * @param controller
+	 * Creates and layout the navigation panel. Will ask the controller for the parts and steps to show.
+	 * @param controller link to gui conttroller
 	 */
 	public NavigationPanel(ClassicGuiController controller) {
 		super(controller);
