@@ -1,5 +1,5 @@
 package parser;
 
-public class GraphItem {
+public abstract class GraphItem {
 
 }

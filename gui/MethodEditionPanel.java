@@ -10,11 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.BadLocationException;
-
 import actions.ActAddParam;
 import actions.ActRemParam;
 
+/**
+ * @author Will
+ * This panel allows to view and edit method properties
+ */
 public class MethodEditionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -24,8 +26,16 @@ public class MethodEditionPanel extends AbstractPanel {
 	private ArrayList<JTextField> paramFields;
 	private JPanel paramsPanel;
 
+	/** Classic constructor
+	 * @param controller link to controller
+	 * @param keyword the keyword linked to the method, null otherwise
+	 * @param name name of the method, can be null
+	 * @param paramTypes types of the method's parameters
+	 * @param returnType return type of the method, can be null
+	 * @param visibility visibility of the method, can be null
+	 */
 	public MethodEditionPanel(ClassicGuiController controller, String keyword, String name, ArrayList<String> paramTypes, String returnType,
-			String visibility) throws BadLocationException {
+			String visibility) {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -88,18 +98,31 @@ public class MethodEditionPanel extends AbstractPanel {
 			}
 	}
 
+	/**
+	 * @return choosen name for the method
+	 */
 	public String getMethodName() {
 		return nameField.getText();
 	}
 
+	/**
+	 * @return choosen return type for the method
+	 */
 	public String getMethodReturnType() {
 		return typeField.getText();
 	}
 
+
+	/**
+	 * @return choosen visibility for the method
+	 */
 	public String getMethodVisibility() {
 		return visibilityField.getText();
 	}
 
+	/**
+	 * @return choosen parameters type for the method
+	 */
 	public ArrayList<String> getMethodParams() {
 		ArrayList<String> paramTypes = new ArrayList<String>();
 		for (JTextField field : paramFields) {
@@ -108,6 +131,10 @@ public class MethodEditionPanel extends AbstractPanel {
 		return paramTypes;
 	}
 
+
+	/** adds a parameters field to the panel
+	 * @param param parameter to be displayed in the field
+	 */
 	public void addParam(String param) {
 		JTextField field = new JTextField(param, 30);
 		field.setToolTipText("Type Jave du parametre");
@@ -118,6 +145,9 @@ public class MethodEditionPanel extends AbstractPanel {
 		this.revalidate();
 	}
 
+	/**
+	 * remove the last added parameter field
+	 */
 	public void remParam() {
 		paramFields.remove(paramFields.size() - 1);
 		paramsPanel.remove(paramsPanel.getComponentCount() - 1);

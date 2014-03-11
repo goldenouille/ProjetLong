@@ -5,8 +5,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.BadLocationException;
 
+/**
+ * @author Will
+ * This panel allows to view and edit attribute properties
+ */
 public class AttributeEditionPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +17,14 @@ public class AttributeEditionPanel extends AbstractPanel {
 	private JTextField typeField;
 	private JTextField visibilityField;
 
-	public AttributeEditionPanel(ClassicGuiController controller, String keyword, String name, String type, String visibility) throws BadLocationException {
+	/** Classic constructor
+	 * @param controller link to controller
+	 * @param keyword the keyword linked to the attribute, null otherwise
+	 * @param name name of the attribute, can be null
+	 * @param type type of the attribute, can be null
+	 * @param visibility visibility of the attribute, can be null
+	 */
+	public AttributeEditionPanel(ClassicGuiController controller, String keyword, String name, String type, String visibility) {
 		super(controller);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -52,14 +62,23 @@ public class AttributeEditionPanel extends AbstractPanel {
 		this.add(visibilityPanel);
 	}
 
+	/**
+	 * @return choosen name for the attribute
+	 */
 	public String getAttributeName() {
 		return nameField.getText();
 	}
 
+	/**
+	 * @return choosen type for the attribute
+	 */
 	public String getAttributeType() {
 		return typeField.getText();
 	}
 
+	/**
+	 * @return choosen visibility for the attribute
+	 */
 	public String getAttributeVisibility() {
 		return visibilityField.getText();
 	}

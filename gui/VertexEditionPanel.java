@@ -5,7 +5,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.BadLocationException;
 
 /**
  * @author Will
@@ -45,6 +44,9 @@ public class VertexEditionPanel extends AbstractPanel {
 		this.add(namePanel);
 	}
 
+	/**
+	 * @return choosen name for the vertex
+	 */
 	public String getVertexName() {
 		return nameField.getText();
 	}

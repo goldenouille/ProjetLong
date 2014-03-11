@@ -1,8 +1,5 @@
 package parser;
 
-import model.UMLNature;
-import model.Vertex;
-
 public class PseudoBinaryAssociation extends PseudoAssociation{
 	protected int target;
 	protected int source;

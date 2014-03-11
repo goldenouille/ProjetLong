@@ -34,6 +34,13 @@ public class PseudoGraph {
                 
         }
         
+        /** Transform the PseudoGraph into model.Graph
+         *  Browsing all the ArrayList from PseudoGraph and create the associated GraphItems into a new Graph
+         * 
+         * @param map The hashmap linking ids to the associated GraphItem
+         * @return	The Graph respecting the model data structure
+         * @throws ParserException
+         */
         public Graph buildGraph(HashMap<Integer,model.GraphItem> map) throws ParserException {
                 Graph g = new Graph();
                 PseudoClass pc;
@@ -141,46 +148,79 @@ public class PseudoGraph {
                 return g;
         }
         
+        /** Add a class
+         * @param pc the PseudoClass to add
+         */
         public void addClass (PseudoClass pc) {
                 this.classes.add(pc);
         }
 
+        /** Add an abstract class
+         * @param pa the PseudoAbstract to add
+         */
         public void addAbstract (PseudoAbstract pa) {
                 this.abstracts.add(pa);
         }
 
+        /** Add an interface
+         * @param pi the PseudoInterface to add
+         */
         public void addInterface (PseudoInterface pi) {
                 this.interfaces.add(pi);
         }
 
+        /** Add an attribute
+         * @param pa the PseudoAttribute to add
+         */
         public void addAttribute (PseudoAttribute pa) {
                 this.attributes.add(pa);
         }
 
+        /** Add a Realization
+         * @param pr the PseudoRealization to add
+         */
         public void addRealization (PseudoRealization pr) {
                 this.realizations.add(pr);
         }
         
+        /** Add a Generalization
+         * @param pg the PseudoRealization to add
+         */
         public void addGeneralization (PseudoGeneralization pg) {
             this.generalizations.add(pg);
         }
         
+        /** Add a Dependancy
+         * @param pd the PseudoDependancy to add
+         */
         public void addDependancy (PseudoDependancy pd) {
             this.dependancies.add(pd);
         }
         
+        /** Add an Aggregation
+         * @param pa the PseudoAggregation to add
+         */
         public void addAggregation (PseudoAggregation pa) {
             this.aggregations.add(pa);
         }
         
+        /** Add a Composition
+         * @param pc the PseudoComposition to add
+         */
         public void addComposition (PseudoComposition pc) {
             this.compositions.add(pc);
         }
         
+        /** Add a method
+         * @param pm the PseudoMethod to add
+         */
         public void addMethod (PseudoMethod pm) {
             this.methods.add(pm);
         }
         
+        /** Add an association
+         * @param pba the PseudoBinaryAssociation to add
+         */
         public void addAssociation (PseudoBinaryAssociation pba) {
             this.associations.add(pba);
         }

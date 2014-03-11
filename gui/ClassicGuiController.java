@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -15,7 +13,7 @@ import controller.ModelController;
 import launcher.Launcher;
 import model.UMLNature;
 
-public class ClassicGuiController implements GuiController {
+public class ClassicGuiController {
 
 	// link to core
 	private ModelController core;

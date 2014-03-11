@@ -14,6 +14,10 @@ import org.jdesktop.swingx.JXCollapsiblePane;
 import actions.ActCorrectStep;
 import actions.ActSelectPart;
 
+/**
+ * @author Will
+ * Generic Panel allowing to display selct and ask for correction of generic parts and steps
+ */
 public class NavigationPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 1L;
