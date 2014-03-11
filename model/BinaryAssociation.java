@@ -70,7 +70,7 @@ public class BinaryAssociation extends Association {
 	public ArrayList<String> getMultiplicity() {
 		ArrayList<String> vm = new ArrayList<String>();
 		vm.add(this.sourceMult);
-		wm.add(this.targetMult);
+		vm.add(this.targetMult);
 		return vm;
 	}
 
