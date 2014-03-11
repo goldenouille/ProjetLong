@@ -64,7 +64,7 @@ public class Exercise {
 
 	public Word getByPosition(int firstWord, int lastWord, ArrayList<Word> t) {
 		for (int i = 0; i < t.size(); i++) {
-			if (t.get(i).getFirstWord() >= firstWord ) {
+			if (t.get(i).getFirstWord() <= firstWord && lastWord <= t.get(i).getLastWord() ) {
 				return t.get(i);
 			}
 		}
