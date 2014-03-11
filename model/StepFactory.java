@@ -9,6 +9,9 @@ public class StepFactory {
 		if (name.equalsIgnoreCase("LinkKeyWordToUML")) {
 			return new LinkKeyWordToUMLStep();
 		}
+		if (name.equalsIgnoreCase("BuildGraphUML")) {
+			return new BuildGraphUMLStep();
+		}
 
  		return new SelectKeyWordStep();
  		
