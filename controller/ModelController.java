@@ -68,7 +68,8 @@ public class ModelController {
 
 	public void askAddText(String text, String comment) {
 		System.out.println("askAddText " + text + "\n" + comment);
-		exo.addText(text);
+		cgc.doAddText(true, exo.addText(text));
+
 	}
 
 	public String askUmlInstanceName(int firstWord, int lastWord, boolean userText, Object nature) {
