@@ -19,6 +19,13 @@ public enum Visibility {
 		return this.name;
 	}
 
+	/**
+	 * Create the Visibility from its name
+	 * 
+	 * @param n
+	 *            	the name of the Visibility which has to be created
+	 * @return the asked Visibility, if the name doesn't correspond to a expected word, the default value is public
+	 */
 	public static Visibility getByName(String n) {
 		if (n.equalsIgnoreCase("private")) {
 			return Visibility.PRIVATE;

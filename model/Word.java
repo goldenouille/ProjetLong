@@ -71,7 +71,6 @@ public class Word {
 	 * @param id
 	 *				the word's id
 	 */
-
 	public Word (String word, int id) {
 		this.word = word;
 		this.isKeyWord = false;
