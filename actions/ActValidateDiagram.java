@@ -1,5 +1,7 @@
 package actions;
 
+import java.awt.event.ActionEvent;
+
 import gui.ClassicGuiController;
 
 public class ActValidateDiagram extends BasicAbstractAction {
@@ -8,7 +10,11 @@ public class ActValidateDiagram extends BasicAbstractAction {
 
 	public ActValidateDiagram(ClassicGuiController controller, String string) {
 		super(controller, string);
-		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		controller.askValidateDiagram();
 	}
 
 }

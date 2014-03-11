@@ -1,5 +1,7 @@
 package uml;
 
+import gui.ClassicGuiController;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,8 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
+
+import actions.ActValidateDiagram;
 
 public class LinkToolBar extends JToolBar {
 
@@ -40,11 +44,18 @@ public class LinkToolBar extends JToolBar {
 	private ImageIcon arrow_reverse = new ImageIcon("images/arrow_reverse.png");
 	private ImageIcon edition = new ImageIcon("images/edition.png");
 	private ImageIcon move = new ImageIcon("images/move.png");
+	private ImageIcon validation = new ImageIcon("images/validation.png");
 
+	// vars
+	private JButton validationButton;
+	
+	
 	/**
 	 * Main constructor, create a LinkToolBar
+	 * 
+	 * @param controller
 	 */
-	public LinkToolBar() {
+	public LinkToolBar(ClassicGuiController controller) {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createEmptyBorder()));
 		this.setFloatable(false);
@@ -179,6 +190,14 @@ public class LinkToolBar extends JToolBar {
 		});
 		this.add(button);
 		this.add(Box.createRigidArea(new Dimension(10, 0)));
+
+		// Validation BUTTON
+		validationButton = new JButton(validation);
+		validationButton.setAction(new ActValidateDiagram(controller, null));
+		validationButton.setPreferredSize(new Dimension(20, 20));
+		validationButton.setToolTipText("Valider le diagramme");
+		this.add(validationButton);
+		this.add(Box.createRigidArea(new Dimension(10, 0)));
 	}
 
 	/**
@@ -245,5 +264,9 @@ public class LinkToolBar extends JToolBar {
 		}
 
 		return result;
+	}
+
+	public void setValidateDiagramButtonEnabled(boolean enabled) {
+		validationButton.setEnabled(enabled);
 	}
 }

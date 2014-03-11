@@ -98,7 +98,7 @@ public class ClassicGuiController implements GuiController {
 	 * @param enabled propertie of the button to set
 	 */
 	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
-		textSectionPanel.setValidateAssociationButtonEnabled(enabled);
+		umlDrawingPanel.setValidateAssociationButtonEnabled(enabled);
 	}
 
 	/**
@@ -496,7 +496,7 @@ public class ClassicGuiController implements GuiController {
 	 *            number to show
 	 */
 	public void doShowMissingAssociationNumber(int nb) {
-		textSectionPanel.setMissingAssociation(nb);
+		umlDrawingPanel.setMissingAssociation(nb);
 	}
 
 	// *********//

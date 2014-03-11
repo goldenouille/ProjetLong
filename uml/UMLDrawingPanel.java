@@ -70,10 +70,10 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 		classes = new Vector<ClassDrawing>();
 		links = new Vector<LinkDrawing>();
 		
-		toolBar = new LinkToolBar();
+		toolBar = new LinkToolBar(controller);
 		this.add(toolBar,BorderLayout.NORTH);
 		
-		poolPanel = new UMLElementPanel(this);
+		poolPanel = new UMLElementPanel(this, controller);
 		this.add(poolPanel,BorderLayout.EAST);
 		
 		// TEST
@@ -281,13 +281,6 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public String getElementName(Object id, Object nature) {
 		return poolPanel.getElementName(id, nature);
-	}
-	
-	/**
-	 * Sends to the controller the user's request to validate his Uml diagram
-	 */
-	public void askValidateDiagram() {
-		controller.askValidateDiagram();
 	}
 	
 	/**
@@ -1110,6 +1103,14 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 
 	public void setValidateDiagramButtonEnabled(boolean enabled) {
-		poolPanel.setValidateDiagramButtonEnabled(enabled);
+		toolBar.setValidateDiagramButtonEnabled(enabled);
+	}
+
+	public void setValidateAssociationButtonEnabled(boolean enabled) {
+		poolPanel.setValidateAssociationButtonEnabled(enabled);
+	}
+
+	public void setMissingAssociation(int nb) {
+		poolPanel.setMissingAssociation(nb);
 	}
 }

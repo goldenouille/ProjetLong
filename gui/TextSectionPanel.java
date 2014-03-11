@@ -24,7 +24,6 @@ public class TextSectionPanel extends AbstractPanel {
 	private JButton validateKeywordsButton;
 	private JButton selectTextButton;
 	private JButton deselectTextButton;
-	private JButton validateAssociationButton;
 
 	public TextSectionPanel(ClassicGuiController controller, AbstractPanel textPanel, AbstractPanel userTextPanel) {
 		super(controller);
@@ -70,14 +69,6 @@ public class TextSectionPanel extends AbstractPanel {
 				+ "<br>Attention ! Il y a en général une solution ne nécessitant pas d'ajouter de texte !</html>");
 		bottomPane.add(addTextButton);
 		bottomPane.add(Box.createHorizontalGlue());
-		validateAssociationButton = new JButton(new ActValidateAssociation(controller, "Valider association"));
-		validateAssociationButton.setToolTipText("<html>Cliquez ici pour valider votre association de mots cles a des elements UML."
-				+ "<br>Pour associer un mot-cle a un nouvel element, faites un clic droit sur une "
-				+ "<br>expression validee (en vert) et choisissez l'element a associer."
-				+ "<br>Attention ! S'il en manque ou si votre selection est incorrecte vous perdrez des points !</html>");
-		bottomPane.add(validateAssociationButton);
-		missingAssociationsLabel = new JLabel();
-		bottomPane.add(missingAssociationsLabel);
 	}
 
 	public void setMissingKeywords(int nb) {
@@ -88,22 +79,10 @@ public class TextSectionPanel extends AbstractPanel {
 		}
 	}
 
-	public void setMissingAssociation(int nb) {
-		if (nb < 1) {
-			missingAssociationsLabel.setText("");
-		} else {
-			missingAssociationsLabel.setText(" Mots-cles manquants : " + nb);
-		}
-	}
-
 	public void setValidateKeywordsButtonEnabled(boolean enabled) {
 		//validateKeywordsButton.setEnabled(enabled);
 		//selectTextButton.setEnabled(enabled);
 		//deselectTextButton.setEnabled(enabled);
-	}
-
-	public void setValidateAssociationButtonEnabled(boolean enabled) {
-		validateAssociationButton.setEnabled(enabled);
 	}
 
 }
