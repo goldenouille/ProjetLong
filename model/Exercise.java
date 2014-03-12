@@ -6,28 +6,35 @@ import controller.ModelController;
 
 public class Exercise {
 
-	private ModelController modelController;
+	private ModelController modelController;	// the modelController helps to interact with the GUI
 
-	private String name;
-	private String preview;
+	private String name;		// name of the exercise
+	private String preview;		// preview of the exercise, 
+								// is used when the exercise is about to be open by the launcher
 
-	private ArrayList<Word> text;
-	private ArrayList<Word> userText;
+	private ArrayList<Word> text;	// list of words of the initial text of the current part
+	private ArrayList<Word> userText;	// text added by the user
 
-	private Graph graph;
-	private Graph userGraph;
+	private Graph graph;	// expected graph for the current part
+	private Graph userGraph;	// graph build by the user
 
-	private ArrayList<Part> parts;
-	private Part currentPart;
+	private ArrayList<Part> parts;	// list of the different part
+	private Part currentPart;	// the part the user is doing
 
-	private Score score;
+	private Score score;	// used to compute the score
 
-	private int auxNextPart;
+	// are used during the initialisation to give the parts to the GUI to be displayed
+	private int auxNextPart;	
 	private int nbParts;
 
-	private int idUserItem;
-	private int nbUserWords;
+	private int idUserItem;	// id of the last item the user added. this id is always negative
+	private int nbUserWords;	// nb of words the user has added in the userText, it is used to know
+								// the index of the word when displayed by the GUI
 
+	/**
+	 * Create a basic exercise
+	 * 
+	 */
 	public Exercise() {
 
 		this.text = new ArrayList<Word>();
@@ -40,30 +47,26 @@ public class Exercise {
 
 		this.score = new Score();
 
-		this.auxNextPart = -1;
+		this.auxNextPart = -1;	// is always incremented before used
 
 		this.nbParts = 0;
 
 		this.idUserItem = 0;
-		this.nbUserWords = -1;
+		this.nbUserWords = -1;	// is always incremented before used
 	}
 
-	public Exercise(ModelController modelController) {
-		this.modelController = modelController;
-
-		this.text = new ArrayList<Word>();
-		this.userText = new ArrayList<Word>();
-
-		this.graph = new Graph();
-		this.userGraph = new Graph();
-
-		this.parts = new ArrayList<Part>();
-
-		this.auxNextPart = -1;
-
-		this.nbParts = 0;
-	}
-
+	/**
+	 * Get a word in a text using the index used when displayed by the Gui
+	 * 
+	 * @param firstWord
+	 *				index of the beginning of the wanted expression in the displayed text
+	 * @param lastWord
+	 *				index of the end of the wanted expression in the displayed text
+	 * @param t
+	 *				text where the expression has to be looked for, can be either this.text or this.userText as used
+	 *				by the fonctions of this version of L.U.N.E.
+	 * @return the word corresponding to the index or null, if nothing matches
+	 */
 	public Word getByPosition(int firstWord, int lastWord, ArrayList<Word> t) {
 		for (int i = 0; i < t.size(); i++) {
 			if (t.get(i).getFirstWord() <= firstWord && lastWord <= t.get(i).getLastWord() ) {
@@ -73,6 +76,16 @@ public class Exercise {
 		return null;
 	}
 
+
+	/**
+	 * Get a word using its id
+	 * 
+	 * @param id
+	 *				id of the wanted word
+	 * @param t
+	 *				text where the word has to be looked for
+	 * @return the word corresponding to the id or null if it doesn't exist
+	 */
 	public Word getById(int id, ArrayList<Word> t) {
 		for (int i = 0; i < t.size(); i++) {
 			if (t.get(i).getId() == id) {
@@ -144,9 +157,6 @@ public class Exercise {
 		} else {
 			t = text;
 		}
-
-
-		//if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>=80) {
     				Word w = getByPosition(i,i,t);
@@ -161,7 +171,6 @@ public class Exercise {
        			}
 
 			}
-		//} // else {LEVER EXCEPTION !! !! !!}
 	}
 
 	/*

@@ -3,11 +3,28 @@ package model;
 import java.util.ArrayList;
 
 public class BinaryAssociation extends Association {
-	protected Vertex target;
-	protected Vertex source;
-	protected String targetMult;
-	protected String sourceMult;
+	protected Vertex target;	// target Vertex 
+	protected Vertex source;	// source Vertex
+	protected String targetMult;	// target multiplicity
+	protected String sourceMult;	// source mutliplicity
 	
+
+	/**
+	 * Create a BinaryAssociation
+	 * 
+	 * @param trg
+	 *            	'target' Vertex of the binaryAssociation edge 
+	 * @param trgMult
+	 *				multiplicity of the target vertex
+	 * @param src
+	 *				'source' Vertex of the binaryAssociation edge
+	 * @param srcMult
+	 *				multiplicity of the source vertex
+	 * @param id
+	 *				id of the binaryAssociation edge
+	 * @param name
+	 *				name of the binaryAssociation edge
+	 */
 	public BinaryAssociation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name) {
 		this.target = trg;
 		this.targetMult = trgMult;
@@ -39,6 +56,8 @@ public class BinaryAssociation extends Association {
 		this.source = source;
 	}
 
+	// By convertion, when an ArrayList is used, the first item refers to the target 
+	// and the second refers to the source
 	public void setMultiplicities(ArrayList<String> m) {
 		this.targetMult = m.get(0);
 		this.sourceMult = m.get(1);
@@ -59,21 +78,29 @@ public class BinaryAssociation extends Association {
 	public void setSourceMult(String sourceMult) {
 		this.sourceMult = sourceMult;
 	}
-	
+
+	// By convertion, when an ArrayList is used, the first item refers to the target 
+	// and the second refers to the source	
 	public ArrayList<Vertex> getVertex() {
 		ArrayList<Vertex> vl = new ArrayList<Vertex>();
-		vl.add(this.source);
 		vl.add(this.target);
+		vl.add(this.source);
 		return vl;
 	}
 
+	// By convertion, when an ArrayList is used, the first item refers to the target 
+	// and the second refers to the source
 	public ArrayList<String> getMultiplicity() {
 		ArrayList<String> vm = new ArrayList<String>();
-		vm.add(this.sourceMult);
 		vm.add(this.targetMult);
+		vm.add(this.sourceMult);
 		return vm;
 	}
 
+	/**
+	 * Reverse the BinaryAssociation Edge
+	 * 
+	 */
 	public void reverseRelation() {
 		Vertex vAux = this.target;
 		this.target = this.source;
