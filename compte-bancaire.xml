@@ -6,9 +6,9 @@
 		
 		
 		<UML>
-			<uml-class id='1' name ="account"/>
-			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name ="solde"/>
-			<uml-attribute id='3' visibility="protected" motherId='1' type="STRING" name ="owner"/>
+			<uml-class id='1' name ="account" score="10"/>
+			<uml-attribute id='2' visibility="protected" motherId='1' type="int" name ="solde" score="15"/>
+			<uml-attribute id='3' visibility="protected" motherId='1' type="STRING" name ="owner" score="15"/>
 		</UML>
 	</part>
 	<part name="partie 2" scoreNature="30" scoreGraph="40">

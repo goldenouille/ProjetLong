@@ -11,6 +11,7 @@ public class PseudoMethod {
         private int motherId;
         private String type;
         private ArrayList<String> params;
+        private int score;
         
         public PseudoMethod() {
         	this.params = new ArrayList<String>();
@@ -75,4 +76,12 @@ public class PseudoMethod {
         	}
         	return lt;
         }
+
+		public int getScore() {
+			return score;
+		}
+
+		public void setScore(int score) {
+			this.score = score;
+		}
 }

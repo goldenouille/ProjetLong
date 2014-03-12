@@ -8,4 +8,5 @@ public interface GraphItem {
 
 	public boolean isDeletable();
 	public void validate();
+	public int getScore();
 }

@@ -10,6 +10,7 @@ public class Edge implements GraphItem{
 	protected UMLNature nature;
 	protected boolean isDeletable;
 	protected boolean isCorrected;
+	protected int score;
 
 	
 	public Edge() {
@@ -64,27 +65,27 @@ public class Edge implements GraphItem{
 
 	public static Edge createEdge(UMLNature nature,ArrayList<Vertex> v,ArrayList<String> multiplicity,String name, int id) {
 		if (nature.equals(UMLNature.AGGREGATION)) {
-			return (new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name));
+			return (new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.ASSOCIATION)) {
 			System.out.println("Une association n'est pas suffisamment specifie pour etre instancie");
 			return null;
 		}
 		if (nature.equals(UMLNature.COMPOSITION)) {
-			return (new Composition(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name));
+			return (new Composition(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.DEPENDANCY)) {
-			return (new Dependancy(v.get(0), v.get(1), id, name));
+			return (new Dependancy(v.get(0), v.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.GENERALIZATION)) {
-			return (new Generalization(v.get(0), v.get(1), id, name));
+			return (new Generalization(v.get(0), v.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.N_ASSOCIATION)) {
 			System.out.println("La creation des association n-aire n'est pas gere pour l'instant");
 			return null;
 		}
 		if (nature.equals(UMLNature.REALIZATION)) {
-			return (new Realization(v.get(0), v.get(1), id, name));
+			return (new Realization(v.get(0), v.get(1), id, name,0));
 		}
 		return null;
 	}
@@ -94,5 +95,14 @@ public class Edge implements GraphItem{
 		return this.nature;
 
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 
 }

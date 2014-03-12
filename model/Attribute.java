@@ -12,6 +12,7 @@ public class Attribute implements GraphItem{
 	private int id;		// id of the attribute
 	private Vertex motherClass;		// vertex to which it is linked
 	private boolean isDeletable;	// says if the attribute can be deleted. If it is validated, it can not deleted.
+	private int score;
 
 	/**
 	 * Create a basic attribut
@@ -35,8 +36,9 @@ public class Attribute implements GraphItem{
 	 *				vertex to which the attribut is linked
 	 * @param id
 	 *				id of the attribut			
+	 * @param score 
 	 */
-	public Attribute (String name, Type type, Visibility visibility, Vertex mother, int id) {
+	public Attribute (String name, Type type, Visibility visibility, Vertex mother, int id, int score) {
 		this.name = name;
 		this.type = type;
 		this.visibility = visibility; 
@@ -44,6 +46,7 @@ public class Attribute implements GraphItem{
 		this.motherClass = mother;
 		this.id = id;
 		this.isDeletable = true;
+		this.score = score;
 	}
 	
 	/**
@@ -123,5 +126,13 @@ public class Attribute implements GraphItem{
 	@Override
 	public UMLNature getUmlNature() {
 		return UMLNature.ATTRIBUTE;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 }

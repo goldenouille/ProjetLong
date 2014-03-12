@@ -12,13 +12,14 @@ public class Method implements GraphItem {
 	private String frenchName;
 	private Vertex motherClass;
 	private boolean isDeletable;
+	private int score;
 
 	public Method() {
 		this.frenchName = "methode";
 		this.isDeletable = true;
 	}
 
-	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes) {
+	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes, int scire) {
 		this.name = name;
 		this.returnType = type;
 		this.visibility = visibility;
@@ -27,6 +28,7 @@ public class Method implements GraphItem {
 		this.motherClass = mother;
 		this.id = id;
 		this.isDeletable = true;
+		this.score = score;
 	}
 	
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
@@ -105,5 +107,13 @@ public class Method implements GraphItem {
 
 	public UMLNature getUmlNature() {
 		return UMLNature.METHOD;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 }

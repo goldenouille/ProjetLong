@@ -8,7 +8,7 @@ public class BinaryAssociation extends Association {
 	protected String targetMult;
 	protected String sourceMult;
 	
-	public BinaryAssociation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name) {
+	public BinaryAssociation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name, int score) {
 		this.target = trg;
 		this.targetMult = trgMult;
 		this.source = src;
@@ -17,6 +17,7 @@ public class BinaryAssociation extends Association {
 		this.name = name;
 		this.nature = UMLNature.ASSOCIATION;
 		this.frenchName = "Association";
+		this.score = score;
 	}
 	
 	public String getUml() {

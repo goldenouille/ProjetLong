@@ -12,9 +12,10 @@ public class VertexAbstract extends VertexClass {
 	 *            	name to give to the abstract class
 	 * @param id
 	 *				id to give to the abstract class
+	 * @param score 
 	 */
-	public VertexAbstract(String name, int id) {
-		super(name, id);
+	public VertexAbstract(String name, int id, int score) {
+		super(name, id,score);
 		this.attributes = new ArrayList<Attribute>();
 		this.frenchName = "classe abstraite";
 	}

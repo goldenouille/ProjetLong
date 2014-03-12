@@ -7,6 +7,7 @@ public class Vertex implements Type, GraphItem {
 
 	protected String name;
 	protected int id;
+	protected int score;
 
 	protected ArrayList<Method> methods;	// list of the methods of the interface
 	protected ArrayList<Edge> edges;	// list of relations this interface has with others elements
@@ -33,14 +34,16 @@ public class Vertex implements Type, GraphItem {
 	 *            	name of the interface
 	 * @param id
 	 *				id of the interface
+	 * @param score 
 	 */
-	public Vertex(String name, int id) {
+	public Vertex(String name, int id, int score) {
 		this.name = name;
 		this.id = id;
 		this.methods = new ArrayList<Method>();
 		this.edges = new ArrayList<Edge>();
 		this.frenchName = "interface";
 		this.isDeletable = true;
+		this.score = score;
 	}
 
 	public void validate() {
@@ -114,4 +117,13 @@ public class Vertex implements Type, GraphItem {
 	public UMLNature getUmlNature() {
 		return UMLNature.INTERFACE;
 	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 }
