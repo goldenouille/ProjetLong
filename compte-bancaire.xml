@@ -11,59 +11,59 @@
 			<uml-attribute id='3' visibility="protected" motherId='1' type="STRING" name ="owner" score="15"/>
 		</UML>
 	</part>
-	<part name="partie 2" scoreNature="30" scoreGraph="40">
+	<part name="partie 2" scoreNature="30" scoreGraph="70">
 		<text body ="Un"/> <kw id='1' word="compte" score="0"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
-		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\n" score="10"/>
+		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire" score="10"/>
 		<text body ="Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une"/><kw id='4' word="personne physique." score="10"/>
-		<text body ="Il est possible de"/><kw id ='5' word="créditer" score="10"/>
+		<text body =". Il est possible de"/><kw id ='5' word="créditer" score="10"/>
 		<text body ="ce compte ou de le"/><kw id ='6' word="débiter" score="10"/>
 		<text body ="d'un certain montant."/>
 		
 		<UML>
-			<uml-class id='1' name ="account"/>
-			<uml-class id='4' name ="person"/>
-			<uml-attribute id='2' visibility="protected" motherId='1' type=" int" name ="solde"/>
-			<uml-method id='5' visibility ="public" motherId='1' type =" void" name="credit">
+			<uml-class id='1' name ="account" score="10"/>
+			<uml-class id='4' name ="person" score="10"/>
+			<uml-attribute id='2' visibility="protected" motherId='1' type=" int" name ="solde" score="15"/>
+			<uml-method id='5' visibility ="public" motherId='1' type =" void" name="credit" score="15">
 				<param type="int"/>
 			</uml-method>
-			<uml-method id='6' visibility ="public" motherId='1' type =" void" name="debit">
+			<uml-method id='6' visibility ="public" motherId='1' type =" void" name="debit" score="15">
 				<param type="int"/>
 			</uml-method>
-			<uml-aggregation id='3' name="titulaire" target='1' source='4' targetMult="0..*" sourceMult="1"/>
+			<uml-aggregation id='3' name="titulaire" target='1' source='4' targetMult="0..*" sourceMult="1" score="5"/>
 		</UML>
 	</part>
 	
-	<part name="partie 3" scoreNature="30" scoreGraph="40">
+	<part name="partie 3" scoreNature="60" scoreGraph="90">
 		<text body ="Un"/> <kw id='1' word="compte" score="10"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
-		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire.\n" score="10"/>
-		<text body ="Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une"/><kw id='4' word="personne physique." score="10"/>
+		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire" score="10"/>
+		<text body =". Nous simplifions le problème en considérant que tout compte a un et un seul titulaire, correspondant à une"/><kw id='4' word="personne physique." score="10"/>
 		<text body ="Il est possible de"/><kw id ='5' word="créditer" score="10"/>
 		<text body ="ce compte ou de le"/><kw id ='6' word="débiter" score="10"/>
-		<text body ="d'un certain montant.\n"/>
+		<text body ="d'un certain montant."/>
 		<text body ="Il existe aussi des"/><kw id ='7' word="comptes courants" score="10"/>
 		<text body ="pour lesquels"/><kw id ='8' word="l'historique" score="10"/>
 		<text body ="des opérations qui les concernent (on se limite ici aux opérations de crédit et de débit) est concervé.  Un compte courant permet d'"/><kw id ='9' word="afficher" score="10"/>
 		<text body ="le relevé des opérations effectuées." score="10"/>
 		
 		<UML>
-			<uml-class id='1' name ="account"/>
-			<uml-class id='4' name ="person"/>
-			<uml-class id='7' name ="checking account"/>
-			<uml-attribute id='8' name ="historic" visibility="protected" type="String" motherId='7'/>
-			<uml-attribute id='2' visibility=" protected" motherId='1' type="int" name ="solde"/>
-			<uml-method id='5' visibility =" public" motherId='1' type="void" name="credit">
+			<uml-class id='1' name ="account score="10"/>
+			<uml-class id='4' name ="person" score="10"/>
+			<uml-class id='7' name ="checking account" score="10"/>
+			<uml-attribute id='8' name ="historic" visibility="protected" type="String" motherId='7' score="10"/>
+			<uml-attribute id='2' visibility=" protected" motherId='1' type="int" name ="solde" score="10"/>
+			<uml-method id='5' visibility =" public" motherId='1' type="void" name="credit" score="10">
 				<param type="int"/>
 			</uml-method>
-			<uml-method id='6' visibility =" public" motherId='1' type="void" name="debit">
+			<uml-method id='6' visibility =" public" motherId='1' type="void" name="debit" score="10">
 				<param type="int"/>
 			</uml-method>
-			<uml-method id='9' visibility =" public" motherId='7' type="void" name="print">
+			<uml-method id='9' visibility =" public" motherId='7' type="void" name="print" score="10">
 				<param type="int"/>
 			</uml-method>
-			<uml-aggregation id='3' name="titulaire" target='1' source='4' targetMult="0..*" sourceMult="1"/>
-			<uml-generalization name=" extends" id='10' target='1' source='7' />
+			<uml-aggregation id='3' name="titulaire" target='1' source='4' targetMult="0..*" sourceMult="1" score="5"/>
+			<uml-generalization name=" extends" id='10' target='1' source='7' score="5"/>
 		</UML>
 	</part>
 </exercise>
