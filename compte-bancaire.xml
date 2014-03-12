@@ -48,7 +48,7 @@
 		<text body ="le relevé des opérations effectuées." score="10"/>
 		
 		<UML>
-			<uml-class id='1' name ="account score="10"/>
+			<uml-class id='1' name ="account" score="10"/>
 			<uml-class id='4' name ="person" score="10"/>
 			<uml-class id='7' name ="checking account" score="10"/>
 			<uml-attribute id='8' name ="historic" visibility="protected" type="String" motherId='7' score="10"/>
