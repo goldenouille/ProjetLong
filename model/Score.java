@@ -2,12 +2,12 @@ package model;
 
 public class Score {
 
-	private int scoreText;
-	private int scoreNature;
-	private int scoreGraph;
-	private int currScoreText;
-	private int currScoreNature;
-	private int currScoreGraph;
+	private int scoreText; //The maximum score for the part 1
+	private int scoreNature; //The maximum score for the part 2
+	private int scoreGraph; //The maximum score for the part 3
+	private int currScoreText; //The current score for the part 1
+	private int currScoreNature; //The current score for the part 2
+	private int currScoreGraph; //The current score for the part 3
 	
 	public Score() {
 		
@@ -60,16 +60,27 @@ public class Score {
 	public int getCurrScore() {
 		return this.currScoreGraph + this.currScoreNature + this.currScoreText;
 	}
-	
+	/**
+	 * @param n the number of points to substract in the part 1
+	 * 
+	 **/
 	public void removeScoreText(int n) {
 		this.setCurrScoreText(this.getCurrScoreText() -n );
 		System.out.println("- " + n + " points.");
 	}
 	
+	/**
+	 * @param n the number of points to substract in the part 2
+	 * 
+	 **/
 	public void removeScoreNature(int n) {
 		this.setCurrScoreNature(this.getCurrScoreNature() -n );
 	}
 	
+	/**
+	 * @param n the number of points to substract in the part 3
+	 * 
+	 **/
 	public void removeScoreGraph(int n) {
 		System.out.println("- " + n + " points.");
 		this.setCurrScoreGraph(this.getCurrScoreGraph() -n );
