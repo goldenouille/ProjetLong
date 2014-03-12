@@ -1,5 +1,5 @@
-<exercise name="banque" preview="exercise de la banque complet">
-	<part name="partie 1" scoreNature="30" scoreGraph="40">
+<exercise name="banque" preview="Exercise de la banque complet">
+	<part name="Le compte simple" scoreNature="30" scoreGraph="40">
 		<text body ="Un"/> <kw id='1' word="compte" score="10"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
 		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire." score="10"/>
@@ -11,7 +11,7 @@
 			<uml-attribute id='3' visibility="protected" motherId='1' type="STRING" name ="owner" score="15"/>
 		</UML>
 	</part>
-	<part name="partie 2" scoreNature="30" scoreGraph="70">
+	<part name="Un proprietaire" scoreNature="30" scoreGraph="70">
 		<text body ="Un"/> <kw id='1' word="compte" score="0"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
 		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire" score="10"/>
@@ -34,7 +34,7 @@
 		</UML>
 	</part>
 	
-	<part name="partie 3" scoreNature="60" scoreGraph="90">
+	<part name="Des operations" scoreNature="60" scoreGraph="90">
 		<text body ="Un"/> <kw id='1' word="compte" score="10"/>
 		<text body ="simple est caractérisé par un"/><kw id='2' word ="solde" score="10"/>
 		<text body ="en euros, positif ou négatif, et son"/><kw id ='3' word="titulaire" score="10"/>
