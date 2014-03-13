@@ -1,6 +1,7 @@
 package model;
 
 public class Generalization extends Heritage {
+<<<<<<< HEAD
 
 	/**
 	 * Create a Generalization
@@ -17,9 +18,12 @@ public class Generalization extends Heritage {
 	 *				id of the generalization edge
 	 * @param name
 	 *				name of the generalization edge
+	 * @param scord
+	 *				score attributed to the edge
 	 */
-	public Generalization(Vertex trg, Vertex src, int id, String name) {
-		super(trg,src,id,name);
+
+	public Generalization(Vertex trg, Vertex src, int id, String name, int score) {
+		super(trg,src,id,name,score);
 		this.nature = UMLNature.GENERALIZATION;
 		this.frenchName = "generalisation";
 	}

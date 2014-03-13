@@ -48,7 +48,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.classes.size(); i++) {
                         pc = this.classes.get(i);
                         id = pc.getId();
-                        VertexClass gi = new VertexClass(pc.getName(), id);
+                        VertexClass gi = new VertexClass(pc.getName(), id, pc.getScore());
                         g.addVertex(gi);
                         map.put(id,gi);
                 }
@@ -57,7 +57,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.abstracts.size(); i++) {
                         pa = this.abstracts.get(i);
                         id = pa.getId();
-                        VertexAbstract gi = new VertexAbstract(pa.getName(), id);
+                        VertexAbstract gi = new VertexAbstract(pa.getName(), id, pa.getScore());
                         g.addVertex(gi);
                         map.put(id, gi);
                 } 
@@ -66,7 +66,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.interfaces.size(); i++) {
                         pi = this.interfaces.get(i);
                         id = pi.getId();
-                        Vertex gi = new Vertex(pi.getName(), id);
+                        Vertex gi = new Vertex(pi.getName(), id, pi.getScore());
                         g.addVertex(gi);
                         map.put(id, gi);
                 }
@@ -75,7 +75,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.attributes.size(); i++) {
                         patt = this.attributes.get(i);
                         id = patt.getId();
-                        Attribute gi = new Attribute(patt.getName(),TypeBase.getByName(patt.getType()),Visibility.getByName(patt.getVisibility()),(Vertex) map.get(patt.getMotherId()),patt.getId());
+                        Attribute gi = new Attribute(patt.getName(),TypeBase.getByName(patt.getType()),Visibility.getByName(patt.getVisibility()),(Vertex) map.get(patt.getMotherId()),patt.getId(), patt.getScore());
                         g.addAttribute(gi);
                         map.put(id, gi);
                 }
@@ -84,7 +84,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.methods.size(); i++) {
                         pm = this.methods.get(i);
                         id = pm.getId();
-                        Method gi = new Method( pm.getName(),TypeBase.getByName(pm.getType()), Visibility.getByName(pm.getVisibility()),(Vertex) map.get(pm.getMotherId()),pm.getId(), pm.getParamsType());
+                        Method gi = new Method( pm.getName(),TypeBase.getByName(pm.getType()), Visibility.getByName(pm.getVisibility()),(Vertex) map.get(pm.getMotherId()),pm.getId(), pm.getParamsType(), pm.getScore());
                         g.addMethod(gi);
                         map.put(id, gi);
                 }
@@ -93,7 +93,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.aggregations.size(); i++) {
                         pagg = this.aggregations.get(i);
                         id = pagg.getId();
-                        Aggregation gi = new Aggregation((Vertex) map.get(pagg.getTarget()),pagg.getTargetMult(),(Vertex) map.get(pagg.getSource()),pagg.getSourceMult(), id, pagg.getName());
+                        Aggregation gi = new Aggregation((Vertex) map.get(pagg.getTarget()),pagg.getTargetMult(),(Vertex) map.get(pagg.getSource()),pagg.getSourceMult(), id, pagg.getName(), pagg.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }
@@ -102,7 +102,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.compositions.size(); i++) {
                         pcom = this.compositions.get(i);
                         id = pcom.getId();
-                        Composition gi = new Composition((Vertex) map.get(pcom.getTarget()),pcom.getTargetMult(),(Vertex) map.get(pcom.getSource()),pcom.getSourceMult(), id, pcom.getName());
+                        Composition gi = new Composition((Vertex) map.get(pcom.getTarget()),pcom.getTargetMult(),(Vertex) map.get(pcom.getSource()),pcom.getSourceMult(), id, pcom.getName(), pcom.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }
@@ -111,7 +111,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.associations.size(); i++) {
                         pba = this.associations.get(i);
                         id = pba.getId();
-                        BinaryAssociation gi = new BinaryAssociation((Vertex) map.get(pba.getTarget()),pba.getTargetMult(),(Vertex) map.get(pba.getSource()),pba.getSourceMult(), id, pba.getName());
+                        BinaryAssociation gi = new BinaryAssociation((Vertex) map.get(pba.getTarget()),pba.getTargetMult(),(Vertex) map.get(pba.getSource()),pba.getSourceMult(), id, pba.getName(), pba.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }
@@ -120,7 +120,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.realizations.size(); i++) {
                         pr = this.realizations.get(i);
                         id = pr.getId();
-                        Realization gi = new Realization((Vertex) map.get(pr.getTarget()),(Vertex) map.get(pr.getSource()), id, pr.getName());
+                        Realization gi = new Realization((Vertex) map.get(pr.getTarget()),(Vertex) map.get(pr.getSource()), id, pr.getName(), pr.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }
@@ -129,7 +129,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.generalizations.size(); i++) {
                         pg = this.generalizations.get(i);
                         id = pg.getId();
-                        Generalization gi = new Generalization((Vertex) map.get(pg.getTarget()),(Vertex) map.get(pg.getSource()), id, pg.getName());
+                        Generalization gi = new Generalization((Vertex) map.get(pg.getTarget()),(Vertex) map.get(pg.getSource()), id, pg.getName(), pg.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }
@@ -138,7 +138,7 @@ public class PseudoGraph {
                 for (int i=0; i<this.dependancies.size(); i++) {
                         pd = this.dependancies.get(i);
                         id = pd.getId();
-                        Dependancy gi = new Dependancy((Vertex) map.get(pd.getTarget()),(Vertex) map.get(pd.getSource()), id, pd.getName());
+                        Dependancy gi = new Dependancy((Vertex) map.get(pd.getTarget()),(Vertex) map.get(pd.getSource()), id, pd.getName(), pd.getScore());
                         g.addEdge(gi);
                         map.put(id, gi);
                 }

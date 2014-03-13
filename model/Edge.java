@@ -4,12 +4,22 @@ import java.util.ArrayList;
 
 public class Edge implements GraphItem{
 
+<<<<<<< HEAD
 	protected String name;	// name of the edge
 	protected int id;		// id of the edge
 	protected String frenchName;	// french name used in the toString
 	protected UMLNature nature;		// UMLNature of the edge
 	protected boolean isDeletable;	// if the edge can be deleted. if it has been deleted, it can not be deleted
 	protected boolean isCorrected;	// if the edge has been corrected during the last correction
+=======
+	protected String name;
+	protected int id;
+	protected String frenchName;
+	protected UMLNature nature;
+	protected boolean isDeletable;
+	protected boolean isCorrected;
+	protected int score;
+>>>>>>> d59b5c0300145921ab41e6ee4151f3ee40dfdba2
 
 	
 	/**
@@ -90,27 +100,27 @@ public class Edge implements GraphItem{
 		// and the second refers to the source	
 
 		if (nature.equals(UMLNature.AGGREGATION)) {
-			return (new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name));
+			return (new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.ASSOCIATION)) {
 			System.out.println("Une association n'est pas suffisamment specifie pour etre instancie");
 			return null;
 		}
 		if (nature.equals(UMLNature.COMPOSITION)) {
-			return (new Composition(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name));
+			return (new Composition(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.DEPENDANCY)) {
-			return (new Dependancy(v.get(0), v.get(1), id, name));
+			return (new Dependancy(v.get(0), v.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.GENERALIZATION)) {
-			return (new Generalization(v.get(0), v.get(1), id, name));
+			return (new Generalization(v.get(0), v.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.N_ASSOCIATION)) {
 			System.out.println("La creation des association n-aire n'est pas gere pour l'instant");
 			return null;
 		}
 		if (nature.equals(UMLNature.REALIZATION)) {
-			return (new Realization(v.get(0), v.get(1), id, name));
+			return (new Realization(v.get(0), v.get(1), id, name,0));
 		}
 		return null;
 	}
@@ -120,5 +130,14 @@ public class Edge implements GraphItem{
 		return this.nature;
 
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 
 }

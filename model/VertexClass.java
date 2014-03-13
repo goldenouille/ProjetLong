@@ -15,9 +15,10 @@ public class VertexClass extends Vertex {
 	 *            	name of the class
 	 * @param id
 	 *				id of the class
+	 * @param score 
 	 */
-	public VertexClass(String name, int id) {
-		super(name, id);
+	public VertexClass(String name, int id, int score) {
+		super(name, id,score);
 		this.attributes = new ArrayList<Attribute>();
 		this.frenchName = "classe";
 	}

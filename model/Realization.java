@@ -13,9 +13,11 @@ public class Realization extends Heritage {
 	 *				id of the aggregation edge
 	 * @param name
 	 *				name of the aggregation edge
+	 * @param score	
+	 *				score used during the correction
 	 */
-	public Realization(Vertex trg, Vertex src, int id, String name) {
-		super(trg,src,id,name);
+	public Realization(Vertex trg, Vertex src, int id, String name, int score) {
+		super(trg,src,id,name,score);
 		this.nature = UMLNature.REALIZATION;
 		this.frenchName = "realisation";
 	}

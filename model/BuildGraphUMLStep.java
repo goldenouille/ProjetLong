@@ -14,6 +14,7 @@ public class BuildGraphUMLStep extends Step {
 	public static void getCorrection(Exercise exo) {
 		ArrayList<Word> text = exo.getText();
 		ModelController mc = exo.getModelController();
+		Score score = exo.getScore();
 		String errormsg="";
 		Graph graph = exo.getGraph();
 		Graph usergraph = exo.getUserGraph();
@@ -39,18 +40,27 @@ public class BuildGraphUMLStep extends Step {
 						error=true;
 						errormsg+=("l'attribut "+attribute.getName()+" n'est pas placé.\n");
 					}
+					else if (attribute.getType()==userattribute.getType()) {
+						error=true;
+						errormsg+=("le type de retour de "+attribute.getName()+" est faux.\n");
+					}
 					else if (attribute.getMotherClass().getId()!=userattribute.getMotherClass().getId()) {
 						error=true;
 						errormsg+=("la classe de "+attribute.getName()+" est fausse.\n");
 					}
 					if (error) {
 						mc.doShowUMLDrawingInErrorColor(userattribute,UMLNature.ATTRIBUTE);
+						score.removeScoreGraph(attribute.getScore()/2);
 					}
 					break;
 				case METHOD :
 					Method method = ((Method)word.getGraphItem());
 					Method usermethod = ((Method)word.getUserGraphItem());
-					if (method.getReturnType()==usermethod.getReturnType()) {
+					if (usermethod.getMotherClass()==null){
+						error=true;
+						errormsg+=("la methode "+method.getName()+" n'est pas placé.\n");
+					}
+					else if (method.getReturnType()==usermethod.getReturnType()) {
 						error=true;
 						errormsg+=("le type de retour de "+method.getName()+" est faux.\n");
 					}
@@ -65,6 +75,7 @@ public class BuildGraphUMLStep extends Step {
 					}
 					if (error) {
 						mc.doShowUMLDrawingInErrorColor(usermethod,UMLNature.METHOD);
+						score.removeScoreGraph(method.getScore()/2);
 					}
 					break;
 				default :
@@ -82,6 +93,7 @@ public class BuildGraphUMLStep extends Step {
 		} else {
 			mc.doPrintMessage("Echec", errormsg);
 		}
+		mc.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 	}
 
 	private static boolean compare(Edge useredge, ArrayList<Edge> edges){

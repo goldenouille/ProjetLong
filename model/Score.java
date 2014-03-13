@@ -2,12 +2,12 @@ package model;
 
 public class Score {
 
-	private int scoreText;
-	private int scoreNature;
-	private int scoreGraphe;
-	private int currScoreText;
-	private int currScoreNature;
-	private int currScoreGraphe;
+	private int scoreText; //The maximum score for the part 1
+	private int scoreNature; //The maximum score for the part 2
+	private int scoreGraph; //The maximum score for the part 3
+	private int currScoreText; //The current score for the part 1
+	private int currScoreNature; //The current score for the part 2
+	private int currScoreGraph; //The current score for the part 3
 	
 	public Score() {
 		
@@ -27,12 +27,12 @@ public class Score {
 		this.scoreNature = scoreNature;
 		this.currScoreNature = scoreNature;
 	}
-	public int getScoreGraphe() {
-		return scoreGraphe;
+	public int getScoreGraph() {
+		return scoreGraph;
 	}
-	public void setScoreGraphe(int scoreGraphe) {
-		this.scoreGraphe = scoreGraphe;
-		this.currScoreGraphe = scoreGraphe;
+	public void setScoreGraph(int scoreGraph) {
+		this.scoreGraph = scoreGraph;
+		this.currScoreGraph = scoreGraph;
 	}
 	public int getCurrScoreText() {
 		return currScoreText;
@@ -46,27 +46,43 @@ public class Score {
 	public void setCurrScoreNature(int currScoreNature) {
 		this.currScoreNature = (currScoreNature>0?currScoreNature:0);
 	}
-	public int getCurrScoreGraphe() {
-		return currScoreGraphe;
+	public int getCurrScoreGraph() {
+		return currScoreGraph;
 	}
-	public void setCurrScoreGraphe(int currScoreGraphe) {
-		this.currScoreGraphe = (currScoreGraphe>0?currScoreGraphe:0);
+	public void setCurrScoreGraph(int currScoreGraph) {
+		this.currScoreGraph = (currScoreGraph>0?currScoreGraph:0);
 	}
 	
 	public int getScoreMax() {
-		return this.scoreGraphe + this.scoreNature + this.scoreText;
+		return this.scoreGraph + this.scoreNature + this.scoreText;
 	}
 	
 	public int getCurrScore() {
-		return this.currScoreGraphe + this.currScoreNature + this.currScoreText;
+		return this.currScoreGraph + this.currScoreNature + this.currScoreText;
 	}
-	
+	/**
+	 * @param n the number of points to substract in the part 1
+	 * 
+	 **/
 	public void removeScoreText(int n) {
 		this.setCurrScoreText(this.getCurrScoreText() -n );
 		System.out.println("- " + n + " points.");
 	}
 	
+	/**
+	 * @param n the number of points to substract in the part 2
+	 * 
+	 **/
 	public void removeScoreNature(int n) {
 		this.setCurrScoreNature(this.getCurrScoreNature() -n );
+	}
+	
+	/**
+	 * @param n the number of points to substract in the part 3
+	 * 
+	 **/
+	public void removeScoreGraph(int n) {
+		System.out.println("- " + n + " points.");
+		this.setCurrScoreGraph(this.getCurrScoreGraph() -n );
 	}
 }

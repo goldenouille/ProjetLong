@@ -6,6 +6,7 @@ public class PseudoAttribute {
 		private String visibility;
         private int motherId;
         private String type;
+        private int score;
         
         public PseudoAttribute() {
 		}
@@ -49,5 +50,13 @@ public class PseudoAttribute {
         public String getType() {
                 return this.type;
         }
+
+		public int getScore() {
+			return score;
+		}
+
+		public void setScore(int score) {
+			this.score = score;
+		}
         
 }

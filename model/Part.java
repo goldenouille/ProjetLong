@@ -163,7 +163,7 @@ public class Part {
 	}
 	
 	public void setScoreGraph(int s) {
-		this.score.setScoreGraphe(s);
+		this.score.setScoreGraph(s);
 	}
 
 }

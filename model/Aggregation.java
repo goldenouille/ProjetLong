@@ -18,9 +18,10 @@ public class Aggregation extends BinaryAssociation {
 	 *				id of the aggregation edge
 	 * @param name
 	 *				name of the aggregation edge
+	 * @param score 
 	 */
-	public Aggregation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name) {
-		super(trg, trgMult, src, srcMult, id, name);
+	public Aggregation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name, int score) {
+		super(trg, trgMult, src, srcMult, id, name,score);
 		this.nature = UMLNature.AGGREGATION;
 		this.frenchName = "aggregation";
 	}
