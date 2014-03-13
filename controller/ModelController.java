@@ -469,7 +469,10 @@ public class ModelController {
 	 */
 	public String askUmlInstanceName(Object id) {
 		if (id instanceof GraphItem) {
-			return exo.getById(((GraphItem) id).getId()).toString();
+			Word w = exo.getById(((GraphItem) id).getId());
+			if (w != null) {
+				return w.toString();
+			}
 		}
 
 		return id.toString();
