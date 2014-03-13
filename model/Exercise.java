@@ -86,6 +86,15 @@ public class Exercise {
 	 *				text where the word has to be looked for
 	 * @return the word corresponding to the id or null if it doesn't exist
 	 */
+
+	public Word getById(int id) {
+		if (id < 0) {
+			return getById(id, this.userText);
+		} else {
+			return getById(id, this.text);
+		}
+	}
+
 	public Word getById(int id, ArrayList<Word> t) {
 		for (int i = 0; i < t.size(); i++) {
 			if (t.get(i).getId() == id) {
