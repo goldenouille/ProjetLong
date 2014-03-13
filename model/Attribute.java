@@ -135,4 +135,8 @@ public class Attribute implements GraphItem{
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	public String toString() {
+		return this.name;
+	}
 }
