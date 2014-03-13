@@ -58,7 +58,7 @@ public class LinkToolBar extends JToolBar {
 	public LinkToolBar(ClassicGuiController controller) {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createEmptyBorder()));
-		this.setFloatable(false);
+		//this.setFloatable(false);
 		state = NO_LINK;
 
 		// NO LINK BUTTON
