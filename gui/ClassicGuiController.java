@@ -863,8 +863,7 @@ public class ClassicGuiController {
 	}
 
 	/**
-	 * Ask the core about the name of the Uml instance corresponding to the
-	 * defined keyword
+	 * Ask the core about the name of the corresponding Uml instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -872,6 +871,17 @@ public class ClassicGuiController {
 	 */
 	public String askUmlInstanceName(Object id) {
 		return core.askUmlInstanceName(id);
+	}
+	
+	/**
+	 * Ask the core about the keyword of the corresponding Uml instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return name of the instance
+	 */
+	public String askUmlInstanceKeyword(Object id) {
+		return core.askUmlInstanceKeyword(id);
 	}
 
 	/**
@@ -1312,7 +1322,7 @@ public class ClassicGuiController {
 	 *             if expression does not exist
 	 */
 	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
-		String keyword = id.toString();
+		String keyword = askUmlInstanceKeyword(id);
 		if (nature.equals(UMLNature.CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
 			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe", JOptionPane.OK_CANCEL_OPTION);

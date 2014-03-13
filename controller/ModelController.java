@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
@@ -13,7 +14,6 @@ import javax.swing.text.BadLocationException;
 import parser.Parser;
 import controller.ModelController;
 import model.*;
-
 import gui.ClassicGuiController;
 
 public class ModelController {
@@ -460,22 +460,32 @@ public class ModelController {
 	}
 
 	/**
-	 * Ask the core about the name of the Uml instance corresponding to the
-	 * defined keyword
+	 * Ask the core about the name of the Uml instance corresponding
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
 	 * @return name of the instance
 	 */
 	public String askUmlInstanceName(Object id) {
+		return id.toString();
+	}
+	
+	/**
+	 * Ask the core about the keyword of the corresponding Uml instance
+	 * 
+	 * @param id
+	 *            identifier of the instance to edit
+	 * @return name of the instance
+	 */
+	public String askUmlInstanceKeyword(Object id) {
 		if (id instanceof GraphItem) {
 			Word w = exo.getById(((GraphItem) id).getId());
 			if (w != null) {
 				return w.toString();
 			}
 		}
-
-		return id.toString();
+		
+		return "Element non lie a un mot-cle.";
 	}
 
 	/**
