@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,11 +20,8 @@ import javax.swing.WindowConstants;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import controller.Controller;
-
 import parser.Parser;
-
 import model.Exercise;
-
 import actions.ActChooseExercise;
 import actions.ActStartExercise;
 import actions.ActViewHistory;
@@ -123,5 +121,18 @@ public class LaunchController extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Prints an error message
+	 * 
+	 * @param title
+	 *            message pop-up title
+	 * @param message
+	 *            message to print
+	 */
+	public void doPrintMessage(String title, String message) {
+		JOptionPane.showMessageDialog(this, message, title,
+				JOptionPane.ERROR_MESSAGE);
 	}
 }
