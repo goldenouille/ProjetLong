@@ -68,8 +68,7 @@ public class Edge implements GraphItem{
 			return (new Aggregation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.ASSOCIATION)) {
-			System.out.println("Une association n'est pas suffisamment specifie pour etre instancie");
-			return null;
+			return (new BinaryAssociation(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
 		}
 		if (nature.equals(UMLNature.COMPOSITION)) {
 			return (new Composition(v.get(0), multiplicity.get(0), v.get(1), multiplicity.get(1), id, name,0));
