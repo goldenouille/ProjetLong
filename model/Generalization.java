@@ -1,7 +1,7 @@
 package model;
 
 public class Generalization extends Heritage {
-<<<<<<< HEAD
+
 
 	/**
 	 * Create a Generalization

@@ -7,7 +7,6 @@ public class DirectionalRelation extends Edge {
 	protected Vertex target;	// target vertex
 	protected Vertex source;	// source target
 
-<<<<<<< HEAD
 	/**
 	 * Create a DirectionalRelation
 	 * 
@@ -19,11 +18,11 @@ public class DirectionalRelation extends Edge {
 	 *				id of the directionalRelation edge
 	 * @param name
 	 *				name of the directionalRelation edge
+	 * @param score
+	 *				score attributed of the edge
 	 */
-	public DirectionalRelation(Vertex trg, Vertex src, int id, String name) {
-=======
+
 	public DirectionalRelation(Vertex trg, Vertex src, int id, String name, int score) {
->>>>>>> d59b5c0300145921ab41e6ee4151f3ee40dfdba2
 		super();
 		this.target = trg;
 		this.source = src;

@@ -4,22 +4,15 @@ import java.util.ArrayList;
 
 public class Edge implements GraphItem{
 
-<<<<<<< HEAD
+
 	protected String name;	// name of the edge
 	protected int id;		// id of the edge
 	protected String frenchName;	// french name used in the toString
 	protected UMLNature nature;		// UMLNature of the edge
 	protected boolean isDeletable;	// if the edge can be deleted. if it has been deleted, it can not be deleted
 	protected boolean isCorrected;	// if the edge has been corrected during the last correction
-=======
-	protected String name;
-	protected int id;
-	protected String frenchName;
-	protected UMLNature nature;
-	protected boolean isDeletable;
-	protected boolean isCorrected;
-	protected int score;
->>>>>>> d59b5c0300145921ab41e6ee4151f3ee40dfdba2
+	protected int score;		// score attributed to the edge
+
 
 	
 	/**

@@ -8,7 +8,6 @@ public class BinaryAssociation extends Association {
 	protected String targetMult;	// target multiplicity
 	protected String sourceMult;	// source mutliplicity
 	
-<<<<<<< HEAD
 
 	/**
 	 * Create a BinaryAssociation
@@ -25,11 +24,11 @@ public class BinaryAssociation extends Association {
 	 *				id of the binaryAssociation edge
 	 * @param name
 	 *				name of the binaryAssociation edge
+	 * @param score
+	 *				score attributed to the edge
 	 */
-	public BinaryAssociation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name) {
-=======
+
 	public BinaryAssociation(Vertex trg, String trgMult, Vertex src, String srcMult, int id, String name, int score) {
->>>>>>> d59b5c0300145921ab41e6ee4151f3ee40dfdba2
 		this.target = trg;
 		this.targetMult = trgMult;
 		this.source = src;
