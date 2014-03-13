@@ -54,7 +54,7 @@ public class BuildGraphUMLStep extends Step {
 					}
 					break;
 				case METHOD :
-					Method method = ((Method)word.getGraphItem());
+					Method method = ((Method)gi);
 					Method usermethod = ((Method)word.getUserGraphItem());
 					if (usermethod.getMotherClass()==null){
 						error=true;
