@@ -199,14 +199,18 @@ public class TextPanel extends AbstractPanel {
 	 *            index of expression first word
 	 * @param lastWord
 	 *            index of expression last word
-	 * @returnthe specified expression
+	 * @return the specified expression
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
 	public String getText(int firstWord, int lastWord) throws BadLocationException {
-		if (firstWord != 0)
+		int start = 0;
+		if (firstWord != 0) {
 			firstWord--;
-		int start = lenghtTable[firstWord] + firstWord;
+			start = lenghtTable[firstWord] + firstWord;
+		}
+		if (textPane.getText(start, 1).equals(" "))
+			start++;
 		int end = lenghtTable[lastWord] + lastWord;
 		return textPane.getText(start, end - start).trim();
 	}

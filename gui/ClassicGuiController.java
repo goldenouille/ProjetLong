@@ -50,13 +50,15 @@ public class ClassicGuiController {
 
 		this.textPanel = new TextPanel(this, false);
 		this.userTextPanel = new TextPanel(this, true);
-		this.textSectionPanel = new TextSectionPanel(this, textPanel, userTextPanel);
+		this.textSectionPanel = new TextSectionPanel(this, textPanel,
+				userTextPanel);
 		this.scorePanel = new ScorePanel(this);
 		this.timerPanel = new TimerPanel(this);
 		this.umlDrawingPanel = new UMLDrawingPanel(this);
 		this.navigationPanel = new NavigationPanel(this);
 
-		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel, timerPanel, textSectionPanel, umlDrawingPanel);
+		this.mainFrame = new MainFrame(this, navigationPanel, scorePanel,
+				timerPanel, textSectionPanel, umlDrawingPanel);
 		this.mainFrame.setVisible(true);
 	}
 
@@ -69,7 +71,8 @@ public class ClassicGuiController {
 	 *            message to print
 	 */
 	public void doPrintMessage(String title, String message) {
-		JOptionPane.showMessageDialog(mainFrame, message, title, JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(mainFrame, message, title,
+				JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**
@@ -78,9 +81,12 @@ public class ClassicGuiController {
 	public void askValidateKeywords() {
 		core.askValidateKeywords();
 	}
-	
-	/** Enable or disable the keywords validation button
-	 * @param enabled propertie of the button to set
+
+	/**
+	 * Enable or disable the keywords validation button
+	 * 
+	 * @param enabled
+	 *            propertie of the button to set
 	 */
 	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
 		textSectionPanel.setValidateKeywordsButtonEnabled(enabled);
@@ -93,9 +99,12 @@ public class ClassicGuiController {
 	public void askValidateAssociation() {
 		core.askValidateAssociation();
 	}
-	
-	/** Enable or disable the association validation button
-	 * @param enabled propertie of the button to set
+
+	/**
+	 * Enable or disable the association validation button
+	 * 
+	 * @param enabled
+	 *            propertie of the button to set
 	 */
 	public void doSetValidateAssociationButtonEnabled(boolean enabled) {
 		umlDrawingPanel.setValidateAssociationButtonEnabled(enabled);
@@ -107,14 +116,17 @@ public class ClassicGuiController {
 	public void askValidateDiagram() {
 		core.askValidateDiagram();
 	}
-	
-	/** Enable or disable the diagram validation button
-	 * @param enabled propertie of the button to set
+
+	/**
+	 * Enable or disable the diagram validation button
+	 * 
+	 * @param enabled
+	 *            propertie of the button to set
 	 */
 	public void doSetValidateDiagramButtonEnabled(boolean enabled) {
 		umlDrawingPanel.setValidateDiagramButtonEnabled(enabled);
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to close current exercise
 	 */
@@ -123,7 +135,7 @@ public class ClassicGuiController {
 		mainFrame.dispose();
 		Launcher.main(null);
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to save current exercise as xml
 	 */
@@ -195,7 +207,8 @@ public class ClassicGuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateClass(int firstWord, int lastWord, boolean userText, String name) {
+	private void askCreateClass(int firstWord, int lastWord, boolean userText,
+			String name) {
 		core.askCreateClass(firstWord, lastWord, userText, name);
 	}
 
@@ -212,7 +225,8 @@ public class ClassicGuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateAbstractClass(int firstWord, int lastWord, boolean userText, String name) {
+	private void askCreateAbstractClass(int firstWord, int lastWord,
+			boolean userText, String name) {
 		core.askCreateAbstractClass(firstWord, lastWord, userText, name);
 	}
 
@@ -229,7 +243,8 @@ public class ClassicGuiController {
 	 * @param name
 	 *            name wanted for the new instance
 	 */
-	private void askCreateInterface(int firstWord, int lastWord, boolean userText, String name) {
+	private void askCreateInterface(int firstWord, int lastWord,
+			boolean userText, String name) {
 		core.askCreateInterface(firstWord, lastWord, userText, name);
 	}
 
@@ -250,8 +265,10 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateAttribute(int firstWord, int lastWord, boolean userText, String name, String type, String visibility) {
-		core.askCreateAttribute(firstWord, lastWord, userText, name, type, visibility);
+	private void askCreateAttribute(int firstWord, int lastWord,
+			boolean userText, String name, String type, String visibility) {
+		core.askCreateAttribute(firstWord, lastWord, userText, name, type,
+				visibility);
 	}
 
 	/**
@@ -273,8 +290,11 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateMethod(int firstWord, int lastWord, boolean userText, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
-		core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes, returnType, visibility);
+	private void askCreateMethod(int firstWord, int lastWord, boolean userText,
+			String name, ArrayList<String> paramTypes, String returnType,
+			String visibility) {
+		core.askCreateMethod(firstWord, lastWord, userText, name, paramTypes,
+				returnType, visibility);
 	}
 
 	// ***//
@@ -293,8 +313,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doSelectText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).highlight(SELECTION_COLOR, firstWord, lastWord);
+	public void doSelectText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).highlight(SELECTION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -309,8 +331,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doUnSelectText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR, firstWord, lastWord);
+	public void doUnSelectText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -325,8 +349,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).highlight(VALIDATION_COLOR, firstWord, lastWord);
+	public void doValidateText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).highlight(VALIDATION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -341,8 +367,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doUnValidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR, firstWord, lastWord);
+	public void doUnValidateText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -357,8 +385,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).highlight(INVALIDATION_COLOR, firstWord, lastWord);
+	public void doInvalidateText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).highlight(INVALIDATION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -373,8 +403,10 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doUnInvalidateText(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR, firstWord, lastWord);
+	public void doUnInvalidateText(int firstWord, int lastWord, boolean userText)
+			throws BadLocationException {
+		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -389,10 +421,14 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doResetTextHighlight(int firstWord, int lastWord, boolean userText) throws BadLocationException {
-		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR, firstWord, lastWord);
-		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR, firstWord, lastWord);
-		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR, firstWord, lastWord);
+	public void doResetTextHighlight(int firstWord, int lastWord,
+			boolean userText) throws BadLocationException {
+		(userText ? userTextPanel : textPanel).unHighlight(SELECTION_COLOR,
+				firstWord, lastWord);
+		(userText ? userTextPanel : textPanel).unHighlight(VALIDATION_COLOR,
+				firstWord, lastWord);
+		(userText ? userTextPanel : textPanel).unHighlight(INVALIDATION_COLOR,
+				firstWord, lastWord);
 	}
 
 	/**
@@ -409,39 +445,58 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord, Object nature) throws BadLocationException {
+	public void doShowUmlInstanceCreationPopup(int firstWord, int lastWord,
+			Object nature) throws BadLocationException {
 		String keyword = getText(firstWord, lastWord);
 		if (nature.equals(UMLNature.CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					null);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				askCreateClass(firstWord, lastWord, userTextFocus,
+						panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					null);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAbstractClass(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				askCreateAbstractClass(firstWord, lastWord, userTextFocus,
+						panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					null);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateInterface(firstWord, lastWord, userTextFocus, panel.getVertexName());
+				askCreateInterface(firstWord, lastWord, userTextFocus,
+						panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvel attribut", JOptionPane.OK_CANCEL_OPTION);
+			AttributeEditionPanel panel = new AttributeEditionPanel(this,
+					keyword, null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvel attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAttribute(firstWord, lastWord, userTextFocus, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+				askCreateAttribute(firstWord, lastWord, userTextFocus,
+						panel.getAttributeName(), panel.getAttributeType(),
+						panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, null, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
+			MethodEditionPanel panel = new MethodEditionPanel(this, keyword,
+					null, null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(
+					panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+					"Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateMethod(firstWord, lastWord, userTextFocus, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel
-						.getMethodVisibility());
+				askCreateMethod(firstWord, lastWord, userTextFocus,
+						panel.getMethodName(), panel.getMethodParams(),
+						panel.getMethodReturnType(),
+						panel.getMethodVisibility());
 			}
 		}
 	}
@@ -452,7 +507,8 @@ public class ClassicGuiController {
 	 */
 	public void doShowTextAdditionPopup() {
 		TextAdditionPanel textPanel = new TextAdditionPanel(this);
-		int result = JOptionPane.showConfirmDialog(null, textPanel, "Ajout de texte", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, textPanel,
+				"Ajout de texte", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 			askAddText(textPanel.getNewText(), textPanel.getComment());
 		}
@@ -469,7 +525,7 @@ public class ClassicGuiController {
 	public void doAddText(boolean userText, String[] text) {
 		(userText ? userTextPanel : textPanel).apendText(text);
 	}
-	
+
 	/**
 	 * Replace text of the specified panel
 	 * 
@@ -503,7 +559,7 @@ public class ClassicGuiController {
 	public void doShowMissingKeywordNumber(int nb) {
 		textSectionPanel.setMissingKeywords(nb);
 	}
-	
+
 	/**
 	 * Prints the missing association number. if nb is less than 1, hide the
 	 * missing association label
@@ -573,7 +629,8 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public String getText(int firstWord, int lastWord) throws BadLocationException {
+	public String getText(int firstWord, int lastWord)
+			throws BadLocationException {
 		return getActiveTextPanel().getText(firstWord, lastWord);
 	}
 
@@ -595,8 +652,8 @@ public class ClassicGuiController {
 	// ****//
 
 	/**
-	 * Sends to the core the user's request to create a new class instance
-	 * from ULM element panel
+	 * Sends to the core the user's request to create a new class instance from
+	 * ULM element panel
 	 * 
 	 * 
 	 * @param name
@@ -639,13 +696,14 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateAttributeInPanel(String name, String type, String visibility) {
+	private void askCreateAttributeInPanel(String name, String type,
+			String visibility) {
 		core.askCreateAttributeInPanel(name, type, visibility);
 	}
 
 	/**
-	 * Sends to the core the user's request to create a new method instance
-	 * from ULM element panel
+	 * Sends to the core the user's request to create a new method instance from
+	 * ULM element panel
 	 * 
 	 * @param name
 	 *            name wanted for the new instance
@@ -656,10 +714,11 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+	private void askCreateMethodInPanel(String name,
+			ArrayList<String> paramTypes, String returnType, String visibility) {
 		core.askCreateMethodInPanel(name, paramTypes, returnType, visibility);
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to edit the given class instance
 	 * 
@@ -715,7 +774,8 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askEditAttribute(Object id, String name, String type, String visibility) {
+	private void askEditAttribute(Object id, String name, String type,
+			String visibility) {
 		core.askEditAttribute(id, name, type, visibility);
 
 		// System.out.println("askEditAttribute " + name + " " + type + " " +
@@ -736,13 +796,14 @@ public class ClassicGuiController {
 	 * @param visibility
 	 *            visibility wanted for the new instance
 	 */
-	private void askEditMethod(Object id, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+	private void askEditMethod(Object id, String name,
+			ArrayList<String> paramTypes, String returnType, String visibility) {
 		core.askEditMethod(id, name, paramTypes, returnType, visibility);
 
 		// System.out.println("askEditMethod " + name + " " +
 		// paramTypes.toString() + " " + returnType + " " + visibility);
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to delete the given class instance
 	 * 
@@ -769,7 +830,8 @@ public class ClassicGuiController {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given interface instance
+	 * Sends to the core the user's request to delete the given interface
+	 * instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to delete
@@ -781,7 +843,8 @@ public class ClassicGuiController {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given attribute instance
+	 * Sends to the core the user's request to delete the given attribute
+	 * instance
 	 * 
 	 * @param id
 	 *            identifier of the instance to delete
@@ -803,9 +866,10 @@ public class ClassicGuiController {
 
 		// System.out.println("askDeleteMethod");
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to link the given attribute instance to the given class instance
+	 * Sends to the core the user's request to link the given attribute instance
+	 * to the given class instance
 	 * 
 	 * @param attributeID
 	 *            identifier of the attribute instance
@@ -815,9 +879,10 @@ public class ClassicGuiController {
 	public void askLinkAttributeToClass(Object attributeID, Object classID) {
 		core.askLinkAttributeToClass(attributeID, classID);
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to unlink the given attribute instance to the given class instance
+	 * Sends to the core the user's request to unlink the given attribute
+	 * instance to the given class instance
 	 * 
 	 * @param attributeID
 	 *            identifier of the attribute instance
@@ -827,9 +892,10 @@ public class ClassicGuiController {
 	public void askUnLinkAttributeToClass(Object attributeID, Object classID) {
 		core.askUnLinkAttributeToClass(attributeID, classID);
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to link the given method instance to the given class instance
+	 * Sends to the core the user's request to link the given method instance to
+	 * the given class instance
 	 * 
 	 * @param methodID
 	 *            identifier of the method instance
@@ -839,9 +905,10 @@ public class ClassicGuiController {
 	public void askLinkMethodToClass(Object methodID, Object classID) {
 		core.askLinkMethodToClass(methodID, classID);
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * Sends to the core the user's request to unlink the given method instance
+	 * to the given class instance
 	 * 
 	 * @param methodID
 	 *            identifier of the method instance
@@ -851,9 +918,10 @@ public class ClassicGuiController {
 	public void askUnLinkMethodToClass(Object methodID, Object classID) {
 		core.askUnLinkMethodToClass(methodID, classID);
 	}
-	
+
 	/**
-	 * Sends to the core the user's request to unlink the given method instance to the given class instance
+	 * Sends to the core the user's request to unlink the given method instance
+	 * to the given class instance
 	 * 
 	 * @param claasID
 	 *            identifier of the class instance
@@ -872,7 +940,7 @@ public class ClassicGuiController {
 	public String askUmlInstanceName(Object id) {
 		return core.askUmlInstanceName(id);
 	}
-	
+
 	/**
 	 * Ask the core about the keyword of the corresponding Uml instance
 	 * 
@@ -923,7 +991,7 @@ public class ClassicGuiController {
 	// *************//
 	// Ask Relation //
 	// *************//
-	
+
 	/**
 	 * Sends to the core the user's request to create a new relation
 	 * 
@@ -936,12 +1004,13 @@ public class ClassicGuiController {
 	 * @param text
 	 *            text of relation
 	 */
-	public void askCreateRelation(Object nature, ArrayList<Object> classesID, ArrayList<String> multiplicity, String text) {
+	public void askCreateRelation(Object nature, ArrayList<Object> classesID,
+			ArrayList<String> multiplicity, String text) {
 		core.askCreateRelation(nature, classesID, multiplicity, text);
 
 		// System.out.println("askCreateRelation");
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to create a new relation
 	 * 
@@ -954,12 +1023,13 @@ public class ClassicGuiController {
 	 * @param text
 	 *            text of relation
 	 */
-	public void askEditRelation(Object id, ArrayList<String> multiplicity, String text) {
+	public void askEditRelation(Object id, ArrayList<String> multiplicity,
+			String text) {
 		core.askEditRelation(id, multiplicity, text);
 
 		// System.out.println("askEditRelation");
 	}
-	
+
 	/**
 	 * Sends to the core the user's request to delete a relation
 	 * 
@@ -973,10 +1043,10 @@ public class ClassicGuiController {
 
 		// System.out.println("askDeletRelation");
 	}
-	
+
 	/**
-	 * Ask the core about the classes linked with the Uml relation
-	 * First class is consider as main class (or target class) for drawing arrow
+	 * Ask the core about the classes linked with the Uml relation First class
+	 * is consider as main class (or target class) for drawing arrow
 	 * 
 	 * @param id
 	 *            identifier of the relation
@@ -987,11 +1057,11 @@ public class ClassicGuiController {
 	public ArrayList<Object> askUMLRelationClasses(Object id) {
 		return core.askUMLRelationClasses(id);
 	}
-	
+
 	/**
-	 * Ask the core about the multiplicity of the Uml relation
-	 * List starts the main class (target, where arrow is draw)
-	 * and ends with other class in same askUMLRelationClasses class order.
+	 * Ask the core about the multiplicity of the Uml relation List starts the
+	 * main class (target, where arrow is draw) and ends with other class in
+	 * same askUMLRelationClasses class order.
 	 * 
 	 * @param id
 	 *            identifier of the relation
@@ -1002,7 +1072,7 @@ public class ClassicGuiController {
 	public ArrayList<String> askUMLRelationMultiplicity(Object id) {
 		return core.askUMLRelationMultiplicity(id);
 	}
-	
+
 	/**
 	 * Ask the core about the text of the Uml relation
 	 * 
@@ -1014,10 +1084,10 @@ public class ClassicGuiController {
 	 */
 	public String askUMLRelationText(Object id) {
 		return core.askUMLRelationText(id);
-		
+
 		// return "DefaultText";
 	}
-	
+
 	/**
 	 * Ask the core to reverse direction of a relation
 	 * 
@@ -1029,37 +1099,36 @@ public class ClassicGuiController {
 	public void askReverseRelation(Object id) {
 		core.askReverseRelation(id);
 	}
-	
+
 	// ***//
 	// Do //
 	// ***//
-	
+
 	/**
-	 * Get number of UML drawing element
-	 * ie number of classes, linked attribute and method, and relations
+	 * Get number of UML drawing element ie number of classes, linked attribute
+	 * and method, and relations
 	 * 
 	 * @return number of drawing element
 	 */
 	public int doGetUmlDrawingElementNumber() {
 		return umlDrawingPanel.getUmlDrawingElementNumber();
 	}
-	
+
 	/**
-	 * Get number of missing UML element drawn and linked
-	 * It is the difference between number of classes and attribute and method linked
-	 * and number of element in UML element panel
+	 * Get number of missing UML element drawn and linked It is the difference
+	 * between number of classes and attribute and method linked and number of
+	 * element in UML element panel
 	 * 
-	 *  ! Relation are not count
+	 * ! Relation are not count
 	 * 
 	 * @return number
 	 */
 	public int doGetMissingUmlDrawingElementNumber() {
 		return umlDrawingPanel.getMissingUmlDrawingElementNumber();
 	}
-	
+
 	/**
-	 * Set number of missing UML drawing to display
-	 * If 0, it is not display
+	 * Set number of missing UML drawing to display If 0, it is not display
 	 * 
 	 * @param nb
 	 *            number to show
@@ -1079,7 +1148,7 @@ public class ClassicGuiController {
 	public void doAddElementToPool(Object id, Object nature) {
 		umlDrawingPanel.doAddElementToPool(id, nature);
 	}
-	
+
 	/**
 	 * Edit an UML instance of element panel
 	 * 
@@ -1091,10 +1160,10 @@ public class ClassicGuiController {
 	public void doEditElementFromPool(Object id, Object nature) {
 		umlDrawingPanel.doEditElementFromPool(id, nature);
 	}
-	
+
 	/**
-	 * Remove an UML instance from element panel
-	 * and eventually also from drawing panel if drawn
+	 * Remove an UML instance from element panel and eventually also from
+	 * drawing panel if drawn
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -1104,7 +1173,7 @@ public class ClassicGuiController {
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		umlDrawingPanel.doRemoveElementFromPool(id, nature);
 	}
-	
+
 	/**
 	 * Link the given attribute instance to the given class instance
 	 * 
@@ -1116,7 +1185,7 @@ public class ClassicGuiController {
 	public void doLinkAttributeToClass(Object attributeID, Object classID) {
 		umlDrawingPanel.doLinkAttributeToClass(attributeID, classID);
 	}
-	
+
 	/**
 	 * Unlink the given attribute instance to the given class instance
 	 * 
@@ -1128,7 +1197,7 @@ public class ClassicGuiController {
 	public void doUnLinkAttributeToClass(Object attributeID, Object classID) {
 		umlDrawingPanel.doUnLinkAttributeToClass(attributeID, classID);
 	}
-	
+
 	/**
 	 * Link the given method instance to the given class instance
 	 * 
@@ -1140,7 +1209,7 @@ public class ClassicGuiController {
 	public void doLinkMethodToClass(Object methodID, Object classID) {
 		umlDrawingPanel.doLinkMethodToClass(methodID, classID);
 	}
-	
+
 	/**
 	 * Unlink the given method instance to the given class instance
 	 * 
@@ -1164,10 +1233,10 @@ public class ClassicGuiController {
 	public void doAddRelationToDrawingArea(Object id, Object nature) {
 		umlDrawingPanel.doAddRelationToDrawingArea(id, nature);
 	}
-	
+
 	/**
-	 * Do edition of a relation
-	 * Ask core about new values for multiplicity and text
+	 * Do edition of a relation Ask core about new values for multiplicity and
+	 * text
 	 * 
 	 * @param id
 	 *            relation core id
@@ -1175,7 +1244,7 @@ public class ClassicGuiController {
 	public void doEditRelation(Object id) {
 		umlDrawingPanel.doEditRelation(id);
 	}
-	
+
 	/**
 	 * Delete a relation from drawing panel
 	 * 
@@ -1185,7 +1254,7 @@ public class ClassicGuiController {
 	public void doDeleteRelation(Object id) {
 		umlDrawingPanel.doDeleteRelation(id);
 	}
-	
+
 	/**
 	 * Revert a relation from drawing panel
 	 * 
@@ -1195,7 +1264,7 @@ public class ClassicGuiController {
 	public void doReverseRelation(Object id) {
 		umlDrawingPanel.doReverseRelation(id);
 	}
-	
+
 	/**
 	 * Change color of UML instance to validate color in element pool
 	 * 
@@ -1205,7 +1274,7 @@ public class ClassicGuiController {
 	public void doShowUMLInstanceInValidateColor(Object id) {
 		umlDrawingPanel.doShowUMLInstanceInRightColor(id);
 	}
-	
+
 	/**
 	 * Change color of UML instance to error color in element pool
 	 * 
@@ -1215,7 +1284,7 @@ public class ClassicGuiController {
 	public void doShowUMLInstanceInErrorColor(Object id) {
 		umlDrawingPanel.doShowUMLInstanceInWrongColor(id);
 	}
-	
+
 	/**
 	 * Reset color of UML instance to default in element pool
 	 * 
@@ -1244,7 +1313,7 @@ public class ClassicGuiController {
 	public void doShowUMLDrawingInErrorColor(Object id, Object nature) {
 		umlDrawingPanel.doShowUMLDrawingInErrorColor(id, nature);
 	}
-	
+
 	/**
 	 * Reset color of UML drawing to red in drawing area
 	 * 
@@ -1263,7 +1332,7 @@ public class ClassicGuiController {
 	public void doResetUMLDrawingColor() {
 		umlDrawingPanel.doResetUMLDrawingColor();
 	}
-	
+
 	/**
 	 * Shows a pop-up allowing to specify properties of an existing uml instance
 	 * of the given nature, bound to the specified expression. Calls the
@@ -1274,37 +1343,50 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doShowUmlInstanceCreationPopupWithNoKeyWord(Object nature) throws BadLocationException {
+	public void doShowUmlInstanceCreationPopupWithNoKeyWord(Object nature)
+			throws BadLocationException {
 		if (nature.equals(UMLNature.CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateClassInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle classe abstraite", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateAbstractClassInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
 			VertexEditionPanel panel = new VertexEditionPanel(this, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askCreateInterfaceInPanel(panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, null, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, panel, "Nouvelle attribut", JOptionPane.OK_CANCEL_OPTION);
+			AttributeEditionPanel panel = new AttributeEditionPanel(this, null,
+					null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Nouvelle attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateAttributeInPanel(panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+				askCreateAttributeInPanel(panel.getAttributeName(),
+						panel.getAttributeType(),
+						panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, null, null, null, null, null);
-			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
+			MethodEditionPanel panel = new MethodEditionPanel(this, null, null,
+					null, null, null);
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(
+					panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+					"Nouvelle methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askCreateMethodInPanel(panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
+				askCreateMethodInPanel(panel.getMethodName(),
+						panel.getMethodParams(), panel.getMethodReturnType(),
+						panel.getMethodVisibility());
 			}
 		}
 	}
@@ -1321,39 +1403,58 @@ public class ClassicGuiController {
 	 * @throws BadLocationException
 	 *             if expression does not exist
 	 */
-	public void doShowUmlInstanceEditionPopup(Object id, Object nature) throws BadLocationException {
+	public void doShowUmlInstanceEditionPopup(Object id, Object nature)
+			throws BadLocationException {
 		String keyword = askUmlInstanceKeyword(id);
 		if (nature.equals(UMLNature.CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					askUmlInstanceName(id));
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Edition de classe", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditClass(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ABSTRACT_CLASS)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition de classe abstraite", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					askUmlInstanceName(id));
+			int result = JOptionPane
+					.showConfirmDialog(null, panel,
+							"Edition de classe abstraite",
+							JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditAbstractClass(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.INTERFACE)) {
-			VertexEditionPanel panel = new VertexEditionPanel(this, keyword, askUmlInstanceName(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'interface", JOptionPane.OK_CANCEL_OPTION);
+			VertexEditionPanel panel = new VertexEditionPanel(this, keyword,
+					askUmlInstanceName(id));
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Edition d'interface", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				askEditInterface(id, panel.getVertexName());
 			}
 		} else if (nature.equals(UMLNature.ATTRIBUTE)) {
-			AttributeEditionPanel panel = new AttributeEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceType(id), askUmlInstanceVisibility(id));
-			int result = JOptionPane.showConfirmDialog(null, panel, "Edition d'attribut", JOptionPane.OK_CANCEL_OPTION);
+			AttributeEditionPanel panel = new AttributeEditionPanel(this,
+					keyword, askUmlInstanceName(id), askUmlInstanceType(id),
+					askUmlInstanceVisibility(id));
+			int result = JOptionPane.showConfirmDialog(null, panel,
+					"Edition d'attribut", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askEditAttribute(id, panel.getAttributeName(), panel.getAttributeType(), panel.getAttributeVisibility());
+				askEditAttribute(id, panel.getAttributeName(),
+						panel.getAttributeType(),
+						panel.getAttributeVisibility());
 			}
 		} else if (nature.equals(UMLNature.METHOD)) {
-			MethodEditionPanel panel = new MethodEditionPanel(this, keyword, askUmlInstanceName(id), askUmlInstanceParamTypes(id), askUmlInstanceType(id),
-					askUmlInstanceVisibility(id));
-			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), "Edition de methode", JOptionPane.OK_CANCEL_OPTION);
+			MethodEditionPanel panel = new MethodEditionPanel(this, keyword,
+					askUmlInstanceName(id), askUmlInstanceParamTypes(id),
+					askUmlInstanceType(id), askUmlInstanceVisibility(id));
+			int result = JOptionPane.showConfirmDialog(null, new JScrollPane(
+					panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+					"Edition de methode", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
-				askEditMethod(id, panel.getMethodName(), panel.getMethodParams(), panel.getMethodReturnType(), panel.getMethodVisibility());
+				askEditMethod(id, panel.getMethodName(),
+						panel.getMethodParams(), panel.getMethodReturnType(),
+						panel.getMethodVisibility());
 			}
 		}
 	}
