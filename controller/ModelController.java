@@ -469,10 +469,10 @@ public class ModelController {
 	 */
 	public String askUmlInstanceName(Object id) {
 		if (id instanceof GraphItem) {
-			return ((GraphItem) id).getName();
+			return exo.getById(((GraphItem) id).getId()).toString();
 		}
 
-		return "askUmlInstanceName " + id.toString();
+		return id.toString();
 	}
 
 	/**

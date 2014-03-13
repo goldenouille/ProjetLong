@@ -10,4 +10,5 @@ public interface GraphItem {
 	public void validate();
 	public int getScore();
 	public String toString();
+	public int getId();
 }
