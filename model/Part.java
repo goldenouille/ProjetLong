@@ -12,20 +12,23 @@ import java.util.ArrayList;
 
 public class Part {
 
-	private String name;
-	private ArrayList<Word> text;
-	private Graph graph;
-	private ArrayList<Step> steps;
-	private Iterator<Step> stepsIterator;
-	private HashMap<Integer, GraphItem> idTable;
+	private String name;	// name of the part
+	private ArrayList<Word> text;	// initial list of the words of the part
+	private Graph graph;		// expected graph
+	private ArrayList<Step> steps;	// list of the steps composing the part
+	private Iterator<Step> stepsIterator;	// step iterator
+	private HashMap<Integer, GraphItem> idTable;	// hashMap matching an id with the associated item
 
 	private Score score;
 	
-	private int auxNbStep;
-	private int nbStep;
+	private int auxNbStep;	// auxiliary field used in computing
+	private int nbStep;	// number of steps
 
-	private int auxNbWord;
+	private int auxNbWord; // auxiliary field used in computing
 
+	/*
+	 * Create a basic part
+	 */
 	public Part() {
 		this.text = new ArrayList<Word>();
 		this.steps = new ArrayList<Step>();
@@ -41,8 +44,12 @@ public class Part {
 		return this.nbStep;
 	}
 
+	/**
+	 * Is used to give the next step to the Classic GUI controller
+	 *
+	 * @return the next step object
+	 */
 	public Object nextStep() {
-		//voila un iterateur
 		if (stepsIterator == null)
 			stepsIterator = steps.iterator();
 		if (stepsIterator.hasNext()) {
@@ -50,12 +57,6 @@ public class Part {
 		} else {
 			return null;
 		}
-		// if (auxNbStep +1 < nbStep) {
-		// auxNbStep = auxNbStep + 1;
-		// return this.steps.get(auxNbStep);
-		// } else {
-		// return null;
-		// }
 	}
 
 	public void setName(String name) {
@@ -66,7 +67,12 @@ public class Part {
 		return this.name;
 	}
 
-	// pour test
+	/**
+	 * Add words (not keyWord) of a string to the initial text of the part
+	 *
+	 * @param t
+	 *			string which is splitted according to spaces added as non-keyword words
+	 */
 	public void addText(String t) {
 		String[] words = t.split(" ");
 		int l = words.length;
@@ -75,6 +81,12 @@ public class Part {
 		}
 	}
 
+	/**
+	 * Add words (not keyWord) of the input text to the initial text of the part
+	 *
+	 * @param tt
+	 *			Text to add as non-keyword words to the initial text of the part
+	 */
 	public void addText(Text tt) {
 		String t = tt.getBody();
 		String[] words = t.split(" ");
@@ -84,12 +96,17 @@ public class Part {
 			w.setLength(1);
 			w.setFirstWord(this.auxNbWord);
 			this.auxNbWord++;
-			//System.out.println("on ajoute 1 au nombre de mots parce qu'on est en train de rajouter du texte");
 			w.setLastWord(this.auxNbWord - 1);
 			text.add(w);
 		}
 	}
 
+	/**
+	 * Add a keyWord to the initial text of the part
+	 *
+	 * @param keyWord
+	 *			keyWord to add to the initial text of the part
+	 */
 	public void addKeyWord(KeyWord keyWord) {
 		String w = keyWord.getWord();
 		this.score.setScoreText(this.score.getScoreText() + keyWord.getScore());
@@ -97,7 +114,6 @@ public class Part {
 		keyWord.setLength(l);
 		keyWord.setFirstWord(this.auxNbWord);
 		this.auxNbWord = this.auxNbWord + l;
-		//System.out.println("on ajoute " + l +" au nombre de mots parce qu'on ajoute un mot-clef");
 		keyWord.setLastWord(this.auxNbWord - 1);
 		text.add(keyWord);
 		idTable.put(keyWord.getId(),new Vertex());
@@ -115,11 +131,23 @@ public class Part {
 		return this.graph;
 	}
 
+	/**
+	 * Add a step to the step list of the part
+	 *
+	 * @param s
+	 *			step to add
+	 */
 	public void addStep(Step s) {
 		this.steps.add(s);
 		this.nbStep = nbStep + 1;
 	}
 
+	/**
+	 * Create a step from its name and add it to the step list of the part
+	 *
+	 * @param stepName
+	 *			name of the step to create and add
+	 */
 	public void addStep(String stepName) {
 		this.steps.add(StepFactory.createStep(stepName));
 		this.nbStep = nbStep+1;
@@ -141,7 +169,12 @@ public class Part {
 		return this.idTable;
 	}
 
-	// Pour creer un graphe complet à partir d'un Pseudo graph contenant les infos brutes de l'xml
+	/**
+	 * Create the expected graph from the pseudoGraph build by the parser
+	 *
+	 * @param PG
+	 *			pseudoGraph created by the parser
+	 */
 	public void initGraph(PseudoGraph PG) throws ParserException {
 		this.graph = PG.buildGraph(this.idTable);
 	}

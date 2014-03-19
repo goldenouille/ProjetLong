@@ -1,6 +1,8 @@
 package model;
 
+// TypeBase is a class reprensenting the basic java types
 public enum TypeBase implements Type {
+				// list of the constances with their name and if they are a list or not
 	CHAR("char",false),
 	BYTE("byte",false),
 	SHORT("short",false), 
@@ -15,10 +17,18 @@ public enum TypeBase implements Type {
 	LIST("List",true),
 	ANY("Any",false);
 
-	private String name;
-	private boolean isList;
-	private Type typeList;
+	private String name;	// java name of the type
+	private boolean isList;	// if the type is a list or not
+	private Type typeList;	// type of the list
 
+	/**
+	 * Create a TypeBase with its name and if it is a list or not
+	 *
+	 * @param name
+	 *			java name of the created type
+	 * @param b
+	 *			is true if the created TypeBase is a list
+	 */
 	TypeBase(String name, boolean b) {
 		this.name = name;
 		this.isList = b;
@@ -49,10 +59,20 @@ public enum TypeBase implements Type {
 		return this.typeList;
 	}
 	
+	/**
+	 * Compare a type to another
+	 * 
+	 * @param type
+	 *			type to which it has to be compare
+	 * @return if they are equals
+	 */
 	public boolean compareTo(Type type) {
 		return (this.getName().equalsIgnoreCase(type.getName()) || this.getName().equalsIgnoreCase("any"));
 	}
 
+	/**
+	 * Verify if the TypeBase is valide with regard to the structure of a list
+	 */
 	public boolean isValide() {
 		if (this == TypeBase.LIST || this == TypeBase.ARRAYLIST) {
 			if (this.typeList == TypeBase.LIST || this.typeList == TypeBase.ARRAYLIST) {
@@ -65,6 +85,13 @@ public enum TypeBase implements Type {
 		}
 	}
 
+	/**
+	 * Create one of the TypeBase constants from its java name
+	 *
+	 * @param s
+	 *			java name of the TypeBase constant which has to be created
+	 * @return the TypeBase corresponding to the input string name, the default value is TypeBase.ANY
+	 */
 	public static TypeBase getByName(String s) {
 		if (s.equalsIgnoreCase("char")) {
 			return TypeBase.CHAR;
@@ -96,7 +123,7 @@ public enum TypeBase implements Type {
 		if (s.equalsIgnoreCase("void")) {
 			return TypeBase.VOID;
 		}
-			// pour l'instant ArrayList et List ne pourront prendre que des types de base
+			// in this version of LUNE, List and ArrayList only take basic Java Type, which are TypeBas
 		if (s.startsWith("ArrayList")) {
 			String[] t = s.split("<");
 			String[] tt = (t[2]).split(">");
@@ -114,6 +141,6 @@ public enum TypeBase implements Type {
 			return list;
 			
 		}
-		return TypeBase.ANY; // valeur par defaut -> modifer plus tard
+		return TypeBase.ANY; // default value
 	}
 }
