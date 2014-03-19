@@ -45,6 +45,6 @@ public enum Visibility {
 		if (n.equalsIgnoreCase("package")) {
 			return Visibility.PACKAGE;
 		}
-		return Visibility.PUBLIC; // VALEUR PAR DEFAUT, A CHANGER ULTERIEUREMENT
+		return Visibility.PUBLIC; 
 	}
 }

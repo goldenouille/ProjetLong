@@ -24,7 +24,12 @@ public class VertexAbstract extends VertexClass {
 		super();
 		this.frenchName = "classe abstraite";
 	}
-	
+
+	/**
+	 * Get the name of the UML nature of the element
+	 *
+	 * @return the name of the UML nature of the element
+	 */
 	public String getUml() {
 		return "abstract";
 	}

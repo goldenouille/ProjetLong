@@ -117,6 +117,11 @@ public class Edge implements GraphItem{
 		return null;
 	}
 
+	/**
+	 * Get the name of the UML nature of the edge
+	 *
+	 * @return the UML nature's name of the edge
+	 */
 	@Override
 	public UMLNature getUmlNature() {
 		return this.nature;

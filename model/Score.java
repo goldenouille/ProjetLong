@@ -61,7 +61,7 @@ public class Score {
 		return this.currScoreGraph + this.currScoreNature + this.currScoreText;
 	}
 	/**
-	 * @param n the number of points to substract in the part 1
+	 * @param n the number of points to substract in the step 1
 	 * 
 	 **/
 	public void removeScoreText(int n) {
@@ -70,7 +70,7 @@ public class Score {
 	}
 	
 	/**
-	 * @param n the number of points to substract in the part 2
+	 * @param n the number of points to substract in the step 2
 	 * 
 	 **/
 	public void removeScoreNature(int n) {
@@ -78,7 +78,7 @@ public class Score {
 	}
 	
 	/**
-	 * @param n the number of points to substract in the part 3
+	 * @param n the number of points to substract in the step 3
 	 * 
 	 **/
 	public void removeScoreGraph(int n) {

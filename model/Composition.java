@@ -27,6 +27,11 @@ public class Composition extends BinaryAssociation {
 		this.frenchName = "composition";
 	}
 	
+	/**
+	 * Get the name of the UML Nature of the edge
+	 * 
+	 * @param the UML Nature's name of the edge
+	 */	
 	public String getUml() {
 		return "composition";
 	}

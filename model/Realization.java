@@ -21,7 +21,12 @@ public class Realization extends Heritage {
 		this.nature = UMLNature.REALIZATION;
 		this.frenchName = "realisation";
 	}
-	
+
+	/**
+	 * Get the name of the UML nature of the edge
+	 * 
+	 * @return the name of the UML nature of the item
+	 */	
 	public String getUml() {
 		return "realization";
 	}

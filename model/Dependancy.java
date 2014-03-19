@@ -24,6 +24,11 @@ public class Dependancy extends DirectionalRelation {
 		this.frenchName = "dependance";
 	}
 	
+	/**
+	 * Get the name of the UML nature of the edge
+	 *
+	 * @return the UML nature's name of the edge
+	 */	
 	public String getUml() {
 		return "dependancy";
 	}

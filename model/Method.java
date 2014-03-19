@@ -4,22 +4,46 @@ import java.util.ArrayList;
 
 public class Method implements GraphItem {
 
-	private String name;
-	private Visibility visibility;
-	private Type returnType;
-	private ArrayList<Type> paramTypes;
-	private int id;
-	private String frenchName;
-	private Vertex motherClass;
-	private boolean isDeletable;
-	private int score;
+	private String name;	// name of the method
+	private Visibility visibility;	// visibility of the method
+	private Type returnType;	// return type 
+	private ArrayList<Type> paramTypes;	// list of param types
+	private int id;		// id of the method, if if links to a keyWord, they both have the same id, 
+						// otherwise it has a unique negative id
+	private String frenchName;	// french name of the nature of the item
+	private Vertex motherClass;		// a method is linked to only one motherClas
+	private boolean isDeletable;	// if it can be deleted, 
+									// if the method has been validated, it can not be deleted
+	private int score;	// score associated to the method
 
+
+	/**
+	 * Create a basic method
+	 */
 	public Method() {
 		this.frenchName = "methode";
 		this.isDeletable = true;
 	}
 
-	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes, int scire) {
+	/** 
+	 * Create a Method with all its parameters
+	 *
+	 * @param name
+	 *				name of the method
+	 * @param type
+	 *				return type of the method
+	 * @param visibility
+	 *				visibility of the method
+	 * @param mother
+	 *				mother class of the method
+	 * @param id
+	 *				id of the method
+	 * @param paramTypes
+	 *				list of the parameters' type
+	 * @param score
+	 *				score associated to the method
+	 */
+	public Method (String name, Type type, Visibility visibility, Vertex mother, int id, ArrayList<Type> paramTypes, int score) {
 		this.name = name;
 		this.returnType = type;
 		this.visibility = visibility;
@@ -31,6 +55,18 @@ public class Method implements GraphItem {
 		this.score = score;
 	}
 	
+	/** 
+	 * Create a Method with its name, its return type, its visibility and the list of the types of its parameters
+	 *
+	 * @param name
+	 *				name of the method
+	 * @param type
+	 *				return type of the method
+	 * @param visibility
+	 *				visibility of the method
+	 * @param paramTypes
+	 *				list of the parameters' type
+	 */
 	public Method (String name, Type type, Visibility visibility, ArrayList<Type> paramTypes) {
 		this.name = name;
 		this.returnType = type;
@@ -81,6 +117,12 @@ public class Method implements GraphItem {
 		this.paramTypes = newTypes;
 	}
 
+	/**
+	 * Add a type to the list of the types of the method's parameters
+	 *
+	 * @param type
+	 *			type to add to the types list
+	 */
 	public void addParamType(Type type) {
 		this.paramTypes.add(type);
 	}

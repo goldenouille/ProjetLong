@@ -27,7 +27,13 @@ public class Generalization extends Heritage {
 		this.nature = UMLNature.GENERALIZATION;
 		this.frenchName = "generalisation";
 	}
-	
+
+
+	/**
+	 * Get the name of the UML nature of the edge
+	 * 
+	 * @return the UML nature's name of the edge 
+	*/
 	public String getUml() {
 		return "generalization";
 	}

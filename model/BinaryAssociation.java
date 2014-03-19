@@ -40,6 +40,11 @@ public class BinaryAssociation extends Association {
 		this.score = score;
 	}
 	
+	/**
+	 * Get the name of the UML nature of the edge
+	 *
+	 * @return the UML nature's name of the edge
+	 */
 	public String getUml() {
 		return "association";
 	}

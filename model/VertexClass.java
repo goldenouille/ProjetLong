@@ -58,6 +58,11 @@ public class VertexClass extends Vertex {
 		this.attributes.remove(att);
 	}
 	
+	/**
+	 * Get the name of the UML nature of the element
+	 *
+	 * @return the name of the UML nature of the element
+	 */
 	public String getUml() {
 		return "class";
 	}
