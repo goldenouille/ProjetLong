@@ -82,8 +82,6 @@ public class Exercise {
 	 * 
 	 * @param id
 	 *				id of the wanted word
-	 * @param t
-	 *				text where the word has to be looked for
 	 * @return the word corresponding to the id or null if it doesn't exist
 	 */
 
@@ -95,6 +93,15 @@ public class Exercise {
 		}
 	}
 
+	/**
+	 * Get a word using its id in a specific text
+	 * 
+	 * @param id
+	 *				id of the wanted word
+	 * @param t
+	 *				text where the word has to be looked for
+	 * @return the word corresponding to the id or null if it doesn't exist
+	 */
 	public Word getById(int id, ArrayList<Word> t) {
 		for (int i = 0; i < t.size(); i++) {
 			if (t.get(i).getId() == id) {
@@ -152,12 +159,19 @@ public class Exercise {
 		return this.parts;
 	}
 
-	/*
-	 * cette fonction sélectionne tous les mots qui sont sélectionnés à plus
-	 * de 90 % TODO: implémenter une vérification pour éviter qu'on puisse
-	 * tricher en sélectionnant l'intégralité du texte TODO: créer une
-	 * excetion si la sélection n'est pas de la bonne dimension TODO: gérer le
-	 * userText
+
+	// here a word is selected is its pourcentage is higher than 80%
+	// if a part of a keyword get selected, all of it will be so
+
+	// in this version of LUNE, if the length of the selection matches with the number of words
+	// is not verified, but as it's for internal used, there is not problem
+	/**
+	 * Select the words in a specific text according by a given selection
+	 * 
+	 * @param selection
+	 *				pourcentage of selection of the words in according with the index in the printed text
+	 * @param userT
+	 *				is true if the function has to use the userText, is false if it is the text
 	 */
 	public void selectText(int[] selection, boolean userT) {
 		ArrayList<Word> t;
@@ -182,11 +196,18 @@ public class Exercise {
 			}
 	}
 
-	/*
-	 * cette fonction déselectionne tous les mots sélectionnés à plus de 90
-	 * % pas besoin de vérification supplémentaire sur cette fonction TODO:
-	 * créer une exception si la sélection n'est pas de la bonne dimension
-	 * TODO: gérer le userText
+	// here a word is deselected is its pourcentage is higher than 80%
+	// if a part of a keyword get deselected, all of it will be so
+
+	// in this version of LUNE, if the length of the selection matches with the number of words
+	// is not verified, but as it's for internal used, there is not problem
+	/**
+	 * Deselect the words in a specific text according by a given selection
+	 * 
+	 * @param selection
+	 *				pourcentage of selection of the words in according with the index in the printed text
+	 * @param userT
+	 *				is true if the function has to use the userText, is false if it is the text
 	 */
 	public void unselectText(int[] selection, boolean userT) {
 		ArrayList<Word> t;
@@ -195,9 +216,6 @@ public class Exercise {
 		} else {
 			t = text;
 		}
-
-
-		//if (selection.length == t.size()) {
 			for (int i=0; i<selection.length; i++) {
     			if (selection[i]>80) {
     				Word w = getByPosition(i,i,t);
@@ -210,13 +228,15 @@ public class Exercise {
     				}	
     			}
 			}
-		//} // else {LEVER EXCEPTION !! !! !!}
 	}
 
-	/*
-	 * addText permet d'ajouter le texte de l'étudiant, pour cela on découpe
-	 * son texte en mot et utilisant un split sur les espaces, cela permettra à
-	 * l'étudiant de sélectionner un mot clé précis dans son texte
+
+	/**
+	 * Get a text, split it into words according to spaces and add to the userText
+	 * 
+	 * @param string
+	 *				text to split and add to the userText
+	 * @return text splitted according to spaces
 	 */
 	public String[] addText(String string) {
 		String text[] = string.split(" ");
@@ -232,11 +252,16 @@ public class Exercise {
 		return text;
 	}
 
+	/**
+	 * Initialize the parameters of the exercise before the user stats it
+	 */
 	public void init() {
+			// load the current part and text
 		this.text = this.parts.get(0).getText();
 		this.currentPart = this.parts.get(0);
 		this.graph = this.parts.get(0).getGraph();
 
+		// create an array containing all the words of the initial text in order to give to the GUI
 		ArrayList<String> list = new ArrayList<String>();
 		String[] str;
 		for (int i = 0; i < text.size(); i++) {
@@ -250,6 +275,7 @@ public class Exercise {
 
 		this.score = this.parts.get(0).getScore();
 
+		// initializing the GUI set display
 		this.modelController.doReplaceText(false, tab);
 		this.modelController.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());
 		this.modelController.doSetValidateKeywordsButtonEnabled(true);
@@ -258,7 +284,15 @@ public class Exercise {
 
 	}
 
+	/**
+	 * Add a part to the exercise
+	 * 
+	 * @param p
+	 *				the part to add
+	 */
 	public void addPart(Part p) {
+		// in this version of LUNE the composition of the part is static, but it was meant to be dynamic
+		// and given by the XML file, and each step build by the stepFactory from its name
 		p.addStep("selectKeyWord");
 		p.addStep("LinkKeyWordToUML");
 		p.addStep("BuildGraphUML");
@@ -270,7 +304,19 @@ public class Exercise {
 		return this.modelController;
 	}
 
-	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	/**
+	 * Add a class associated to a word characterized by its index in the text given by userT
+	 * 
+	 * @param first
+	 *				text to split and add to the userText
+	 * @param last
+	 *				text to split and add to the userText
+	 * @param userT
+	 *				text to split and add to the userText
+	 * @param name
+	 *				text to split and add to the userText
+	 * @return text splitted according to spaces
+	 */
 	public Vertex addClass(int first, int last, boolean userT, String name) {
 		ArrayList<Word> t;
 		if (userT) {
@@ -282,7 +328,6 @@ public class Exercise {
 		vertexClass.setName(name);
 
 		Word w = getByPosition(first, last, t);
-		// TODO = verifier que la fin du mot correspond
 		removeUMLNatureAndGraphItemFromKeyWord(w);
 		vertexClass.setId(w.getId());
 		w.setUserUmlNature(UMLNature.CLASS);
