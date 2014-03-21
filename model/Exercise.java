@@ -304,135 +304,230 @@ public class Exercise {
 		return this.modelController;
 	}
 
+	// in this version of LUNE, there is a lack of verification, 
+	//especially concerning the index and the word selected
 	/**
 	 * Add a class associated to a word characterized by its index in the text given by userT
 	 * 
 	 * @param first
-	 *				text to split and add to the userText
+	 *				index of the beginning of the printed word
 	 * @param last
-	 *				text to split and add to the userText
+	 *				index of the end of the printed word
 	 * @param userT
-	 *				text to split and add to the userText
+	 *				true if the word has to looked for in the userText, false if it's in the text
 	 * @param name
-	 *				text to split and add to the userText
-	 * @return text splitted according to spaces
+	 *				name of the abstract class to create
+	 * @return the created class
 	 */
 	public Vertex addClass(int first, int last, boolean userT, String name) {
+			// find which text the function has to deal with
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
 		} else {
 			t = text;
 		}
+			// create a class and set its name
 		VertexClass vertexClass = new VertexClass();
 		vertexClass.setName(name);
 
+			/* find the word associated to the index
+			   and remove from it its previous UserUMLNature and UserGaphItem
+			   and if necessary the UserGraphItem from the graph and the graphic pool of element
+			*/
 		Word w = getByPosition(first, last, t);
 		removeUMLNatureAndGraphItemFromKeyWord(w);
+			// associate to the class the id of the associated word
 		vertexClass.setId(w.getId());
+			// refill the userUMLNature and userGaphItem fields with the new values
 		w.setUserUmlNature(UMLNature.CLASS);
 		w.setUserGraphItem(vertexClass);
-
+			// add the new class to the current graph
 		this.userGraph.addVertex(vertexClass);
 		return vertexClass;
 	}
 
-	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	// in this version of LUNE, there is a lack of verification, 
+	//especially concerning the index and the word selected
+	/**
+	 * Add an abstract class associated to a word characterized by its index in the text given by userT
+	 * 
+	 * @param first
+	 *				index of the beginning of the printed word
+	 * @param last
+	 *				index of the end of the printed word
+	 * @param userT
+	 *				true if the word has to looked for in the userText, false if it's in the text
+	 * @param name
+	 *				name of the abstract class to create
+	 * @return the created abstract class
+	 */
 	public Vertex addAbstractClass(int first, int last, boolean userT, String name) {
+			// find which text the function has to deal with
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
 		} else {
 			t = text;
 		}
+			// create an abstract class and set its name
 		VertexAbstract vertexAbstract = new VertexAbstract();
 		vertexAbstract.setName(name);
-
+			/* find the word associated to the index
+			   and remove from it its previous UserUMLNature and UserGaphItem
+			   and if necessary the UserGraphItem from the graph and the graphic pool of element
+			*/
 		Word w = getByPosition(first, last, t);
-		// TODO = verifier que la fin du mot correspond
 		removeUMLNatureAndGraphItemFromKeyWord(w);
+			// associate to the abstract class the id of the associated word
 		vertexAbstract.setId(w.getId());
+			// refill the userUMLNature and userGaphItem fields with the new values
 		w.setUserUmlNature(UMLNature.ABSTRACT_CLASS);
 		w.setUserGraphItem(vertexAbstract);
-
+			// add the new abstract class to the current graph
 		this.userGraph.addVertex(vertexAbstract);
 		return vertexAbstract;
 	}
 
-	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
+	// in this version of LUNE, there is a lack of verification, 
+	//especially concerning the index and the word selected
+	/**
+	 * Add an interface associated to a word characterized by its index in the text given by userT
+	 * 
+	 * @param first
+	 *				index of the beginning of the printed word
+	 * @param last
+	 *				index of the end of the printed word
+	 * @param userT
+	 *				true if the word has to looked for in the userText, false if it's in the text
+	 * @param name
+	 *				name of the interface to create
+	 * @return the created interface
+	 */
 	public Vertex addInterface(int first, int last, boolean userT, String name) {
+			// find which text the function has to deal with
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
 		} else {
 			t = text;
 		}
+			// create an interface and set its name
 		Vertex vertex = new Vertex();
 		vertex.setName(name);
-
+			/* find the word associated to the index
+			   and remove from it its previous UserUMLNature and UserGaphItem
+			   and if necessary the UserGraphItem from the graph and the graphic pool of element
+			*/
 		Word w = getByPosition(first, last, t);
-		// TODO = verifier que la fin du mot correspond
 		removeUMLNatureAndGraphItemFromKeyWord(w);
+			// associate to the interface the id of the associated word
 		vertex.setId(w.getId());
+			// refill the userUMLNature and userGaphItem fields with the new values
 		w.setUserUmlNature(UMLNature.INTERFACE);
 		w.setUserGraphItem(vertex);
-
+			// add the new interface to the current graph
 		this.userGraph.addVertex(vertex);
 		return vertex;
 	}
 
-	// BEAUCOUP DE VERIFICATION A IMPLEMENTER
-	// ne fonctionne qu'avec des types de bases
+	/* in this version of LUNE, there is a lack of verification, especially concerning the index 
+	   and the word selected
+	   for now attributes can only have basic java type (corresponding to the TypeBase enum)
+	*/
+	/**
+	 * Add an attribut associated to a word characterized by its index in the text given by userT
+	 * 
+	 * @param first
+	 *				index of the beginning of the printed word
+	 * @param last
+	 *				index of the end of the printed word
+	 * @param userT
+	 *				true if the word has to looked for in the userText, false if it's in the text
+	 * @param name
+	 *				name of the attribute to create
+	 * @return the created attribute
+	 */
 	public Attribute addAttribute(int first, int last, boolean userT, String name, String type, String visibility) {
+			// find which text the function has to deal with
 		ArrayList<Word> t;
 		if (userT) {
 			t = userText;
 		} else {
 			t = text;
 		}
+			// create an attribute with all its parameters
 		Attribute att = new Attribute(name, TypeBase.getByName(type), Visibility.getByName(visibility));
-
+			/* find the word associated to the index
+			   and remove from it its previous UserUMLNature and UserGaphItem
+			   and if necessary the UserGraphItem from the graph and the graphic pool of element
+			*/
 		Word w = getByPosition(first, last, t);
-		// TODO = verifier que la fin du mot correspond
 		removeUMLNatureAndGraphItemFromKeyWord(w);
+			// associate to the attribute the id of the associated word
 		att.setId(w.getId());
+			// refill the userUMLNature and userGaphItem fields with the new values
 		w.setUserUmlNature(UMLNature.ATTRIBUTE);
 		w.setUserGraphItem(att);
-
+			// add the new attribute to the current graph
 		this.userGraph.addAttribute(att);
 		return att;
 	}
 
-	// BEAUCOUP DE QUESTIONS EN SUSPENT ICI
-	// pour l'instant ne peut prendre que des types de base comme type de retour
-	// et comme parametres
-
+	/* in this version of LUNE, there is a lack of verification, especially concerning the index 
+	   and the word selected
+	   for now methods can only use basic java types (corresponding to the TypeBase enum)
+	*/
+	/**
+	 * Add a method associated to a word characterized by its index in the text given by userT
+	 * 
+	 * @param first
+	 *				index of the beginning of the printed word
+	 * @param last
+	 *				index of the end of the printed word
+	 * @param userT
+	 *				true if the word has to looked for in the userText, false if it's in the text
+	 * @param name
+	 *				name of the method to create
+	 * @return the created method
+	 */
 	public Method addMethod(int first, int last, boolean userT, String name, ArrayList<String> paramTypes, String returnType, String visibility) {
+			// find which text the function has to deal with
 		ArrayList<Word> t;
 		ArrayList<Type> params = new ArrayList<Type>();
 		if (userT) {
 			t = userText;
 		} else {
 			t = text;
-		}
-
+		}	
+			// find all the types corresponding to the string list of the parameters
 		for (int i = 0; i < paramTypes.size(); i++) {
 			params.add(TypeBase.getByName(paramTypes.get(i)));
 		}
-
+			// create a class and set its name
 		Method met = new Method(name, TypeBase.getByName(returnType), Visibility.getByName(visibility), params);
-
+			/* find the word associated to the index
+			   and remove from it its previous UserUMLNature and UserGaphItem
+			   and if necessary the UserGraphItem from the graph and the graphic pool of element
+			*/
 		Word w = getByPosition(first, last, t);
-		// TODO = verifier que la fin du mot correspond
 		removeUMLNatureAndGraphItemFromKeyWord(w);
+			// associate to the method the id of the associated word
 		met.setId(w.getId());
+			// refill the userUMLNature and userGaphItem fields with the new values
 		w.setUserUmlNature(UMLNature.METHOD);
 		w.setUserGraphItem(met);
-
+			// add the new method to the current graph
 		this.userGraph.addMethod(met);
 		return met;
 	}
 
+	/**
+	 * Select a part of the exercise in according with the input object
+	 * 
+	 * @param p
+	 *				object allowing to find the corresponding part in the exercise
+	 */
 	public void selectPart(Object p) {
 		Part part = (Part) p;
 		this.text = part.getText();
@@ -460,12 +555,16 @@ public class Exercise {
 		System.out.println("askSelectPart from Exercise " + p.toString());
 	}
 
-	// pas encore implementee
+	// not implemented in this version of LUNE
 	public void selectStep(Object s) {
 		System.out.println("askSelectStep from Exercise " + s.toString());
 	}
 
-	// pas encore implementee
+	/**
+	 * Function used during the initialization of the gui, give successively all the parts of the exercise
+	 * 
+	 * @return the next part
+	 */
 	public Object nextPart() {
 		if (auxNextPart + 1 < this.parts.size()) {
 			this.auxNextPart = this.auxNextPart + 1;
@@ -475,46 +574,58 @@ public class Exercise {
 		}
 	}
 
-	// pas encore implementee
+	/**
+	 * Function used during the initialization of the gui, give successively all the steps of the current part
+	 * 
+	 * @return the next step of the current
+	 */
 	public Object nextStep() {
 		return this.parts.get(auxNextPart).nextStep();
 	}
 
-	// pas encore geree
-	public String askScore() {
-		return "0 / 100";
-	}
-
+	/**
+	 * Remove the userUMLNature and the userGraphItem from a word and if necessary, the userGraphitem 
+	 *	from the graph and the graphic pool of elements
+	 * 
+	 * @param w
+	 *			the word that needs to be cleaned
+	 */
 	public void removeUMLNatureAndGraphItemFromKeyWord(Word w) {
 			GraphItem gi = w.getUserGraphItem();
 			if (gi != null) {
 				this.modelController.doRemoveElementFromPool(w.getUserGraphItem(), w.getUserUmlNature());
+				this.userGraph.remove(gi);
 			}
 			w.setUserGraphItem(null);
 			w.setUserUmlNature(null);
 	}
 
-	public void removeUMLNatureAndGraphItemFromKeyWord(int id) {
-		if (id < 0) {
-			Word w = getById(id, this.userText);
-			if (w != null) {
-				GraphItem gi = w.getUserGraphItem();
-				w.setUserGraphItem(null);
-				w.setUserUmlNature(null);
-			}
-		} else {
-			Word w = getById(id, this.text);
-			GraphItem gi = w.getUserGraphItem();
+	/**
+	 * Remove the userUMLNature and the userGraphItem from a word if it exists necessary and the input userGraphitem 
+	 *	from the graph and the graphic pool of elements
+	 * 
+	 * @param gi
+	 *			the graphItem that needs to be cleaned
+	 */
+	public void removeGraphItemFromGraphAndKeyWord(GraphItem gi) {
+		Word w = getById(gi.getId());
+		if (w!=null) {
 			w.setUserGraphItem(null);
 			w.setUserUmlNature(null);
-		}
+		} 
+		this.modelController.doRemoveElementFromPool(w.getUserGraphItem(), w.getUserUmlNature());
+		this.userGraph.remove(gi);
 	}
 
+	/**
+	 * Delete the given class
+	 * 
+	 * @param vertexClass
+	 *			the class to delete
+	 */
 	public void askDeleteClass(VertexClass vertexClass) {
 		if (vertexClass.isDeletable()) {
-			int id = vertexClass.getId();
-			this.userGraph.removeClass(vertexClass);
-			removeUMLNatureAndGraphItemFromKeyWord(id);
+			removeGraphItemFromGraphAndKeyWord(vertexClass);
 			this.modelController.doRemoveElementFromPool(vertexClass,UMLNature.CLASS);
 		} else {
 			this.modelController.doPrintMessage("Classe non supprimable",
@@ -523,36 +634,30 @@ public class Exercise {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given abstract class
-	 * instance
+	 * Delete the given abstract class
 	 * 
-	 * @param id
-	 *            identifier of the instance to delete
+	 * @param vertexAbstract
+	 *            the abstract class to delete
 	 */
 	public void askDeleteAbstractClass(VertexAbstract vertexAbstract) {
 		if (vertexAbstract.isDeletable()) {
-			int id = vertexAbstract.getId();
-			this.userGraph.removeAbstractClass(vertexAbstract);
-			removeUMLNatureAndGraphItemFromKeyWord(id);
+			removeGraphItemFromGraphAndKeyWord(vertexAbstract);
 			this.modelController.doRemoveElementFromPool(vertexAbstract,UMLNature.ABSTRACT_CLASS);
 		} else {
 			this.modelController.doPrintMessage("Classe abstraite non supprimable",
-					"La que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
+					"La classe abstraite que vous cherchez a supprimer a ete validee et donc ne peut etre supprimee.");
 		}
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given interface
-	 * instance
+	 * Delete the given interface
 	 * 
-	 * @param id
-	 *            identifier of the instance to delete
+	 * @param vertex
+	 *            interface to delete
 	 */
 	public void askDeleteInterface(Vertex vertex) {
 		if (vertex.isDeletable()) {
-			int id = vertex.getId();
-			this.userGraph.removeInterface(vertex);
-			removeUMLNatureAndGraphItemFromKeyWord(id);
+			removeGraphItemFromGraphAndKeyWord(vertex);
 			this.modelController.doRemoveElementFromPool(vertex, UMLNature.INTERFACE);
 		} else {
 			this.modelController.doPrintMessage("Interface non supprimable",
@@ -561,17 +666,14 @@ public class Exercise {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given attribute
-	 * instance
+	 * Delete the given attribute
 	 * 
-	 * @param id
-	 *            identifier of the instance to delete
+	 * @param att
+	 *            attribute to delete
 	 */
 	public void askDeleteAttribute(Attribute att) {
 		if (att.isDeletable()) {
-			int id = att.getId();
-			this.userGraph.removeAttribute(att);
-			removeUMLNatureAndGraphItemFromKeyWord(id);
+			removeGraphItemFromGraphAndKeyWord(att);
 			this.modelController.doRemoveElementFromPool(att,UMLNature.ATTRIBUTE);
 		} else {
 			this.modelController.doPrintMessage("Attribute non supprimable",
@@ -580,16 +682,14 @@ public class Exercise {
 	}
 
 	/**
-	 * Sends to the core the user's request to delete the given method instance
+	 * Delete the given method instance
 	 * 
-	 * @param id
+	 * @param met
 	 *            identifier of the instance to delete
 	 */
 	public void askDeleteMethod(Method met) {
 		if (met.isDeletable()) {
-			int id = met.getId();
-			this.userGraph.removeMethod(met);
-			removeUMLNatureAndGraphItemFromKeyWord(id);
+			removeGraphItemFromGraphAndKeyWord(met);
 			this.modelController.doRemoveElementFromPool(met,UMLNature.METHOD);
 		} else {
 			this.modelController.doPrintMessage("Method non supprimable",
@@ -597,6 +697,14 @@ public class Exercise {
 		}
 	}
 
+	/**
+	 * Link the given attribute to the given class or abstract class
+	 * 
+	 * @param att
+	 *            attribute to link
+	 * @param c
+	 *			 chosen motherClass
+	 */
 	public void askLinkAttributeToClass(Attribute att, VertexClass c) {
 		c.addAttribute(att);
 		att.setMotherClass(c);
@@ -604,6 +712,14 @@ public class Exercise {
 		this.modelController.doLinkAttributeToClass(att, c);
 	}
 
+	/**
+	 * Unlink the given attribute from the given class or abstract class
+	 * 
+	 * @param att
+	 *            attribute to unlink
+	 * @param c
+	 *			 ex-motherClass
+	 */
 	public void askUnLinkAttributeToClass(Attribute att, VertexClass c) {
 		c.removeAttribute(att);
 		att.setMotherClass(null);
@@ -611,6 +727,14 @@ public class Exercise {
 		this.modelController.doUnLinkAttributeToClass(att,c);
 	}
 
+	/**
+	 * Link the given method to the given class, abstract class or interface
+	 * 
+	 * @param met
+	 *            method to link
+	 * @param c
+	 *			 chosen motherClass
+	 */
 	public void askLinkMethodToClass(Method met, Vertex c) {
 		c.addMethod(met);
 		met.setMotherClass(c);
@@ -618,6 +742,14 @@ public class Exercise {
 		this.modelController.doLinkMethodToClass(met, c);
 	}
 
+	/**
+	 * Unlink the given method to the given class, abstract class or interface
+	 * 
+	 * @param met
+	 *            method to unlink
+	 * @param c
+	 *			 ex-motherClass
+	 */
 	public void askUnLinkMethodToClass(Method met, Vertex c) {
 		c.removeMethod(met);
 		met.setMotherClass(null);
@@ -629,12 +761,32 @@ public class Exercise {
 		this.modelController = modelController;
 	}
 
+	/**
+	 * Create a relation with all its parameters
+	 * 
+	 * @param nature
+	 *           UML nature of the wanted relation
+	 * @param v
+	 *			 list of the vertex linked by the relation
+	 * @param multiplicity
+	 *			 list of the multiplicities associated to each vertex, the order in this list is the same as in the previous one
+	 * @param label
+	 *			string to print near the relation when drawn
+	 */
 	public void askCreateRelation(UMLNature nature, ArrayList<Vertex> v, ArrayList<String> multiplicity, String label) {
 		this.idUserItem--;
 		Edge newE = Edge.createEdge(nature, v, multiplicity, label, idUserItem);
 		this.modelController.doAddRelationToDrawingArea(newE, nature); 
 	}
 
+	/**
+	 * Delete the given relation
+	 * 
+	 * @param id
+	 *            the edge to delete
+	 * @param c
+	 *			 chosen motherClass
+	 */
 	public void askDeleteRelation(Edge id) {
 		if (id.isDeletable()) {
 			userGraph.removeEdge(id);
@@ -646,32 +798,78 @@ public class Exercise {
 		}
 	}
 
+	/**
+	 * Get the list of the vertex which are linked by the edge
+	 * 
+	 * @param id
+	 *            the aimed edge
+	 * @return the list of the vertex of the input edge
+	 */
 	public ArrayList<Vertex> askUMLRelationClasses(Edge id) {
 		return id.getVertex();
 	}
 
+	/**
+	 * Get the list of the multiplicities of each vertex linked to the edge
+	 * 
+	 * @param id
+	 *            the aimed edge
+	 * @param the list of the multiplicities
+	 */
 	public ArrayList<String> askUMLRelationMultiplicity(Edge id) {
 		return id.getMultiplicity();
 	}
-
+	/**
+	 * Edit the name of an interface
+	 * 
+	 * @param id
+	 *           the interface to edit
+	 * @param name
+	 *			 the new name of the interface
+	 */
 	public void editVertex(Vertex id, String name) {
 		id.setName(name);
 		this.modelController.doEditElementFromPool(id, UMLNature.INTERFACE);
 	}
-
+	/**
+	 * Edit the name of an abstract class
+	 * 
+	 * @param id
+	 *           the abstract class to edit
+	 * @param name
+	 *			 the new name of the abstract class
+	 */
 	public void editVertexAbstract(VertexAbstract id, String name) {
 		id.setName(name);
 		this.modelController.doEditElementFromPool(id, UMLNature.ABSTRACT_CLASS);
 
 	}
-
+	/**
+	 * Edit the name of a class
+	 * 
+	 * @param id
+	 *           the class to edit
+	 * @param name
+	 *			 the new name of the class
+	 */
 	public void editVertexClass(VertexClass id, String name) {
 		id.setName(name);
 		this.modelController.doEditElementFromPool(id, UMLNature.CLASS);
 	}
 
 
-
+	/**
+	 * Edit the name, the type and the visibility of an attribute
+	 * 
+	 * @param id
+	 *           the attribute to edit
+	 * @param name
+	 *			 the new name of the attribute
+	 * @param type
+	 *			 the new type of the attribute, can only be a basic java type (TypeBase)
+	 * @param visibility
+	 *			 the new visibility of the attribute
+	 */
 	public void editAttribut(Attribute id, String name, TypeBase type, Visibility visibility) {
 		id.setName(name);
 		id.setType(type);
@@ -680,6 +878,20 @@ public class Exercise {
 
 	}
 
+	/**
+	 * Edit the name, the parameters' types, the return type and the visibility of a method
+	 * 
+	 * @param id
+	 *           the method to edit
+	 * @param name
+	 *			 the new name of the method
+	 * @param lp
+	 *			 the new list of the parameters' types, can only be basic jaba types (TypeBase)
+	 * @param returnType
+	 *			 the new return type of the method, can only be a basic java type (TypeBase)
+	 * @param visibility
+	 *			 the new visibility of the method
+	 */
 	public void editMethod(Method id, String name, ArrayList<Type> lp, Type returnType, Visibility visibility) {
 		id.setName(name);
 		id.setParamType(lp);
@@ -689,6 +901,16 @@ public class Exercise {
 
 	}
 
+	/**
+	 * Edit the multiplicities and the name of a relation
+	 * 
+	 * @param id
+	 *           the relation to edit
+	 * @param multiplicity
+	 *			 the new multiplicity list of the relation
+	 * @param name
+	 *			 the new name of the relation
+	 */
 	public void askEditRelation(Edge id, ArrayList<String> multiplicity, String name) {
 		id.setName(name);
 		if (id instanceof Association) {
@@ -698,11 +920,24 @@ public class Exercise {
 		this.modelController.doEditRelation(id); 
 	}
 
+	/**
+	 * Get the text to print near the relation when drawn
+	 * 
+	 * @param id
+	 *           the wanted relation
+	 * @param the label to print 
+	 */
 	public String askUMLRelationText(Edge id) {
 		return id.getName();
 	}
 
-	public void askReverseRelation(Object id) {
+	/**
+	 * Reverse a binary relation
+	 * 
+	 * @param id
+	 *           the edge to reverse
+	 */
+	public void askReverseRelation(Edge id) {
 		if (id instanceof DirectionalRelation) {
 			((DirectionalRelation) id).reverseRelation();
 		} else if (id instanceof BinaryAssociation) {
@@ -712,6 +947,13 @@ public class Exercise {
 		this.modelController.doReverseRelation(id);
 	}
 
+	/**
+	 * Create a class in the graphic pool of elements, not associated to a word
+	 * 
+	 * @param name
+	 *           name of the class to create
+	 * @return the created class
+	 */
 	public Vertex askCreateClassInPanel(String name) {
 		VertexClass vertexClass = new VertexClass();
 		vertexClass.setName(name);
@@ -721,6 +963,13 @@ public class Exercise {
 		return vertexClass;
 	}
 
+	/**
+	 * Create an abstract class in the graphic pool of elements, not associated to a word
+	 * 
+	 * @param name
+	 *           name of the abstract class to create
+	 * @return the created abstract class
+	 */
 	public Vertex askCreateAbstractClassInPanel(String name) {
 		VertexAbstract vertexAbstract = new VertexAbstract();
 		vertexAbstract.setName(name);
@@ -730,6 +979,13 @@ public class Exercise {
 		return vertexAbstract;
 	}
 
+	/**
+	 * Create an interface in the graphic pool of elements, not associated to a word
+	 * 
+	 * @param name
+	 *           name of the interface to create
+	 * @return the created interface
+	 */
 	public Vertex askCreateInterfaceInPanel(String name) {
 		Vertex v = new Vertex();
 		v.setName(name);
@@ -739,6 +995,17 @@ public class Exercise {
 		return v;
 	}
 
+	/**
+	 * Create an attribute in the graphic pool of elements, not associated to a word
+	 * 
+	 * @param name
+	 *           name of the attribute to create
+	 * @param type
+	 *			 type of the attribute to create, can only be a basic java type (TypeBase)
+	 * @param visibility
+	 *			 visibility of the attribute to create
+	 * @return the created attribute
+	 */
 	public Attribute askCreateAttributeInPanel(String name, String type, String visibility) {
 		Attribute att = new Attribute(name, TypeBase.getByName(type), Visibility.getByName(visibility));
 		this.idUserItem--;
@@ -747,6 +1014,19 @@ public class Exercise {
 		return att;
 	}
 
+	/**
+	 * Create a method in the graphic pool of elements, not associated to a word
+	 * 
+	 * @param name
+	 *           name of the method to create
+	 * @param paramTypes
+	 *			 list of the parameters' types of the method to create
+	 * @param returnType
+	 *			 return type of the method to create, can only be a basic java type (TypeBase)
+	 * @param visibility
+	 *			 visibility of the method to create
+	 * @return the created method
+	 */
 	public Method askCreateMethodInPanel(String name, ArrayList<String> paramTypes, String returnType, String visibility) {
 		ArrayList<Type> params = new ArrayList<Type>();
 		for (int i = 0; i < paramTypes.size(); i++) {

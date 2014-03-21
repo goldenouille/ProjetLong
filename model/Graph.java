@@ -159,4 +159,22 @@ public class Graph {
 			v.getEdges().remove(id);
 		}
 	}	
+
+	public void remove(GraphItem gi) {
+		if (gi instanceof Vertex) {
+			removeInterface((Vertex) gi);
+		}
+		if (gi instanceof VertexClass) {
+			removeClass((VertexClass) gi);
+		}
+		if (gi instanceof VertexAbstract) {
+			removeAbstractClass((VertexAbstract) gi);
+		}
+		if (gi instanceof Attribute) {
+			removeAttribute((Attribute) gi);
+		}
+		if (gi instanceof Method) {
+			removeMethod((Method) gi);
+		}
+	}
 }
