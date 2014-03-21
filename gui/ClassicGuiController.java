@@ -1175,6 +1175,22 @@ public class ClassicGuiController {
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		umlDrawingPanel.doRemoveElementFromPool(id, nature);
 	}
+	
+	/**
+	 * Remove all UML instances from element panel and eventually also from
+	 * drawing panel if drawn
+	 */
+	public void doRemoveAllElementFromPool() {
+		umlDrawingPanel.doRemoveAllElementFromPool();
+	}
+	
+	/**
+	 * Remove all UML drawing from drawing panel
+	 */
+	public void doRemoveAllElementFromDrawingArea() {
+		umlDrawingPanel.doRemoveAllElementFromDrawingArea();
+	}
+
 
 	/**
 	 * Link the given attribute instance to the given class instance
@@ -1595,9 +1611,9 @@ public class ClassicGuiController {
 	 * 
 	 * @return the score to show
 	 */
-	public String askScore() {
-		return core.askScore();
-	}
+	//public String askScore() {
+	//	return core.askScore();
+	//}
 
 	/**
 	 * Asks the core for the score font to use

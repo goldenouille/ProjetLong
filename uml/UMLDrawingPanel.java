@@ -401,6 +401,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	
 	/**
 	 * Remove an UML instance from element panel
+	 * and eventualy from drawing area
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -425,6 +426,17 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 			poolPanel.removeMethod(id);
 		}
 		
+		poolPanel.refresh();
+	}
+	
+	/**
+	 * Remove ALL UML instance from element panel
+	 * and eventualy from drawing area
+	 */
+	public void doRemoveAllElementFromPool() {
+		this.doRemoveAllElementFromDrawingArea();
+		
+		poolPanel.removeAllElements();
 		poolPanel.refresh();
 	}
 	
@@ -635,7 +647,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	}
 	
 	/**
-	 * Edit an UML relation to drawing panel
+	 * Remove an UML drawing to drawing panel
 	 * 
 	 * @param id
 	 *            identifier of the instance to edit
@@ -710,6 +722,18 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				controller.askDeleteRelation(id);
 			}
 		}
+		
+		this.repaint();
+	}
+	
+	/**
+	 * Remove ALL UML drawing to drawing panel
+	 * DO not ask controller to unlink element
+	 */
+	public void doRemoveAllElementFromDrawingArea() {
+		classes.removeAllElements();
+		links.removeAllElements();
+		this.repaint();
 	}
 	
 	/**

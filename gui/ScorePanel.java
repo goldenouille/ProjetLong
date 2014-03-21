@@ -27,7 +27,7 @@ public class ScorePanel extends AbstractPanel {
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.setLayout(new BorderLayout());
 
-		this.scoreLabel = new JLabel(this.controller.askScore());
+		this.scoreLabel = new JLabel("...");
 		this.scoreLabel.setFont(this.controller.askScoreFont());
 		this.scoreLabel.setForeground(this.controller.askScoreBgColor());
 		this.scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);

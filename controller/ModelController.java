@@ -267,11 +267,6 @@ public class ModelController {
 	// Ask //
 	// ****//
 
-	// fonction avec valeur par defaut pour l'instant
-	public String askScore() {
-		return exo.askScore();
-	}
-
 	// pour l'instant valeur par defaut... mais d'ou le controleur du model est
 	// suppose trouver cette info?
 	public Font askScoreFont() {
@@ -684,6 +679,14 @@ public class ModelController {
 
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		cgc.doRemoveElementFromPool(id, nature);
+	}
+	
+	public void doRemoveAllElementFromPool() {
+		cgc.doRemoveAllElementFromPool();
+	}
+	
+	public void doRemoveAllElementFromDrawingArea() {
+		cgc.doRemoveAllElementFromDrawingArea();
 	}
 
 	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
