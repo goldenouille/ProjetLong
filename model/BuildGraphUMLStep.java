@@ -40,7 +40,7 @@ public class BuildGraphUMLStep extends Step {
 						error=true;
 						errormsg+=("l'attribut "+attribute.getName()+" n'est pas placé.\n");
 					}
-					else if (attribute.getType()==userattribute.getType()) {
+					else if (attribute.getType().compareTo(userattribute.getType())) {
 						error=true;
 						errormsg+=("le type de retour de "+attribute.getName()+" est faux.\n");
 					}
@@ -60,7 +60,7 @@ public class BuildGraphUMLStep extends Step {
 						error=true;
 						errormsg+=("la methode "+method.getName()+" n'est pas placé.\n");
 					}
-					else if (method.getReturnType()==usermethod.getReturnType()) {
+					else if (method.getReturnType().compareTo(usermethod.getReturnType())) {
 						error=true;
 						errormsg+=("le type de retour de "+method.getName()+" est faux.\n");
 					}

@@ -11,6 +11,7 @@ import javax.swing.text.BadLocationException;
 import uml.UMLDrawingPanel;
 import controller.ModelController;
 import launcher.Launcher;
+import launcher.SimpleExerciseBrowser;
 import model.UMLNature;
 
 public class ClassicGuiController {
@@ -140,7 +141,8 @@ public class ClassicGuiController {
 	 * Sends to the core the user's request to save current exercise as xml
 	 */
 	public void askSaveExercise() {
-		core.askSaveExercise();
+		SimpleExerciseBrowser fileBrowser = new SimpleExerciseBrowser();
+		core.askSaveExercise(fileBrowser.getExerciseFile());
 	}
 
 	// ******************************************************************************************************//

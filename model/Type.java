@@ -4,4 +4,6 @@ package model;
 public interface Type {
 
 	public String getName();
+	
+	public boolean compareTo(Type type);
 }

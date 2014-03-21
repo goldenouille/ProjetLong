@@ -129,5 +129,11 @@ public class Vertex implements Type, GraphItem {
 	public String toString() {
 		return this.name;
 	}
+
+	@Override
+	public boolean compareTo(Type type) {
+			//TODO not implemented
+		return false;
+	}
 	
 }

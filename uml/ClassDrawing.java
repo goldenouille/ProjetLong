@@ -6,7 +6,17 @@ import java.util.Vector;
 
 import model.UMLNature;
 
-
+/**
+ * @author Vincent Roth
+ * Class drawing class, automatically draw borders and text
+ * 
+ * Ask the main drawing panel for the String about element name, such as its name or attribute/method name
+ * 
+ * The class name and borders can be colored.
+ * Each attribute or method can be colored individually.
+ * 
+ * Can the reduced, attributes and methods will not be drawn.
+ */
 public class ClassDrawing {
 	
 	private static String STRING_ABSTRACT = "<<classe abstraite>>";

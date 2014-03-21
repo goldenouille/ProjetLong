@@ -3,6 +3,11 @@ package controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -790,9 +795,18 @@ public class ModelController {
 		System.out.println("askCloseExercise ");
 	}
 
-	public void askSaveExercise() {
+	public void askSaveExercise(File file) {
 		// TODO Auto-generated method stub
 		System.out.println("askSaveExercise ");
+		try {
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(Parser.parseUserExercise(exo));
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void doAddRelationToDrawingArea(Object id, Object nature) {

@@ -15,6 +15,14 @@ import javax.swing.JToolBar;
 
 import actions.ActValidateDiagram;
 
+/**
+ * @author Vincent Roth
+ * Toolbar for ralation drawing buttons
+ * 
+ * Each button set the toolbar status.
+ * This status have to be check by the drawing panel to know which action to perform.
+ * The drawing panel is in charge of the action performing.
+ */
 public class LinkToolBar extends JToolBar {
 
 	private static final long serialVersionUID = 1L;

@@ -24,7 +24,7 @@ public enum UMLNature {
 	 * @param name
 	 *			name which has to be set in the new UMLNature item
 	 */
-	public UMLNature(String name) {
+	UMLNature(String name) {
 		this.name = name;
 	}
 

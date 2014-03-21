@@ -8,6 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import model.UMLNature;
 
+/**
+ * @author Vincent Roth
+ * Button used by UMLElementPanel
+ * 
+ * Do a particular action by the element panel.
+ */
 public class UMLElementPanelButton extends IconButton {
 	
 	private static final long serialVersionUID = 1L;

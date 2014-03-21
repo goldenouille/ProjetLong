@@ -10,7 +10,19 @@ import java.util.Vector;
 
 import model.UMLNature;
 
-
+/**
+ * @author Vincent Roth
+ * Relation drawing class, automatically draw lines, arrow and text
+ * 
+ * Relation drawing is automated, the different point are placed in function of the class positions.
+ * 
+ * Relation are limited to two classes, but the internal structure will allow to connect more class, the drawing then must be reworked.
+ * The different arrow drawing are implemented.
+ * 
+ * An attempt was done to allow user relation positioning, three functionalities were implemented,
+ * to consider manual class moving, to delete unnecessary points and to add new points.
+ * There is still problem with the interaction of these functions. 
+ */
 public class LinkDrawing {
 	
 	// Size variables
