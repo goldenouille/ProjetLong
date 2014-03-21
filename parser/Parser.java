@@ -206,5 +206,113 @@ public String parse (Exercise exo) {
   
   	return res;
   }
+
+public String parseUserExercise (Exercise exo) {
+  	
+  	String res = "<exercise name=\"" + exo.getName();
+  	if (exo.getPreview()!=null) {
+  		res += "\" preview=\""+ exo.getPreview();
+  	}
+  		res += "\">\n";
+  	Word w;
+  	boolean isBody = false;
+  	
+  	res += "\t<part name=\"partie utilisateur\">\n\t\t";
+  		
+  		//The loop on the text
+  		for(int j=0; j<exo.getUserText().size(); j++) {
+  			w = exo.getUserText().get(j);
+  			if (w.isSelected()) {
+  				if (isBody) {
+  					res += " \"/>";
+  				}
+  				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + " \"/>\n\t\t";
+  				isBody = false;
+  			}
+  			else {
+  				if (!(isBody)) {
+  					res += "<text body=\"";
+  				}
+  				isBody = true;
+  				res += w.getWord() + " ";
+  			}
+  		}
+  		if (isBody) {
+  			res += " \"/>";
+  		}
+  		res +="\n\n\t\t<UML>\n";
+  		
+  		//The loop on the attributes
+  		Graph g = exo.getUserGraph();
+  		ArrayList<Attribute> al = g.getAttributes();
+  		for (int j=0; j<al.size(); j++) {
+  			res += "\t\t\t<uml-attribute name= \"" + al.get(j).getName();
+  			res += "\" id= '" + al.get(j).getId();
+  			res += "' Type= \"" + al.get(j).getType();
+  			res += "\" visibility= \"" +al.get(j).getVisibility();
+  			res += "\" motherId= '" + al.get(j).getMotherClass().getId() + "' />\n"; 
+  		}
+  		
+  		//The loop on the methods
+  		ArrayList<Method> ml = g.getMethods();
+  		for (int j=0; j<ml.size(); j++) {
+  			res += "\t\t\t<uml-method name= \"" + ml.get(j).getName();
+  			res += "\" id= '" + ml.get(j).getId();
+  			res += "' Type= \"" + ml.get(j).getReturnType();
+  			res += "\" visibility= \"" +ml.get(j).getVisibility();
+  			res += "\" motherId= '" + ml.get(j).getMotherClass().getId();
+  			if (ml.get(j).getParamType().size() == 0) {
+  				res += "' />\n"; 
+  			}
+  			
+  			else {
+  				res += "'>\n";
+	  			for (int k=0; k<ml.get(j).getParamType().size(); k++) {
+	  				res += "\t\t\t\t<param Type = \"" + ml.get(j).getParamType().get(k)  + "\"/>\n";
+	  			}
+	  			res += "\t\t\t</uml-method>\n";
+  			}
+  		}
+  		
+  		//The loop on the Vertex (class, interface, abstract class)
+  		ArrayList<Vertex> vl = g.getVertex();
+  		for (int j=0; j<vl.size(); j++) {
+  			res += "\t\t\t<uml-" + vl.get(j).getUml();
+  			res += " name= \"" + vl.get(j).getName();
+  			res += "\" id= '" + vl.get(j).getId() + "' />\n";
+  		}
+  		
+  		//The loop on the edges
+  		ArrayList<Edge> el = g.getEdges();
+  		for (int j=0; j<el.size(); j++) {
+  			Edge e = el.get(j);
+  			if (e instanceof BinaryAssociation) {
+  				res += "\t\t\t<uml-" + e.getUml();
+  				res += " name= \"" + e.getName();
+  				res += "\" id= '" + e.getId();
+  				res += "' source= \"" + ((BinaryAssociation) e).getSource().getId();
+  				res += "' target= \"" + ((BinaryAssociation) e).getTarget().getId();
+  				res += "' sourceMult= \"" + ((BinaryAssociation) e).getSourceMult();
+  				res += "' targetMult= \"" + ((BinaryAssociation) e).getTargetMult() + "\" />\n";
+  			}
+  			if (e instanceof DirectionalRelation) {
+  				res += "\t\t\t<uml-" + e.getUml();
+  				res += " name= \"" + e.getName();
+  				res += "\" id= '" + e.getId();
+  				res += "' source= \"" + ((DirectionalRelation) e).getSource().getId();
+  				res += "' target= \"" + ((DirectionalRelation) e).getTarget().getId() + "\" />\n";
+  			}
+  		}
+  		
+  		
+  		res += "\t\t</UML>\n";
+  		
+  		
+  	res += "\t</part>\n";
+  	
+  	res += "</exercise>\n";
+  
+  	return res;
+  }
   
 }

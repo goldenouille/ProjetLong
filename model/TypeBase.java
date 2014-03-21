@@ -61,6 +61,8 @@ public enum TypeBase implements Type {
 	
 	/**
 	 * Compare a type to another
+	 * any.compareTo(x) = true
+	 * x.compareTo(any) = false
 	 * 
 	 * @param type
 	 *			type to which it has to be compare
