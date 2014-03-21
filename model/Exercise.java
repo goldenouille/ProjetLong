@@ -547,6 +547,7 @@ public class Exercise {
 		
 		this.userText = new ArrayList<Word>();
 		this.userGraph = new Graph();
+		this.modelController.doRemoveAllElementFromPool();
 
 		this.modelController.doReplaceText(false, tab);
 		this.modelController.doReplaceText(true, (new String[] {}));

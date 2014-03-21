@@ -680,6 +680,14 @@ public class ModelController {
 	public void doRemoveElementFromPool(Object id, Object nature) {
 		cgc.doRemoveElementFromPool(id, nature);
 	}
+	
+	public void doRemoveAllElementFromPool() {
+		cgc.doRemoveAllElementFromPool();
+	}
+	
+	public void doRemoveAllElementFromDrawingArea() {
+		cgc.doRemoveAllElementFromDrawingArea();
+	}
 
 	public void doSetValidateKeywordsButtonEnabled(boolean enabled) {
 		cgc.doSetValidateKeywordsButtonEnabled(enabled);
