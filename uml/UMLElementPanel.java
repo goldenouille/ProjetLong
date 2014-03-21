@@ -22,13 +22,14 @@ import actions.ActValidateAssociation;
 import model.UMLNature;
 
  /**
-  * 
   * @author Vincent Roth
+  * 
+  * Panel that contains the different class, attribute and method element.
+  * Interact with drawing panel to perform drawing action (add, remove and delete).
   *
   * Could be extend for relation name, keyword identify as relation should be display in another category "Relation"
   * This special element then could be link with an existing relation, linking keyword to relation and setting relation name/text
   */
-
 public class UMLElementPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

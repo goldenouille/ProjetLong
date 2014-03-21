@@ -7,6 +7,12 @@ import java.awt.event.MouseListener;
 
 import model.UMLNature;
 
+/**
+ * @author Vincent Roth
+ * Sensitive label used by UMLElementPanel
+ * 
+ * Do a particular action by the element panel.
+ */
 public class UMLElementListenedLabel extends JLabel {
 
 	private static final long serialVersionUID = 1L;
