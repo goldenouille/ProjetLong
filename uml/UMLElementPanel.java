@@ -429,6 +429,24 @@ public class UMLElementPanel extends JPanel {
 		methods.remove(methodsID.indexOf(id));
 		return methodsID.remove(id);
 	}
+	
+	/**
+	 * Remove all element (class, attribute and method) from element pool
+	 * and reset number of missing UML Drawing
+	 */
+	public void removeAllElements() {
+		missingUMLDrawing = 0;
+		this.removeAllColoredElement();
+		this.resetSelectedElement();
+		
+		classes.removeAllElements();
+		classesID.removeAllElements();
+		classesNature.removeAllElements();
+		properties.removeAllElements();
+		propertiesID.removeAllElements();
+		methods.removeAllElements();
+		methodsID.removeAllElements();
+	}
 
 	/**
 	 * Get element name
