@@ -94,7 +94,7 @@ public Exercise parse (InputStream file) throws IOException, SAXException {
  * @param exo The exercise to parse
  * @return	The string respecting the xml format describing the exercise
  */
-public String parse (Exercise exo) {
+public static String parse (Exercise exo) {
   	
   	String res = "<exercise name=\"" + exo.getName();
   	if (exo.getPreview()!=null) {
@@ -115,9 +115,9 @@ public String parse (Exercise exo) {
   			w = p.getText().get(j);
   			if (w.isKeyWord()) {
   				if (isBody) {
-  					res += " \"/>";
+  					res += "\"/>";
   				}
-  				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + " \"/>\n\t\t";
+  				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + "\"/>\n\t\t";
   				isBody = false;
   			}
   			else {
@@ -125,11 +125,11 @@ public String parse (Exercise exo) {
   					res += "<text body=\"";
   				}
   				isBody = true;
-  				res += w.getWord() + " ";
+  				res += w.getWord();
   			}
   		}
   		if (isBody) {
-  			res += " \"/>";
+  			res += "\"/>";
   		}
   		res +="\n\n\t\t<UML>\n";
   		
@@ -207,7 +207,7 @@ public String parse (Exercise exo) {
   	return res;
   }
 
-public String parseUserExercise (Exercise exo) {
+public static String parseUserExercise (Exercise exo) {
   	
   	String res = "<exercise name=\"" + exo.getName();
   	if (exo.getPreview()!=null) {
@@ -224,9 +224,9 @@ public String parseUserExercise (Exercise exo) {
   			w = exo.getUserText().get(j);
   			if (w.isSelected()) {
   				if (isBody) {
-  					res += " \"/>";
+  					res += "\"/>";
   				}
-  				res += "<kw id='" + w.getId() + "' word=\"" + w.getWord() + " \"/>\n\t\t";
+  				res += "<kw id='" + (-w.getId()) + "' word=\"" + w.getWord() + "\"/>\n\t\t";
   				isBody = false;
   			}
   			else {
@@ -234,11 +234,11 @@ public String parseUserExercise (Exercise exo) {
   					res += "<text body=\"";
   				}
   				isBody = true;
-  				res += w.getWord() + " ";
+  				res += w.getWord();
   			}
   		}
   		if (isBody) {
-  			res += " \"/>";
+  			res += "\"/>";
   		}
   		res +="\n\n\t\t<UML>\n";
   		
@@ -247,7 +247,7 @@ public String parseUserExercise (Exercise exo) {
   		ArrayList<Attribute> al = g.getAttributes();
   		for (int j=0; j<al.size(); j++) {
   			res += "\t\t\t<uml-attribute name= \"" + al.get(j).getName();
-  			res += "\" id= '" + al.get(j).getId();
+  			res += "\" id= '" + (-al.get(j).getId());
   			res += "' Type= \"" + al.get(j).getType();
   			res += "\" visibility= \"" +al.get(j).getVisibility();
   			res += "\" motherId= '" + al.get(j).getMotherClass().getId() + "' />\n"; 
@@ -257,7 +257,7 @@ public String parseUserExercise (Exercise exo) {
   		ArrayList<Method> ml = g.getMethods();
   		for (int j=0; j<ml.size(); j++) {
   			res += "\t\t\t<uml-method name= \"" + ml.get(j).getName();
-  			res += "\" id= '" + ml.get(j).getId();
+  			res += "\" id= '" + (-ml.get(j).getId());
   			res += "' Type= \"" + ml.get(j).getReturnType();
   			res += "\" visibility= \"" +ml.get(j).getVisibility();
   			res += "\" motherId= '" + ml.get(j).getMotherClass().getId();
@@ -279,7 +279,7 @@ public String parseUserExercise (Exercise exo) {
   		for (int j=0; j<vl.size(); j++) {
   			res += "\t\t\t<uml-" + vl.get(j).getUml();
   			res += " name= \"" + vl.get(j).getName();
-  			res += "\" id= '" + vl.get(j).getId() + "' />\n";
+  			res += "\" id= '" + (-vl.get(j).getId()) + "' />\n";
   		}
   		
   		//The loop on the edges
@@ -289,7 +289,7 @@ public String parseUserExercise (Exercise exo) {
   			if (e instanceof BinaryAssociation) {
   				res += "\t\t\t<uml-" + e.getUml();
   				res += " name= \"" + e.getName();
-  				res += "\" id= '" + e.getId();
+  				res += "\" id= '" + (-e.getId());
   				res += "' source= \"" + ((BinaryAssociation) e).getSource().getId();
   				res += "' target= \"" + ((BinaryAssociation) e).getTarget().getId();
   				res += "' sourceMult= \"" + ((BinaryAssociation) e).getSourceMult();
@@ -298,7 +298,7 @@ public String parseUserExercise (Exercise exo) {
   			if (e instanceof DirectionalRelation) {
   				res += "\t\t\t<uml-" + e.getUml();
   				res += " name= \"" + e.getName();
-  				res += "\" id= '" + e.getId();
+  				res += "\" id= '" + (-e.getId());
   				res += "' source= \"" + ((DirectionalRelation) e).getSource().getId();
   				res += "' target= \"" + ((DirectionalRelation) e).getTarget().getId() + "\" />\n";
   			}
@@ -312,6 +312,7 @@ public String parseUserExercise (Exercise exo) {
   	
   	res += "</exercise>\n";
   
+  	System.out.println(res);
   	return res;
   }
   
