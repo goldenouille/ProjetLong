@@ -435,6 +435,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	 */
 	public void doRemoveAllElementFromPool() {
 		this.doRemoveAllElementFromDrawingArea();
+		
 		poolPanel.removeAllElements();
 		poolPanel.refresh();
 	}
@@ -721,6 +722,8 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 				controller.askDeleteRelation(id);
 			}
 		}
+		
+		this.repaint();
 	}
 	
 	/**
@@ -730,6 +733,7 @@ public class UMLDrawingPanel extends AbstractPanel implements MouseListener, Mou
 	public void doRemoveAllElementFromDrawingArea() {
 		classes.removeAllElements();
 		links.removeAllElements();
+		this.repaint();
 	}
 	
 	/**
