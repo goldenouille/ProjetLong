@@ -545,7 +545,9 @@ public class Exercise {
 		String[] tab = new String[list.size()];
 		list.toArray(tab);
 		
-		this.score = part.getScore();
+		this.userText = new ArrayList<Word>();
+		this.userGraph = new Graph();
+
 		this.modelController.doReplaceText(false, tab);
 		this.modelController.doReplaceText(true, (new String[] {}));
 		this.modelController.doSetScore(score.getCurrScore() + "/" + score.getScoreMax());

@@ -1595,9 +1595,9 @@ public class ClassicGuiController {
 	 * 
 	 * @return the score to show
 	 */
-	public String askScore() {
-		return core.askScore();
-	}
+	//public String askScore() {
+	//	return core.askScore();
+	//}
 
 	/**
 	 * Asks the core for the score font to use
