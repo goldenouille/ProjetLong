@@ -12,8 +12,10 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.DocumentFilter;
 
-
-
+/**
+ * @author Vincent Roth
+ * This panel allows to view and edit Relation (text, and -if shown- multiplicity) properties
+ */
 public class LinkEditionPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

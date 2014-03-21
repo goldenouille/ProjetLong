@@ -21,7 +21,13 @@ import javax.swing.text.BadLocationException;
 
 import model.UMLNature;
 
-
+/**
+ * @author Vincent Roth
+ * Panel in charge of class diagram drawing.
+ * 
+ * It contains a relation toolbar (LinkToolBar) and and element panel (UMLElementPanel)
+ * In charge of relation drawing action, in function of toolbar status. 
+ */
 public class UMLDrawingPanel extends AbstractPanel implements MouseListener, MouseMotionListener {
 	
 	// Color constant
