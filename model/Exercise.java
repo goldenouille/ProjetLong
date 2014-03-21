@@ -1039,5 +1039,4 @@ public class Exercise {
 		this.userGraph.addMethod(met);
 		return met;
 	}
-
 }
